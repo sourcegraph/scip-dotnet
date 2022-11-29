@@ -30,4 +30,3 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - run: dotnet test
-

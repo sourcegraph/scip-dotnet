@@ -1,16 +1,32 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scip-dotnet", "scip-dotnet\scip-dotnet.csproj", "{EB8FFDC0-E8F9-4305-801F-E637A09D8B3D}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScipDotnet", "ScipDotnet\ScipDotnet.csproj", "{D69699EA-366D-496D-B74F-1165FCDBA8D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScipDotnet.Tests", "ScipDotnet.Tests\ScipDotnet.Tests.csproj", "{31F85515-F297-4788-9773-EF91BCFA11EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EB8FFDC0-E8F9-4305-801F-E637A09D8B3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB8FFDC0-E8F9-4305-801F-E637A09D8B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB8FFDC0-E8F9-4305-801F-E637A09D8B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB8FFDC0-E8F9-4305-801F-E637A09D8B3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D69699EA-366D-496D-B74F-1165FCDBA8D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D69699EA-366D-496D-B74F-1165FCDBA8D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D69699EA-366D-496D-B74F-1165FCDBA8D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D69699EA-366D-496D-B74F-1165FCDBA8D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31F85515-F297-4788-9773-EF91BCFA11EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31F85515-F297-4788-9773-EF91BCFA11EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31F85515-F297-4788-9773-EF91BCFA11EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31F85515-F297-4788-9773-EF91BCFA11EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36F10CDC-3F1F-472C-AE51-C0D2C45030C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36F10CDC-3F1F-472C-AE51-C0D2C45030C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36F10CDC-3F1F-472C-AE51-C0D2C45030C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36F10CDC-3F1F-472C-AE51-C0D2C45030C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
