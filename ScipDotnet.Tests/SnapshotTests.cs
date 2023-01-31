@@ -213,9 +213,7 @@ public class SnapshotTests
     private string FormatDocument(Index index, Document document)
     {
         var sb = new StringBuilder();
-        var inputPath = Path.Join(
-            index.Metadata.ProjectRoot.Replace("file://", String.Empty),
-            document.RelativePath);
+        var inputPath = new Uri(index.Metadata.ProjectRoot + "/" + document.RelativePath).LocalPath;
         var occurrences = document.Occurrences.ToList();
         occurrences.Sort(CompareOccurrences);
         var symtab = SymbolTable(document);
