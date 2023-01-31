@@ -1,5 +1,5 @@
 name: Test
-on: 
+on:
   push:
     branches:
       - main
@@ -10,13 +10,14 @@ env:
 jobs:
   format:
     runs-on: ubuntu-latest
-    - uses: actions/checkout@v3
-    - uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
-    - run: dotnet format --verify-no-changes
-    - run: dotnet format --verify-no-changes
-      working-directory: snapshots/input/syntax
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - run: dotnet format --verify-no-changes
+      - run: dotnet format --verify-no-changes
+        working-directory: snapshots/input/syntax
   test:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -25,9 +26,8 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     name: Test
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
-    - run: dotnet test
-
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - run: dotnet test

@@ -1,0 +1,10 @@
+# tcz717/LsifDotnet
+
+scip-dotnet contains contains parts which are derived from the
+tcz717/LsifDotnet project. The original license is Apache 2 and can be
+found here: https://github.com/tcz717/LsifDotnet/blob/main/LICENSE
+
+The parts that are derived from LsifDotnet are mostly related to parsing
+command-line options and loading the MSBuild Workspace, not the indexing logic
+itself.
+
