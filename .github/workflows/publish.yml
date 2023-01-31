@@ -11,6 +11,6 @@ jobs:
         with:
           dotnet-version: 6.0.x
       - run: dotnet pack
-      - run: dotnet nuget push '*.nupkg' -s 'https://api.nuget.org/v3/index.json' -k '${{ secrets.NUGET_APIKEY }}' --skip-duplicate
+      - run: dotnet nuget push 'ScipDotnet/bin/Debug/*.nupkg' -s 'https://api.nuget.org/v3/index.json' -k '${{ secrets.NUGET_APIKEY }}' --skip-duplicate
           
           
