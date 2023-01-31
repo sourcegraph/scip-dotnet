@@ -39,20 +39,25 @@ public class SnapshotTests
         }
         else
         {
-            var files = new List<string>();
-            RecursivelyListFiles(outputDirectory, files);
             Assert.Multiple(() =>
             {
+                var files = GitLsFiles(outputDirectory);
                 foreach (var file in files)
                 {
+                    if (!file.EndsWith(".cs"))
+                    {
+                        continue;
+                    }
+
                     var relativePath = Path.GetRelativePath(outputDirectory, file);
                     var obtained = snapshots.GetValueOrDefault(relativePath, "");
                     var expected = File.ReadAllText(file);
                     var diff = DiffStrings(obtained, expected);
                     if (diff.Length > 0)
                     {
-                        Assert.Fail("(+ expected, - obtained). To update the expected output to match the obtained behavior, run: " +
-                                    "SCIP_UPDATE_SNAPSHOTS=true dotnet test\n\n" + diff, file);
+                        Assert.Fail(
+                            "(+ expected, - obtained). To update the expected output to match the obtained behavior, run: " +
+                            "SCIP_UPDATE_SNAPSHOTS=true dotnet test\n\n" + diff, file);
                     }
                 }
 
@@ -111,16 +116,6 @@ public class SnapshotTests
         return Directory.GetDirectories(inputs);
     }
 
-    private static void RecursivelyListFiles(string path, List<string> result)
-    {
-        if (!Directory.Exists(path)) return;
-        result.AddRange(Directory.GetFiles(path));
-        foreach (var directory in Directory.GetDirectories(path))
-        {
-            RecursivelyListFiles(directory, result);
-        }
-    }
-
     private static string IndexDirectory(string directory)
     {
         var include = Environment.GetEnvironmentVariable("SCIP_INCLUDE");
@@ -149,6 +144,27 @@ public class SnapshotTests
         }
 
         return Path.Join(directory, "index.scip");
+    }
+
+    private static string[] GitLsFiles(string directory)
+    {
+        var process = new Process()
+        {
+            StartInfo = new ProcessStartInfo()
+            {
+                // The working directory of `dotnet test` is not the root directory of the project
+                // so we infer it by invoking `git rev-parse --show-toplevel`. It would be cleaner
+                // to get the root directory from MSBuild but I wasn't able to figure out how to do it
+                // after searching for ~20 minutes. This works for now and unblocks writing tests.
+                FileName = "git",
+                Arguments = "rev-parse --show-toplevel",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                WorkingDirectory = directory
+            }
+        };
+        process.Start();
+        return process.StandardOutput.ReadToEnd().Trim().Split("\n");
     }
 
     private static string RootDirectory()
