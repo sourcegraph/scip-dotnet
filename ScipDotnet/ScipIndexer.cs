@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.MSBuild;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,8 +20,25 @@ public class ScipIndexer
 
     private ILogger<ScipIndexer> Logger { get; }
 
+    public void Restore(IndexCommandOptions options)
+    {
+        var process = new Process()
+        {
+            StartInfo = new ProcessStartInfo()
+            {
+                WorkingDirectory = options.WorkingDirectory.FullName,
+                FileName = "dotnet",
+                Arguments = options.ProjectsFile.FullName.EndsWith(".sln")
+                    ? $"restore {options.ProjectsFile.FullName}"
+                    : "restore"
+            }
+        };
+        process.Start();
+    }
+
     public async IAsyncEnumerable<Scip.Document> IndexDocuments(IHost host, IndexCommandOptions options)
     {
+        Restore(options);
         IEnumerable<Project> projects = string.Equals(options.ProjectsFile.Extension, ".csproj")
             ? new[]
             {
