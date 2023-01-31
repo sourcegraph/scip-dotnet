@@ -9,7 +9,6 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/sourcegraph/scip-dotnet</RepositoryUrl>
-    <PackageId>ScipDotnetter</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
