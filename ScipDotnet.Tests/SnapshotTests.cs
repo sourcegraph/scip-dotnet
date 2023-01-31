@@ -41,39 +41,50 @@ public class SnapshotTests
         {
             Assert.Multiple(() =>
             {
-                var files = GitLsFiles(outputDirectory);
-                foreach (var file in files)
+                var relativeInputPaths = new HashSet<string>(GitLsFiles(inputDirectory));
+                var absoluteOutputPaths = new List<string>();
+                RecursivelyListFiles(outputDirectory, absoluteOutputPaths);
+                foreach (var absolutePath in absoluteOutputPaths)
                 {
-                    if (!file.EndsWith(".cs"))
+                    if (!absolutePath.EndsWith(".cs"))
                     {
                         continue;
                     }
 
-                    var relativePath = Path.GetRelativePath(outputDirectory, file);
-                    var obtained = snapshots.GetValueOrDefault(relativePath, "");
-                    var expected = File.ReadAllText(file);
+                    var relativePath = Path.GetRelativePath(outputDirectory, absolutePath);
+                    var obtained = snapshots[relativePath];
+                    var expected = File.ReadAllText(absolutePath);
                     var diff = DiffStrings(obtained, expected);
                     if (diff.Length > 0)
                     {
+                        // Console.WriteLine(diff);
                         Assert.Fail(
-                            "(+ expected, - obtained). To update the expected output to match the obtained behavior, run: " +
-                            "SCIP_UPDATE_SNAPSHOTS=true dotnet test\n\n" + diff, file);
+                            $"{absolutePath}\n(+ expected, - obtained). To update the expected output to match the obtained behavior, run: " +
+                            "SCIP_UPDATE_SNAPSHOTS=true dotnet test\n\n" + diff);
                     }
                 }
 
-                var filesSet = new HashSet<string>(files);
+                var absoluteOutputPathsSet = new HashSet<string>(absoluteOutputPaths);
                 foreach (var (relativePath, _) in snapshots)
                 {
-                    var outputPath = Path.Join(outputDirectory, relativePath);
-                    if (filesSet.Contains(outputPath))
+                    var absolutePath = Path.Join(outputDirectory, relativePath);
+                    if (relativeInputPaths.Contains(relativePath) && !absoluteOutputPathsSet.Contains(absolutePath))
                     {
-                        continue;
+                        Assert.Fail(
+                            $"relative path '{relativePath}' missing an output file. To fix this problem, run the following command: SCIP_UPDATE_SNAPSHOTS=true dotnet test");
                     }
-
-                    Assert.Fail(
-                        $"relative path '{relativePath}' missing an output file. To fix this problem, run the following command: SCIP_UPDATE_SNAPSHOTS=true dotnet test");
                 }
             });
+        }
+    }
+
+    private static void RecursivelyListFiles(string path, List<string> result)
+    {
+        if (!Directory.Exists(path)) return;
+        result.AddRange(Directory.GetFiles(path));
+        foreach (var directory in Directory.GetDirectories(path))
+        {
+            RecursivelyListFiles(directory, result);
         }
     }
 
@@ -152,12 +163,8 @@ public class SnapshotTests
         {
             StartInfo = new ProcessStartInfo()
             {
-                // The working directory of `dotnet test` is not the root directory of the project
-                // so we infer it by invoking `git rev-parse --show-toplevel`. It would be cleaner
-                // to get the root directory from MSBuild but I wasn't able to figure out how to do it
-                // after searching for ~20 minutes. This works for now and unblocks writing tests.
                 FileName = "git",
-                Arguments = "rev-parse --show-toplevel",
+                Arguments = "ls-files",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 WorkingDirectory = directory
