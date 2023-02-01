@@ -8,6 +8,8 @@
     <Version>0.1.2-beta</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageType>DotnetTool</PackageType>
+    <AssemblyName>scip-dotnet</AssemblyName>
     <RepositoryUrl>https://github.com/sourcegraph/scip-dotnet</RepositoryUrl>
   </PropertyGroup>
 
