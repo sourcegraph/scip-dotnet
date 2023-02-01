@@ -20,19 +20,21 @@ public class ScipIndexer
 
     private ILogger<ScipIndexer> Logger { get; }
 
-    public void Restore(IndexCommandOptions options)
+    private void Restore(IndexCommandOptions options)
     {
+        var arguments = options.ProjectsFile.FullName.EndsWith(".sln")
+            ? $"restore {options.ProjectsFile.FullName}"
+            : "restore";
         var process = new Process()
         {
             StartInfo = new ProcessStartInfo()
             {
                 WorkingDirectory = options.WorkingDirectory.FullName,
                 FileName = "dotnet",
-                Arguments = options.ProjectsFile.FullName.EndsWith(".sln")
-                    ? $"restore {options.ProjectsFile.FullName}"
-                    : "restore"
+                Arguments = arguments
             }
         };
+        options.Logger.LogInformation("$ dotnet {Arguments}", arguments);
         process.Start();
     }
 
