@@ -5,7 +5,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>0.1.4-beta</Version>
+    <Version>0.1.5-beta</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageType>DotnetTool</PackageType>
