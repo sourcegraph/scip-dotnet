@@ -19,7 +19,8 @@ public static class Program
     {
         var indexCommand = new Command("index", "Index a solution file")
         {
-            new Argument<FileInfo>("projects", "Path to the .sln (solution) or .csproj file") { Arity = ArgumentArity.ZeroOrOne },
+            new Argument<FileInfo>("projects", "Path to the .sln (solution) or .csproj file")
+                { Arity = ArgumentArity.ZeroOrOne },
             new Option<string>("--output", () => "index.scip",
                 "Path to the output SCIP index file"),
             new Option<FileInfo>("--working-directory",
@@ -41,7 +42,8 @@ public static class Program
         };
         indexCommand.Handler = CommandHandler.Create(IndexCommandHandler.Process);
         var rootCommand =
-            new RootCommand("SCIP indexer for the C# programming language. Built with the Roslyn .NET compiler. Supports MSBuild.")
+            new RootCommand(
+                "SCIP indexer for the C# programming language. Built with the Roslyn .NET compiler. Supports MSBuild.")
             {
                 indexCommand,
             };
@@ -49,7 +51,12 @@ public static class Program
         return await builder.UseHost(_ => Host.CreateDefaultBuilder(), host =>
             {
                 host.ConfigureAppConfiguration(b => b.AddInMemoryCollection());
-                host.ConfigureLogging(b => b.AddFilter("Microsoft.Hosting.Lifetime", LogLevel.None));
+                host.ConfigureLogging(b => b.AddSimpleConsole(options =>
+                {
+                    options.IncludeScopes = true;
+                    options.SingleLine = true;
+                    options.TimestampFormat = "HH:mm:ss ";
+                }).AddFilter("Microsoft.Hosting.Lifetime", LogLevel.None));
                 host.ConfigureServices((_, collection) =>
                     collection
                         .AddSingleton(_ => CreateWorkspace())

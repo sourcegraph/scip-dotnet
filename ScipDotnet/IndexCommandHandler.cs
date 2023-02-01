@@ -70,27 +70,36 @@ public static class IndexCommandHandler
             stopwatch.Elapsed.ToFriendlyString());
     }
 
+    private static string FixThisProblem(string examplePath)
+    {
+        return "To fix this problem, pass the path of a solution (.sln) or project (.csproj) file to the `scip-dotnet index` command. " +
+        $"For example, run: scip-dotnet index {examplePath}";
+    }
+    
     private static string? FindSolutionOrProjectFile(FileInfo workingDirectory, ILogger<IndexCommandOptions> logger)
     {
-        var files = Directory.GetFiles(workingDirectory.FullName).Where(file =>
+        var paths = Directory.GetFiles(workingDirectory.FullName).Where(file =>
             string.Equals(Path.GetExtension(file), ".sln", StringComparison.OrdinalIgnoreCase) ||
             string.Equals(Path.GetExtension(file), ".csproj", StringComparison.OrdinalIgnoreCase)
         ).ToList();
-        if (files.Count == 0)
+
+        switch (paths.Count)
         {
-            logger.LogError(
-                "No solution (.sln) or .csproj file detected in the working directory '{WorkingDirectory}'. Use the --solution-file argument to specify which solution file to index", workingDirectory.FullName);
-            return null;
+            case 0:
+                logger.LogError(
+                    "No solution (.sln) or .csproj file detected in the working directory '{WorkingDirectory}'. {FixThis}",
+                    workingDirectory.FullName, FixThisProblem("SOLUTION_FILE"));
+                return null;
+            case 1:
+                return paths.First();
         }
 
-        if (files.Count != 1)
-        {
-            logger.LogError(
-                "Ambiguous solution files: {Join}. Use the --solution-file argument to specify which solution file to index",
-                String.Join(", ", files));
-            return null;
-        }
+        var relativePaths = paths.Select(path => Path.GetRelativePath(workingDirectory.FullName, path)).ToList();
+        logger.LogError(
+            "Ambiguous solution files: {Join}. {FixThis}",
+            String.Join(", ", relativePaths),
+            FixThisProblem(relativePaths.First()));
+        return null;
 
-        return files.First();
     }
 }
