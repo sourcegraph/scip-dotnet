@@ -5,6 +5,7 @@ on:
 jobs:
   nuget-push:
     runs-on: ubuntu-latest
+    environment: NuGet
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v3
