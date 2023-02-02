@@ -5,3 +5,4 @@ RUN dotnet pack
 ENV PATH="/root/.dotnet/tools:${PATH}"
 RUN dotnet tool install --add-source ScipDotnet/bin/Debug/ --global scip-dotnet
 RUN rm -rf /scip-dotnet
+WORKDIR /root
