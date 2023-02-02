@@ -13,7 +13,7 @@ command-line tool by following the [local install](#local-install) instructions.
 Execute `docker run` to index a codebase with `scip-dotnet`.
 
 ```sh
-docker run -v $(pwd):/root sourcegraph/scip-dotnet:latest scip-dotnet index
+docker run -v $(pwd):/app sourcegraph/scip-dotnet:latest scip-dotnet index
 ```
 
 Once this command finishes then you should have an `index.scip` file that you
