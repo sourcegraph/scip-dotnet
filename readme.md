@@ -4,8 +4,9 @@ SCIP indexer for the C# programming language.
 
 ## Getting started
 
-The easiest way to run `scip-dotnet` is to run it through the
-`sourcegraph/scip-dotnet` Docker image.
+The easiest way to run `scip-dotnet` is to use the `sourcegraph/scip-dotnet`
+Docker image. You can alternatively install `scip-dotnet` as a local
+command-line tool by following the [local install](#local-install) instructions.
 
 ### Docker image
 
