@@ -72,7 +72,7 @@ cd scip-dotnet
 Finally, use `dotnet run` to run the indexer locally.
 
 ```shell
-dotnet run --framework net6.0 --project ScipDotnet -- index --working-directory PATH_TO_DIRECTORY_YOU_WANT_TO_INDEX
+dotnet run --project ScipDotnet -- index --working-directory PATH_TO_DIRECTORY_YOU_WANT_TO_INDEX
 ```
 
 Once scip-dotnet has finished indexing the project, there should be an
