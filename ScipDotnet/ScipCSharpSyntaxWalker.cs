@@ -243,7 +243,8 @@ public class ScipCSharpSyntaxWalker : CSharpSyntaxWalker
         }
 
 
-        return ScipSymbol.Package(sym.ContainingAssembly.Identity.Name,
+        return ScipSymbol.Package(
+            sym.ContainingAssembly.Identity.Name,
             sym.ContainingAssembly.Identity.Version.ToString());
     }
 

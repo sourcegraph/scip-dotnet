@@ -14,11 +14,11 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
   
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Packages
 //             ^^^^^^^^ definition scip-dotnet nuget . . Main/Packages#
 //                      documentation ```cs\nclass Main.Packages\n```
-//                      relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                      relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
   {
       DiffPaneModel Diff()
 //    ^^^^^^^^^^^^^ reference scip-dotnet nuget DiffPlex 1.7.1.0 Model/DiffPaneModel#

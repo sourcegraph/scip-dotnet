@@ -142,20 +142,15 @@ public class SnapshotTests
             {
                 FileName = "dotnet",
                 Arguments = arguments,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
                 WorkingDirectory = RootDirectory(),
-                RedirectStandardError = true
             }
         };
         process.Start();
         process.WaitForExit();
         if (process.ExitCode != 0)
         {
-            var stdout = process.StandardOutput.ReadToEnd();
-            var stderr = process.StandardError.ReadToEnd();
             Assert.Fail(
-                $"non-zero exit code {process.ExitCode} indexing {directory}\ndotnet {arguments}\n{stdout}{stderr}");
+                $"non-zero exit code {process.ExitCode} indexing {directory}\ndotnet {arguments}");
         }
 
         return Path.Join(directory, "index.scip");

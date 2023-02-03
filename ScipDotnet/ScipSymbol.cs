@@ -26,7 +26,6 @@ public class ScipSymbol
     }
 
 
-
     public static ScipSymbol Local(int counter)
     {
         return new ScipSymbol("local " + counter);
@@ -37,7 +36,12 @@ public class ScipSymbol
 
     public static ScipSymbol Package(string name, string version)
     {
-        return new ScipSymbol("scip-dotnet nuget " + name + " " + version + " ");
+        return new ScipSymbol(
+            "scip-dotnet nuget " +
+            // SCIP package names and versions should use double-space to escape space characters.
+            name.Replace(" ", "  ") + " " +
+            version.Replace(" ", "  ") + " "
+        );
     }
 
     private static string DescriptorString(SymbolDescriptor desc)
@@ -75,5 +79,4 @@ public class ScipSymbol
     {
         return Regex.IsMatch(name, @"^[\w$+-]+$", RegexOptions.IgnoreCase);
     }
-
 }

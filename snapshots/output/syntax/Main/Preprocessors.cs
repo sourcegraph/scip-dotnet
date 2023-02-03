@@ -4,7 +4,7 @@
   public class Preprocessors
 //             ^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Preprocessors#
 //                           documentation ```cs\nclass Main.Preprocessors\n```
-//                           relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                           relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
   {
       string OS()
 //           ^^ definition scip-dotnet nuget . . Main/Preprocessors#OS().

@@ -7,11 +7,11 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
   
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Events
 //             ^^^^^^ definition scip-dotnet nuget . . Main/Events#
 //                    documentation ```cs\nclass Main.Events\n```
-//                    relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                    relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
   {
       public event EventHandler<int> Event1
 //                                   ^^^^^^ definition scip-dotnet nuget . . Main/Events#Event1#
@@ -22,7 +22,7 @@
       }
   
       public event EventHandler Event2
-//                 ^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/EventHandler#
+//                 ^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/EventHandler#
 //                              ^^^^^^ definition scip-dotnet nuget . . Main/Events#Event2#
 //                                     documentation ```cs\npublic event System.EventHandler Main.Events.Event2\n```
       {
@@ -37,7 +37,7 @@
 //                                 documentation ```cs\nprivate void Main.Events.removeSomething()\n```
       {
           throw new NotImplementedException();
-//                  ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/NotImplementedException#
+//                  ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/NotImplementedException#
       }
   
       private void addSomething()
@@ -45,6 +45,6 @@
 //                              documentation ```cs\nprivate void Main.Events.addSomething()\n```
       {
           throw new NotImplementedException();
-//                  ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/NotImplementedException#
+//                  ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/NotImplementedException#
       }
   }
