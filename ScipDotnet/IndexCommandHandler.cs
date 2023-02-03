@@ -11,7 +11,7 @@ namespace ScipDotnet;
 
 public static class IndexCommandHandler
 {
-    public static async Task<int> Process(IHost host, FileInfo? projects, string output, FileInfo workingDirectory,
+    public static async Task<int> Process(IHost host, List<FileInfo> projects, string output, FileInfo workingDirectory,
         List<string> include, List<string> exclude, bool allowGlobalSymbolDefinitions)
     {
         var logger = host.Services.GetRequiredService<ILogger<IndexCommandOptions>>();
@@ -19,33 +19,34 @@ public static class IndexCommandHandler
         matcher.AddIncludePatterns(include.Count == 0 ? new[] { "**" } : include);
         matcher.AddExcludePatterns(exclude);
 
-        var projectsFile = projects?.FullName ?? FindSolutionOrProjectFile(workingDirectory, logger);
-        if (projectsFile == null)
+        var projectFiles = projects.Count > 0
+            ? projects
+            : FindSolutionOrProjectFile(workingDirectory, logger);
+        if (!projectFiles.Any())
         {
             return 1;
         }
 
-        var options = new IndexCommandOptions(workingDirectory, OutputFile(workingDirectory, output),
-            new FileInfo(projectsFile), logger, matcher,
-            allowGlobalSymbolDefinitions);
+        var options = new IndexCommandOptions(
+            workingDirectory,
+            OutputFile(workingDirectory, output),
+            projectFiles,
+            logger,
+            matcher,
+            allowGlobalSymbolDefinitions
+        );
         await ScipIndex(host, options);
         return 0;
     }
 
     private static FileInfo OutputFile(FileInfo workingDirectory, string output)
     {
-        if (Path.IsPathRooted(output))
-        {
-            return new FileInfo(output);
-        }
-
-        return new FileInfo(Path.Join(workingDirectory.FullName, output));
+        return Path.IsPathRooted(output) ? new FileInfo(output) : new FileInfo(Path.Join(workingDirectory.FullName, output));
     }
 
     private static async Task ScipIndex(IHost host, IndexCommandOptions options)
     {
         var stopwatch = Stopwatch.StartNew();
-        options.Logger.LogInformation("Solution file {SolutionFileFullName}", options.ProjectsFile.FullName);
         var indexer = host.Services.GetRequiredService<ScipIndexer>();
         var index = new Scip.Index
         {
@@ -72,34 +73,26 @@ public static class IndexCommandHandler
 
     private static string FixThisProblem(string examplePath)
     {
-        return "To fix this problem, pass the path of a solution (.sln) or project (.csproj) file to the `scip-dotnet index` command. " +
-        $"For example, run: scip-dotnet index {examplePath}";
+        return
+            "To fix this problem, pass the path of a solution (.sln) or project (.csproj) file to the `scip-dotnet index` command. " +
+            $"For example, run: scip-dotnet index {examplePath}";
     }
-    
-    private static string? FindSolutionOrProjectFile(FileInfo workingDirectory, ILogger<IndexCommandOptions> logger)
+
+    private static List<FileInfo> FindSolutionOrProjectFile(FileInfo workingDirectory, ILogger logger)
     {
         var paths = Directory.GetFiles(workingDirectory.FullName).Where(file =>
             string.Equals(Path.GetExtension(file), ".sln", StringComparison.OrdinalIgnoreCase) ||
             string.Equals(Path.GetExtension(file), ".csproj", StringComparison.OrdinalIgnoreCase)
         ).ToList();
 
-        switch (paths.Count)
+        if (paths.Count != 0)
         {
-            case 0:
-                logger.LogError(
-                    "No solution (.sln) or .csproj file detected in the working directory '{WorkingDirectory}'. {FixThis}",
-                    workingDirectory.FullName, FixThisProblem("SOLUTION_FILE"));
-                return null;
-            case 1:
-                return paths.First();
+            return paths.Select(path => new FileInfo(path)).ToList();
         }
 
-        var relativePaths = paths.Select(path => Path.GetRelativePath(workingDirectory.FullName, path)).ToList();
         logger.LogError(
-            "Ambiguous solution files: {Join}. {FixThis}",
-            String.Join(", ", relativePaths),
-            FixThisProblem(relativePaths.First()));
-        return null;
-
+            "No solution (.sln) or .csproj file detected in the working directory '{WorkingDirectory}'. {FixThis}",
+            workingDirectory.FullName, FixThisProblem("SOLUTION_FILE"));
+        return new List<FileInfo>();
     }
 }

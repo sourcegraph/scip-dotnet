@@ -20,11 +20,9 @@ public class ScipIndexer
 
     private ILogger<ScipIndexer> Logger { get; }
 
-    private void Restore(IndexCommandOptions options)
+    private static void Restore(IndexCommandOptions options, FileInfo project)
     {
-        var arguments = options.ProjectsFile.FullName.EndsWith(".sln")
-            ? $"restore {options.ProjectsFile.FullName}"
-            : "restore";
+        var arguments = project.Extension.Equals(".sln") ? $"restore {project.FullName}" : "restore";
         var process = new Process()
         {
             StartInfo = new ProcessStartInfo()
@@ -40,15 +38,28 @@ public class ScipIndexer
 
     public async IAsyncEnumerable<Scip.Document> IndexDocuments(IHost host, IndexCommandOptions options)
     {
-        Restore(options);
-        IEnumerable<Project> projects = string.Equals(options.ProjectsFile.Extension, ".csproj")
+        var indexedProjects = new HashSet<ProjectId>();
+        foreach (var project in options.ProjectsFile)
+        {
+            await foreach (var document in IndexProject(host, options, project, indexedProjects))
+            {
+                yield return document;
+            }
+        }
+    }
+    
+    private async IAsyncEnumerable<Scip.Document> IndexProject(IHost host, IndexCommandOptions options, 
+        FileInfo rootProject, HashSet<ProjectId> indexedProjects )
+    {
+        Restore(options, rootProject);
+        IEnumerable<Project> projects = string.Equals(rootProject.Extension, ".csproj")
             ? new[]
             {
                 await host.Services.GetRequiredService<MSBuildWorkspace>()
-                    .OpenProjectAsync(options.ProjectsFile.FullName)
+                    .OpenProjectAsync(rootProject.FullName)
             }
             : (await host.Services.GetRequiredService<MSBuildWorkspace>()
-                .OpenSolutionAsync(options.ProjectsFile.FullName)).Projects;
+                .OpenSolutionAsync(rootProject.FullName)).Projects;
 
         foreach (var project in projects)
         {
@@ -59,6 +70,13 @@ public class ScipIndexer
                     project.FilePath, project.Language);
                 continue;
             }
+
+            if (indexedProjects.Contains(project.Id))
+            {
+                continue;
+            }
+
+            indexedProjects.Add(project.Id);
 
             var globals = new Dictionary<ISymbol, ScipSymbol>(SymbolEqualityComparer.Default);
 
