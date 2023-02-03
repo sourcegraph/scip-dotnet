@@ -7,26 +7,26 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
   
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
-// ^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/AttributeUsageAttribute#`.ctor`().
-//                ^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/AttributeTargets#
-//                                 ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/AttributeTargets#Class.
-//                                        ^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/AttributeUsageAttribute#AllowMultiple.
-//                                                              ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/AttributeUsageAttribute#Inherited.
+// ^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/AttributeUsageAttribute#`.ctor`().
+//                ^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/AttributeTargets#
+//                                 ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/AttributeTargets#Class.
+//                                        ^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/AttributeUsageAttribute#AllowMultiple.
+//                                                              ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/AttributeUsageAttribute#Inherited.
   public class GlobalAttributes : Attribute
 //             ^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/GlobalAttributes#
 //                              documentation ```cs\nclass Main.GlobalAttributes\n```
-//                              relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Attribute#
-//                              relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
-//                                ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Attribute#
+//                              relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Attribute#
+//                              relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
+//                                ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Attribute#
   {
       class AuthorAttribute : Attribute
 //          ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/GlobalAttributes#AuthorAttribute#
 //                          documentation ```cs\nclass Main.GlobalAttributes.AuthorAttribute\n```
-//                          relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Attribute#
-//                          relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
-//                            ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Attribute#
+//                          relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Attribute#
+//                          relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
+//                            ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Attribute#
       {
           public AuthorAttribute(string name)
 //               ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/GlobalAttributes#AuthorAttribute#`.ctor`().
@@ -56,12 +56,12 @@
       enum A
 //         ^ definition scip-dotnet nuget . . Main/GlobalAttributes#A#
 //           documentation ```cs\nenum Main.GlobalAttributes.A\n```
-//           relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Enum#
-//           relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/ValueType#
-//           relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
-//           relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IComparable#
-//           relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IConvertible#
-//           relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IFormattable#
+//           relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Enum#
+//           relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/ValueType#
+//           relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
+//           relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IComparable#
+//           relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IConvertible#
+//           relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IFormattable#
       {
           B,
 //        ^ definition scip-dotnet nuget . . Main/GlobalAttributes#A#B.
@@ -74,7 +74,7 @@
       [Author("EventAttribute")]
 //     ^^^^^^ reference scip-dotnet nuget . . Main/GlobalAttributes#AuthorAttribute#`.ctor`().
       public event EventHandler SomeEvent
-//                 ^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/EventHandler#
+//                 ^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/EventHandler#
 //                              ^^^^^^^^^ definition scip-dotnet nuget . . Main/GlobalAttributes#SomeEvent#
 //                                        documentation ```cs\npublic event System.EventHandler Main.GlobalAttributes.SomeEvent\n```
       {
@@ -87,7 +87,7 @@
       public class InnerClass<[Author("ClassTypeParameter")] T>
 //                 ^^^^^^^^^^ definition scip-dotnet nuget . . Main/GlobalAttributes#InnerClass#
 //                            documentation ```cs\nclass Main.GlobalAttributes.InnerClass<T>\n```
-//                            relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                            relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
 //                             ^^^^^^ reference scip-dotnet nuget . . Main/GlobalAttributes#AuthorAttribute#`.ctor`().
       {
           void Method<[Author("MethodTypeParameter")] T2>()

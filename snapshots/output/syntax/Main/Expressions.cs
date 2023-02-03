@@ -7,11 +7,11 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
   
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Expressions
 //             ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Expressions#
 //                         documentation ```cs\nclass Main.Expressions\n```
-//                         relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                         relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
   {
       void AssignmentToPrefixUnaryExpressions()
 //         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Expressions#AssignmentToPrefixUnaryExpressions().
@@ -191,8 +191,8 @@
       struct Struct
 //           ^^^^^^ definition scip-dotnet nuget . . Main/Expressions#Struct#
 //                  documentation ```cs\nstruct Main.Expressions.Struct\n```
-//                  relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/ValueType#
-//                  relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                  relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/ValueType#
+//                  relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
       {
           public int Property;
 //                   ^^^^^^^^ definition scip-dotnet nuget . . Main/Expressions#Struct#Property.
@@ -202,8 +202,8 @@
       struct IndexedClass
 //           ^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Expressions#IndexedClass#
 //                        documentation ```cs\nstruct Main.Expressions.IndexedClass\n```
-//                        relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/ValueType#
-//                        relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                        relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/ValueType#
+//                        relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
       {
           public int Property;
 //                   ^^^^^^^^ definition scip-dotnet nuget . . Main/Expressions#IndexedClass#Property.
@@ -268,8 +268,8 @@
 //                   documentation ```cs\nSystem.Int32* p\n```
 //                      ^^^^^ reference local 14
               Console.WriteLine("myInt = {0}, *p = {1}", myInt, *p);
-//            ^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#
-//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#WriteLine(+13).
+//            ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
+//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+13).
 //                                                       ^^^^^ reference local 14
 //                                                               ^ reference local 15
           }
@@ -298,7 +298,7 @@
       class Cast
 //          ^^^^ definition scip-dotnet nuget . . Main/Expressions#Cast#
 //               documentation ```cs\nclass Main.Expressions.Cast\n```
-//               relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//               relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
       {
           public Cast nested;
 //               ^^^^ reference scip-dotnet nuget . . Main/Expressions#Cast#
@@ -326,7 +326,7 @@
           public class Cast2
 //                     ^^^^^ definition scip-dotnet nuget . . Main/Expressions#Cast#Cast2#
 //                           documentation ```cs\nclass Main.Expressions.Cast.Cast2\n```
-//                           relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                           relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
           {
           }
       }
@@ -370,15 +370,15 @@
           var f = (Int32)(1);
 //            ^ definition local 25
 //              documentation ```cs\nSystem.Int32 f\n```
-//                 ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int32#
+//                 ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#
           var g = (Int32)(1);
 //            ^ definition local 26
 //              documentation ```cs\nSystem.Int32 g\n```
-//                 ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int32#
+//                 ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#
           var h = (Int32)((1));
 //            ^ definition local 27
 //              documentation ```cs\nSystem.Int32 h\n```
-//                 ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int32#
+//                 ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#
           return f + g + h;
 //               ^ reference local 25
 //                   ^ reference local 26
@@ -409,7 +409,7 @@
       class TargetType
 //          ^^^^^^^^^^ definition scip-dotnet nuget . . Main/Expressions#TargetType#
 //                     documentation ```cs\nclass Main.Expressions.TargetType\n```
-//                     relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                     relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
       {
           public TargetType(string name)
 //               ^^^^^^^^^^ definition scip-dotnet nuget . . Main/Expressions#TargetType#`.ctor`().
@@ -447,7 +447,7 @@
       class ObjectCreationClass
 //          ^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Expressions#ObjectCreationClass#
 //                              documentation ```cs\nclass Main.Expressions.ObjectCreationClass\n```
-//                              relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                              relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
       {
           public D field;
 //               ^ reference scip-dotnet nuget . . Main/Expressions#ObjectCreationClass#D#
@@ -469,7 +469,7 @@
           public class D
 //                     ^ definition scip-dotnet nuget . . Main/Expressions#ObjectCreationClass#D#
 //                       documentation ```cs\nclass Main.Expressions.ObjectCreationClass.D\n```
-//                       relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                       relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
           {
               public D(int a, string b)
 //                   ^ definition scip-dotnet nuget . . Main/Expressions#ObjectCreationClass#D#`.ctor`().
@@ -515,7 +515,7 @@
       class NamedParametersClass
 //          ^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Expressions#NamedParametersClass#
 //                               documentation ```cs\nclass Main.Expressions.NamedParametersClass\n```
-//                               relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                               relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
       {
           public int A;
 //                   ^ definition scip-dotnet nuget . . Main/Expressions#NamedParametersClass#A.
@@ -593,7 +593,7 @@
 //                               documentation ```cs\nSystem.Int32 a\n```
 //                                         ^ reference local 44
 //                                             ^ reference local 39
-//                                               ^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Func#Invoke().
+//                                               ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Func#Invoke().
 //                                                      ^ reference local 44
 //                                                         ^ reference local 44
       }
@@ -601,7 +601,7 @@
       class Lambda
 //          ^^^^^^ definition scip-dotnet nuget . . Main/Expressions#Lambda#
 //                 documentation ```cs\nclass Main.Expressions.Lambda\n```
-//                 relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                 relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
       {
           public string func(Lambda x)
 //                      ^^^^ definition scip-dotnet nuget . . Main/Expressions#Lambda#func().
@@ -716,7 +716,7 @@
           var b = typeof(List<string>.Enumerator);
 //            ^ definition local 68
 //              documentation ```cs\nSystem.Type b\n```
-//                                    ^^^^^^^^^^ reference scip-dotnet nuget System.Collections 6.0.0.0 Generic/List#Enumerator#
+//                                    ^^^^^^^^^^ reference scip-dotnet nuget System.Collections 7.0.0.0 Generic/List#Enumerator#
           var c = typeof(Dictionary<,>);
 //            ^ definition local 69
 //              documentation ```cs\nSystem.Type c\n```
@@ -737,7 +737,7 @@
       public class Dog : IAnimal
 //                 ^^^ definition scip-dotnet nuget . . Main/Expressions#Dog#
 //                     documentation ```cs\nclass Main.Expressions.Dog\n```
-//                     relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                     relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
 //                     relationship implementation scip-dotnet nuget . . Main/Expressions#IAnimal#
 //                       ^^^^^^^ reference scip-dotnet nuget . . Main/Expressions#IAnimal#
       {
@@ -753,7 +753,7 @@
       public class Cat : IAnimal
 //                 ^^^ definition scip-dotnet nuget . . Main/Expressions#Cat#
 //                     documentation ```cs\nclass Main.Expressions.Cat\n```
-//                     relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                     relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
 //                     relationship implementation scip-dotnet nuget . . Main/Expressions#IAnimal#
 //                       ^^^^^^^ reference scip-dotnet nuget . . Main/Expressions#IAnimal#
       {
@@ -801,7 +801,7 @@
 //                     ^ reference local 76
 //                       ^^^^^ reference scip-dotnet nuget . . Main/Expressions#Dog#Sound().
               _ => throw new ArgumentOutOfRangeException()
-//                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/ArgumentOutOfRangeException#
+//                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/ArgumentOutOfRangeException#
           };
       }
   
@@ -825,8 +825,8 @@
 //            ^ reference local 78
           {
               Console.WriteLine(s2);
-//            ^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#
-//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#WriteLine(+11).
+//            ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
+//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+11).
 //                              ^^ reference local 79
           }
   
@@ -838,7 +838,7 @@
 //            ^ definition local 81
 //              documentation ```cs\nSystem.Boolean a\n```
 //                ^ reference local 78
-//                         ^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int32#MaxValue.
+//                         ^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#MaxValue.
           var d = s is nameof(a);
 //            ^ definition local 82
 //              documentation ```cs\nSystem.Boolean d\n```

@@ -7,11 +7,11 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
   
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class QuerySyntax
 //             ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#
 //                         documentation ```cs\nclass Main.QuerySyntax\n```
-//                         relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                         relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
   {
       List<IGeneric> sourceA = new List<IGeneric>();
 //         ^^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#
@@ -74,7 +74,7 @@
 //                          ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#sourceA.
 //                                        ^ reference scip-dotnet nuget . . Main/QuerySyntax#Where().a.
 //                                          ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
-//                                                   ^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/String#StartsWith(+1).
+//                                                   ^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/String#StartsWith(+1).
 //                                                                          ^ reference scip-dotnet nuget . . Main/QuerySyntax#Where().a.
       }
   

@@ -7,22 +7,22 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
   
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Fields
 //             ^^^^^^ definition scip-dotnet nuget . . Main/Fields#
 //                    documentation ```cs\nclass Main.Fields\n```
-//                    relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                    relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
   {
       class Fields1
 //          ^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#
 //                  documentation ```cs\nclass Main.Fields.Fields1\n```
-//                  relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                  relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
       {
           private readonly int Property1;
 //                             ^^^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#Property1.
 //                                       documentation ```cs\nprivate readonly System.Int32 Main.Fields.Fields1.Property1\n```
           private Int64 Property2, Property3;
-//                ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int64#
+//                ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int64#
 //                      ^^^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#Property2.
 //                                documentation ```cs\nprivate System.Int64 Main.Fields.Fields1.Property2\n```
 //                                 ^^^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#Property3.
@@ -61,7 +61,7 @@
       class Fields2
 //          ^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields2#
 //                  documentation ```cs\nclass Main.Fields.Fields2\n```
-//                  relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                  relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
       {
           // Function pointer equivalent without calling convention
           unsafe delegate*<string, int> a;

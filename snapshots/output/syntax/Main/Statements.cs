@@ -10,11 +10,11 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
   
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Statements
 //             ^^^^^^^^^^ definition scip-dotnet nuget . . Main/Statements#
 //                        documentation ```cs\nclass Main.Statements\n```
-//                        relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                        relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
   {
       void Try()
 //         ^^^ definition scip-dotnet nuget . . Main/Statements#Try().
@@ -23,17 +23,17 @@
           try
           {
               File.ReadLines("asd");
-//            ^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 IO/File#
-//                 ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 IO/File#ReadLines().
+//            ^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#
+//                 ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#ReadLines().
           }
           catch (Exception err)
-//               ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Exception#
+//               ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Exception#
 //                         ^^^ definition local 0
 //                             documentation ```cs\nSystem.Exception err\n```
           {
               Console.WriteLine(err);
-//            ^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#
-//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#WriteLine(+9).
+//            ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
+//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+9).
 //                              ^^^ reference local 0
           }
       }
@@ -67,8 +67,8 @@
       record Inferred(int F1, int F2);
 //           ^^^^^^^^ definition scip-dotnet nuget . . Main/Statements#Inferred#
 //                    documentation ```cs\nrecord Main.Statements.Inferred\n```
-//                    relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
-//                    relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IEquatable#
+//                    relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
+//                    relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IEquatable#
 //                        ^^ definition scip-dotnet nuget . . Main/Statements#Inferred#`.ctor`().(F1)
 //                           documentation ```cs\nSystem.Int32 F1\n```
 //                                ^^ definition scip-dotnet nuget . . Main/Statements#Inferred#`.ctor`().(F2)
@@ -86,18 +86,18 @@
 //            ^^^^^^ definition local 5
 //                   documentation ```cs\nSystem.Collections.Generic.IEnumerable<(System.Int32 F1, System.Int32 F2)> result\n```
 //                     ^^^^ reference local 4
-//                          ^^^^^^ reference scip-dotnet nuget System.Linq 6.0.0.0 Linq/Enumerable#Select().
+//                          ^^^^^^ reference scip-dotnet nuget System.Linq 7.0.0.0 Linq/Enumerable#Select().
 //                                 ^ definition local 7
 //                                   documentation ```cs\nMain.Statements.Inferred c\n```
 //                                       ^ reference local 7
 //                                         ^^ reference scip-dotnet nuget . . Main/Statements#Inferred#F1.
 //                                             ^ reference local 7
 //                                               ^^ reference scip-dotnet nuget . . Main/Statements#Inferred#F2.
-//                                                    ^^^^^ reference scip-dotnet nuget System.Linq 6.0.0.0 Linq/Enumerable#Where().
+//                                                    ^^^^^ reference scip-dotnet nuget System.Linq 7.0.0.0 Linq/Enumerable#Where().
 //                                                          ^ definition local 9
 //                                                            documentation ```cs\n(System.Int32 F1, System.Int32 F2) t\n```
 //                                                               ^ reference local 9
-//                                                                 ^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/ValueTuple#F2.
+//                                                                 ^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/ValueTuple#F2.
       }
   
       int MultipleInitializers()
@@ -130,14 +130,14 @@
       class MyDisposable : IDisposable
 //          ^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Statements#MyDisposable#
 //                       documentation ```cs\nclass Main.Statements.MyDisposable\n```
-//                       relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
-//                       relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IDisposable#
-//                         ^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/IDisposable#
+//                       relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
+//                       relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IDisposable#
+//                         ^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/IDisposable#
       {
           public void Dispose()
 //                    ^^^^^^^ definition scip-dotnet nuget . . Main/Statements#MyDisposable#Dispose().
 //                            documentation ```cs\npublic void Main.Statements.MyDisposable.Dispose()\n```
-//                            relationship implementation reference scip-dotnet nuget System.Runtime 6.0.0.0 System/IDisposable#Dispose().
+//                            relationship implementation reference scip-dotnet nuget System.Runtime 7.0.0.0 System/IDisposable#Dispose().
           {
           }
       }
@@ -166,21 +166,21 @@
 //                       documentation ```cs\nprivate System.Int64 Main.Statements.MultipleUsing()\n```
       {
           using (Stream a = File.OpenRead("a"), b = File.OpenRead("a"))
-//               ^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 IO/Stream#
+//               ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/Stream#
 //                      ^ definition local 16
 //                        documentation ```cs\nSystem.IO.Stream a\n```
-//                          ^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 IO/File#
-//                               ^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 IO/File#OpenRead().
+//                          ^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#
+//                               ^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#OpenRead().
 //                                              ^ definition local 17
 //                                                documentation ```cs\nSystem.IO.Stream b\n```
-//                                                  ^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 IO/File#
-//                                                       ^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 IO/File#OpenRead().
+//                                                  ^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#
+//                                                       ^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#OpenRead().
           {
               return a.Length + b.Length;
 //                   ^ reference local 16
-//                     ^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 IO/Stream#Length.
+//                     ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/Stream#Length.
 //                              ^ reference local 17
-//                                ^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 IO/Stream#Length.
+//                                ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/Stream#Length.
           }
       }
   

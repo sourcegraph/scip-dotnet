@@ -7,11 +7,11 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
   
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Interfaces
 //             ^^^^^^^^^^ definition scip-dotnet nuget . . Main/Interfaces#
 //                        documentation ```cs\nclass Main.Interfaces\n```
-//                        relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                        relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
   {
       public interface IOne
 //                     ^^^^ definition scip-dotnet nuget . . Main/Interfaces#IOne#
@@ -100,8 +100,8 @@
 //                                documentation ```cs\nSystem.String message\n```
           {
               Console.WriteLine(message);
-//            ^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#
-//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#WriteLine(+11).
+//            ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
+//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+11).
 //                              ^^^^^^^ reference scip-dotnet nuget . . Main/Interfaces#IDefault#Log().(message)
           }
       }
@@ -130,7 +130,7 @@
 //                                               documentation ```cs\nMain.Interfaces.IGetNext<T> other\n```
           {
               throw new NotImplementedException();
-//                      ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/NotImplementedException#
+//                      ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/NotImplementedException#
           }
       }
   

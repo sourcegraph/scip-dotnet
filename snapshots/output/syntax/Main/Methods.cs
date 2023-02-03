@@ -7,11 +7,11 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
   
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Methods
 //             ^^^^^^^ definition scip-dotnet nuget . . Main/Methods#
 //                     documentation ```cs\nclass Main.Methods\n```
-//                     relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                     relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
   {
       int SingleParameter(int b)
 //        ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#SingleParameter().
@@ -128,7 +128,7 @@
       class ImplementsHello : IHello
 //          ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#ImplementsHello#
 //                          documentation ```cs\nclass Main.Methods.ImplementsHello\n```
-//                          relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                          relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
 //                          relationship implementation scip-dotnet nuget . . Main/Methods#IHello#
 //                            ^^^^^^ reference scip-dotnet nuget . . Main/Methods#IHello#
       {
@@ -145,7 +145,7 @@
       class InheritedOverloads1
 //          ^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#InheritedOverloads1#
 //                              documentation ```cs\nclass Main.Methods.InheritedOverloads1\n```
-//                              relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                              relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
       {
           public void Method()
 //                    ^^^^^^ definition scip-dotnet nuget . . Main/Methods#InheritedOverloads1#Method().
@@ -158,7 +158,7 @@
 //          ^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#InheritedOverloads2#
 //                              documentation ```cs\nclass Main.Methods.InheritedOverloads2\n```
 //                              relationship implementation scip-dotnet nuget . . Main/Methods#InheritedOverloads1#
-//                              relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                              relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
 //                                ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . Main/Methods#InheritedOverloads1#
       {
           public int Method(int parameter)
@@ -177,7 +177,7 @@
 //                              documentation ```cs\nclass Main.Methods.InheritedOverloads3\n```
 //                              relationship implementation scip-dotnet nuget . . Main/Methods#InheritedOverloads2#
 //                              relationship implementation scip-dotnet nuget . . Main/Methods#InheritedOverloads1#
-//                              relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                              relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
 //                                ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . Main/Methods#InheritedOverloads2#
       {
           public string Method(string parameter)

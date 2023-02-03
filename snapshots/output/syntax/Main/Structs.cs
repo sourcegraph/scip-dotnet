@@ -7,17 +7,17 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
   
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Structs
 //             ^^^^^^^ definition scip-dotnet nuget . . Main/Structs#
 //                     documentation ```cs\nclass Main.Structs\n```
-//                     relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                     relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
   {
       struct BasicStruct
 //           ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Structs#BasicStruct#
 //                       documentation ```cs\nstruct Main.Structs.BasicStruct\n```
-//                       relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/ValueType#
-//                       relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                       relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/ValueType#
+//                       relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
       {
           public int Property1;
 //                   ^^^^^^^^^ definition scip-dotnet nuget . . Main/Structs#BasicStruct#Property1.

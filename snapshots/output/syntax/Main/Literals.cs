@@ -4,7 +4,7 @@
   public class Literals
 //             ^^^^^^^^ definition scip-dotnet nuget . . Main/Literals#
 //                      documentation ```cs\nclass Main.Literals\n```
-//                      relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#
+//                      relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
   {
       string Interpolation()
 //           ^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Literals#Interpolation().
