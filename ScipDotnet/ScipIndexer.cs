@@ -47,9 +47,9 @@ public class ScipIndexer
             }
         }
     }
-    
-    private async IAsyncEnumerable<Scip.Document> IndexProject(IHost host, IndexCommandOptions options, 
-        FileInfo rootProject, HashSet<ProjectId> indexedProjects )
+
+    private async IAsyncEnumerable<Scip.Document> IndexProject(IHost host, IndexCommandOptions options,
+        FileInfo rootProject, HashSet<ProjectId> indexedProjects)
     {
         Restore(options, rootProject);
         IEnumerable<Project> projects = string.Equals(rootProject.Extension, ".csproj")
