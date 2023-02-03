@@ -135,7 +135,7 @@ public class SnapshotTests
     {
         var include = Environment.GetEnvironmentVariable("SCIP_INCLUDE");
         var includeOption = include != null ? $" --include {include}" : "";
-        var arguments = $"run --project ScipDotnet -- index --working-directory {directory}{includeOption}";
+        var arguments = $"run --framework net7.0 --project ScipDotnet -- index --working-directory {directory}{includeOption}";
         var process = new Process()
         {
             StartInfo = new ProcessStartInfo()

@@ -36,9 +36,12 @@ public class ScipSymbol
 
     public static ScipSymbol Package(string name, string version)
     {
-        return new ScipSymbol("scip-dotnet nuget " +
-                              EscapedName(new SymbolDescriptor { Name = name }) + " " +
-                              EscapedName(new SymbolDescriptor { Name = version }) + " ");
+        return new ScipSymbol(
+            "scip-dotnet nuget " +
+            // SCIP package names and versions should use double-space to escape space characters.
+            name.Replace(" ", "  ") + " " +
+            version.Replace(" ", "  ") + " "
+        );
     }
 
     private static string DescriptorString(SymbolDescriptor desc)
