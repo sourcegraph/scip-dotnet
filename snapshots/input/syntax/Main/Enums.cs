@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Main;
 
+[SuppressMessage("ReSharper", "all")]
 public class Enums
 {
     enum EnumWithIntValues

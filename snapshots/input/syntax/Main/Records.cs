@@ -42,6 +42,12 @@ public class Records
 
     record Teacher(string FirstName, string LastName, string Subject) : Person(FirstName, LastName), I1, I2;
 
+    void UsingRecords()
+    {
+        var person = new Person("a", "b");
+        var teacher = new Teacher("a", "b", "c");
+    }
+
     record I3<T>;
 
     record Teacher2() : I3<Person>(), I1;
