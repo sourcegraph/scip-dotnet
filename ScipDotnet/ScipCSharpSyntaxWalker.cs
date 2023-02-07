@@ -1,6 +1,3 @@
-using System.Collections.Immutable;
-using System.Diagnostics.CodeAnalysis;
-using Google.Protobuf.Collections;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -22,31 +19,43 @@ public class ScipCSharpSyntaxWalker : CSharpSyntaxWalker
     private readonly Dictionary<ISymbol, ScipSymbol> _globals;
     private readonly Dictionary<ISymbol, ScipSymbol> _locals = new(SymbolEqualityComparer.Default);
 
+    // Custom formatting options to render symbol documentation. Feel free to tweak these parameters.
+    // The options were derived by multiple rounds of experimentation with the goal of striking a
+    // balance between showing detailed/accurate information without using too verbose syntax.
     private readonly SymbolDisplayFormat _format = new(
         globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.OmittedAsContaining,
-        typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+        typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameOnly,
         genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters |
                          SymbolDisplayGenericsOptions.IncludeVariance |
                          SymbolDisplayGenericsOptions.IncludeTypeConstraints,
-        memberOptions: SymbolDisplayMemberOptions.IncludeAccessibility | SymbolDisplayMemberOptions.IncludeModifiers |
-                       SymbolDisplayMemberOptions.IncludeParameters | SymbolDisplayMemberOptions.IncludeRef |
-                       SymbolDisplayMemberOptions.IncludeType | SymbolDisplayMemberOptions.IncludeConstantValue |
+        memberOptions: SymbolDisplayMemberOptions.IncludeAccessibility |
+                       SymbolDisplayMemberOptions.IncludeModifiers |
+                       SymbolDisplayMemberOptions.IncludeParameters |
+                       SymbolDisplayMemberOptions.IncludeRef |
+                       SymbolDisplayMemberOptions.IncludeType |
+                       SymbolDisplayMemberOptions.IncludeConstantValue |
                        SymbolDisplayMemberOptions.IncludeContainingType |
                        SymbolDisplayMemberOptions.IncludeExplicitInterface,
         delegateStyle: SymbolDisplayDelegateStyle.NameAndSignature,
         extensionMethodStyle: SymbolDisplayExtensionMethodStyle.InstanceMethod,
-        parameterOptions: SymbolDisplayParameterOptions.IncludeType | SymbolDisplayParameterOptions.IncludeName |
+        parameterOptions: SymbolDisplayParameterOptions.IncludeType |
+                          SymbolDisplayParameterOptions.IncludeName |
                           SymbolDisplayParameterOptions.IncludeDefaultValue |
                           SymbolDisplayParameterOptions.IncludeExtensionThis |
                           SymbolDisplayParameterOptions.IncludeOptionalBrackets |
                           SymbolDisplayParameterOptions.IncludeParamsRefOut,
         propertyStyle: SymbolDisplayPropertyStyle.ShowReadWriteDescriptor,
-        localOptions: SymbolDisplayLocalOptions.IncludeType | SymbolDisplayLocalOptions.IncludeRef |
+        localOptions: SymbolDisplayLocalOptions.IncludeType |
+                      SymbolDisplayLocalOptions.IncludeRef |
                       SymbolDisplayLocalOptions.IncludeConstantValue,
-        kindOptions: SymbolDisplayKindOptions.IncludeTypeKeyword | SymbolDisplayKindOptions.IncludeMemberKeyword |
+        kindOptions: SymbolDisplayKindOptions.IncludeTypeKeyword |
+                     SymbolDisplayKindOptions.IncludeMemberKeyword |
                      SymbolDisplayKindOptions.IncludeNamespaceKeyword,
         miscellaneousOptions: SymbolDisplayMiscellaneousOptions.AllowDefaultLiteral |
-                              SymbolDisplayMiscellaneousOptions.ExpandNullable
+                              SymbolDisplayMiscellaneousOptions.UseSpecialTypes |
+                              SymbolDisplayMiscellaneousOptions.UseAsterisksInMultiDimensionalArrays |
+                              SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier |
+                              SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers
     );
 
     public ScipCSharpSyntaxWalker(
@@ -172,7 +181,6 @@ public class ScipCSharpSyntaxWalker : CSharpSyntaxWalker
     //------------------
     // Symbol formatting
     //------------------
-
 
 
     private ScipSymbol CreateScipSymbol(ISymbol? sym)
@@ -310,6 +318,22 @@ public class ScipCSharpSyntaxWalker : CSharpSyntaxWalker
         return "";
     }
 
+    private readonly string[] _isIgnoredRelationshipSymbol =
+    {
+        " System/Object#",
+        " System/Enum#",
+        " System/ValueType#",
+    };
+
+    // Returns true if this symbol should not be emitted as a SymbolInformation relationship symbol.
+    // The reason we ignore these symbols is because they appear automatically for a large number of
+    // symbols putting pressure on our backend to index the inverted index. It's not particularly useful anyways
+    // to query all the implementations of something like System/Object#.
+    private bool IsIgnoredRelationshipSymbol(string symbol)
+    {
+        return _isIgnoredRelationshipSymbol.Any(symbol.EndsWith);
+    }
+
 
     private void VisitOccurrence(ISymbol? symbol, Location location, bool isDefinition)
     {
@@ -361,9 +385,15 @@ public class ScipCSharpSyntaxWalker : CSharpSyntaxWalker
                     var baseType = namedTypeSymbol.BaseType;
                     while (baseType != null)
                     {
+                        var baseTypeSymbol = CreateScipSymbol(baseType).Value;
+                        if (IsIgnoredRelationshipSymbol(baseTypeSymbol))
+                        {
+                            break;
+                        }
+
                         info.Relationships.Add(new Relationship
                         {
-                            Symbol = CreateScipSymbol(baseType).Value,
+                            Symbol = baseTypeSymbol,
                             IsImplementation = true
                         });
                         baseType = baseType.BaseType;
@@ -371,9 +401,15 @@ public class ScipCSharpSyntaxWalker : CSharpSyntaxWalker
 
                     foreach (var interfaceSymbol in namedTypeSymbol.AllInterfaces)
                     {
+                        var interfaceSymbolSymbol = CreateScipSymbol(interfaceSymbol).Value;
+                        if (IsIgnoredRelationshipSymbol(interfaceSymbolSymbol))
+                        {
+                            continue;
+                        }
+
                         info.Relationships.Add(new Relationship
                         {
-                            Symbol = CreateScipSymbol(interfaceSymbol).Value,
+                            Symbol = interfaceSymbolSymbol,
                             IsImplementation = true
                         });
                     }
@@ -448,6 +484,10 @@ public class ScipCSharpSyntaxWalker : CSharpSyntaxWalker
 
     private static bool IsLocalSymbol(ISymbol sym)
     {
-        return sym.Kind == SymbolKind.Local || (sym.Kind != SymbolKind.Namespace && sym.Name.Equals(""));
+        return sym.Kind == SymbolKind.Local ||
+               // Anonymous classes/methods have empty names and can not be accessed outside their file.
+               // The "global namespace" (parent of all namespaces) also has an empty name and should not
+               // be treated as a local variable.
+               (sym.Name.Equals("") && sym.Kind != SymbolKind.Namespace);
     }
 }

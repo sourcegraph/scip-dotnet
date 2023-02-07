@@ -9,21 +9,20 @@
 //      ^^^^^^^^ reference scip-dotnet nuget DiffPlex 1.7.1.0 DiffPlex/
 //               ^^^^^^^^^^^ reference scip-dotnet nuget DiffPlex 1.7.1.0 DiffBuilder/
 //                           ^^^^^ reference scip-dotnet nuget DiffPlex 1.7.1.0 Model/
-  
+
   namespace Main;
 //          ^^^^ reference scip-dotnet nuget . . Main/
-  
+
   [SuppressMessage("ReSharper", "all")]
 // ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Packages
 //             ^^^^^^^^ definition scip-dotnet nuget . . Main/Packages#
-//                      documentation ```cs\nclass Main.Packages\n```
-//                      relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#
+//                      documentation ```cs\nclass Packages\n```
   {
       DiffPaneModel Diff()
 //    ^^^^^^^^^^^^^ reference scip-dotnet nuget DiffPlex 1.7.1.0 Model/DiffPaneModel#
 //                  ^^^^ definition scip-dotnet nuget . . Main/Packages#Diff().
-//                       documentation ```cs\nprivate DiffPlex.DiffBuilder.Model.DiffPaneModel Main.Packages.Diff()\n```
+//                       documentation ```cs\nprivate DiffPaneModel Packages.Diff()\n```
       {
           return InlineDiffBuilder.Diff("a", "b");
 //               ^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget DiffPlex 1.7.1.0 DiffBuilder/InlineDiffBuilder#

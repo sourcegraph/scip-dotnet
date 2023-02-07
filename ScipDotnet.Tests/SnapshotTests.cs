@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using DiffPlex.DiffBuilder;
 using DiffPlex.DiffBuilder.Model;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Scip;
 using Index = Scip.Index;
 
@@ -106,7 +107,12 @@ public class SnapshotTests
 
             if (i > 0 && diff.Lines[i - 1].Type == ChangeType.Unchanged)
             {
-                sb.Append("  ").AppendLine(diff.Lines[i - 1].Text);
+                var text = diff.Lines[i - 1].Text;
+                if (text.Length > 0)
+                {
+                    sb.Append("  ");
+                }
+                sb.AppendLine(text);
             }
 
             switch (line.Type)
@@ -221,7 +227,7 @@ public class SnapshotTests
         for (var lineNumber = 0; lineNumber < lines.Length; lineNumber++)
         {
             var line = lines[lineNumber].Replace("\t", " ");
-            sb.Append("  ").AppendLine(line);
+            sb.Append(line.Length > 0 ? "  " : "").AppendLine(line);
             while (occurrenceIndex < occurrences.Count)
             {
                 var occurrence = occurrences[occurrenceIndex];
