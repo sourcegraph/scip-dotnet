@@ -31,8 +31,13 @@ src code-intel upload
 The following steps show you how to install a `scip-dotnet` command-line tool to
 your local computer.
 
-First, install .NET
+First, install .NET 7.0
 https://dotnet.microsoft.com/en-us/download/dotnet-framework.
+
+> Note that `scip-dotnet` is built against .NET 7.0 and won't run with older
+> versions. Please open a
+> [feature request](https://github.com/sourcegraph/scip-dotnet/issues/new) if
+> you want cross-built support for older .NET versions.
 
 Next, run `dotnet tool install`.
 
