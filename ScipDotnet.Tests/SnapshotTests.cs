@@ -21,10 +21,11 @@ public class SnapshotTests
         var indexFile = IndexDirectory(inputDirectory);
         var indexBytes = File.ReadAllBytes(indexFile);
         var index = Index.Parser.ParseFrom(indexBytes);
-        var snapshots = index.Documents.ToDictionary(document => document.RelativePath,
-            document => FormatDocument(index, document));
+        var snapshots = index.Documents
+            .DistinctBy(document => document.RelativePath)
+            .ToDictionary(document => document.RelativePath, document => FormatDocument(index, document));
         var outputDirectory =
-            Path.GetFullPath(Path.Join(inputDirectory, "../../", "output", Path.GetFileName(inputDirectory)));
+            Path.GetFullPath(Path.Join(inputDirectory, "../../", $"output-net{Environment.Version.Major}.0", Path.GetFileName(inputDirectory)));
         var isUpdateSnapshots = Environment.GetEnvironmentVariable("SCIP_UPDATE_SNAPSHOTS") != null;
         if (isUpdateSnapshots)
         {
@@ -140,8 +141,9 @@ public class SnapshotTests
     private static string IndexDirectory(string directory)
     {
         var include = Environment.GetEnvironmentVariable("SCIP_INCLUDE");
+        var framework = $"net{Environment.Version.Major}.0";
         var includeOption = include != null ? $" --include {include}" : "";
-        var arguments = $"run --project ScipDotnet -- index --working-directory {directory}{includeOption}";
+        var arguments = $"run --project ScipDotnet --framework {framework} -- index --working-directory {directory}{includeOption}";
         var process = new Process()
         {
             StartInfo = new ProcessStartInfo()
