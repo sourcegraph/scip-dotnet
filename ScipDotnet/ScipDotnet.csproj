@@ -8,7 +8,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageType>DotnetTool</PackageType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
     <PackAsTool>true</PackAsTool>
     <AssemblyName>scip-dotnet</AssemblyName>
     <RepositoryUrl>https://github.com/sourcegraph/scip-dotnet</RepositoryUrl>
