@@ -2,9 +2,6 @@
 //      ^^^^^^ reference scip-dotnet nuget . . System/
 //             ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
 //                         ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
-  using System.Net;
-//      ^^^^^^ reference scip-dotnet nuget . . System/
-//             ^^^ reference scip-dotnet nuget . . Net/
 
   namespace Main;
 //          ^^^^ reference scip-dotnet nuget . . Main/
