@@ -243,7 +243,7 @@ public class Expressions
     {
         var a = (string x) => x + 1;
         var b = (Lambda a, Lambda b) => { return a.func(b); };
-        var c = string (Lambda a, Lambda _) => { return a; };
+        var c = string (Lambda a, Lambda _) => { return "hi"; };
     }
 
     void TupleExpressions()
