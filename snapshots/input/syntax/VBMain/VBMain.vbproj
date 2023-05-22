@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>VBMain</RootNamespace>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DiffPlex" Version="1.7.1" />
+  </ItemGroup>
+
+</Project>
