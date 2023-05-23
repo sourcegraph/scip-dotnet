@@ -58,7 +58,7 @@ public class Interfaces
 
     public interface IGetNext<T> where T : IGetNext<T>
     {
-        static T operator ++(IGetNext<T> other)
+        static IGetNext<T> operator ++(IGetNext<T> other)
         {
             throw new NotImplementedException();
         }

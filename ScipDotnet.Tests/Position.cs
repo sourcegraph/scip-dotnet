@@ -1,5 +1,3 @@
-using Scip;
-
 namespace ScipDotnet.Tests;
 
 public record Position(int Line, int Character) : IComparable<Position>

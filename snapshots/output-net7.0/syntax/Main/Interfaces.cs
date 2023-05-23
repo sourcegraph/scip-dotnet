@@ -122,11 +122,11 @@
 //                                       ^ reference scip-dotnet nuget . . Main/Interfaces#IGetNext#[T]
 //                                                    ^ reference scip-dotnet nuget . . Main/Interfaces#IGetNext#[T]
       {
-          static T operator ++(IGetNext<T> other)
-//               ^ reference scip-dotnet nuget . . Main/Interfaces#IGetNext#[T]
-//                                      ^ reference scip-dotnet nuget . . Main/Interfaces#IGetNext#[T]
-//                                         ^^^^^ definition scip-dotnet nuget . . Main/Interfaces#IGetNext#op_Increment().(other)
-//                                               documentation ```cs\nIGetNext<T> other\n```
+          static IGetNext<T> operator ++(IGetNext<T> other)
+//                        ^ reference scip-dotnet nuget . . Main/Interfaces#IGetNext#[T]
+//                                                ^ reference scip-dotnet nuget . . Main/Interfaces#IGetNext#[T]
+//                                                   ^^^^^ definition scip-dotnet nuget . . Main/Interfaces#IGetNext#op_Increment().(other)
+//                                                         documentation ```cs\nIGetNext<T> other\n```
           {
               throw new NotImplementedException();
 //                      ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/NotImplementedException#

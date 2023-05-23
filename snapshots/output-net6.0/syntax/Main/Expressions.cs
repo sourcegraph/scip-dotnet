@@ -614,7 +614,7 @@
 //                                                 ^ reference local 50
 //                                                   ^^^^ reference scip-dotnet nuget . . Main/Expressions#Lambda#func().
 //                                                        ^ reference local 51
-          var c = string (Lambda a, Lambda _) => { return a; };
+          var c = string (Lambda a, Lambda _) => { return "hi"; };
 //            ^ definition local 52
 //              documentation ```cs\nFunc<Lambda, Lambda, string>? c\n```
 //                        ^^^^^^ reference scip-dotnet nuget . . Main/Expressions#Lambda#
@@ -623,7 +623,6 @@
 //                                  ^^^^^^ reference scip-dotnet nuget . . Main/Expressions#Lambda#
 //                                         ^ definition local 55
 //                                           documentation ```cs\nLambda _\n```
-//                                                        ^ reference local 54
       }
 
       void TupleExpressions()
