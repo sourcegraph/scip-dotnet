@@ -20,10 +20,10 @@
           Enum EnumWithByteValues
 '              ^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Enums#EnumWithByteValues#
 '                                 documentation ```vb\nEnum EnumWithByteValues\n```
-              Five = &H05
+              Five = &H5
 '             ^^^^ definition scip-dotnet nuget . . VBMain/Enums#EnumWithByteValues#Five.
 '                  documentation ```vb\nEnumWithByteValues.Five = 5\n```
-              Fifteen = &H0F
+              Fifteen = &HF
 '             ^^^^^^^ definition scip-dotnet nuget . . VBMain/Enums#EnumWithByteValues#Fifteen.
 '                     documentation ```vb\nEnumWithByteValues.Fifteen = 15\n```
           End Enum

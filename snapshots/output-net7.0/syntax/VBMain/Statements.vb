@@ -32,7 +32,7 @@
               End Try
           End Sub
 
-          Private Function [Default]() As (A as String, B as Boolean)
+          Private Function [Default]() As (A As String, B As Boolean)
 '                          ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#Default().
 '                                    documentation ```vb\nPrivate Function Statements.Default() As (A As String, B As Boolean)\n```
               Dim C As (A As String, B As Boolean) = ("42", 42)
@@ -42,9 +42,9 @@
 '                    ^ reference local 1
           End Function
 
-         Public class Inferred
-'                     ^^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#Inferred#
-'                              documentation ```vb\nClass Inferred\n```
+          Public Class Inferred
+'                      ^^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#Inferred#
+'                               documentation ```vb\nClass Inferred\n```
               Property F1 As Int32
 '                      ^^ definition scip-dotnet nuget . . VBMain/Statements#Inferred#F1.
 '                         documentation ```vb\nPublic Property Inferred.F1 As Integer\n```
@@ -53,7 +53,7 @@
 '                      ^^ definition scip-dotnet nuget . . VBMain/Statements#Inferred#F2.
 '                         documentation ```vb\nPublic Property Inferred.F2 As Integer\n```
 '                            ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#
-         End Class
+          End Class
 
           Private Sub InferredTuples()
 '                     ^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#InferredTuples().
@@ -154,9 +154,9 @@
           Private Function Foreach() As Integer
 '                          ^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#Foreach().
 '                                  documentation ```vb\nPrivate Function Statements.Foreach() As Integer\n```
-          Dim y = New Integer() {1}
-'             ^ definition local 16
-'               documentation ```vb\ny As Integer()\n```
+              Dim y = New Integer() {1}
+'                 ^ definition local 16
+'                   documentation ```vb\ny As Integer()\n```
               Dim z = 0
 '                 ^ definition local 17
 '                   documentation ```vb\nz As Integer\n```

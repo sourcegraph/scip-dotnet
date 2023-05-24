@@ -66,9 +66,9 @@
           Interface IEvent
 '                   ^^^^^^ definition scip-dotnet nuget . . VBMain/Interfaces#IEvent#
 '                          documentation ```vb\nInterface IEvent\n```
-               Event SomeEvent As EventHandler(Of Integer)
-'                    ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Interfaces#IEvent#SomeEvent#
-'                              documentation ```vb\nEvent IEvent.SomeEvent As EventHandler(Of Integer)\n```
+              Event SomeEvent As EventHandler(Of Integer)
+'                   ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Interfaces#IEvent#SomeEvent#
+'                             documentation ```vb\nEvent IEvent.SomeEvent As EventHandler(Of Integer)\n```
           End Interface
 
           Interface IIndex

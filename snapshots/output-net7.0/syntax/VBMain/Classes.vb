@@ -78,7 +78,7 @@
 '                                                                 ^^ definition scip-dotnet nuget . . VBMain/Classes#InternalMultipleTypeParametersClass#[T2]
 '                                                                    documentation ```vb\nT2\n```
           End Class
-          
+
           Interface ICovariantContravariant(Of In T1, Out T2)
 '                   ^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Classes#ICovariantContravariant#
 '                                           documentation ```vb\nInterface ICovariantContravariant(Of In T1, Out T2)\n```
@@ -86,17 +86,17 @@
 '                                                    documentation ```vb\nIn T1\n```
 '                                                         ^^ definition scip-dotnet nuget . . VBMain/Classes#ICovariantContravariant#[T2]
 '                                                            documentation ```vb\nOut T2\n```
-          Sub Method1(ByVal t1 As T1)
-'             ^^^^^^^ definition scip-dotnet nuget . . VBMain/Classes#ICovariantContravariant#Method1().
-'                     documentation ```vb\nSub ICovariantContravariant(Of In T1, Out T2).Method1(t1 As T1)\n```
-'                           ^^ definition scip-dotnet nuget . . VBMain/Classes#ICovariantContravariant#Method1().(t1)
-'                              documentation ```vb\nt1 As T1\n```
-'                                 ^^ reference scip-dotnet nuget . . VBMain/Classes#ICovariantContravariant#[T1]
+              Sub Method1(ByVal t1 As T1)
+'                 ^^^^^^^ definition scip-dotnet nuget . . VBMain/Classes#ICovariantContravariant#Method1().
+'                         documentation ```vb\nSub ICovariantContravariant(Of In T1, Out T2).Method1(t1 As T1)\n```
+'                               ^^ definition scip-dotnet nuget . . VBMain/Classes#ICovariantContravariant#Method1().(t1)
+'                                  documentation ```vb\nt1 As T1\n```
+'                                     ^^ reference scip-dotnet nuget . . VBMain/Classes#ICovariantContravariant#[T1]
 
-          Function Method2() As T2
-'                  ^^^^^^^ definition scip-dotnet nuget . . VBMain/Classes#ICovariantContravariant#Method2().
-'                          documentation ```vb\nFunction ICovariantContravariant(Of In T1, Out T2).Method2() As T2\n```
-'                               ^^ reference scip-dotnet nuget . . VBMain/Classes#ICovariantContravariant#[T2]
+              Function Method2() As T2
+'                      ^^^^^^^ definition scip-dotnet nuget . . VBMain/Classes#ICovariantContravariant#Method2().
+'                              documentation ```vb\nFunction ICovariantContravariant(Of In T1, Out T2).Method2() As T2\n```
+'                                   ^^ reference scip-dotnet nuget . . VBMain/Classes#ICovariantContravariant#[T2]
 
           End Interface
 
@@ -167,15 +167,15 @@
               End Property
           End Class
 
-      Interface SomeInterface
-'               ^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Classes#SomeInterface#
-'                             documentation ```vb\nInterface SomeInterface\n```
-      End Interface
+          Interface SomeInterface
+'                   ^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Classes#SomeInterface#
+'                                 documentation ```vb\nInterface SomeInterface\n```
+          End Interface
 
-      Friend Interface SomeInterface2
-'                      ^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Classes#SomeInterface2#
-'                                     documentation ```vb\nInterface SomeInterface2\n```
-      End Interface
+          Friend Interface SomeInterface2
+'                          ^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Classes#SomeInterface2#
+'                                         documentation ```vb\nInterface SomeInterface2\n```
+          End Interface
 
       End Class
 

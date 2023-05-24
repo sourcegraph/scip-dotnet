@@ -13,13 +13,13 @@
           Private Function OperatingSystem() As String
 '                          ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Preprocessors#OperatingSystem().
 '                                          documentation ```vb\nPrivate Function Preprocessors.OperatingSystem() As String\n```
-  #if WIN32
+  #If WIN32 Then
               Dim Os As String = "Win32"
   #warning This class is bad.
   #error Okay, just stop.
   #elif MACOS
               Dim Os As String = "MacOS"
-  #else
+  #Else
               Dim Os As String = "Unknown"
 '                 ^^ definition local 0
 '                    documentation ```vb\nOs As String\n```

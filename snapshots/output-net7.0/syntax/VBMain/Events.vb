@@ -33,7 +33,7 @@
 '                                  ^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 Collections/ArrayList#Add().
 '                                      ^^^^^ reference scip-dotnet nuget . . VBMain/Events#add_Event2().(value)
               End AddHandler
-              
+
               RemoveHandler(ByVal value As EventHandler)
 '                                 ^^^^^ definition scip-dotnet nuget . . VBMain/Events#remove_Event2().(value)
 '                                       documentation ```vb\nvalue As EventHandler\n```
@@ -43,14 +43,13 @@
 '                                  ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 Collections/ArrayList#Remove().
 '                                         ^^^^^ reference scip-dotnet nuget . . VBMain/Events#remove_Event2().(value)
               End RemoveHandler
-              
+
               RaiseEvent(ByVal sender As Object, ByVal e As EventArgs)
 '                              ^^^^^^ definition scip-dotnet nuget . . VBMain/Events#raise_Event2().(sender)
 '                                     documentation ```vb\nsender As Object\n```
 '                                                      ^ definition scip-dotnet nuget . . VBMain/Events#raise_Event2().(e)
 '                                                        documentation ```vb\ne As EventArgs\n```
 '                                                           ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/EventArgs#
-              
                   For Each handler As EventHandler In EventHandlerList
 '                          ^^^^^^^ definition local 0
 '                                  documentation ```vb\nhandler As Delegate Sub EventHandler(sender As Object, e As EventArgs)\n```
@@ -58,11 +57,11 @@
 '                                                     ^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Events#EventHandlerList.
                       If handler IsNot Nothing Then
 '                        ^^^^^^^ reference local 0
-                      handler.BeginInvoke(sender, e, Nothing, Nothing)
-'                     ^^^^^^^ reference local 0
-'                             ^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/EventHandler#BeginInvoke().
-'                                         ^^^^^^ reference scip-dotnet nuget . . VBMain/Events#raise_Event2().(sender)
-'                                                 ^ reference scip-dotnet nuget . . VBMain/Events#raise_Event2().(e)
+                          handler.BeginInvoke(sender, e, Nothing, Nothing)
+'                         ^^^^^^^ reference local 0
+'                                 ^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/EventHandler#BeginInvoke().
+'                                             ^^^^^^ reference scip-dotnet nuget . . VBMain/Events#raise_Event2().(sender)
+'                                                     ^ reference scip-dotnet nuget . . VBMain/Events#raise_Event2().(e)
                       End If
                   Next
               End RaiseEvent

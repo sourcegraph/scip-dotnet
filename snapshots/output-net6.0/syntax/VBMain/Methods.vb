@@ -174,7 +174,7 @@
           Public Shared Sub InheritedOverloads()
 '                           ^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#InheritedOverloads().
 '                                              documentation ```vb\nPublic Shared Sub Methods.InheritedOverloads()\n```
-              Dim a as InheritedOverloads1 = New InheritedOverloads1
+              Dim a As InheritedOverloads1 = New InheritedOverloads1
 '                 ^ definition local 0
 '                   documentation ```vb\na As Class InheritedOverloads1\n```
 '                      ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads1#
@@ -182,7 +182,7 @@
               a.Method()
 '             ^ reference local 0
 '               ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads1#Method().
-              Dim b as InheritedOverloads2 = New InheritedOverloads2
+              Dim b As InheritedOverloads2 = New InheritedOverloads2
 '                 ^ definition local 1
 '                   documentation ```vb\nb As Class InheritedOverloads2\n```
 '                      ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads2#
@@ -193,7 +193,7 @@
 '                                                ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads1#Method().
               b.Method(42)
 '             ^ reference local 1
-              Dim c as InheritedOverloads3 = New InheritedOverloads3
+              Dim c As InheritedOverloads3 = New InheritedOverloads3
 '                 ^ definition local 2
 '                   documentation ```vb\nc As Class InheritedOverloads3\n```
 '                      ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads3#

@@ -6,7 +6,7 @@
 '              documentation ```vb\nPublic Sub Program.Main(args As String())\n```
 '              ^^^^ definition scip-dotnet nuget . . VBMain/Program#Main().(args)
 '                   documentation ```vb\nargs As String()\n```
-          
+
           Console.WriteLine("Hello, World!")
 '         ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
 '                 ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+11).

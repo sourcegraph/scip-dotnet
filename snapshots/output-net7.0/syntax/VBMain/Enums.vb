@@ -30,10 +30,10 @@
 '                                 relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IComparable#
 '                                 relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IConvertible#
 '                                 relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IFormattable#
-              Five = &H05
+              Five = &H5
 '             ^^^^ definition scip-dotnet nuget . . VBMain/Enums#EnumWithByteValues#Five.
 '                  documentation ```vb\nEnumWithByteValues.Five = 5\n```
-              Fifteen = &H0F
+              Fifteen = &HF
 '             ^^^^^^^ definition scip-dotnet nuget . . VBMain/Enums#EnumWithByteValues#Fifteen.
 '                     documentation ```vb\nEnumWithByteValues.Fifteen = 15\n```
           End Enum

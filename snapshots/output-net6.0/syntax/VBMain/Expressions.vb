@@ -25,7 +25,7 @@
               A = Not A
 '             ^ reference local 0
 '                     ^ reference local 0
-              b = A
+              B = A
 '             ^ reference local 1
 '                 ^ reference local 0
               Dim C = True
@@ -133,9 +133,9 @@
 '                      ^ reference local 7
           End Sub
 
-           Private Sub AssignmentToBinaryExpression()
-'                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#AssignmentToBinaryExpression().
-'                                                   documentation ```vb\nPrivate Sub Expressions.AssignmentToBinaryExpression()\n```
+          Private Sub AssignmentToBinaryExpression()
+'                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#AssignmentToBinaryExpression().
+'                                                  documentation ```vb\nPrivate Sub Expressions.AssignmentToBinaryExpression()\n```
               Dim A = 42
 '                 ^ definition local 8
 '                   documentation ```vb\nA As Integer\n```
@@ -168,13 +168,13 @@
 '                  ^ reference local 8
           End Sub
 
-           Structure Struct
-'                    ^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#Struct#
-'                           documentation ```vb\nStructure Struct\n```
+          Structure Struct
+'                   ^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#Struct#
+'                          documentation ```vb\nStructure Struct\n```
               Public [Property] As Integer
 '                    ^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#Struct#Property.
 '                               documentation ```vb\nPublic Struct.Property As Integer\n```
-           End Structure
+          End Structure
 
           Structure IndexedClass
 '                   ^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#IndexedClass#
@@ -205,7 +205,7 @@
           Private Sub AssignmentToLeftValueTypes()
 '                     ^^^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#AssignmentToLeftValueTypes().
 '                                                documentation ```vb\nPrivate Sub Expressions.AssignmentToLeftValueTypes()\n```
-              Dim E As (A As Integer, B As Integer) = (1, 2) 
+              Dim E As (A As Integer, B As Integer) = (1, 2)
 '                 ^ definition local 9
 '                   documentation ```vb\nE As (A As Integer, B As Integer)\n```
               Dim A = 1
@@ -225,7 +225,7 @@
 '                 ^ definition local 12
 '                   documentation ```vb\nD As Structure IndexedClass\n```
 '                         ^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Expressions#IndexedClass#
-              d(E.B) = 1
+              D(E.B) = 1
 '             ^ reference local 12
 '               ^ reference local 9
 '                 ^ reference local 14
@@ -247,14 +247,14 @@
               Dim X = True
 '                 ^ definition local 17
 '                   documentation ```vb\nX As Boolean\n```
-              Dim Y = If(x, "foo", "bar")
+              Dim Y = If(X, "foo", "bar")
 '                 ^ definition local 18
 '                   documentation ```vb\nY As Object\n```
 '                        ^ reference local 17
               Dim Z As Object = True
 '                 ^ definition local 19
 '                   documentation ```vb\nZ As Object\n```
-              Dim T = If(TypeOf z Is Boolean, 42, 41)
+              Dim T = If(TypeOf Z Is Boolean, 42, 41)
 '                 ^ definition local 20
 '                   documentation ```vb\nT As Object\n```
 '                               ^ reference local 19
@@ -317,7 +317,7 @@
 '                                                 ^ reference local 21
 '                                                    ^ reference local 22
 '                                                           ^^^^ reference scip-dotnet nuget . . VBMain/Expressions#Cast#
-              Dim E = CType((C.nested.nested2), Cast.Cast2)
+              Dim E = CType((C.Nested.Nested2), Cast.Cast2)
 '                 ^ definition local 25
 '                   documentation ```vb\nE As Class Cast2\n```
 '                            ^ reference local 23
@@ -347,11 +347,11 @@
 '                 ^ definition local 29
 '                   documentation ```vb\nX As AnonymousType <anonymous type: Key Helper As String>\n```
 '                                    ^^^^^^ reference local 31
-              Dim Y = New With {x}
+              Dim Y = New With {X}
 '                 ^ definition local 32
-'                   documentation ```vb\nY As AnonymousType <anonymous type: x As AnonymousType <anonymous type: Key Helper As String>>\n```
+'                   documentation ```vb\nY As AnonymousType <anonymous type: X As AnonymousType <anonymous type: Key Helper As String>>\n```
 '                               ^ reference local 29
-              Return Y.X.Helper
+              Return Y.x.Helper
 '                    ^ reference local 32
 '                      ^ reference local 34
 '                        ^^^^^^ reference local 31
@@ -458,11 +458,11 @@
 '                          ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#NamedParameters().
 '                                          documentation ```vb\nPrivate Function Expressions.NamedParameters() As NamedParametersClass\n```
 '                                               ^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Expressions#NamedParametersClass#
-              Dim A = New NamedParametersClass(B:="hi", A:=1)
+              Dim A = New NamedParametersClass(b:="hi", a:=1)
 '                 ^ definition local 37
 '                   documentation ```vb\nA As Class NamedParametersClass\n```
 '                         ^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Expressions#NamedParametersClass#
-              A.Update(B:="foo", A:=42)
+              A.Update(b:="foo", a:=42)
 '             ^ reference local 37
               Return A
 '                    ^ reference local 37
@@ -542,7 +542,7 @@
               Dim A = (1, 2, "")
 '                 ^ definition local 55
 '                   documentation ```vb\nA As (Integer, Integer, String)\n```
-          End Sub 
+          End Sub
 
           Private Sub ArrayCreation()
 '                     ^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#ArrayCreation().
@@ -589,9 +589,9 @@
 '                       documentation ```vb\nsales As Double()()\n```
           End Sub
 
-           Private Sub [TypeOf]()
-'                      ^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#TypeOf().
-'                               documentation ```vb\nPrivate Sub Expressions.TypeOf()\n```
+          Private Sub [TypeOf]()
+'                     ^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#TypeOf().
+'                              documentation ```vb\nPrivate Sub Expressions.TypeOf()\n```
               Dim a = GetType(Integer)
 '                 ^ definition local 65
 '                   documentation ```vb\na As Type\n```
@@ -626,7 +626,7 @@
           Private Sub Dictionary()
 '                     ^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#Dictionary().
 '                                documentation ```vb\nPrivate Sub Expressions.Dictionary()\n```
-              Dim A = New Dictionary(Of String, Integer) From {{ 1, "Test1" }, { 2, "Test1" }}
+              Dim A = New Dictionary(Of String, Integer) From {{1, "Test1"}, {2, "Test1"}}
 '                 ^ definition local 70
 '                   documentation ```vb\nA As Dictionary\n```
           End Sub

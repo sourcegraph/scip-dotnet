@@ -43,13 +43,13 @@
           Private Sub Projection()
 '                     ^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/QuerySyntax#Projection().
 '                                documentation ```vb\nPrivate Sub QuerySyntax.Projection()\n```
-              Dim x = From a In sourceA Select New With {Key.Name = a.Method()}
+              Dim x = From a In sourceA Select New With {Key .Name = a.Method()}
 '                 ^ definition local 1
 '                   documentation ```vb\nx As Interface IEnumerable(Of <anonymous type: Key Name As String>)\n```
 '                               ^^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#sourceA.
-'                                                            ^^^^ reference local 3
-'                                                                   ^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Projection().a.
-'                                                                     ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
+'                                                             ^^^^ reference local 3
+'                                                                    ^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Projection().a.
+'                                                                      ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
               Dim b = From a In x Select a.Name
 '                 ^ definition local 4
 '                   documentation ```vb\nb As Interface IEnumerable(Of String)\n```
@@ -74,23 +74,23 @@
           Private Sub [Let]()
 '                     ^^^^^ definition scip-dotnet nuget . . VBMain/QuerySyntax#Let().
 '                           documentation ```vb\nPrivate Sub QuerySyntax.Let()\n```
-              Dim x = From a In sourceA Let z = New With { Key.A = a.Method(), Key.B = a.Method() } Select z
+              Dim x = From a In sourceA Let z = New With {Key .A = a.Method(), Key .B = a.Method()} Select z
 '                 ^ definition local 6
 '                   documentation ```vb\nx As Interface IEnumerable(Of <anonymous type: Key A As String, Key B As String>)\n```
 '                               ^^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#sourceA.
 '                                                              ^ reference local 8
 '                                                                  ^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Let().a.
 '                                                                    ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
-'                                                                                  ^ reference local 9
-'                                                                                      ^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Let().a.
-'                                                                                        ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
+'                                                                                   ^ reference local 9
+'                                                                                       ^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Let().a.
+'                                                                                         ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
 '                                                                                                          ^ reference local 11
           End Sub
 
           Private Sub Join()
 '                     ^^^^ definition scip-dotnet nuget . . VBMain/QuerySyntax#Join().
 '                          documentation ```vb\nPrivate Sub QuerySyntax.Join()\n```
-              Dim x = From a In sourceA Join b In sourceB On a.Method() Equals b.Method() Select New With { Key.A = a.Method(), Key.B = b.Method() }
+              Dim x = From a In sourceA Join b In sourceB On a.Method() Equals b.Method() Select New With {Key .A = a.Method(), Key .B = b.Method()}
 '                 ^ definition local 12
 '                   documentation ```vb\nx As Interface IEnumerable(Of <anonymous type: Key A As String, Key B As String>)\n```
 '                               ^^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#sourceA.
@@ -102,15 +102,15 @@
 '                                                                                                               ^ reference local 8
 '                                                                                                                   ^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Join().a.
 '                                                                                                                     ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
-'                                                                                                                                   ^ reference local 9
-'                                                                                                                                       ^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Join().b.
-'                                                                                                                                         ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
+'                                                                                                                                    ^ reference local 9
+'                                                                                                                                        ^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Join().b.
+'                                                                                                                                          ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
           End Sub
 
           Private Sub MultipleFrom()
 '                     ^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/QuerySyntax#MultipleFrom().
 '                                  documentation ```vb\nPrivate Sub QuerySyntax.MultipleFrom()\n```
-              Dim x = From a In sourceA From b In sourceB Where a.Method() = b.Method() Select New With { Key.A = a.Method(), Key.B = b.Method() }
+              Dim x = From a In sourceA From b In sourceB Where a.Method() = b.Method() Select New With {Key .A = a.Method(), Key .B = b.Method()}
 '                 ^ definition local 13
 '                   documentation ```vb\nx As Interface IEnumerable(Of <anonymous type: Key A As String, Key B As String>)\n```
 '                               ^^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#sourceA.
@@ -122,9 +122,9 @@
 '                                                                                                             ^ reference local 8
 '                                                                                                                 ^ reference scip-dotnet nuget . . VBMain/QuerySyntax#MultipleFrom().a.
 '                                                                                                                   ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
-'                                                                                                                                 ^ reference local 9
-'                                                                                                                                     ^ reference local 15
-'                                                                                                                                       ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
+'                                                                                                                                  ^ reference local 9
+'                                                                                                                                      ^ reference local 15
+'                                                                                                                                        ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
           End Sub
       End Class
   End Namespace
