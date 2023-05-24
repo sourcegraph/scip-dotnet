@@ -10,7 +10,7 @@ public class ScipSymbol
 {
     public string Value { get; }
 
-    private ScipSymbol(string value) => 
+    private ScipSymbol(string value) =>
         Value = value;
 
     public bool IsLocal() =>
@@ -25,7 +25,7 @@ public class ScipSymbol
     public static readonly ScipSymbol Empty = new("");
     public static readonly ScipSymbol IndexLocalPackage = Package(".", ".");
 
-    public static ScipSymbol Package(string name, string version) => 
+    public static ScipSymbol Package(string name, string version) =>
         new(
             "scip-dotnet nuget " +
             // SCIP package names and versions should use double-space to escape space characters.
@@ -33,7 +33,7 @@ public class ScipSymbol
             version.Replace(" ", "  ") + " "
         );
 
-    private static string DescriptorString(SymbolDescriptor desc) => 
+    private static string DescriptorString(SymbolDescriptor desc) =>
         desc.Suffix switch
         {
             SymbolDescriptor.Types.Suffix.Package => EscapedName(desc) + '/',
