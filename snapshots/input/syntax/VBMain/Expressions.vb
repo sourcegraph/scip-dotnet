@@ -10,7 +10,7 @@ Namespace VBMain
             A = +A
             A = -A
             A = Not A
-            b = A
+            B = A
             Dim C = True
             C = Not C
         End Sub
@@ -44,7 +44,7 @@ Namespace VBMain
             A = C >= D
         End Sub
 
-         Private Sub AssignmentToBinaryExpression()
+        Private Sub AssignmentToBinaryExpression()
             Dim A = 42
             A += A
             A -= A
@@ -57,9 +57,9 @@ Namespace VBMain
             A ^= A
         End Sub
 
-         Structure Struct
+        Structure Struct
             Public [Property] As Integer
-         End Structure
+        End Structure
 
         Structure IndexedClass
             Public [Property] As Integer
@@ -75,14 +75,14 @@ Namespace VBMain
         End Structure
 
         Private Sub AssignmentToLeftValueTypes()
-            Dim E As (A As Integer, B As Integer) = (1, 2) 
+            Dim E As (A As Integer, B As Integer) = (1, 2)
             Dim A = 1
             Dim C = New Struct With {
                 .[Property] = 42
             }
             C.[Property] = 1
             Dim D = New IndexedClass()
-            d(E.B) = 1
+            D(E.B) = 1
             Dim X = New IndexedClass With {
                 .[Property] = 1
             }
@@ -91,9 +91,9 @@ Namespace VBMain
 
         Private Sub TernaryExpression()
             Dim X = True
-            Dim Y = If(x, "foo", "bar")
+            Dim Y = If(X, "foo", "bar")
             Dim Z As Object = True
-            Dim T = If(TypeOf z Is Boolean, 42, 41)
+            Dim T = If(TypeOf Z Is Boolean, 42, 41)
         End Sub
 
         Class Cast
@@ -114,7 +114,7 @@ Namespace VBMain
             Dim B As Object = New Cast()
             Dim C As Cast = (CType(A, Cast)).Plus(CType(B, Cast))
             Dim D As Cast = CType(New Object() {A, B}(0), Cast)
-            Dim E = CType((C.nested.nested2), Cast.Cast2)
+            Dim E = CType((C.Nested.Nested2), Cast.Cast2)
             Dim F = CType((1), Int32)
             Dim G = CType((1), Int32)
             Dim H = CType(((1)), Int32)
@@ -123,8 +123,8 @@ Namespace VBMain
 
         Private Function AnonymousObject() As Object
             Dim X = New With {Key .Helper = ""}
-            Dim Y = New With {x}
-            Return Y.X.Helper
+            Dim Y = New With {X}
+            Return Y.x.Helper
         End Function
 
         Class ObjectCreationClass
@@ -164,8 +164,8 @@ Namespace VBMain
         End Class
 
         Private Function NamedParameters() As NamedParametersClass
-            Dim A = New NamedParametersClass(B:="hi", A:=1)
-            A.Update(B:="foo", A:=42)
+            Dim A = New NamedParametersClass(b:="hi", a:=1)
+            A.Update(b:="foo", a:=42)
             Return A
         End Function
 
@@ -192,7 +192,7 @@ Namespace VBMain
 
         Private Sub TupleExpression()
             Dim A = (1, 2, "")
-        End Sub 
+        End Sub
 
         Private Sub ArrayCreation()
             Dim a = {
@@ -217,7 +217,7 @@ Namespace VBMain
             Dim sales()() As Double = New Double(11)() {}
         End Sub
 
-         Private Sub [TypeOf]()
+        Private Sub [TypeOf]()
             Dim a = GetType(Integer)
             Dim b = GetType(List(Of String).Enumerator)
             Dim c = GetType(Dictionary(Of,))
@@ -237,7 +237,7 @@ Namespace VBMain
         End Sub
 
         Private Sub Dictionary()
-            Dim A = New Dictionary(Of String, Integer) From {{ 1, "Test1" }, { 2, "Test1" }}
+            Dim A = New Dictionary(Of String, Integer) From {{1, "Test1"}, {2, "Test1"}}
         End Sub
 
     End Class

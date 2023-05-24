@@ -12,15 +12,15 @@ Namespace VBMain
             End Try
         End Sub
 
-        Private Function [Default]() As (A as String, B as Boolean)
+        Private Function [Default]() As (A As String, B As Boolean)
             Dim C As (A As String, B As Boolean) = ("42", 42)
             Return C
         End Function
 
-       Public class Inferred
+        Public Class Inferred
             Property F1 As Int32
             Property F2 As Int32
-       End Class
+        End Class
 
         Private Sub InferredTuples()
             Dim List = New List(Of Inferred)()
@@ -55,7 +55,7 @@ Namespace VBMain
         End Function
 
         Private Function Foreach() As Integer
-        Dim y = New Integer() {1}
+            Dim y = New Integer() {1}
             Dim z = 0
 
             For Each x As Integer In y

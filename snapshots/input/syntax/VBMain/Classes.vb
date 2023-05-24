@@ -33,11 +33,11 @@ Namespace VBMain
 
         Friend Class InternalMultipleTypeParametersClass(Of T1, T2)
         End Class
-        
-        Interface ICovariantContravariant(Of In T1, Out T2)
-        Sub Method1(ByVal t1 As T1)
 
-        Function Method2() As T2
+        Interface ICovariantContravariant(Of In T1, Out T2)
+            Sub Method1(ByVal t1 As T1)
+
+            Function Method2() As T2
 
         End Interface
 
@@ -69,11 +69,11 @@ Namespace VBMain
             End Property
         End Class
 
-    Interface SomeInterface
-    End Interface
+        Interface SomeInterface
+        End Interface
 
-    Friend Interface SomeInterface2
-    End Interface
+        Friend Interface SomeInterface2
+        End Interface
 
     End Class
 

@@ -15,7 +15,7 @@ Namespace VBMain
         End Sub
 
         Private Sub Projection()
-            Dim x = From a In sourceA Select New With {Key.Name = a.Method()}
+            Dim x = From a In sourceA Select New With {Key .Name = a.Method()}
             Dim b = From a In x Select a.Name
         End Sub
 
@@ -24,15 +24,15 @@ Namespace VBMain
         End Sub
 
         Private Sub [Let]()
-            Dim x = From a In sourceA Let z = New With { Key.A = a.Method(), Key.B = a.Method() } Select z
+            Dim x = From a In sourceA Let z = New With {Key .A = a.Method(), Key .B = a.Method()} Select z
         End Sub
 
         Private Sub Join()
-            Dim x = From a In sourceA Join b In sourceB On a.Method() Equals b.Method() Select New With { Key.A = a.Method(), Key.B = b.Method() }
+            Dim x = From a In sourceA Join b In sourceB On a.Method() Equals b.Method() Select New With {Key .A = a.Method(), Key .B = b.Method()}
         End Sub
 
         Private Sub MultipleFrom()
-            Dim x = From a In sourceA From b In sourceB Where a.Method() = b.Method() Select New With { Key.A = a.Method(), Key.B = b.Method() }
+            Dim x = From a In sourceA From b In sourceB Where a.Method() = b.Method() Select New With {Key .A = a.Method(), Key .B = b.Method()}
         End Sub
     End Class
 End Namespace

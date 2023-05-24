@@ -9,8 +9,8 @@ Namespace VBMain
         End Enum
 
         Enum EnumWithByteValues
-            Five = &H05
-            Fifteen = &H0F
+            Five = &H5
+            Fifteen = &HF
         End Enum
     End Class
 End Namespace

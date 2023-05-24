@@ -73,12 +73,12 @@ Namespace VBMain
         End Class
 
         Public Shared Sub InheritedOverloads()
-            Dim a as InheritedOverloads1 = New InheritedOverloads1
+            Dim a As InheritedOverloads1 = New InheritedOverloads1
             a.Method()
-            Dim b as InheritedOverloads2 = New InheritedOverloads2
+            Dim b As InheritedOverloads2 = New InheritedOverloads2
             DirectCast(b, InheritedOverloads1).Method()
             b.Method(42)
-            Dim c as InheritedOverloads3 = New InheritedOverloads3
+            Dim c As InheritedOverloads3 = New InheritedOverloads3
             DirectCast(c, InheritedOverloads1).Method()
             DirectCast(c, InheritedOverloads2).Method(42)
             c.Method("42")

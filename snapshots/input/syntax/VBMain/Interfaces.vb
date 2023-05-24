@@ -27,7 +27,7 @@ Namespace VBMain
         End Interface
 
         Interface IEvent
-             Event SomeEvent As EventHandler(Of Integer)
+            Event SomeEvent As EventHandler(Of Integer)
         End Interface
 
         Interface IIndex
