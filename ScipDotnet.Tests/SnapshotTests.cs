@@ -277,8 +277,6 @@ public class SnapshotTests
         return sb.ToString();
     }
 
-    private static int CompareOccurrences(Occurrence a, Occurrence b)
-    {
-        return Range.FromOccurrence(a).CompareTo(Range.FromOccurrence(b));
-    }
+    private static int CompareOccurrences(Occurrence a, Occurrence b) =>
+        Range.FromOccurrence(a).CompareTo(Range.FromOccurrence(b));
 }
