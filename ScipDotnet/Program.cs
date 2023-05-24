@@ -60,7 +60,7 @@ public static class Program
                 host.ConfigureServices((_, collection) =>
                     collection
                         .AddSingleton(_ => CreateWorkspace())
-                        .AddTransient<ScipIndexer>()
+                        .AddTransient<ScipProjectIndexer>()
                         .AddTransient(services => (Workspace)services.GetRequiredService<MSBuildWorkspace>())
                 );
             })

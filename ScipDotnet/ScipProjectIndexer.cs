@@ -11,14 +11,14 @@ namespace ScipDotnet;
 /// <summary>
 /// Orchestrates Roslyn and MSBuild APIs to SCIP index a given project.
 /// </summary>
-public class ScipIndexer
+public class ScipProjectIndexer
 {
     private const int DotnetRestoreTimeout = 3000;
+    public ScipProjectIndexer(ILogger<ScipProjectIndexer> logger) => 
 
-    public ScipIndexer(ILogger<ScipIndexer> logger) => 
         Logger = logger;
 
-    private ILogger<ScipIndexer> Logger { get; }
+    private ILogger<ScipProjectIndexer> Logger { get; }
 
     private static void Restore(IndexCommandOptions options, FileInfo project)
     {
@@ -120,14 +120,14 @@ public class ScipIndexer
         }
         else
         {
-            var symbolFormatter = new ScipSymbolFormatter(doc, options, globals);
+            var symbolFormatter = new ScipDocumentIndexer(doc, options, globals);
             var root = await document.GetSyntaxRootAsync();
             if (language == "C#")
             {
                 var walker = new ScipCSharpSyntaxWalker(symbolFormatter, semanticModel);
                 walker.Visit(root);
             }
-            else
+            else if (language == "Visual Basic")
             {
                 var walker = new ScipVisualBasicSyntaxWalker(symbolFormatter, semanticModel);
                 walker.Visit(root);

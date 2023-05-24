@@ -47,7 +47,7 @@ public static class IndexCommandHandler
     private static async Task ScipIndex(IHost host, IndexCommandOptions options)
     {
         var stopwatch = Stopwatch.StartNew();
-        var indexer = host.Services.GetRequiredService<ScipIndexer>();
+        var indexer = host.Services.GetRequiredService<ScipProjectIndexer>();
         var index = new Scip.Index
         {
             Metadata = new Metadata

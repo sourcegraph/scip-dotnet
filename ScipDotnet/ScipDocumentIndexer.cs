@@ -8,14 +8,14 @@ namespace ScipDotnet;
 /// <summary>
 /// Creates SCIP <code>Document</code> based on provided symbols.
 /// </summary>
-public class ScipSymbolFormatter
+public class ScipDocumentIndexer
 {
     private readonly Document _doc;
     private readonly IndexCommandOptions _options;
     private int _localCounter;
     private readonly Dictionary<ISymbol, ScipSymbol> _globals;
     private readonly Dictionary<ISymbol, ScipSymbol> _locals = new(SymbolEqualityComparer.Default);
-    private readonly string _languagePrefix;
+    private readonly string _markdownCodeFenceLanguage;
 
     // Custom formatting options to render symbol documentation. Feel free to tweak these parameters.
     // The options were derived by multiple rounds of experimentation with the goal of striking a
@@ -56,7 +56,7 @@ public class ScipSymbolFormatter
                               SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers
     );
 
-    public ScipSymbolFormatter(
+    public ScipDocumentIndexer(
         Document doc,
         IndexCommandOptions options,
         Dictionary<ISymbol, ScipSymbol> globals)
@@ -64,7 +64,7 @@ public class ScipSymbolFormatter
         _doc = doc;
         _options = options;
         _globals = globals;
-        _languagePrefix = _doc.Language == "C#" ? "cs" : "vb";
+        _markdownCodeFenceLanguage = _doc.Language == "C#" ? "cs" : "vb";
     }
 
     private ScipSymbol CreateScipSymbol(ISymbol? sym)
@@ -252,7 +252,7 @@ public class ScipSymbolFormatter
         var symbolSignature = symbol.ToDisplayString(_format);
         if (symbolSignature.Length > 0)
         {
-            info.Documentation.Add($"```{_languagePrefix}\n{symbolSignature}\n```");
+            info.Documentation.Add($"```{_markdownCodeFenceLanguage}\n{symbolSignature}\n```");
         }
 
         var symbolDocumentation = symbol.GetDocumentationCommentXml();
@@ -313,7 +313,7 @@ public class ScipSymbolFormatter
                         overriddenMethod = overriddenMethod.OverriddenMethod;
                     }
 
-                    foreach (var interfaceMethod in ScipSymbolFormatter.InterfaceImplementations(methodSymbol))
+                    foreach (var interfaceMethod in ScipDocumentIndexer.InterfaceImplementations(methodSymbol))
                     {
                         info.Relationships.Add(new Relationship
                         {
