@@ -14,7 +14,7 @@ namespace ScipDotnet;
 public class ScipProjectIndexer
 {
     private const int DotnetRestoreTimeout = 3000;
-    public ScipProjectIndexer(ILogger<ScipProjectIndexer> logger) => 
+    public ScipProjectIndexer(ILogger<ScipProjectIndexer> logger) =>
 
         Logger = logger;
 

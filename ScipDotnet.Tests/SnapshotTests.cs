@@ -240,7 +240,7 @@ public class SnapshotTests
                 var indent = new String(' ', range.Start.Character);
                 if (document.Language == "Visual Basic")
                 {
-                    indent+=" ";
+                    indent += " ";
                 }
                 sb.Append(commentChar)
                     .Append(indent)

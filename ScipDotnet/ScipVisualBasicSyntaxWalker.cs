@@ -91,7 +91,7 @@ public class ScipVisualBasicSyntaxWalker : VisualBasicSyntaxWalker
         {
             _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(identifiers), identifiers.Identifier.GetLocation(), true);
         }
-       base.VisitVariableDeclarator(node);
+        base.VisitVariableDeclarator(node);
     }
 
     public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
