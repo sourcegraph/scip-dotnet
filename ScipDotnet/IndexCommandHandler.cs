@@ -74,7 +74,7 @@ public static class IndexCommandHandler
     private static string FixThisProblem(string examplePath)
     {
         return
-            "To fix this problem, pass the path of a solution (.sln) or project (.csproj) file to the `scip-dotnet index` command. " +
+            "To fix this problem, pass the path of a solution (.sln) or project (.csproj/.vbrpoj) file to the `scip-dotnet index` command. " +
             $"For example, run: scip-dotnet index {examplePath}";
     }
 
@@ -82,7 +82,8 @@ public static class IndexCommandHandler
     {
         var paths = Directory.GetFiles(workingDirectory.FullName).Where(file =>
             string.Equals(Path.GetExtension(file), ".sln", StringComparison.OrdinalIgnoreCase) ||
-            string.Equals(Path.GetExtension(file), ".csproj", StringComparison.OrdinalIgnoreCase)
+            string.Equals(Path.GetExtension(file), ".csproj", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(Path.GetExtension(file), ".vbproj", StringComparison.OrdinalIgnoreCase)
         ).ToList();
 
         if (paths.Count != 0)
@@ -91,7 +92,7 @@ public static class IndexCommandHandler
         }
 
         logger.LogError(
-            "No solution (.sln) or .csproj file detected in the working directory '{WorkingDirectory}'. {FixThis}",
+            "No solution (.sln) or .csproj/.vbproj file detected in the working directory '{WorkingDirectory}'. {FixThis}",
             workingDirectory.FullName, FixThisProblem("SOLUTION_FILE"));
         return new List<FileInfo>();
     }

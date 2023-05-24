@@ -55,7 +55,7 @@ public class ScipProjectIndexer
                                                                HashSet<ProjectId> indexedProjects)
     {
         Restore(options, rootProject);
-        IEnumerable<Project> projects = string.Equals(rootProject.Extension, ".csproj")
+        IEnumerable<Project> projects = string.Equals(rootProject.Extension, ".csproj") || string.Equals(rootProject.Extension, ".vbproj")
             ? new[]
             {
                 await host.Services.GetRequiredService<MSBuildWorkspace>()

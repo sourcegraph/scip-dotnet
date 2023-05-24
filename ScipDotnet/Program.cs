@@ -19,7 +19,7 @@ public static class Program
     {
         var indexCommand = new Command("index", "Index a solution file")
         {
-            new Argument<FileInfo>("projects", "Path to the .sln (solution) or .csproj file")
+            new Argument<FileInfo>("projects", "Path to the .sln (solution) or .csproj/.vbproj file")
                 { Arity = ArgumentArity.ZeroOrMore },
             new Option<string>("--output", () => "index.scip",
                 "Path to the output SCIP index file"),
@@ -43,7 +43,7 @@ public static class Program
         indexCommand.Handler = CommandHandler.Create(IndexCommandHandler.Process);
         var rootCommand =
             new RootCommand(
-                "SCIP indexer for the C# programming language. Built with the Roslyn .NET compiler. Supports MSBuild.")
+                "SCIP indexer for the C# and Visual basic programming languages. Built with the Roslyn .NET compiler. Supports MSBuild.")
             {
                 indexCommand,
             };
