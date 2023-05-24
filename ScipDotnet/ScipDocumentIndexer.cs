@@ -94,7 +94,6 @@ public class ScipDocumentIndexer
             return CreateLocalScipSymbol(sym);
         }
 
-
         var result = ScipSymbol.Global(owner, new SymbolDescriptor
         {
             Name = sym.Name,
@@ -133,7 +132,6 @@ public class ScipDocumentIndexer
             // Use the command-line flag --allow-global-symbol-definitions to disable this behavior.
             return ScipSymbol.IndexLocalPackage;
         }
-
 
         return ScipSymbol.Package(
             sym.ContainingAssembly.Identity.Name,

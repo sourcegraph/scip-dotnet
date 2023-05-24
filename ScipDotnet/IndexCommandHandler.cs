@@ -39,10 +39,8 @@ public static class IndexCommandHandler
         return 0;
     }
 
-    private static FileInfo OutputFile(FileInfo workingDirectory, string output)
-    {
-        return Path.IsPathRooted(output) ? new FileInfo(output) : new FileInfo(Path.Join(workingDirectory.FullName, output));
-    }
+    private static FileInfo OutputFile(FileInfo workingDirectory, string output) =>
+        Path.IsPathRooted(output) ? new FileInfo(output) : new FileInfo(Path.Join(workingDirectory.FullName, output));
 
     private static async Task ScipIndex(IHost host, IndexCommandOptions options)
     {
@@ -71,12 +69,9 @@ public static class IndexCommandHandler
             stopwatch.Elapsed.ToFriendlyString());
     }
 
-    private static string FixThisProblem(string examplePath)
-    {
-        return
-            "To fix this problem, pass the path of a solution (.sln) or project (.csproj/.vbrpoj) file to the `scip-dotnet index` command. " +
-            $"For example, run: scip-dotnet index {examplePath}";
-    }
+    private static string FixThisProblem(string examplePath) =>
+        "To fix this problem, pass the path of a solution (.sln) or project (.csproj/.vbrpoj) file to the `scip-dotnet index` command. " +
+        $"For example, run: scip-dotnet index {examplePath}";
 
     private static List<FileInfo> FindSolutionOrProjectFile(FileInfo workingDirectory, ILogger logger)
     {
