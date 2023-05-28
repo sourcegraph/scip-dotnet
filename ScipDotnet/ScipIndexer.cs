@@ -13,6 +13,8 @@ namespace ScipDotnet;
 /// </summary>
 public class ScipIndexer
 {
+    private const int DotnetRestoreTimeout = 3000;
+
     public ScipIndexer(ILogger<ScipIndexer> logger)
     {
         Logger = logger;
@@ -34,6 +36,7 @@ public class ScipIndexer
         };
         options.Logger.LogInformation("$ dotnet {Arguments}", arguments);
         process.Start();
+        process.WaitForExit(DotnetRestoreTimeout);
     }
 
     public async IAsyncEnumerable<Scip.Document> IndexDocuments(IHost host, IndexCommandOptions options)
