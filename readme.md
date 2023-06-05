@@ -1,6 +1,6 @@
 # scip-dotnet
 
-SCIP indexer for the C# programming language.
+SCIP indexer for the C# and Visual basic programming languages.
 
 ## Getting started
 

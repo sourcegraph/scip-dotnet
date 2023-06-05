@@ -214,6 +214,7 @@ public class SnapshotTests
 
     private string FormatDocument(Index index, Document document)
     {
+        var commentChar = document.Language == "C#" ? "//" : "'";
         var sb = new StringBuilder();
         var inputPath = new Uri(index.Metadata.ProjectRoot + "/" + document.RelativePath).LocalPath;
         var occurrences = document.Occurrences.ToList();
@@ -237,7 +238,11 @@ public class SnapshotTests
                 var role = isDefinition ? "definition" : "reference";
                 var length = range.End.Character - range.Start.Character;
                 var indent = new String(' ', range.Start.Character);
-                sb.Append("//")
+                if (document.Language == "Visual Basic")
+                {
+                    indent += " ";
+                }
+                sb.Append(commentChar)
                     .Append(indent)
                     .Append(new String('^', length))
                     .Append(' ')
@@ -248,7 +253,7 @@ public class SnapshotTests
                 if (isDefinition)
                 {
                     var info = symtab.GetValueOrDefault(occurrence.Symbol, new SymbolInformation());
-                    var prefix = "//" + indent + new String(' ', length + 1);
+                    var prefix = commentChar + indent + new String(' ', length + 1);
                     foreach (var documentation in info.Documentation)
                     {
                         sb.Append(prefix).Append("documentation ").AppendLine(documentation.Replace("\n", "\\n"));
@@ -272,8 +277,6 @@ public class SnapshotTests
         return sb.ToString();
     }
 
-    private static int CompareOccurrences(Occurrence a, Occurrence b)
-    {
-        return Range.FromOccurrence(a).CompareTo(Range.FromOccurrence(b));
-    }
+    private static int CompareOccurrences(Occurrence a, Occurrence b) =>
+        Range.FromOccurrence(a).CompareTo(Range.FromOccurrence(b));
 }

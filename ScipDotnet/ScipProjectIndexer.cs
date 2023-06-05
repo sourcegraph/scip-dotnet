@@ -11,16 +11,14 @@ namespace ScipDotnet;
 /// <summary>
 /// Orchestrates Roslyn and MSBuild APIs to SCIP index a given project.
 /// </summary>
-public class ScipIndexer
+public class ScipProjectIndexer
 {
     private const int DotnetRestoreTimeout = 3000;
 
-    public ScipIndexer(ILogger<ScipIndexer> logger)
-    {
+    public ScipProjectIndexer(ILogger<ScipProjectIndexer> logger) =>
         Logger = logger;
-    }
 
-    private ILogger<ScipIndexer> Logger { get; }
+    private ILogger<ScipProjectIndexer> Logger { get; }
 
     private static void Restore(IndexCommandOptions options, FileInfo project)
     {
@@ -51,11 +49,13 @@ public class ScipIndexer
         }
     }
 
-    private async IAsyncEnumerable<Scip.Document> IndexProject(IHost host, IndexCommandOptions options,
-        FileInfo rootProject, HashSet<ProjectId> indexedProjects)
+    private async IAsyncEnumerable<Scip.Document> IndexProject(IHost host,
+                                                               IndexCommandOptions options,
+                                                               FileInfo rootProject,
+                                                               HashSet<ProjectId> indexedProjects)
     {
         Restore(options, rootProject);
-        IEnumerable<Project> projects = string.Equals(rootProject.Extension, ".csproj")
+        IEnumerable<Project> projects = string.Equals(rootProject.Extension, ".csproj") || string.Equals(rootProject.Extension, ".vbproj")
             ? new[]
             {
                 await host.Services.GetRequiredService<MSBuildWorkspace>()
@@ -66,10 +66,10 @@ public class ScipIndexer
 
         foreach (var project in projects)
         {
-            if (project.Language != "C#")
+            if (project.Language != "C#" && project.Language != "Visual Basic")
             {
                 Logger.LogWarning(
-                    "Skipping project {ProjectFilePath} because it has language {ProjectLanguage} and scip-dotnet currently only supports C#",
+                    "Skipping project {ProjectFilePath} because it has language {ProjectLanguage} and scip-dotnet currently only supports C# and Visual Basic.",
                     project.FilePath, project.Language);
                 continue;
             }
@@ -87,7 +87,7 @@ public class ScipIndexer
             {
                 if (options.Matcher.Match(options.WorkingDirectory.FullName, document.FilePath).HasMatches)
                 {
-                    yield return await IndexDocument(document, options, globals);
+                    yield return await IndexDocument(document, options, globals, project.Language);
                 }
                 else
                 {
@@ -99,11 +99,14 @@ public class ScipIndexer
         }
     }
 
-    private async Task<Scip.Document> IndexDocument(Document document, IndexCommandOptions options,
-        Dictionary<ISymbol, ScipSymbol> globals)
+    private async Task<Scip.Document> IndexDocument(Document document,
+                                                    IndexCommandOptions options,
+                                                    Dictionary<ISymbol, ScipSymbol> globals,
+                                                    string language)
     {
-        Scip.Document doc = new Scip.Document
+        Scip.Document doc = new()
         {
+            Language = language,
             RelativePath = document.FilePath == null
                 ? null
                 : Path.GetRelativePath(options.WorkingDirectory.FullName, document.FilePath)
@@ -117,9 +120,18 @@ public class ScipIndexer
         }
         else
         {
-            var walker = new ScipCSharpSyntaxWalker(doc, semanticModel, options, globals);
+            var symbolFormatter = new ScipDocumentIndexer(doc, options, globals);
             var root = await document.GetSyntaxRootAsync();
-            walker.Visit(root);
+            if (language == "C#")
+            {
+                var walker = new ScipCSharpSyntaxWalker(symbolFormatter, semanticModel);
+                walker.Visit(root);
+            }
+            else if (language == "Visual Basic")
+            {
+                var walker = new ScipVisualBasicSyntaxWalker(symbolFormatter, semanticModel);
+                walker.Visit(root);
+            }
         }
 
         return doc;

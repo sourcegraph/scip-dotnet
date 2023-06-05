@@ -39,15 +39,13 @@ public static class IndexCommandHandler
         return 0;
     }
 
-    private static FileInfo OutputFile(FileInfo workingDirectory, string output)
-    {
-        return Path.IsPathRooted(output) ? new FileInfo(output) : new FileInfo(Path.Join(workingDirectory.FullName, output));
-    }
+    private static FileInfo OutputFile(FileInfo workingDirectory, string output) =>
+        Path.IsPathRooted(output) ? new FileInfo(output) : new FileInfo(Path.Join(workingDirectory.FullName, output));
 
     private static async Task ScipIndex(IHost host, IndexCommandOptions options)
     {
         var stopwatch = Stopwatch.StartNew();
-        var indexer = host.Services.GetRequiredService<ScipIndexer>();
+        var indexer = host.Services.GetRequiredService<ScipProjectIndexer>();
         var index = new Scip.Index
         {
             Metadata = new Metadata
@@ -71,18 +69,16 @@ public static class IndexCommandHandler
             stopwatch.Elapsed.ToFriendlyString());
     }
 
-    private static string FixThisProblem(string examplePath)
-    {
-        return
-            "To fix this problem, pass the path of a solution (.sln) or project (.csproj) file to the `scip-dotnet index` command. " +
-            $"For example, run: scip-dotnet index {examplePath}";
-    }
+    private static string FixThisProblem(string examplePath) =>
+        "To fix this problem, pass the path of a solution (.sln) or project (.csproj/.vbrpoj) file to the `scip-dotnet index` command. " +
+        $"For example, run: scip-dotnet index {examplePath}";
 
     private static List<FileInfo> FindSolutionOrProjectFile(FileInfo workingDirectory, ILogger logger)
     {
         var paths = Directory.GetFiles(workingDirectory.FullName).Where(file =>
             string.Equals(Path.GetExtension(file), ".sln", StringComparison.OrdinalIgnoreCase) ||
-            string.Equals(Path.GetExtension(file), ".csproj", StringComparison.OrdinalIgnoreCase)
+            string.Equals(Path.GetExtension(file), ".csproj", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(Path.GetExtension(file), ".vbproj", StringComparison.OrdinalIgnoreCase)
         ).ToList();
 
         if (paths.Count != 0)
@@ -91,7 +87,7 @@ public static class IndexCommandHandler
         }
 
         logger.LogError(
-            "No solution (.sln) or .csproj file detected in the working directory '{WorkingDirectory}'. {FixThis}",
+            "No solution (.sln) or .csproj/.vbproj file detected in the working directory '{WorkingDirectory}'. {FixThis}",
             workingDirectory.FullName, FixThisProblem("SOLUTION_FILE"));
         return new List<FileInfo>();
     }

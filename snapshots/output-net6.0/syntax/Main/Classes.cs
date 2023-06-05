@@ -43,7 +43,6 @@
           Console.WriteLine(42);
       }
 
-
       public class ObjectClass : object, SomeInterface
 //                 ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#ObjectClass#
 //                             documentation ```cs\nclass ObjectClass\n```

@@ -21,7 +21,6 @@ public class Classes
         Console.WriteLine(42);
     }
 
-
     public class ObjectClass : object, SomeInterface
     {
     }
