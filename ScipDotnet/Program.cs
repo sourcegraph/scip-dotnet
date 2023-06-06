@@ -15,6 +15,8 @@ namespace ScipDotnet;
 
 public static class Program
 {
+    private const int DotnetRestoreTimeout = 300000;
+
     public static async Task<int> Main(string[] args)
     {
         var indexCommand = new Command("index", "Index a solution file")
@@ -38,7 +40,9 @@ public static class Program
             },
             new Option<bool>("--allow-global-symbol-definitions", () => false,
                 "If enabled, allow public symbol definitions to be accessible from other SCIP indexes. " +
-                "If disabled, then public symbols will only be visible within the index.")
+                "If disabled, then public symbols will only be visible within the index."),
+            new Option<int>("--dotnet-restore-timeout", () => DotnetRestoreTimeout,
+                @"The timeout (in ms) for the ""dotnet restore"" command")
         };
         indexCommand.Handler = CommandHandler.Create(IndexCommandHandler.Process);
         var rootCommand =

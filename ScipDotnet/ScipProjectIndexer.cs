@@ -13,14 +13,12 @@ namespace ScipDotnet;
 /// </summary>
 public class ScipProjectIndexer
 {
-    private const int DotnetRestoreTimeout = 3000;
-
     public ScipProjectIndexer(ILogger<ScipProjectIndexer> logger) =>
         Logger = logger;
 
     private ILogger<ScipProjectIndexer> Logger { get; }
 
-    private static void Restore(IndexCommandOptions options, FileInfo project)
+    private void Restore(IndexCommandOptions options, FileInfo project)
     {
         var arguments = project.Extension.Equals(".sln") ? $"restore {project.FullName}" : "restore";
         var process = new Process()
@@ -34,7 +32,10 @@ public class ScipProjectIndexer
         };
         options.Logger.LogInformation("$ dotnet {Arguments}", arguments);
         process.Start();
-        process.WaitForExit(DotnetRestoreTimeout);
+        if (!process.WaitForExit(options.DotnetRestoreTimeout))
+        {
+            Logger.LogWarning("Dotnet restore did not finish in {Time} milliseconds, the results of the indexing might be incorrect.", options.DotnetRestoreTimeout);
+        }
     }
 
     public async IAsyncEnumerable<Scip.Document> IndexDocuments(IHost host, IndexCommandOptions options)

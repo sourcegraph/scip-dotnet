@@ -9,5 +9,6 @@ public record IndexCommandOptions(
     List<FileInfo> ProjectsFile,
     ILogger<IndexCommandOptions> Logger,
     Matcher Matcher,
-    bool AllowGlobalSymbolDefinitions
+    bool AllowGlobalSymbolDefinitions,
+    int DotnetRestoreTimeout
 );
