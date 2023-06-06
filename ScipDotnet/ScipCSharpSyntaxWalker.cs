@@ -94,13 +94,11 @@ public class ScipCSharpSyntaxWalker : CSharpSyntaxWalker
         base.VisitStructDeclaration(node);
     }
 
-
     public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
     {
         _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.Identifier.GetLocation(), true);
         base.VisitVariableDeclarator(node);
     }
-
 
     public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
     {
