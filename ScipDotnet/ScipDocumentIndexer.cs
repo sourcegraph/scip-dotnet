@@ -104,7 +104,6 @@ public class ScipDocumentIndexer
         return result;
     }
 
-
     private ScipSymbol CreateLocalScipSymbol(ISymbol sym)
     {
         var local = _locals.GetValueOrDefault(sym, ScipSymbol.Empty);
@@ -202,19 +201,17 @@ public class ScipDocumentIndexer
 
     private readonly string[] _isIgnoredRelationshipSymbol =
     {
-    " System/Object#",
-    " System/Enum#",
-    " System/ValueType#",
-};
+        " System/Object#",
+        " System/Enum#",
+        " System/ValueType#",
+    };
 
     // Returns true if this symbol should not be emitted as a SymbolInformation relationship symbol.
     // The reason we ignore these symbols is because they appear automatically for a large number of
     // symbols putting pressure on our backend to index the inverted index. It's not particularly useful anyways
     // to query all the implementations of something like System/Object#.
-    private bool IsIgnoredRelationshipSymbol(string symbol)
-    {
-        return _isIgnoredRelationshipSymbol.Any(symbol.EndsWith);
-    }
+    private bool IsIgnoredRelationshipSymbol(string symbol) =>
+        _isIgnoredRelationshipSymbol.Any(symbol.EndsWith);
 
     public void VisitOccurrence(ISymbol? symbol, Location location, bool isDefinition)
     {
@@ -326,7 +323,6 @@ public class ScipDocumentIndexer
         }
     }
 
-
     // Returns explicitly and implicitly implemented interface methods by the given symbol method.
     // The Roslyn API has a `ExplicitInterfaceImplementations` that does not return implicitly implemented
     // methods.
@@ -345,7 +341,6 @@ public class ScipDocumentIndexer
         }
     }
 
-
     // Converts a Roslyn location into a SCIP range.
     private static IEnumerable<int> LocationToRange(Location location)
     {
@@ -353,14 +348,20 @@ public class ScipDocumentIndexer
         if (span.StartLinePosition.Line == span.EndLinePosition.Line)
         {
             return new[]
-                { span.StartLinePosition.Line, span.StartLinePosition.Character, span.EndLinePosition.Character };
+                {
+                    span.StartLinePosition.Line,
+                    span.StartLinePosition.Character,
+                    span.EndLinePosition.Character
+                };
         }
 
         return new[]
-        {
-        span.StartLinePosition.Line, span.StartLinePosition.Character, span.EndLinePosition.Line,
-        span.EndLinePosition.Character
-    };
+            {
+                span.StartLinePosition.Line,
+                span.StartLinePosition.Character,
+                span.EndLinePosition.Line,
+                span.EndLinePosition.Character
+            };
     }
 
     private static bool IsLocalSymbol(ISymbol sym)
