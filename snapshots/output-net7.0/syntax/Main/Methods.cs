@@ -62,6 +62,8 @@
 //    ^ reference scip-dotnet nuget . . Main/Methods#Generic().[T]
 //      ^^^^^^^ definition scip-dotnet nuget . . Main/Methods#Generic().
 //              documentation ```cs\nprivate T Methods.Generic<T>(T param)\n```
+//              ^ definition scip-dotnet nuget . . Main/Methods#Generic().[T]
+//                documentation ```cs\nT\n```
 //                 ^ reference scip-dotnet nuget . . Main/Methods#Generic().[T]
 //                   ^^^^^ definition scip-dotnet nuget . . Main/Methods#Generic().(param)
 //                         documentation ```cs\nT param\n```
@@ -74,6 +76,8 @@
 //    ^ reference scip-dotnet nuget . . Main/Methods#GenericConstraint().[T]
 //      ^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#GenericConstraint().
 //                        documentation ```cs\nprivate T Methods.GenericConstraint<T>(T param) where T : new()\n```
+//                        ^ definition scip-dotnet nuget . . Main/Methods#GenericConstraint().[T]
+//                          documentation ```cs\nT\n```
 //                           ^ reference scip-dotnet nuget . . Main/Methods#GenericConstraint().[T]
 //                             ^^^^^ definition scip-dotnet nuget . . Main/Methods#GenericConstraint().(param)
 //                                   documentation ```cs\nT param\n```

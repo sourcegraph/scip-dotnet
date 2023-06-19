@@ -46,6 +46,8 @@
 //                  ^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Records#TypeParameterConstraint#
 //                                          documentation ```cs\nrecord TypeParameterConstraint<T> where T : struct\n```
 //                                          relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IEquatable#
+//                                          ^ definition scip-dotnet nuget . . Main/Records#TypeParameterConstraint#[T]
+//                                            documentation ```cs\nT\n```
 //                                                   ^ reference scip-dotnet nuget . . Main/Records#TypeParameterConstraint#[T]
       {
       }
@@ -125,6 +127,8 @@
 //           ^^ definition scip-dotnet nuget . . Main/Records#I3#
 //              documentation ```cs\nrecord I3<T>\n```
 //              relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IEquatable#
+//              ^ definition scip-dotnet nuget . . Main/Records#I3#[T]
+//                documentation ```cs\nT\n```
 
       record Teacher2() : I3<Person>(), I1;
 //           ^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Teacher2#
