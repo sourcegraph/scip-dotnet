@@ -221,26 +221,30 @@
 //                                    documentation ```cs\nprivate void Expressions.AssignmentToLeftValueTypes()\n```
       {
           (var a, var b) = (1, 2);
+//             ^ definition local 9
+//               documentation ```cs\nint a\n```
+//                    ^ definition local 10
+//                      documentation ```cs\nint b\n```
           a = 1;
 //        ^ reference local 9
           var c = new Struct { Property = 42 };
-//            ^ definition local 10
+//            ^ definition local 11
 //              documentation ```cs\nStruct c\n```
 //                    ^^^^^^ reference scip-dotnet nuget . . Main/Expressions#Struct#
 //                             ^^^^^^^^ reference scip-dotnet nuget . . Main/Expressions#Struct#Property.
           c.Property = 1;
-//        ^ reference local 10
+//        ^ reference local 11
 //          ^^^^^^^^ reference scip-dotnet nuget . . Main/Expressions#Struct#Property.
           var d = new IndexedClass();
-//            ^ definition local 11
+//            ^ definition local 12
 //              documentation ```cs\nIndexedClass d\n```
 //                    ^^^^^^^^^^^^ reference scip-dotnet nuget . . Main/Expressions#IndexedClass#
           d[b] = 1;
-//        ^ reference local 11
-//          ^ reference local 12
+//        ^ reference local 12
+//          ^ reference local 10
           (a, b) = (1, 2);
 //         ^ reference local 9
-//            ^ reference local 12
+//            ^ reference local 10
           var x = new IndexedClass
 //            ^ definition local 13
 //              documentation ```cs\nIndexedClass x\n```
@@ -249,7 +253,7 @@
               Property = 1,
 //            ^^^^^^^^ reference scip-dotnet nuget . . Main/Expressions#IndexedClass#Property.
               [b] = 1
-//             ^ reference local 12
+//             ^ reference local 10
           };
           (a) = 1;
 //         ^ reference local 9
@@ -779,10 +783,14 @@
           {
               Cat c => c.Sound(),
 //            ^^^ reference scip-dotnet nuget . . Main/Expressions#Cat#
+//                ^ definition local 75
+//                  documentation ```cs\nCat c\n```
 //                     ^ reference local 75
 //                       ^^^^^ reference scip-dotnet nuget . . Main/Expressions#Cat#Sound().
               Dog c => c.Sound(),
 //            ^^^ reference scip-dotnet nuget . . Main/Expressions#Dog#
+//                ^ definition local 76
+//                  documentation ```cs\nDog c\n```
 //                     ^ reference local 76
 //                       ^^^^^ reference scip-dotnet nuget . . Main/Expressions#Dog#Sound().
               _ => throw new ArgumentOutOfRangeException()
@@ -808,6 +816,8 @@
 //                 documentation ```cs\nobject s\n```
           if (s is string s2)
 //            ^ reference local 78
+//                        ^^ definition local 79
+//                           documentation ```cs\nstring s2\n```
           {
               Console.WriteLine(s2);
 //            ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#

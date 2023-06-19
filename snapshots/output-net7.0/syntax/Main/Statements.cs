@@ -57,6 +57,8 @@
 //              documentation ```cs\nint x\n```
           (x, int y) = point;
 //         ^ reference local 3
+//                ^ definition local 4
+//                  documentation ```cs\nint y\n```
 //                     ^^^^^ reference local 2
       }
 
@@ -74,24 +76,24 @@
 //                        documentation ```cs\nprivate void Statements.InferredTuples()\n```
       {
           var list = new List<Inferred>();
-//            ^^^^ definition local 4
+//            ^^^^ definition local 5
 //                 documentation ```cs\nList<Inferred>? list\n```
 //                            ^^^^^^^^ reference scip-dotnet nuget . . Main/Statements#Inferred#
           var result = list.Select(c => (c.F1, c.F2)).Where(t => t.F2 == 1);
-//            ^^^^^^ definition local 5
+//            ^^^^^^ definition local 6
 //                   documentation ```cs\nIEnumerable<(int F1, int F2)>? result\n```
-//                     ^^^^ reference local 4
+//                     ^^^^ reference local 5
 //                          ^^^^^^ reference scip-dotnet nuget System.Linq 7.0.0.0 Linq/Enumerable#Select().
-//                                 ^ definition local 7
+//                                 ^ definition local 8
 //                                   documentation ```cs\nInferred c\n```
-//                                       ^ reference local 7
+//                                       ^ reference local 8
 //                                         ^^ reference scip-dotnet nuget . . Main/Statements#Inferred#F1.
-//                                             ^ reference local 7
+//                                             ^ reference local 8
 //                                               ^^ reference scip-dotnet nuget . . Main/Statements#Inferred#F2.
 //                                                    ^^^^^ reference scip-dotnet nuget System.Linq 7.0.0.0 Linq/Enumerable#Where().
-//                                                          ^ definition local 9
+//                                                          ^ definition local 10
 //                                                            documentation ```cs\n(int F1, int F2) t\n```
-//                                                               ^ reference local 9
+//                                                               ^ reference local 10
 //                                                                 ^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/ValueTuple#F2.
       }
 
@@ -100,13 +102,13 @@
 //                             documentation ```cs\nprivate int Statements.MultipleInitializers()\n```
       {
           int a = 1, b = 2;
-//            ^ definition local 10
+//            ^ definition local 11
 //              documentation ```cs\nint a\n```
-//                   ^ definition local 11
+//                   ^ definition local 12
 //                     documentation ```cs\nint b\n```
           return a + b;
-//               ^ reference local 10
-//                   ^ reference local 11
+//               ^ reference local 11
+//                   ^ reference local 12
       }
 
       void RefVariable()
@@ -114,12 +116,12 @@
 //                     documentation ```cs\nprivate void Statements.RefVariable()\n```
       {
           var data = new int[] { 1, 2 };
-//            ^^^^ definition local 12
+//            ^^^^ definition local 13
 //                 documentation ```cs\nint[]? data\n```
           ref var value = ref data[0];
-//                ^^^^^ definition local 13
+//                ^^^^^ definition local 14
 //                      documentation ```cs\nref int value\n```
-//                            ^^^^ reference local 12
+//                            ^^^^ reference local 13
       }
 
       class MyDisposable : IDisposable
@@ -142,16 +144,16 @@
 //                       documentation ```cs\nprivate MyDisposable Statements.Using()\n```
       {
           var b = new MyDisposable();
-//            ^ definition local 14
+//            ^ definition local 15
 //              documentation ```cs\nMyDisposable? b\n```
 //                    ^^^^^^^^^^^^ reference scip-dotnet nuget . . Main/Statements#MyDisposable#
           using (var a = b)
-//                   ^ definition local 15
+//                   ^ definition local 16
 //                     documentation ```cs\nMyDisposable? a\n```
-//                       ^ reference local 14
+//                       ^ reference local 15
           {
               return a;
-//                   ^ reference local 15
+//                   ^ reference local 16
           }
       }
 
@@ -161,19 +163,19 @@
       {
           using (Stream a = File.OpenRead("a"), b = File.OpenRead("a"))
 //               ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/Stream#
-//                      ^ definition local 16
+//                      ^ definition local 17
 //                        documentation ```cs\nStream a\n```
 //                          ^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#
 //                               ^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#OpenRead().
-//                                              ^ definition local 17
+//                                              ^ definition local 18
 //                                                documentation ```cs\nStream b\n```
 //                                                  ^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#
 //                                                       ^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#OpenRead().
           {
               return a.Length + b.Length;
-//                   ^ reference local 16
+//                   ^ reference local 17
 //                     ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/Stream#Length.
-//                              ^ reference local 17
+//                              ^ reference local 18
 //                                ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/Stream#Length.
           }
       }
@@ -183,17 +185,17 @@
 //                documentation ```cs\nprivate int Statements.Foreach()\n```
       {
           var y = new int[] { 1 };
-//            ^ definition local 18
+//            ^ definition local 19
 //              documentation ```cs\nint[]? y\n```
           var z = 0;
-//            ^ definition local 19
+//            ^ definition local 20
 //              documentation ```cs\nint z\n```
           foreach (int x in y)
-//                          ^ reference local 18
+//                          ^ reference local 19
               z += x;
-//            ^ reference local 19
-//                 ^ reference local 20
+//            ^ reference local 20
+//                 ^ reference local 21
           return z;
-//               ^ reference local 19
+//               ^ reference local 20
       }
   }
