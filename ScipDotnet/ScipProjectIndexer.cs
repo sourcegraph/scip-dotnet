@@ -20,7 +20,7 @@ public class ScipProjectIndexer
 
     private void Restore(IndexCommandOptions options, FileInfo project)
     {
-        var arguments = project.Extension.Equals(".sln") ? $"restore {project.FullName}" : "restore";
+        var arguments = project.Extension.Equals(".sln") ? $"restore {project.FullName} /p:EnableWindowsTargeting=true" : "restore /p:EnableWindowsTargeting=true";
         var process = new Process()
         {
             StartInfo = new ProcessStartInfo()
