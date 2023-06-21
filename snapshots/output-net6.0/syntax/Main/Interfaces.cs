@@ -113,6 +113,8 @@
       public interface IGetNext<T> where T : IGetNext<T>
 //                     ^^^^^^^^ definition scip-dotnet nuget . . Main/Interfaces#IGetNext#
 //                              documentation ```cs\ninterface IGetNext<T> where T : IGetNext<T>\n```
+//                              ^ definition scip-dotnet nuget . . Main/Interfaces#IGetNext#[T]
+//                                documentation ```cs\nT\n```
 //                                       ^ reference scip-dotnet nuget . . Main/Interfaces#IGetNext#[T]
 //                                                    ^ reference scip-dotnet nuget . . Main/Interfaces#IGetNext#[T]
       {
@@ -130,6 +132,10 @@
 //                      ^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Interfaces#ITypeParameter#
 //                                     documentation ```cs\ninterface ITypeParameter<T1, T2> where T1 : IOne where T2 : IThree\n```
 //                                     relationship implementation scip-dotnet nuget . . Main/Interfaces#ITwo#
+//                                     ^^ definition scip-dotnet nuget . . Main/Interfaces#ITypeParameter#[T1]
+//                                        documentation ```cs\nT1\n```
+//                                         ^^ definition scip-dotnet nuget . . Main/Interfaces#ITypeParameter#[T2]
+//                                            documentation ```cs\nT2\n```
 //                                               ^^^^ reference scip-dotnet nuget . . Main/Interfaces#ITwo#
 //                                                          ^^ reference scip-dotnet nuget . . Main/Interfaces#ITypeParameter#[T1]
 //                                                               ^^^^ reference scip-dotnet nuget . . Main/Interfaces#IOne#

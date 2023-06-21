@@ -66,18 +66,28 @@
       class TypeParameterClass<T>
 //          ^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#TypeParameterClass#
 //                             documentation ```cs\nclass TypeParameterClass<T>\n```
+//                             ^ definition scip-dotnet nuget . . Main/Classes#TypeParameterClass#[T]
+//                               documentation ```cs\nT\n```
       {
       }
 
       internal class InternalMultipleTypeParametersClass<T1, T2>
 //                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#InternalMultipleTypeParametersClass#
 //                                                       documentation ```cs\nclass InternalMultipleTypeParametersClass<T1, T2>\n```
+//                                                       ^^ definition scip-dotnet nuget . . Main/Classes#InternalMultipleTypeParametersClass#[T1]
+//                                                          documentation ```cs\nT1\n```
+//                                                           ^^ definition scip-dotnet nuget . . Main/Classes#InternalMultipleTypeParametersClass#[T2]
+//                                                              documentation ```cs\nT2\n```
       {
       }
 
       interface ICovariantContravariant<in T1, out T2>
 //              ^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#ICovariantContravariant#
 //                                      documentation ```cs\ninterface ICovariantContravariant<in T1, out T2>\n```
+//                                         ^^ definition scip-dotnet nuget . . Main/Classes#ICovariantContravariant#[T1]
+//                                            documentation ```cs\nin T1\n```
+//                                                 ^^ definition scip-dotnet nuget . . Main/Classes#ICovariantContravariant#[T2]
+//                                                    documentation ```cs\nout T2\n```
       {
           public void Method1(T1 t1)
 //                    ^^^^^^^ definition scip-dotnet nuget . . Main/Classes#ICovariantContravariant#Method1().
@@ -105,6 +115,8 @@
       public class StructConstraintClass<T> where T : struct
 //                 ^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#StructConstraintClass#
 //                                       documentation ```cs\nclass StructConstraintClass<T> where T : struct\n```
+//                                       ^ definition scip-dotnet nuget . . Main/Classes#StructConstraintClass#[T]
+//                                         documentation ```cs\nT\n```
 //                                                ^ reference scip-dotnet nuget . . Main/Classes#StructConstraintClass#[T]
       {
       }
@@ -112,6 +124,8 @@
       public class UnmanagedConstraintClass<T> where T : unmanaged
 //                 ^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#UnmanagedConstraintClass#
 //                                          documentation ```cs\nclass UnmanagedConstraintClass<T> where T : unmanaged\n```
+//                                          ^ definition scip-dotnet nuget . . Main/Classes#UnmanagedConstraintClass#[T]
+//                                            documentation ```cs\nT\n```
 //                                                   ^ reference scip-dotnet nuget . . Main/Classes#UnmanagedConstraintClass#[T]
       {
       }
@@ -119,6 +133,8 @@
       public class ClassConstraintClass<T> where T : class
 //                 ^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#ClassConstraintClass#
 //                                      documentation ```cs\nclass ClassConstraintClass<T> where T : class\n```
+//                                      ^ definition scip-dotnet nuget . . Main/Classes#ClassConstraintClass#[T]
+//                                        documentation ```cs\nT\n```
 //                                               ^ reference scip-dotnet nuget . . Main/Classes#ClassConstraintClass#[T]
       {
       }
@@ -126,6 +142,8 @@
       public class NonNullableConstraintClass<T> where T : notnull
 //                 ^^^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#NonNullableConstraintClass#
 //                                            documentation ```cs\nclass NonNullableConstraintClass<T> where T : notnull\n```
+//                                            ^ definition scip-dotnet nuget . . Main/Classes#NonNullableConstraintClass#[T]
+//                                              documentation ```cs\nT\n```
 //                                                     ^ reference scip-dotnet nuget . . Main/Classes#NonNullableConstraintClass#[T]
       {
       }
@@ -133,6 +151,8 @@
       public class NewConstraintClass<T> where T : new()
 //                 ^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#NewConstraintClass#
 //                                    documentation ```cs\nclass NewConstraintClass<T> where T : new()\n```
+//                                    ^ definition scip-dotnet nuget . . Main/Classes#NewConstraintClass#[T]
+//                                      documentation ```cs\nT\n```
 //                                             ^ reference scip-dotnet nuget . . Main/Classes#NewConstraintClass#[T]
       {
       }
@@ -140,6 +160,8 @@
       public class TypeParameterConstraintClass<T> where T : SomeInterface
 //                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#TypeParameterConstraintClass#
 //                                              documentation ```cs\nclass TypeParameterConstraintClass<T> where T : SomeInterface\n```
+//                                              ^ definition scip-dotnet nuget . . Main/Classes#TypeParameterConstraintClass#[T]
+//                                                documentation ```cs\nT\n```
 //                                                       ^ reference scip-dotnet nuget . . Main/Classes#TypeParameterConstraintClass#[T]
 //                                                           ^^^^^^^^^^^^^ reference scip-dotnet nuget . . Main/SomeInterface#
       {
@@ -148,6 +170,10 @@
       private class MultipleTypeParameterConstraintsClass<T1, T2> where T1 : SomeInterface, SomeInterface2, new()
 //                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#MultipleTypeParameterConstraintsClass#
 //                                                        documentation ```cs\nclass MultipleTypeParameterConstraintsClass<T1, T2> where T1 : SomeInterface, SomeInterface2, new() where T2 : SomeInterface2\n```
+//                                                        ^^ definition scip-dotnet nuget . . Main/Classes#MultipleTypeParameterConstraintsClass#[T1]
+//                                                           documentation ```cs\nT1\n```
+//                                                            ^^ definition scip-dotnet nuget . . Main/Classes#MultipleTypeParameterConstraintsClass#[T2]
+//                                                               documentation ```cs\nT2\n```
 //                                                                      ^^ reference scip-dotnet nuget . . Main/Classes#MultipleTypeParameterConstraintsClass#[T1]
 //                                                                           ^^^^^^^^^^^^^ reference scip-dotnet nuget . . Main/SomeInterface#
 //                                                                                          ^^^^^^^^^^^^^^ reference scip-dotnet nuget . . Main/SomeInterface2#

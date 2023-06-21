@@ -83,11 +83,15 @@
 //                 ^^^^^^^^^^ definition scip-dotnet nuget . . Main/GlobalAttributes#InnerClass#
 //                            documentation ```cs\nclass InnerClass<T>\n```
 //                             ^^^^^^ reference scip-dotnet nuget . . Main/GlobalAttributes#AuthorAttribute#`.ctor`().
+//                                                           ^ definition scip-dotnet nuget . . Main/GlobalAttributes#InnerClass#[T]
+//                                                             documentation ```cs\nT\n```
       {
           void Method<[Author("MethodTypeParameter")] T2>()
 //             ^^^^^^ definition scip-dotnet nuget . . Main/GlobalAttributes#InnerClass#Method().
 //                    documentation ```cs\nprivate void InnerClass<T>.Method<T2>()\n```
 //                     ^^^^^^ reference scip-dotnet nuget . . Main/GlobalAttributes#AuthorAttribute#`.ctor`().
+//                                                    ^^ definition scip-dotnet nuget . . Main/GlobalAttributes#InnerClass#Method().[T2]
+//                                                       documentation ```cs\nT2\n```
           {
           }
       }
