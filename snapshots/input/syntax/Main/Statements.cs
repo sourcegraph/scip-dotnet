@@ -82,4 +82,12 @@ public class Statements
             z += x;
         return z;
     }
+
+    void ForeachVariable(List<(int, int)> names)
+    {
+        foreach ((int firstName, int lastName) in names)
+        {
+            Console.WriteLine($"FirstName:{firstName}, LastName:{lastName}");
+        }
+    }
 }
