@@ -50,4 +50,29 @@ public class QuerySyntax
                 where a.Method() == b.Method()
                 select new { A = a.Method(), B = b.Method() };
     }
+
+    void JoinInto(List<Student> students1, List<Student> students2)
+    {
+        var innerGroupJoinQuery =
+            from student1 in students1
+            join student2 in students2 on student1.ID equals student2.ID into studentGroup
+            select new { Student = student1.First, Students = studentGroup };
+    }
+
+    void Continuation(List<Student> students)
+    {
+        var sortedGroups =
+            from student in students
+            orderby student.Last, student.First
+            group student by student.Last[0] into newGroup
+            orderby newGroup.Key
+            select newGroup;
+    }
+
+    private class Student
+    {
+        public string First { get; set; }
+        public string Last { get; set; }
+        public int ID { get; set; }
+    }
 }
