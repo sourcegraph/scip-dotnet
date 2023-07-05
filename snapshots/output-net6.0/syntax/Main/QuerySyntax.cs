@@ -218,5 +218,4 @@
 //                   ^^ definition scip-dotnet nuget . . Main/QuerySyntax#Student#ID.
 //                      documentation ```cs\npublic int Student.ID { get; set; }\n```
       }
-
   }
