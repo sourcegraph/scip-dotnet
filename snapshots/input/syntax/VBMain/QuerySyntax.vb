@@ -36,11 +36,7 @@ Namespace VBMain
         End Sub
 
         Private Sub Into(Students As List(Of Student))
-            Dim sortedGroups = From student In Students
-                      Order By student.Last, student.First
-                      Group student By student.Last
-                      Into newGroup = Group
-                      Order By newGroup
+            Dim sortedGroups = From student In Students Order By student.Last, student.First Group student By student.Last Into newGroup = Group Order By newGroup
         End Sub
 
         Private Class Student

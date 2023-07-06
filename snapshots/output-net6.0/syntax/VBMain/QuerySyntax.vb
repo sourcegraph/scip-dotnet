@@ -138,23 +138,19 @@
 '                          ^^^^^^^^ definition scip-dotnet nuget . . VBMain/QuerySyntax#Into().(Students)
 '                                   documentation ```vb\nStudents As List\n```
 '                                              ^^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Student#
-              Dim sortedGroups = From student In Students
+              Dim sortedGroups = From student In Students Order By student.Last, student.First Group student By student.Last Into newGroup = Group Order By newGroup
 '                 ^^^^^^^^^^^^ definition local 23
 '                              documentation ```vb\nsortedGroups As \n```
 '                                     ^^^^^^^ definition local 24
 '                                             documentation ```vb\nstudent As \n```
 '                                                ^^^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Into().(Students)
-                        Order By student.Last, student.First
-'                                ^^^^^^^ reference local 24
-'                                              ^^^^^^^ reference local 24
-                        Group student By student.Last
-'                             ^^^^^^^ reference local 24
-'                                        ^^^^^^^ reference local 24
-                        Into newGroup = Group
-'                            ^^^^^^^^ definition local 25
-'                                     documentation ```vb\nnewGroup As \n```
-                        Order By newGroup
-'                                ^^^^^^^^ reference local 25
+'                                                                  ^^^^^^^ reference local 24
+'                                                                                ^^^^^^^ reference local 24
+'                                                                                                    ^^^^^^^ reference local 24
+'                                                                                                               ^^^^^^^ reference local 24
+'                                                                                                                                 ^^^^^^^^ definition local 25
+'                                                                                                                                          documentation ```vb\nnewGroup As \n```
+'                                                                                                                                                           ^^^^^^^^ reference local 25
           End Sub
 
           Private Class Student

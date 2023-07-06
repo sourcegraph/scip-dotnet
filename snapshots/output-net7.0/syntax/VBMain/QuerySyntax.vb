@@ -158,26 +158,22 @@
 '                          ^^^^^^^^ definition scip-dotnet nuget . . VBMain/QuerySyntax#Into().(Students)
 '                                   documentation ```vb\nStudents As List(Of Student)\n```
 '                                              ^^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Student#
-              Dim sortedGroups = From student In Students
+              Dim sortedGroups = From student In Students Order By student.Last, student.First Group student By student.Last Into newGroup = Group Order By newGroup
 '                 ^^^^^^^^^^^^ definition local 23
 '                              documentation ```vb\nsortedGroups As Interface IOrderedEnumerable(Of <anonymous type: Key Last As String, Key newGroup As Interface IEnumerable(Of Student)>)\n```
 '                                     ^^^^^^^ definition local 24
 '                                             documentation ```vb\nstudent As Class Student\n```
 '                                                ^^^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Into().(Students)
-                        Order By student.Last, student.First
-'                                ^^^^^^^ reference local 24
-'                                        ^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Student#Last.
-'                                              ^^^^^^^ reference local 24
-'                                                      ^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Student#First.
-                        Group student By student.Last
-'                             ^^^^^^^ reference local 24
-'                                        ^^^^^^^ reference local 24
-'                                                ^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Student#Last.
-                        Into newGroup = Group
-'                            ^^^^^^^^ definition local 25
-'                                     documentation ```vb\nnewGroup As Interface IEnumerable(Of Student)\n```
-                        Order By newGroup
-'                                ^^^^^^^^ reference local 25
+'                                                                  ^^^^^^^ reference local 24
+'                                                                          ^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Student#Last.
+'                                                                                ^^^^^^^ reference local 24
+'                                                                                        ^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Student#First.
+'                                                                                                    ^^^^^^^ reference local 24
+'                                                                                                               ^^^^^^^ reference local 24
+'                                                                                                                       ^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Student#Last.
+'                                                                                                                                 ^^^^^^^^ definition local 25
+'                                                                                                                                          documentation ```vb\nnewGroup As Interface IEnumerable(Of Student)\n```
+'                                                                                                                                                           ^^^^^^^^ reference local 25
           End Sub
 
           Private Class Student
