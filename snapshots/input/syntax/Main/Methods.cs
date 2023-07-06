@@ -95,4 +95,19 @@ public class Methods
         new InheritedOverloads3().Method("42");
     }
 
+    public class LocalFunction
+    {
+        public static void Method()
+        {
+            var myWorld = GetWorld();
+            SayHi(myWorld);
+
+            string GetWorld() => "world";
+
+            void SayHi(string world)
+            {
+                Console.WriteLine($"Hello {world}!");
+            }
+        }
+    }
 }
