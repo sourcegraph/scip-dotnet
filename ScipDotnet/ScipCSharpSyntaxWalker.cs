@@ -136,6 +136,12 @@ public class ScipCSharpSyntaxWalker : CSharpSyntaxWalker
         base.VisitTypeParameter(node);
     }
 
+    public override void VisitForEachStatement(ForEachStatementSyntax node)
+    {
+        _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.Identifier.GetLocation(), true);
+        base.VisitForEachStatement(node);
+    }
+
     public override void VisitFromClause(FromClauseSyntax node)
     {
         _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.Identifier.GetLocation(), true);

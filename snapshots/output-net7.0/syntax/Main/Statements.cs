@@ -191,11 +191,34 @@
 //            ^ definition local 20
 //              documentation ```cs\nint z\n```
           foreach (int x in y)
+//                     ^ definition local 21
+//                       documentation ```cs\nint x\n```
 //                          ^ reference local 19
               z += x;
 //            ^ reference local 20
 //                 ^ reference local 21
           return z;
 //               ^ reference local 20
+      }
+
+      void ForeachVariable(List<(int, int)> names)
+//         ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Statements#ForeachVariable().
+//                         documentation ```cs\nprivate void Statements.ForeachVariable(List<(int, int)> names)\n```
+//                                          ^^^^^ definition scip-dotnet nuget . . Main/Statements#ForeachVariable().(names)
+//                                                documentation ```cs\nList<(int, int)> names\n```
+      {
+          foreach ((int firstName, int lastName) in names)
+//                      ^^^^^^^^^ definition local 22
+//                                documentation ```cs\nint firstName\n```
+//                                     ^^^^^^^^ definition local 23
+//                                              documentation ```cs\nint lastName\n```
+//                                                  ^^^^^ reference scip-dotnet nuget . . Main/Statements#ForeachVariable().(names)
+          {
+              Console.WriteLine($"FirstName:{firstName}, LastName:{lastName}");
+//            ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
+//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+11).
+//                                           ^^^^^^^^^ reference local 22
+//                                                                 ^^^^^^^^ reference local 23
+          }
       }
   }
