@@ -370,6 +370,7 @@ public class ScipDocumentIndexer
                // Anonymous classes/methods have empty names and can not be accessed outside their file.
                // The "global namespace" (parent of all namespaces) also has an empty name and should not
                // be treated as a local variable.
+               sym is IMethodSymbol { MethodKind: MethodKind.LocalFunction } ||
                (sym.Name.Equals("") && sym.Kind != SymbolKind.Namespace);
     }
 }

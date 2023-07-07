@@ -221,23 +221,23 @@
               var myWorld = GetWorld();
 //                ^^^^^^^ definition local 0
 //                        documentation ```cs\nstring? myWorld\n```
-//                          ^^^^^^^^ reference scip-dotnet nuget . . Main/Methods#LocalFunction#Method().GetWorld().
+//                          ^^^^^^^^ reference local 1
               SayHi(myWorld);
-//            ^^^^^ reference scip-dotnet nuget . . Main/Methods#LocalFunction#Method().SayHi().
+//            ^^^^^ reference local 2
 //                  ^^^^^^^ reference local 0
 
               string GetWorld() => "world";
-//                   ^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#LocalFunction#Method().GetWorld().
+//                   ^^^^^^^^ definition local 1
 //                            documentation ```cs\nstring GetWorld()\n```
 
               void SayHi(string world)
-//                 ^^^^^ definition scip-dotnet nuget . . Main/Methods#LocalFunction#Method().SayHi().
+//                 ^^^^^ definition local 2
 //                       documentation ```cs\nvoid SayHi(string world)\n```
-//                              ^^^^^ definition scip-dotnet nuget . . Main/Methods#LocalFunction#Method().SayHi().(world)
+//                              ^^^^^ definition local 3
 //                                    documentation ```cs\nstring world\n```
               {
                   Console.WriteLine($"Hello {world}!");
-//                                           ^^^^^ reference scip-dotnet nuget . . Main/Methods#LocalFunction#Method().SayHi().(world)
+//                                           ^^^^^ reference local 3
               }
           }
       }
