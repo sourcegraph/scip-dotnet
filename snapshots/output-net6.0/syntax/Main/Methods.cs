@@ -210,4 +210,35 @@
 //                                  ^^^^^^ reference scip-dotnet nuget . . Main/Methods#InheritedOverloads3#Method().
       }
 
+      public class LocalFunction
+//                 ^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#LocalFunction#
+//                               documentation ```cs\nclass LocalFunction\n```
+      {
+          public static void Method()
+//                           ^^^^^^ definition scip-dotnet nuget . . Main/Methods#LocalFunction#Method().
+//                                  documentation ```cs\npublic static void LocalFunction.Method()\n```
+          {
+              var myWorld = GetWorld();
+//                ^^^^^^^ definition local 0
+//                        documentation ```cs\nstring? myWorld\n```
+//                          ^^^^^^^^ reference local 1
+              SayHi(myWorld);
+//            ^^^^^ reference local 2
+//                  ^^^^^^^ reference local 0
+
+              string GetWorld() => "world";
+//                   ^^^^^^^^ definition local 1
+//                            documentation ```cs\nstring GetWorld()\n```
+
+              void SayHi(string world)
+//                 ^^^^^ definition local 2
+//                       documentation ```cs\nvoid SayHi(string world)\n```
+//                              ^^^^^ definition local 3
+//                                    documentation ```cs\nstring world\n```
+              {
+                  Console.WriteLine($"Hello {world}!");
+//                                           ^^^^^ reference local 3
+              }
+          }
+      }
   }
