@@ -32,7 +32,18 @@ Namespace VBMain
         End Sub
 
         Private Sub MultipleFrom()
-            Dim x = From a In sourceA From b In sourceB Where a.Method() = b.Method() Select New With {Key .A = a.Method(), Key .B = b.Method()}
+            Dim x = From a In sourceA From b In sourceB Where a.Method() = b.Method() Select c = New With {Key .A = a.Method(), Key .B = b.Method()} Where c.A = String.Empty
         End Sub
+
+        Private Sub Into(Students As List(Of Student))
+            Dim sortedGroups = From student In Students Order By student.Last, student.First Group student By student.Last Into newGroup = Group Order By newGroup
+        End Sub
+
+        Private Class Student
+            Public Property First As String
+            Public Property Last As String
+            Public Property ID As Integer
+        End Class
+
     End Class
 End Namespace

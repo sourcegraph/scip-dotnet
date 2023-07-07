@@ -117,4 +117,28 @@ public class ScipVisualBasicSyntaxWalker : VisualBasicSyntaxWalker
         _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.Identifier.GetLocation(), true);
         base.VisitTypeParameter(node);
     }
+
+    public override void VisitExpressionRangeVariable(ExpressionRangeVariableSyntax node)
+    {
+        if (node.NameEquals != null)
+        {
+            _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node.NameEquals.Identifier), node.NameEquals.Identifier.GetLocation(), true);
+        }
+        base.VisitExpressionRangeVariable(node);
+    }
+
+    public override void VisitAggregationRangeVariable(AggregationRangeVariableSyntax node)
+    {
+        if (node.NameEquals != null)
+        {
+            _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node.NameEquals.Identifier), node.NameEquals.Identifier.GetLocation(), true);
+        }
+        base.VisitAggregationRangeVariable(node);
+    }
+
+    public override void VisitCollectionRangeVariable(CollectionRangeVariableSyntax node)
+    {
+        _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.Identifier.GetLocation(), true);
+        base.VisitCollectionRangeVariable(node);
+    }
 }

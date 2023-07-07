@@ -367,6 +367,7 @@ public class ScipDocumentIndexer
     private static bool IsLocalSymbol(ISymbol sym)
     {
         return sym.Kind == SymbolKind.Local ||
+               sym.Kind == SymbolKind.RangeVariable ||
                // Anonymous classes/methods have empty names and can not be accessed outside their file.
                // The "global namespace" (parent of all namespaces) also has an empty name and should not
                // be treated as a local variable.

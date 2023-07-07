@@ -129,4 +129,34 @@ public class ScipCSharpSyntaxWalker : CSharpSyntaxWalker
         _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.Identifier.GetLocation(), true);
         base.VisitTypeParameter(node);
     }
+
+    public override void VisitFromClause(FromClauseSyntax node)
+    {
+        _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.Identifier.GetLocation(), true);
+        base.VisitFromClause(node);
+    }
+
+    public override void VisitJoinClause(JoinClauseSyntax node)
+    {
+        _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.Identifier.GetLocation(), true);
+        base.VisitJoinClause(node);
+    }
+
+    public override void VisitJoinIntoClause(JoinIntoClauseSyntax node)
+    {
+        _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.Identifier.GetLocation(), true);
+        base.VisitJoinIntoClause(node);
+    }
+
+    public override void VisitLetClause(LetClauseSyntax node)
+    {
+        _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.Identifier.GetLocation(), true);
+        base.VisitLetClause(node);
+    }
+
+    public override void VisitQueryContinuation(QueryContinuationSyntax node)
+    {
+        _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.Identifier.GetLocation(), true);
+        base.VisitQueryContinuation(node);
+    }
 }
