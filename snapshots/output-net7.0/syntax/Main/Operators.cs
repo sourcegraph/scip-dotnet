@@ -18,7 +18,7 @@
       {
           public static int operator +(PlusMinus a)
 //                                     ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#PlusMinus#
-//                                               ^ definition scip-dotnet nuget . . Main/Operators#PlusMinus#op_UnaryPlus().(a)
+//                                               ^ definition local 0
 //                                                 documentation ```cs\nPlusMinus a\n```
           {
               return 0;
@@ -26,10 +26,10 @@
 
           public static int operator +(PlusMinus a, PlusMinus b)
 //                                     ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#PlusMinus#
-//                                               ^ definition scip-dotnet nuget . . Main/Operators#PlusMinus#op_Addition().(a)
+//                                               ^ definition local 1
 //                                                 documentation ```cs\nPlusMinus a\n```
 //                                                  ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#PlusMinus#
-//                                                            ^ definition scip-dotnet nuget . . Main/Operators#PlusMinus#op_Addition().(b)
+//                                                            ^ definition local 2
 //                                                              documentation ```cs\nPlusMinus b\n```
           {
               return 0;
@@ -37,7 +37,7 @@
 
           public static int operator -(PlusMinus a)
 //                                     ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#PlusMinus#
-//                                               ^ definition scip-dotnet nuget . . Main/Operators#PlusMinus#op_UnaryNegation().(a)
+//                                               ^ definition local 3
 //                                                 documentation ```cs\nPlusMinus a\n```
           {
               return 0;
@@ -52,7 +52,7 @@
 //                       ^^^^^^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#Equals().
 //                              documentation ```cs\nprotected bool TrueFalse.Equals(TrueFalse other)\n```
 //                              ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#
-//                                        ^^^^^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#Equals().(other)
+//                                        ^^^^^ definition local 4
 //                                              documentation ```cs\nTrueFalse other\n```
           {
               throw new NotImplementedException();
@@ -63,23 +63,23 @@
 //                             ^^^^^^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#Equals(+1).
 //                                    documentation ```cs\npublic override bool TrueFalse.Equals(object? obj)\n```
 //                                    relationship implementation reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#Equals().
-//                                            ^^^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#Equals(+1).(obj)
+//                                            ^^^ definition local 5
 //                                                documentation ```cs\nobject? obj\n```
           {
               if (ReferenceEquals(null, obj)) return false;
 //                ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#ReferenceEquals().
-//                                      ^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#Equals(+1).(obj)
+//                                      ^^^ reference local 5
               if (ReferenceEquals(this, obj)) return true;
 //                ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#ReferenceEquals().
-//                                      ^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#Equals(+1).(obj)
+//                                      ^^^ reference local 5
               if (obj.GetType() != this.GetType()) return false;
-//                ^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#Equals(+1).(obj)
+//                ^^^ reference local 5
 //                    ^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#GetType().
 //                                      ^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Object#GetType().
               return Equals((TrueFalse)obj);
 //                   ^^^^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#Equals().
 //                           ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#
-//                                     ^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#Equals(+1).(obj)
+//                                     ^^^ reference local 5
           }
 
           public override int GetHashCode()
@@ -93,7 +93,7 @@
 
           public static bool operator true(TrueFalse a)
 //                                         ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#
-//                                                   ^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#op_True().(a)
+//                                                   ^ definition local 6
 //                                                     documentation ```cs\nTrueFalse a\n```
           {
               return true;
@@ -101,7 +101,7 @@
 
           public static bool operator false(TrueFalse a)
 //                                          ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#
-//                                                    ^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#op_False().(a)
+//                                                    ^ definition local 7
 //                                                      documentation ```cs\nTrueFalse a\n```
           {
               return false;
@@ -109,10 +109,10 @@
 
           public static bool operator !=(TrueFalse a, TrueFalse b)
 //                                       ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#
-//                                                 ^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#op_Inequality().(a)
+//                                                 ^ definition local 8
 //                                                   documentation ```cs\nTrueFalse a\n```
 //                                                    ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#
-//                                                              ^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#op_Inequality().(b)
+//                                                              ^ definition local 9
 //                                                                documentation ```cs\nTrueFalse b\n```
           {
               return true;
@@ -120,10 +120,10 @@
 
           public static bool operator ==(TrueFalse a, TrueFalse b)
 //                                       ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#
-//                                                 ^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#op_Equality().(a)
+//                                                 ^ definition local 10
 //                                                   documentation ```cs\nTrueFalse a\n```
 //                                                    ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#
-//                                                              ^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#op_Equality().(b)
+//                                                              ^ definition local 11
 //                                                                documentation ```cs\nTrueFalse b\n```
           {
               return true;

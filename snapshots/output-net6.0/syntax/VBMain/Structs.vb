@@ -16,11 +16,11 @@
               Public Sub New(ByVal field1 As Integer)
 '                        ^^^ definition scip-dotnet nuget . . VBMain/Structs#BasicStruct#`.ctor`(+1).
 '                            documentation ```vb\nPublic Sub BasicStruct.New(field1 As Integer)\n```
-'                                  ^^^^^^ definition scip-dotnet nuget . . VBMain/Structs#BasicStruct#`.ctor`(+1).(field1)
+'                                  ^^^^^^ definition local 0
 '                                         documentation ```vb\nfield1 As Integer\n```
                   Property1 = field1
 '                 ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Structs#BasicStruct#Property1.
-'                             ^^^^^^ reference scip-dotnet nuget . . VBMain/Structs#BasicStruct#`.ctor`(+1).(field1)
+'                             ^^^^^^ reference local 0
               End Sub
           End Structure
       End Class

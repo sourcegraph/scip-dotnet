@@ -57,9 +57,9 @@
 //           ^^^^^^^^ definition scip-dotnet nuget . . Main/Statements#Inferred#
 //                    documentation ```cs\nrecord Inferred\n```
 //                    relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
-//                        ^^ definition scip-dotnet nuget . . Main/Statements#Inferred#`.ctor`().(F1)
+//                        ^^ definition local 5
 //                           documentation ```cs\nint F1\n```
-//                                ^^ definition scip-dotnet nuget . . Main/Statements#Inferred#`.ctor`().(F2)
+//                                ^^ definition local 6
 //                                   documentation ```cs\nint F2\n```
 
       void InferredTuples()
@@ -67,17 +67,17 @@
 //                        documentation ```cs\nprivate void Statements.InferredTuples()\n```
       {
           var list = new List<Inferred>();
-//            ^^^^ definition local 5
+//            ^^^^ definition local 7
 //                 documentation ```cs\nList<Inferred>? list\n```
 //                            ^^^^^^^^ reference scip-dotnet nuget . . Main/Statements#Inferred#
           var result = list.Select(c => (c.F1, c.F2)).Where(t => t.F2 == 1);
-//            ^^^^^^ definition local 6
+//            ^^^^^^ definition local 8
 //                   documentation ```cs\n? result\n```
-//                     ^^^^ reference local 5
-//                                 ^ definition local 8
+//                     ^^^^ reference local 7
+//                                 ^ definition local 9
 //                                   documentation ```cs\n c\n```
-//                                       ^ reference local 8
-//                                             ^ reference local 8
+//                                       ^ reference local 9
+//                                             ^ reference local 9
 //                                                          ^ definition local 10
 //                                                            documentation ```cs\n t\n```
 //                                                               ^ reference local 10
@@ -181,19 +181,19 @@
       void ForeachVariable(List<(int, int)> names)
 //         ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Statements#ForeachVariable().
 //                         documentation ```cs\nprivate void Statements.ForeachVariable(List<(int, int)> names)\n```
-//                                          ^^^^^ definition scip-dotnet nuget . . Main/Statements#ForeachVariable().(names)
+//                                          ^^^^^ definition local 22
 //                                                documentation ```cs\nList<(int, int)> names\n```
       {
           foreach ((int firstName, int lastName) in names)
-//                      ^^^^^^^^^ definition local 22
+//                      ^^^^^^^^^ definition local 23
 //                                documentation ```cs\nint firstName\n```
-//                                     ^^^^^^^^ definition local 23
+//                                     ^^^^^^^^ definition local 24
 //                                              documentation ```cs\nint lastName\n```
-//                                                  ^^^^^ reference scip-dotnet nuget . . Main/Statements#ForeachVariable().(names)
+//                                                  ^^^^^ reference local 22
           {
               Console.WriteLine($"FirstName:{firstName}, LastName:{lastName}");
-//                                           ^^^^^^^^^ reference local 22
-//                                                                 ^^^^^^^^ reference local 23
+//                                           ^^^^^^^^^ reference local 23
+//                                                                 ^^^^^^^^ reference local 24
           }
       }
   }

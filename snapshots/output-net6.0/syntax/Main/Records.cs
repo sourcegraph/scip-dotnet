@@ -42,9 +42,9 @@
 //                  ^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Records#TypeParameterConstraint#
 //                                          documentation ```cs\nrecord TypeParameterConstraint<T> where T : struct\n```
 //                                          relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
-//                                          ^ definition scip-dotnet nuget . . Main/Records#TypeParameterConstraint#[T]
+//                                          ^ definition local 0
 //                                            documentation ```cs\nT\n```
-//                                                   ^ reference scip-dotnet nuget . . Main/Records#TypeParameterConstraint#[T]
+//                                                   ^ reference local 0
       {
       }
 
@@ -67,9 +67,9 @@
 //                  relationship implementation scip-dotnet nuget . . Main/Records#I1#
 //                  relationship implementation scip-dotnet nuget . . Main/Records#I2#
 //                  relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
-//                         ^^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Person#`.ctor`().(FirstName)
+//                         ^^^^^^^^^ definition local 1
 //                                   documentation ```cs\nstring FirstName\n```
-//                                           ^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Person#`.ctor`().(LastName)
+//                                           ^^^^^^^^ definition local 2
 //                                                    documentation ```cs\nstring LastName\n```
 //                                                       ^^ reference scip-dotnet nuget . . Main/Records#I1#
 //                                                           ^^ reference scip-dotnet nuget . . Main/Records#I2#
@@ -77,10 +77,10 @@
           public Person(string FirstName) : this(FirstName, FirstName)
 //               ^^^^^^ definition scip-dotnet nuget . . Main/Records#Person#`.ctor`(+1).
 //                      documentation ```cs\npublic Person.Person(string FirstName)\n```
-//                             ^^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Person#`.ctor`(+1).(FirstName)
+//                             ^^^^^^^^^ definition local 3
 //                                       documentation ```cs\nstring FirstName\n```
-//                                               ^^^^^^^^^ reference scip-dotnet nuget . . Main/Records#Person#`.ctor`(+1).(FirstName)
-//                                                          ^^^^^^^^^ reference scip-dotnet nuget . . Main/Records#Person#`.ctor`(+1).(FirstName)
+//                                               ^^^^^^^^^ reference local 3
+//                                                          ^^^^^^^^^ reference local 3
           {
           }
       };
@@ -93,15 +93,15 @@
 //                   relationship implementation scip-dotnet nuget . . Main/Records#I1#
 //                   relationship implementation scip-dotnet nuget . . Main/Records#I2#
 //                   relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
-//                          ^^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Teacher#`.ctor`().(FirstName)
+//                          ^^^^^^^^^ definition local 4
 //                                    documentation ```cs\nstring FirstName\n```
-//                                            ^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Teacher#`.ctor`().(LastName)
+//                                            ^^^^^^^^ definition local 5
 //                                                     documentation ```cs\nstring LastName\n```
-//                                                             ^^^^^^^ definition scip-dotnet nuget . . Main/Records#Teacher#`.ctor`().(Subject)
+//                                                             ^^^^^^^ definition local 6
 //                                                                     documentation ```cs\nstring Subject\n```
 //                                                                        ^^^^^^ reference scip-dotnet nuget . . Main/Records#Person#
-//                                                                               ^^^^^^^^^ reference scip-dotnet nuget . . Main/Records#Teacher#`.ctor`().(FirstName)
-//                                                                                          ^^^^^^^^ reference scip-dotnet nuget . . Main/Records#Teacher#`.ctor`().(LastName)
+//                                                                               ^^^^^^^^^ reference local 4
+//                                                                                          ^^^^^^^^ reference local 5
 //                                                                                                     ^^ reference scip-dotnet nuget . . Main/Records#I1#
 //                                                                                                         ^^ reference scip-dotnet nuget . . Main/Records#I2#
 
@@ -110,11 +110,11 @@
 //                      documentation ```cs\nprivate void Records.UsingRecords()\n```
       {
           var person = new Person("a", "b");
-//            ^^^^^^ definition local 0
+//            ^^^^^^ definition local 7
 //                   documentation ```cs\nPerson? person\n```
 //                         ^^^^^^ reference scip-dotnet nuget . . Main/Records#Person#
           var teacher = new Teacher("a", "b", "c");
-//            ^^^^^^^ definition local 1
+//            ^^^^^^^ definition local 8
 //                    documentation ```cs\nTeacher? teacher\n```
 //                          ^^^^^^^ reference scip-dotnet nuget . . Main/Records#Teacher#
       }
@@ -123,7 +123,7 @@
 //           ^^ definition scip-dotnet nuget . . Main/Records#I3#
 //              documentation ```cs\nrecord I3<T>\n```
 //              relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
-//              ^ definition scip-dotnet nuget . . Main/Records#I3#[T]
+//              ^ definition local 9
 //                documentation ```cs\nT\n```
 
       record Teacher2() : I3<Person>(), I1;
