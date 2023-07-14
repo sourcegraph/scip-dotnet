@@ -155,25 +155,25 @@
           Private Sub Into(Students As List(Of Student))
 '                     ^^^^ definition scip-dotnet nuget . . VBMain/QuerySyntax#Into().
 '                          documentation ```vb\nPrivate Sub QuerySyntax.Into(Students As List(Of Student))\n```
-'                          ^^^^^^^^ definition local 23
+'                          ^^^^^^^^ definition scip-dotnet nuget . . VBMain/QuerySyntax#Into().(Students)
 '                                   documentation ```vb\nStudents As List(Of Student)\n```
 '                                              ^^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Student#
               Dim sortedGroups = From student In Students Order By student.Last, student.First Group student By student.Last Into newGroup = Group Order By newGroup
-'                 ^^^^^^^^^^^^ definition local 24
+'                 ^^^^^^^^^^^^ definition local 23
 '                              documentation ```vb\nsortedGroups As Interface IOrderedEnumerable(Of <anonymous type: Key Last As String, Key newGroup As Interface IEnumerable(Of Student)>)\n```
-'                                     ^^^^^^^ definition local 25
+'                                     ^^^^^^^ definition local 24
 '                                             documentation ```vb\nstudent As Class Student\n```
-'                                                ^^^^^^^^ reference local 23
-'                                                                  ^^^^^^^ reference local 25
+'                                                ^^^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Into().(Students)
+'                                                                  ^^^^^^^ reference local 24
 '                                                                          ^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Student#Last.
-'                                                                                ^^^^^^^ reference local 25
+'                                                                                ^^^^^^^ reference local 24
 '                                                                                        ^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Student#First.
-'                                                                                                    ^^^^^^^ reference local 25
-'                                                                                                               ^^^^^^^ reference local 25
+'                                                                                                    ^^^^^^^ reference local 24
+'                                                                                                               ^^^^^^^ reference local 24
 '                                                                                                                       ^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#Student#Last.
-'                                                                                                                                 ^^^^^^^^ definition local 26
+'                                                                                                                                 ^^^^^^^^ definition local 25
 '                                                                                                                                          documentation ```vb\nnewGroup As Interface IEnumerable(Of Student)\n```
-'                                                                                                                                                           ^^^^^^^^ reference local 26
+'                                                                                                                                                           ^^^^^^^^ reference local 25
           End Sub
 
           Private Class Student

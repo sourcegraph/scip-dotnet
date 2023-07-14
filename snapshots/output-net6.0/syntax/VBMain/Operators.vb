@@ -10,24 +10,24 @@
 '                      ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Operators#PlusMinus#
 '                                documentation ```vb\nClass PlusMinus\n```
               Public Shared Operator +(A As PlusMinus)
-'                                      ^ definition local 0
+'                                      ^ definition scip-dotnet nuget . . VBMain/Operators#PlusMinus#op_UnaryPlus().(A)
 '                                        documentation ```vb\nA As PlusMinus\n```
 '                                           ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Operators#PlusMinus#
                   Return 0
               End Operator
 
               Public Shared Operator +(A As PlusMinus, B As PlusMinus)
-'                                      ^ definition local 1
+'                                      ^ definition scip-dotnet nuget . . VBMain/Operators#PlusMinus#op_Addition().(A)
 '                                        documentation ```vb\nA As PlusMinus\n```
 '                                           ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Operators#PlusMinus#
-'                                                      ^ definition local 2
+'                                                      ^ definition scip-dotnet nuget . . VBMain/Operators#PlusMinus#op_Addition().(B)
 '                                                        documentation ```vb\nB As PlusMinus\n```
 '                                                           ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Operators#PlusMinus#
                   Return 0
               End Operator
 
               Public Shared Operator -(A As PlusMinus)
-'                                      ^ definition local 3
+'                                      ^ definition scip-dotnet nuget . . VBMain/Operators#PlusMinus#op_UnaryNegation().(A)
 '                                        documentation ```vb\nA As PlusMinus\n```
 '                                           ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Operators#PlusMinus#
                   Return 0
@@ -38,34 +38,34 @@
 '                      ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Operators#TrueFalse#
 '                                documentation ```vb\nClass TrueFalse\n```
               Public Shared Operator IsTrue(A As TrueFalse) As Boolean
-'                                           ^ definition local 4
+'                                           ^ definition scip-dotnet nuget . . VBMain/Operators#TrueFalse#op_True().(A)
 '                                             documentation ```vb\nA As TrueFalse\n```
 '                                                ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Operators#TrueFalse#
                   Return True
               End Operator
 
               Public Shared Operator IsFalse(A As TrueFalse) As Boolean
-'                                            ^ definition local 5
+'                                            ^ definition scip-dotnet nuget . . VBMain/Operators#TrueFalse#op_False().(A)
 '                                              documentation ```vb\nA As TrueFalse\n```
 '                                                 ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Operators#TrueFalse#
                   Return False
               End Operator
 
               Public Shared Operator =(A As TrueFalse, B As TrueFalse) As Boolean
-'                                      ^ definition local 6
+'                                      ^ definition scip-dotnet nuget . . VBMain/Operators#TrueFalse#op_Equality().(A)
 '                                        documentation ```vb\nA As TrueFalse\n```
 '                                           ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Operators#TrueFalse#
-'                                                      ^ definition local 7
+'                                                      ^ definition scip-dotnet nuget . . VBMain/Operators#TrueFalse#op_Equality().(B)
 '                                                        documentation ```vb\nB As TrueFalse\n```
 '                                                           ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Operators#TrueFalse#
                   Return True
               End Operator
 
               Public Shared Operator <>(A As TrueFalse, B As TrueFalse) As Boolean
-'                                       ^ definition local 8
+'                                       ^ definition scip-dotnet nuget . . VBMain/Operators#TrueFalse#op_Inequality().(A)
 '                                         documentation ```vb\nA As TrueFalse\n```
 '                                            ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Operators#TrueFalse#
-'                                                       ^ definition local 9
+'                                                       ^ definition scip-dotnet nuget . . VBMain/Operators#TrueFalse#op_Inequality().(B)
 '                                                         documentation ```vb\nB As TrueFalse\n```
 '                                                            ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Operators#TrueFalse#
                   Return True
@@ -74,16 +74,16 @@
               Public Overrides Function Equals(obj As Object) As Boolean
 '                                       ^^^^^^ definition scip-dotnet nuget . . VBMain/Operators#TrueFalse#Equals().
 '                                              documentation ```vb\nPublic Overrides Function TrueFalse.Equals(obj As Object) As Boolean\n```
-'                                              ^^^ definition local 10
+'                                              ^^^ definition scip-dotnet nuget . . VBMain/Operators#TrueFalse#Equals().(obj)
 '                                                  documentation ```vb\nobj As Object\n```
                   If ReferenceEquals(Nothing, obj) Then Return False
-'                                             ^^^ reference local 10
+'                                             ^^^ reference scip-dotnet nuget . . VBMain/Operators#TrueFalse#Equals().(obj)
                   If ReferenceEquals(Me, obj) Then Return True
-'                                        ^^^ reference local 10
+'                                        ^^^ reference scip-dotnet nuget . . VBMain/Operators#TrueFalse#Equals().(obj)
                   If obj.GetType() <> Me.GetType() Then Return False
-'                    ^^^ reference local 10
+'                    ^^^ reference scip-dotnet nuget . . VBMain/Operators#TrueFalse#Equals().(obj)
                   Return Equals(CType(obj, TrueFalse))
-'                                     ^^^ reference local 10
+'                                     ^^^ reference scip-dotnet nuget . . VBMain/Operators#TrueFalse#Equals().(obj)
 '                                          ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Operators#TrueFalse#
               End Function
 
