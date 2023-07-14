@@ -23,12 +23,12 @@
           public BasicStruct(int field1)
 //               ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Structs#BasicStruct#`.ctor`().
 //                           documentation ```cs\npublic BasicStruct.BasicStruct(int field1)\n```
-//                               ^^^^^^ definition scip-dotnet nuget . . Main/Structs#BasicStruct#`.ctor`().(field1)
+//                               ^^^^^^ definition local 0
 //                                      documentation ```cs\nint field1\n```
           {
               Property1 = field1;
 //            ^^^^^^^^^ reference scip-dotnet nuget . . Main/Structs#BasicStruct#Property1.
-//                        ^^^^^^ reference scip-dotnet nuget . . Main/Structs#BasicStruct#`.ctor`().(field1)
+//                        ^^^^^^ reference local 0
           }
       }
   }

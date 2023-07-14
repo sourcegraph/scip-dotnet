@@ -13,95 +13,95 @@
           Private Function SingleParameter(ByVal b As Integer) As Integer
 '                          ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#SingleParameter().
 '                                          documentation ```vb\nPrivate Function Methods.SingleParameter(b As Integer) As Integer\n```
-'                                                ^ definition scip-dotnet nuget . . VBMain/Methods#SingleParameter().(b)
+'                                                ^ definition local 0
 '                                                  documentation ```vb\nb As Integer\n```
               Return b
-'                    ^ reference scip-dotnet nuget . . VBMain/Methods#SingleParameter().(b)
+'                    ^ reference local 0
           End Function
 
           Private Function TwoParameters(ByVal a As Integer, ByVal b As Integer) As Integer
 '                          ^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#TwoParameters().
 '                                        documentation ```vb\nPrivate Function Methods.TwoParameters(a As Integer, b As Integer) As Integer\n```
-'                                              ^ definition scip-dotnet nuget . . VBMain/Methods#TwoParameters().(a)
+'                                              ^ definition local 1
 '                                                documentation ```vb\na As Integer\n```
-'                                                                  ^ definition scip-dotnet nuget . . VBMain/Methods#TwoParameters().(b)
+'                                                                  ^ definition local 2
 '                                                                    documentation ```vb\nb As Integer\n```
               Return a + b
-'                    ^ reference scip-dotnet nuget . . VBMain/Methods#TwoParameters().(a)
-'                        ^ reference scip-dotnet nuget . . VBMain/Methods#TwoParameters().(b)
+'                    ^ reference local 1
+'                        ^ reference local 2
           End Function
 
           Private Function Overload1(ByVal a As Integer) As Integer
 '                          ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#Overload1().
 '                                    documentation ```vb\nPrivate Function Methods.Overload1(a As Integer) As Integer\n```
-'                                          ^ definition scip-dotnet nuget . . VBMain/Methods#Overload1().(a)
+'                                          ^ definition local 3
 '                                            documentation ```vb\na As Integer\n```
               Return a
-'                    ^ reference scip-dotnet nuget . . VBMain/Methods#Overload1().(a)
+'                    ^ reference local 3
           End Function
 
           Private Function Overload1(ByVal a As Integer, ByVal b As Integer) As Integer
 '                          ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#Overload1(+1).
 '                                    documentation ```vb\nPrivate Function Methods.Overload1(a As Integer, b As Integer) As Integer\n```
-'                                          ^ definition scip-dotnet nuget . . VBMain/Methods#Overload1(+1).(a)
+'                                          ^ definition local 4
 '                                            documentation ```vb\na As Integer\n```
-'                                                              ^ definition scip-dotnet nuget . . VBMain/Methods#Overload1(+1).(b)
+'                                                              ^ definition local 5
 '                                                                documentation ```vb\nb As Integer\n```
               Return a + b
-'                    ^ reference scip-dotnet nuget . . VBMain/Methods#Overload1(+1).(a)
-'                        ^ reference scip-dotnet nuget . . VBMain/Methods#Overload1(+1).(b)
+'                    ^ reference local 4
+'                        ^ reference local 5
           End Function
 
           Private Function Generic(Of T)(ByVal param As T) As T
 '                          ^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#Generic().
 '                                  documentation ```vb\nPrivate Function Methods.Generic(Of T)(param As T) As T\n```
-'                                     ^ definition scip-dotnet nuget . . VBMain/Methods#Generic().[T]
+'                                     ^ definition local 6
 '                                       documentation ```vb\nT\n```
-'                                              ^^^^^ definition scip-dotnet nuget . . VBMain/Methods#Generic().(param)
+'                                              ^^^^^ definition local 7
 '                                                    documentation ```vb\nparam As T\n```
-'                                                       ^ reference scip-dotnet nuget . . VBMain/Methods#Generic().[T]
-'                                                             ^ reference scip-dotnet nuget . . VBMain/Methods#Generic().[T]
+'                                                       ^ reference local 6
+'                                                             ^ reference local 6
               Return param
-'                    ^^^^^ reference scip-dotnet nuget . . VBMain/Methods#Generic().(param)
+'                    ^^^^^ reference local 7
           End Function
 
           Private Function GenericConstraint(Of T As New)(ByVal param As T) As T
 '                          ^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#GenericConstraint().
 '                                            documentation ```vb\nPrivate Function Methods.GenericConstraint(Of T As New)(param As T) As T\n```
-'                                               ^ definition scip-dotnet nuget . . VBMain/Methods#GenericConstraint().[T]
+'                                               ^ definition local 8
 '                                                 documentation ```vb\nT\n```
-'                                                               ^^^^^ definition scip-dotnet nuget . . VBMain/Methods#GenericConstraint().(param)
+'                                                               ^^^^^ definition local 9
 '                                                                     documentation ```vb\nparam As T\n```
-'                                                                        ^ reference scip-dotnet nuget . . VBMain/Methods#GenericConstraint().[T]
-'                                                                              ^ reference scip-dotnet nuget . . VBMain/Methods#GenericConstraint().[T]
+'                                                                        ^ reference local 8
+'                                                                              ^ reference local 8
               Return param
-'                    ^^^^^ reference scip-dotnet nuget . . VBMain/Methods#GenericConstraint().(param)
+'                    ^^^^^ reference local 9
           End Function
 
           Private Sub DefaultParameter(ByVal Optional a As Integer = 5)
 '                     ^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#DefaultParameter().
 '                                      documentation ```vb\nPrivate Sub Methods.DefaultParameter([a As Integer = 5])\n```
-'                                                     ^ definition scip-dotnet nuget . . VBMain/Methods#DefaultParameter().(a)
+'                                                     ^ definition local 10
 '                                                       documentation ```vb\n[a As Integer = 5]\n```
           End Sub
 
           Private Function DefaultParameterOverload(ByVal Optional a As Integer = 5) As Integer
 '                          ^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload().
 '                                                   documentation ```vb\nPrivate Function Methods.DefaultParameterOverload([a As Integer = 5]) As Integer\n```
-'                                                                  ^ definition scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload().(a)
+'                                                                  ^ definition local 11
 '                                                                    documentation ```vb\n[a As Integer = 5]\n```
               Return DefaultParameterOverload(a, a)
 '                    ^^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload(+1).
-'                                             ^ reference scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload().(a)
-'                                                ^ reference scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload().(a)
+'                                             ^ reference local 11
+'                                                ^ reference local 11
           End Function
 
           Private Function DefaultParameterOverload(ByVal a As Integer, ByVal b As Integer) As Integer
 '                          ^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload(+1).
 '                                                   documentation ```vb\nPrivate Function Methods.DefaultParameterOverload(a As Integer, b As Integer) As Integer\n```
-'                                                         ^ definition scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload(+1).(a)
+'                                                         ^ definition local 12
 '                                                           documentation ```vb\na As Integer\n```
-'                                                                             ^ definition scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload(+1).(b)
+'                                                                             ^ definition local 13
 '                                                                               documentation ```vb\nb As Integer\n```
               Return DefaultParameterOverload()
 '                    ^^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload().
@@ -153,10 +153,10 @@
               Public Function Method(ByVal parameter As Integer) As Integer
 '                             ^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#InheritedOverloads2#Method().
 '                                    documentation ```vb\nPublic Function InheritedOverloads2.Method(parameter As Integer) As Integer\n```
-'                                          ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#InheritedOverloads2#Method().(parameter)
+'                                          ^^^^^^^^^ definition local 14
 '                                                    documentation ```vb\nparameter As Integer\n```
                   Return parameter
-'                        ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads2#Method().(parameter)
+'                        ^^^^^^^^^ reference local 14
               End Function
           End Class
 
@@ -171,10 +171,10 @@
               Public Function Method(ByVal parameter As String) As String
 '                             ^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#InheritedOverloads3#Method().
 '                                    documentation ```vb\nPublic Function InheritedOverloads3.Method(parameter As String) As String\n```
-'                                          ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#InheritedOverloads3#Method().(parameter)
+'                                          ^^^^^^^^^ definition local 15
 '                                                    documentation ```vb\nparameter As String\n```
                   Return parameter
-'                        ^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads3#Method().(parameter)
+'                        ^^^^^^^^^ reference local 15
               End Function
           End Class
 
@@ -182,40 +182,40 @@
 '                           ^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#InheritedOverloads().
 '                                              documentation ```vb\nPublic Shared Sub Methods.InheritedOverloads()\n```
               Dim a As InheritedOverloads1 = New InheritedOverloads1
-'                 ^ definition local 0
+'                 ^ definition local 16
 '                   documentation ```vb\na As Class InheritedOverloads1\n```
 '                      ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads1#
 '                                                ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads1#
               a.Method()
-'             ^ reference local 0
+'             ^ reference local 16
 '               ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads1#Method().
               Dim b As InheritedOverloads2 = New InheritedOverloads2
-'                 ^ definition local 1
+'                 ^ definition local 17
 '                   documentation ```vb\nb As Class InheritedOverloads2\n```
 '                      ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads2#
 '                                                ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads2#
               DirectCast(b, InheritedOverloads1).Method()
-'                        ^ reference local 1
+'                        ^ reference local 17
 '                           ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads1#
 '                                                ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads1#Method().
               b.Method(42)
-'             ^ reference local 1
+'             ^ reference local 17
 '               ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads2#Method().
               Dim c As InheritedOverloads3 = New InheritedOverloads3
-'                 ^ definition local 2
+'                 ^ definition local 18
 '                   documentation ```vb\nc As Class InheritedOverloads3\n```
 '                      ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads3#
 '                                                ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads3#
               DirectCast(c, InheritedOverloads1).Method()
-'                        ^ reference local 2
+'                        ^ reference local 18
 '                           ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads1#
 '                                                ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads1#Method().
               DirectCast(c, InheritedOverloads2).Method(42)
-'                        ^ reference local 2
+'                        ^ reference local 18
 '                           ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads2#
 '                                                ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads2#Method().
               c.Method("42")
-'             ^ reference local 2
+'             ^ reference local 18
 '               ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads3#Method().
           End Sub
       End Class

@@ -32,27 +32,27 @@
           public Fields1(long field2, long field3, Tuple<char, int?> field4, int field1)
 //               ^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().
 //                       documentation ```cs\npublic Fields1.Fields1(long field2, long field3, Tuple<char, int?> field4, int field1)\n```
-//                            ^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().(field2)
+//                            ^^^^^^ definition local 0
 //                                   documentation ```cs\nlong field2\n```
-//                                         ^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().(field3)
+//                                         ^^^^^^ definition local 1
 //                                                documentation ```cs\nlong field3\n```
-//                                                                   ^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().(field4)
+//                                                                   ^^^^^^ definition local 2
 //                                                                          documentation ```cs\nTuple<char, int?> field4\n```
-//                                                                               ^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().(field1)
+//                                                                               ^^^^^^ definition local 3
 //                                                                                      documentation ```cs\nint field1\n```
           {
               Property2 = field2;
 //            ^^^^^^^^^ reference scip-dotnet nuget . . Main/Fields#Fields1#Property2.
-//                        ^^^^^^ reference scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().(field2)
+//                        ^^^^^^ reference local 0
               Property3 = field3;
 //            ^^^^^^^^^ reference scip-dotnet nuget . . Main/Fields#Fields1#Property3.
-//                        ^^^^^^ reference scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().(field3)
+//                        ^^^^^^ reference local 1
               Property4 = field4;
 //            ^^^^^^^^^ reference scip-dotnet nuget . . Main/Fields#Fields1#Property4.
-//                        ^^^^^^ reference scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().(field4)
+//                        ^^^^^^ reference local 2
               Property1 = field1;
 //            ^^^^^^^^^ reference scip-dotnet nuget . . Main/Fields#Fields1#Property1.
-//                        ^^^^^^ reference scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().(field1)
+//                        ^^^^^^ reference local 3
           }
       }
 

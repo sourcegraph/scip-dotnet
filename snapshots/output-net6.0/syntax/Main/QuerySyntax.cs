@@ -148,60 +148,60 @@
 //         ^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#JoinInto().
 //                  documentation ```cs\nprivate void QuerySyntax.JoinInto(List<Student> students1, List<Student> students2)\n```
 //                       ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#Student#
-//                                ^^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#JoinInto().(students1)
+//                                ^^^^^^^^^ definition local 22
 //                                          documentation ```cs\nList<Student> students1\n```
 //                                                ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#Student#
-//                                                         ^^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#JoinInto().(students2)
+//                                                         ^^^^^^^^^ definition local 23
 //                                                                   documentation ```cs\nList<Student> students2\n```
       {
           var innerGroupJoinQuery =
-//            ^^^^^^^^^^^^^^^^^^^ definition local 22
+//            ^^^^^^^^^^^^^^^^^^^ definition local 24
 //                                documentation ```cs\n? innerGroupJoinQuery\n```
               from student1 in students1
-//                 ^^^^^^^^ definition local 23
+//                 ^^^^^^^^ definition local 25
 //                          documentation ```cs\n? student1\n```
-//                             ^^^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#JoinInto().(students1)
+//                             ^^^^^^^^^ reference local 22
               join student2 in students2 on student1.ID equals student2.ID into studentGroup
-//                 ^^^^^^^^ definition local 24
+//                 ^^^^^^^^ definition local 26
 //                          documentation ```cs\n? student2\n```
-//                             ^^^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#JoinInto().(students2)
-//                                          ^^^^^^^^ reference local 23
-//                                                             ^^^^^^^^ reference local 24
-//                                                                              ^^^^^^^^^^^^ definition local 25
+//                             ^^^^^^^^^ reference local 23
+//                                          ^^^^^^^^ reference local 25
+//                                                             ^^^^^^^^ reference local 26
+//                                                                              ^^^^^^^^^^^^ definition local 27
 //                                                                                           documentation ```cs\n? studentGroup\n```
               select new { Student = student1.First, Students = studentGroup };
-//                         ^^^^^^^ reference local 27
-//                                   ^^^^^^^^ reference local 23
-//                                                   ^^^^^^^^ reference local 28
-//                                                              ^^^^^^^^^^^^ reference local 25
+//                         ^^^^^^^ reference local 29
+//                                   ^^^^^^^^ reference local 25
+//                                                   ^^^^^^^^ reference local 30
+//                                                              ^^^^^^^^^^^^ reference local 27
       }
 
       void Continuation(List<Student> students)
 //         ^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#Continuation().
 //                      documentation ```cs\nprivate void QuerySyntax.Continuation(List<Student> students)\n```
 //                           ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#Student#
-//                                    ^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#Continuation().(students)
+//                                    ^^^^^^^^ definition local 31
 //                                             documentation ```cs\nList<Student> students\n```
       {
           var sortedGroups =
-//            ^^^^^^^^^^^^ definition local 29
+//            ^^^^^^^^^^^^ definition local 32
 //                         documentation ```cs\n? sortedGroups\n```
               from student in students
-//                 ^^^^^^^ definition local 30
+//                 ^^^^^^^ definition local 33
 //                         documentation ```cs\n? student\n```
-//                            ^^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#Continuation().(students)
+//                            ^^^^^^^^ reference local 31
               orderby student.Last, student.First
-//                    ^^^^^^^ reference local 30
-//                                  ^^^^^^^ reference local 30
+//                    ^^^^^^^ reference local 33
+//                                  ^^^^^^^ reference local 33
               group student by student.Last[0] into newGroup
-//                  ^^^^^^^ reference local 30
-//                             ^^^^^^^ reference local 30
-//                                                  ^^^^^^^^ definition local 31
+//                  ^^^^^^^ reference local 33
+//                             ^^^^^^^ reference local 33
+//                                                  ^^^^^^^^ definition local 34
 //                                                           documentation ```cs\n? newGroup\n```
               orderby newGroup.Key
-//                    ^^^^^^^^ reference local 31
+//                    ^^^^^^^^ reference local 34
               select newGroup;
-//                   ^^^^^^^^ reference local 31
+//                   ^^^^^^^^ reference local 34
       }
 
       private class Student

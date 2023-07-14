@@ -368,10 +368,12 @@ public class ScipDocumentIndexer
     {
         return sym.Kind == SymbolKind.Local ||
                sym.Kind == SymbolKind.RangeVariable ||
+               sym.Kind == SymbolKind.Parameter ||
+               sym.Kind == SymbolKind.TypeParameter ||
+               sym is IMethodSymbol { MethodKind: MethodKind.LocalFunction } ||
                // Anonymous classes/methods have empty names and can not be accessed outside their file.
                // The "global namespace" (parent of all namespaces) also has an empty name and should not
                // be treated as a local variable.
-               sym is IMethodSymbol { MethodKind: MethodKind.LocalFunction } ||
                (sym.Name.Equals("") && sym.Kind != SymbolKind.Namespace);
     }
 }

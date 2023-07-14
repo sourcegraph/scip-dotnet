@@ -6,10 +6,10 @@
           Public Sub DifferentCase(wEiRdCaSiNg As String)
 '                    ^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/CaseInsensitive#DifferentCase().
 '                                  documentation ```vb\nPublic Sub CaseInsensitive.DifferentCase(wEiRdCaSiNg As String)\n```
-'                                  ^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/CaseInsensitive#DifferentCase().(wEiRdCaSiNg)
+'                                  ^^^^^^^^^^^ definition local 0
 '                                              documentation ```vb\nwEiRdCaSiNg As String\n```
               Console.WriteLine(WeIrDcAsInG)
-'                               ^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/CaseInsensitive#DifferentCase().(wEiRdCaSiNg)
+'                               ^^^^^^^^^^^ reference local 0
           End Sub
       End Class
   End Namespace

@@ -19,7 +19,7 @@
               Public Sub New(ByVal name As String)
 '                        ^^^ definition scip-dotnet nuget . . VBMain/GlobalAttributes#AuthorAttribute#`.ctor`().
 '                            documentation ```vb\nPublic Sub AuthorAttribute.New(name As String)\n```
-'                                  ^^^^ definition scip-dotnet nuget . . VBMain/GlobalAttributes#AuthorAttribute#`.ctor`().(name)
+'                                  ^^^^ definition local 0
 '                                       documentation ```vb\nname As String\n```
               End Sub
           End Class
@@ -57,12 +57,12 @@
           Public Class InnerClass(Of T)
 '                      ^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/GlobalAttributes#InnerClass#
 '                                 documentation ```vb\nClass InnerClass(Of T)\n```
-'                                    ^ definition scip-dotnet nuget . . VBMain/GlobalAttributes#InnerClass#[T]
+'                                    ^ definition local 1
 '                                      documentation ```vb\nT\n```
               Private Sub Method(Of T2)()
 '                         ^^^^^^ definition scip-dotnet nuget . . VBMain/GlobalAttributes#InnerClass#Method().
 '                                documentation ```vb\nPrivate Sub InnerClass(Of T).Method(Of T2)()\n```
-'                                   ^^ definition scip-dotnet nuget . . VBMain/GlobalAttributes#InnerClass#Method().[T2]
+'                                   ^^ definition local 2
 '                                      documentation ```vb\nT2\n```
               End Sub
           End Class
