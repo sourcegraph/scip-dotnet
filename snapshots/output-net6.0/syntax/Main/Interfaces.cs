@@ -57,12 +57,12 @@
           void Input(string a);
 //             ^^^^^ definition scip-dotnet nuget . . Main/Interfaces#IMethods#Input().
 //                   documentation ```cs\nvoid IMethods.Input(string a)\n```
-//                          ^ definition local 0
+//                          ^ definition scip-dotnet nuget . . Main/Interfaces#IMethods#Input().(a)
 //                            documentation ```cs\nstring a\n```
           int InputOutput(string a);
 //            ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Interfaces#IMethods#InputOutput().
 //                        documentation ```cs\nint IMethods.InputOutput(string a)\n```
-//                               ^ definition local 1
+//                               ^ definition scip-dotnet nuget . . Main/Interfaces#IMethods#InputOutput().(a)
 //                                 documentation ```cs\nstring a\n```
       };
 
@@ -80,7 +80,7 @@
 //                     documentation ```cs\ninterface IIndex\n```
       {
           bool this[int index] { get; set; }
-//                      ^^^^^ definition local 2
+//                      ^^^^^ definition scip-dotnet nuget . . Main/Interfaces#IIndex#`this[]`.(index)
 //                            documentation ```cs\nint index\n```
       }
 
@@ -91,11 +91,11 @@
           void Log(string message)
 //             ^^^ definition scip-dotnet nuget . . Main/Interfaces#IDefault#Log().
 //                 documentation ```cs\nvoid IDefault.Log(string message)\n```
-//                        ^^^^^^^ definition local 3
+//                        ^^^^^^^ definition scip-dotnet nuget . . Main/Interfaces#IDefault#Log().(message)
 //                                documentation ```cs\nstring message\n```
           {
               Console.WriteLine(message);
-//                              ^^^^^^^ reference local 3
+//                              ^^^^^^^ reference scip-dotnet nuget . . Main/Interfaces#IDefault#Log().(message)
           }
       }
 
@@ -113,15 +113,15 @@
       public interface IGetNext<T> where T : IGetNext<T>
 //                     ^^^^^^^^ definition scip-dotnet nuget . . Main/Interfaces#IGetNext#
 //                              documentation ```cs\ninterface IGetNext<T> where T : IGetNext<T>\n```
-//                              ^ definition local 4
+//                              ^ definition local 0
 //                                documentation ```cs\nT\n```
-//                                       ^ reference local 4
-//                                                    ^ reference local 4
+//                                       ^ reference local 0
+//                                                    ^ reference local 0
       {
           static IGetNext<T> operator ++(IGetNext<T> other)
-//                        ^ reference local 4
-//                                                ^ reference local 4
-//                                                   ^^^^^ definition local 5
+//                        ^ reference local 0
+//                                                ^ reference local 0
+//                                                   ^^^^^ definition scip-dotnet nuget . . Main/Interfaces#IGetNext#op_Increment().(other)
 //                                                         documentation ```cs\nIGetNext<T> other\n```
           {
               throw new NotImplementedException();
@@ -132,14 +132,14 @@
 //                      ^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Interfaces#ITypeParameter#
 //                                     documentation ```cs\ninterface ITypeParameter<T1, T2> where T1 : IOne where T2 : IThree\n```
 //                                     relationship implementation scip-dotnet nuget . . Main/Interfaces#ITwo#
-//                                     ^^ definition local 6
+//                                     ^^ definition local 1
 //                                        documentation ```cs\nT1\n```
-//                                         ^^ definition local 7
+//                                         ^^ definition local 2
 //                                            documentation ```cs\nT2\n```
 //                                               ^^^^ reference scip-dotnet nuget . . Main/Interfaces#ITwo#
-//                                                          ^^ reference local 6
+//                                                          ^^ reference local 1
 //                                                               ^^^^ reference scip-dotnet nuget . . Main/Interfaces#IOne#
-//                                                                          ^^ reference local 7
+//                                                                          ^^ reference local 2
 //                                                                               ^^^^^^ reference scip-dotnet nuget . . Main/Interfaces#IThree#
       {
       }

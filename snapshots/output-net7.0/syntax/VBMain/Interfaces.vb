@@ -54,12 +54,12 @@
               Sub Input(ByVal a As String)
 '                 ^^^^^ definition scip-dotnet nuget . . VBMain/Interfaces#IMethods#Input().
 '                       documentation ```vb\nSub IMethods.Input(a As String)\n```
-'                             ^ definition local 0
+'                             ^ definition scip-dotnet nuget . . VBMain/Interfaces#IMethods#Input().(a)
 '                               documentation ```vb\na As String\n```
               Function InputOutput(ByVal a As String) As Integer
 '                      ^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Interfaces#IMethods#InputOutput().
 '                                  documentation ```vb\nFunction IMethods.InputOutput(a As String) As Integer\n```
-'                                        ^ definition local 1
+'                                        ^ definition scip-dotnet nuget . . VBMain/Interfaces#IMethods#InputOutput().(a)
 '                                          documentation ```vb\na As String\n```
           End Interface
 
@@ -77,7 +77,7 @@
               Default Property Item(ByVal index As Integer) As Boolean
 '                              ^^^^ definition scip-dotnet nuget . . VBMain/Interfaces#IIndex#Item.
 '                                   documentation ```vb\nDefault Property IIndex.Item(index As Integer) As Boolean\n```
-'                                         ^^^^^ definition local 2
+'                                         ^^^^^ definition scip-dotnet nuget . . VBMain/Interfaces#IIndex#Item.(index)
 '                                               documentation ```vb\nindex As Integer\n```
           End Interface
 

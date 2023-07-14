@@ -71,9 +71,9 @@
 //                  relationship implementation scip-dotnet nuget . . Main/Records#I1#
 //                  relationship implementation scip-dotnet nuget . . Main/Records#I2#
 //                  relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IEquatable#
-//                         ^^^^^^^^^ definition local 1
+//                         ^^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Person#`.ctor`().(FirstName)
 //                                   documentation ```cs\nstring FirstName\n```
-//                                           ^^^^^^^^ definition local 2
+//                                           ^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Person#`.ctor`().(LastName)
 //                                                    documentation ```cs\nstring LastName\n```
 //                                                       ^^ reference scip-dotnet nuget . . Main/Records#I1#
 //                                                           ^^ reference scip-dotnet nuget . . Main/Records#I2#
@@ -81,10 +81,10 @@
           public Person(string FirstName) : this(FirstName, FirstName)
 //               ^^^^^^ definition scip-dotnet nuget . . Main/Records#Person#`.ctor`(+1).
 //                      documentation ```cs\npublic Person.Person(string FirstName)\n```
-//                             ^^^^^^^^^ definition local 3
+//                             ^^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Person#`.ctor`(+1).(FirstName)
 //                                       documentation ```cs\nstring FirstName\n```
-//                                               ^^^^^^^^^ reference local 3
-//                                                          ^^^^^^^^^ reference local 3
+//                                               ^^^^^^^^^ reference scip-dotnet nuget . . Main/Records#Person#`.ctor`(+1).(FirstName)
+//                                                          ^^^^^^^^^ reference scip-dotnet nuget . . Main/Records#Person#`.ctor`(+1).(FirstName)
           {
           }
       };
@@ -97,15 +97,15 @@
 //                   relationship implementation scip-dotnet nuget . . Main/Records#I1#
 //                   relationship implementation scip-dotnet nuget . . Main/Records#I2#
 //                   relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IEquatable#
-//                          ^^^^^^^^^ definition local 4
+//                          ^^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Teacher#`.ctor`().(FirstName)
 //                                    documentation ```cs\nstring FirstName\n```
-//                                            ^^^^^^^^ definition local 5
+//                                            ^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Teacher#`.ctor`().(LastName)
 //                                                     documentation ```cs\nstring LastName\n```
-//                                                             ^^^^^^^ definition local 6
+//                                                             ^^^^^^^ definition scip-dotnet nuget . . Main/Records#Teacher#`.ctor`().(Subject)
 //                                                                     documentation ```cs\nstring Subject\n```
 //                                                                        ^^^^^^ reference scip-dotnet nuget . . Main/Records#Person#
-//                                                                               ^^^^^^^^^ reference local 4
-//                                                                                          ^^^^^^^^ reference local 5
+//                                                                               ^^^^^^^^^ reference scip-dotnet nuget . . Main/Records#Teacher#`.ctor`().(FirstName)
+//                                                                                          ^^^^^^^^ reference scip-dotnet nuget . . Main/Records#Teacher#`.ctor`().(LastName)
 //                                                                                                     ^^ reference scip-dotnet nuget . . Main/Records#I1#
 //                                                                                                         ^^ reference scip-dotnet nuget . . Main/Records#I2#
 
@@ -114,11 +114,11 @@
 //                      documentation ```cs\nprivate void Records.UsingRecords()\n```
       {
           var person = new Person("a", "b");
-//            ^^^^^^ definition local 7
+//            ^^^^^^ definition local 1
 //                   documentation ```cs\nPerson? person\n```
 //                         ^^^^^^ reference scip-dotnet nuget . . Main/Records#Person#
           var teacher = new Teacher("a", "b", "c");
-//            ^^^^^^^ definition local 8
+//            ^^^^^^^ definition local 2
 //                    documentation ```cs\nTeacher? teacher\n```
 //                          ^^^^^^^ reference scip-dotnet nuget . . Main/Records#Teacher#
       }
@@ -127,7 +127,7 @@
 //           ^^ definition scip-dotnet nuget . . Main/Records#I3#
 //              documentation ```cs\nrecord I3<T>\n```
 //              relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IEquatable#
-//              ^ definition local 9
+//              ^ definition local 3
 //                documentation ```cs\nT\n```
 
       record Teacher2() : I3<Person>(), I1;

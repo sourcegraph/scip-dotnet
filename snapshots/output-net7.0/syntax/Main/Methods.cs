@@ -15,82 +15,82 @@
       int SingleParameter(int b)
 //        ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#SingleParameter().
 //                        documentation ```cs\nprivate int Methods.SingleParameter(int b)\n```
-//                            ^ definition local 0
+//                            ^ definition scip-dotnet nuget . . Main/Methods#SingleParameter().(b)
 //                              documentation ```cs\nint b\n```
       {
           return b;
-//               ^ reference local 0
+//               ^ reference scip-dotnet nuget . . Main/Methods#SingleParameter().(b)
       }
 
       int TwoParameters(int a, int b)
 //        ^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#TwoParameters().
 //                      documentation ```cs\nprivate int Methods.TwoParameters(int a, int b)\n```
-//                          ^ definition local 1
+//                          ^ definition scip-dotnet nuget . . Main/Methods#TwoParameters().(a)
 //                            documentation ```cs\nint a\n```
-//                                 ^ definition local 2
+//                                 ^ definition scip-dotnet nuget . . Main/Methods#TwoParameters().(b)
 //                                   documentation ```cs\nint b\n```
       {
           return a + b;
-//               ^ reference local 1
-//                   ^ reference local 2
+//               ^ reference scip-dotnet nuget . . Main/Methods#TwoParameters().(a)
+//                   ^ reference scip-dotnet nuget . . Main/Methods#TwoParameters().(b)
       }
 
       int Overload1(int a)
 //        ^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#Overload1().
 //                  documentation ```cs\nprivate int Methods.Overload1(int a)\n```
-//                      ^ definition local 3
+//                      ^ definition scip-dotnet nuget . . Main/Methods#Overload1().(a)
 //                        documentation ```cs\nint a\n```
       {
           return a;
-//               ^ reference local 3
+//               ^ reference scip-dotnet nuget . . Main/Methods#Overload1().(a)
       }
 
       int Overload1(int a, int b)
 //        ^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#Overload1(+1).
 //                  documentation ```cs\nprivate int Methods.Overload1(int a, int b)\n```
-//                      ^ definition local 4
+//                      ^ definition scip-dotnet nuget . . Main/Methods#Overload1(+1).(a)
 //                        documentation ```cs\nint a\n```
-//                             ^ definition local 5
+//                             ^ definition scip-dotnet nuget . . Main/Methods#Overload1(+1).(b)
 //                               documentation ```cs\nint b\n```
       {
           return a + b;
-//               ^ reference local 4
-//                   ^ reference local 5
+//               ^ reference scip-dotnet nuget . . Main/Methods#Overload1(+1).(a)
+//                   ^ reference scip-dotnet nuget . . Main/Methods#Overload1(+1).(b)
       }
 
       T Generic<T>(T param)
-//    ^ reference local 6
+//    ^ reference local 0
 //      ^^^^^^^ definition scip-dotnet nuget . . Main/Methods#Generic().
 //              documentation ```cs\nprivate T Methods.Generic<T>(T param)\n```
-//              ^ definition local 6
+//              ^ definition local 0
 //                documentation ```cs\nT\n```
-//                 ^ reference local 6
-//                   ^^^^^ definition local 7
+//                 ^ reference local 0
+//                   ^^^^^ definition scip-dotnet nuget . . Main/Methods#Generic().(param)
 //                         documentation ```cs\nT param\n```
       {
           return param;
-//               ^^^^^ reference local 7
+//               ^^^^^ reference scip-dotnet nuget . . Main/Methods#Generic().(param)
       }
 
       T GenericConstraint<T>(T param) where T : new()
-//    ^ reference local 8
+//    ^ reference local 1
 //      ^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#GenericConstraint().
 //                        documentation ```cs\nprivate T Methods.GenericConstraint<T>(T param) where T : new()\n```
-//                        ^ definition local 8
+//                        ^ definition local 1
 //                          documentation ```cs\nT\n```
-//                           ^ reference local 8
-//                             ^^^^^ definition local 9
+//                           ^ reference local 1
+//                             ^^^^^ definition scip-dotnet nuget . . Main/Methods#GenericConstraint().(param)
 //                                   documentation ```cs\nT param\n```
-//                                          ^ reference local 8
+//                                          ^ reference local 1
       {
           return param;
-//               ^^^^^ reference local 9
+//               ^^^^^ reference scip-dotnet nuget . . Main/Methods#GenericConstraint().(param)
       }
 
       void DefaultParameter(int a = 5)
 //         ^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#DefaultParameter().
 //                          documentation ```cs\nprivate void Methods.DefaultParameter([int a = 5])\n```
-//                              ^ definition local 10
+//                              ^ definition scip-dotnet nuget . . Main/Methods#DefaultParameter().(a)
 //                                documentation ```cs\n[int a = 5]\n```
       {
       }
@@ -98,21 +98,21 @@
       int DefaultParameterOverload(int a = 5)
 //        ^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#DefaultParameterOverload().
 //                                 documentation ```cs\nprivate int Methods.DefaultParameterOverload([int a = 5])\n```
-//                                     ^ definition local 11
+//                                     ^ definition scip-dotnet nuget . . Main/Methods#DefaultParameterOverload().(a)
 //                                       documentation ```cs\n[int a = 5]\n```
       {
           return DefaultParameterOverload(a, a);
 //               ^^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . Main/Methods#DefaultParameterOverload(+1).
-//                                        ^ reference local 11
-//                                           ^ reference local 11
+//                                        ^ reference scip-dotnet nuget . . Main/Methods#DefaultParameterOverload().(a)
+//                                           ^ reference scip-dotnet nuget . . Main/Methods#DefaultParameterOverload().(a)
       }
 
       int DefaultParameterOverload(int a, int b)
 //        ^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#DefaultParameterOverload(+1).
 //                                 documentation ```cs\nprivate int Methods.DefaultParameterOverload(int a, int b)\n```
-//                                     ^ definition local 12
+//                                     ^ definition scip-dotnet nuget . . Main/Methods#DefaultParameterOverload(+1).(a)
 //                                       documentation ```cs\nint a\n```
-//                                            ^ definition local 13
+//                                            ^ definition scip-dotnet nuget . . Main/Methods#DefaultParameterOverload(+1).(b)
 //                                              documentation ```cs\nint b\n```
       {
           return DefaultParameterOverload();
@@ -164,11 +164,11 @@
           public int Method(int parameter)
 //                   ^^^^^^ definition scip-dotnet nuget . . Main/Methods#InheritedOverloads2#Method().
 //                          documentation ```cs\npublic int InheritedOverloads2.Method(int parameter)\n```
-//                              ^^^^^^^^^ definition local 14
+//                              ^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#InheritedOverloads2#Method().(parameter)
 //                                        documentation ```cs\nint parameter\n```
           {
               return parameter;
-//                   ^^^^^^^^^ reference local 14
+//                   ^^^^^^^^^ reference scip-dotnet nuget . . Main/Methods#InheritedOverloads2#Method().(parameter)
           }
       }
 
@@ -182,11 +182,11 @@
           public string Method(string parameter)
 //                      ^^^^^^ definition scip-dotnet nuget . . Main/Methods#InheritedOverloads3#Method().
 //                             documentation ```cs\npublic string InheritedOverloads3.Method(string parameter)\n```
-//                                    ^^^^^^^^^ definition local 15
+//                                    ^^^^^^^^^ definition scip-dotnet nuget . . Main/Methods#InheritedOverloads3#Method().(parameter)
 //                                              documentation ```cs\nstring parameter\n```
           {
               return parameter;
-//                   ^^^^^^^^^ reference local 15
+//                   ^^^^^^^^^ reference scip-dotnet nuget . . Main/Methods#InheritedOverloads3#Method().(parameter)
           }
       }
 
@@ -223,27 +223,27 @@
 //                                  documentation ```cs\npublic static void LocalFunction.Method()\n```
           {
               var myWorld = GetWorld();
-//                ^^^^^^^ definition local 16
+//                ^^^^^^^ definition local 2
 //                        documentation ```cs\nstring? myWorld\n```
-//                          ^^^^^^^^ reference local 17
+//                          ^^^^^^^^ reference local 3
               SayHi(myWorld);
-//            ^^^^^ reference local 18
-//                  ^^^^^^^ reference local 16
+//            ^^^^^ reference local 4
+//                  ^^^^^^^ reference local 2
 
               string GetWorld() => "world";
-//                   ^^^^^^^^ definition local 17
+//                   ^^^^^^^^ definition local 3
 //                            documentation ```cs\nstring GetWorld()\n```
 
               void SayHi(string world)
-//                 ^^^^^ definition local 18
+//                 ^^^^^ definition local 4
 //                       documentation ```cs\nvoid SayHi(string world)\n```
-//                              ^^^^^ definition local 19
+//                              ^^^^^ definition local 5
 //                                    documentation ```cs\nstring world\n```
               {
                   Console.WriteLine($"Hello {world}!");
 //                ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
 //                        ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+11).
-//                                           ^^^^^ reference local 19
+//                                           ^^^^^ reference local 5
               }
           }
       }

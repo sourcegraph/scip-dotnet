@@ -53,26 +53,26 @@
 '                 ^^^^^^ definition local 3
 '                        documentation ```vb\nResult As \n```
 '                          ^^^^ reference local 2
-'                                               ^ definition local 4
+'                                               ^ definition local 5
 '                                                 documentation ```vb\nc As Object\n```
-'                                                   ^ reference local 4
-'                                                         ^ reference local 4
-'                                                                               ^ definition local 5
+'                                                   ^ reference local 5
+'                                                         ^ reference local 5
+'                                                                               ^ definition local 7
 '                                                                                 documentation ```vb\nt As Object\n```
-'                                                                                  ^ reference local 5
+'                                                                                  ^ reference local 7
           End Sub
 
           Private Function MultipleInitializers() As Integer
 '                          ^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#MultipleInitializers().
 '                                               documentation ```vb\nPrivate Function Statements.MultipleInitializers() As Integer\n```
               Dim a As Integer = 1, b As Integer = 2
-'                 ^ definition local 6
+'                 ^ definition local 8
 '                   documentation ```vb\na As Integer\n```
-'                                   ^ definition local 7
+'                                   ^ definition local 9
 '                                     documentation ```vb\nb As Integer\n```
               Return a + b
-'                    ^ reference local 6
-'                        ^ reference local 7
+'                    ^ reference local 8
+'                        ^ reference local 9
           End Function
 
           Class MyDisposable
@@ -93,16 +93,16 @@
 '                                  documentation ```vb\nPrivate Function Statements.Using() As MyDisposable\n```
 '                                       ^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Statements#MyDisposable#
               Dim b = New MyDisposable()
-'                 ^ definition local 8
+'                 ^ definition local 10
 '                   documentation ```vb\nb As Class MyDisposable\n```
 '                         ^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Statements#MyDisposable#
 
               Using a = b
-'                   ^ definition local 9
+'                   ^ definition local 11
 '                     documentation ```vb\na As Class MyDisposable\n```
-'                       ^ reference local 8
+'                       ^ reference local 10
                   Return a
-'                        ^ reference local 9
+'                        ^ reference local 11
               End Using
           End Function
 
@@ -110,13 +110,13 @@
 '                          ^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#MultipleUsing().
 '                                        documentation ```vb\nPrivate Function Statements.MultipleUsing() As Long\n```
               Using a As Stream = File.OpenRead("a"), b As Stream = File.OpenRead("a")
-'                   ^ definition local 10
+'                   ^ definition local 12
 '                     documentation ```vb\na As Stream\n```
-'                                                     ^ definition local 11
+'                                                     ^ definition local 13
 '                                                       documentation ```vb\nb As Stream\n```
                   Return a.Length + b.Length
-'                        ^ reference local 10
-'                                   ^ reference local 11
+'                        ^ reference local 12
+'                                   ^ reference local 13
               End Using
           End Function
 
@@ -124,23 +124,23 @@
 '                          ^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#Foreach().
 '                                  documentation ```vb\nPrivate Function Statements.Foreach() As Integer\n```
               Dim y = New Integer() {1}
-'                 ^ definition local 12
+'                 ^ definition local 14
 '                   documentation ```vb\ny As Integer()\n```
               Dim z = 0
-'                 ^ definition local 13
+'                 ^ definition local 15
 '                   documentation ```vb\nz As Integer\n```
 
               For Each x As Integer In y
-'                      ^ definition local 14
+'                      ^ definition local 16
 '                        documentation ```vb\nx As Integer\n```
-'                                      ^ reference local 12
+'                                      ^ reference local 14
                   z += x
-'                 ^ reference local 13
-'                      ^ reference local 14
+'                 ^ reference local 15
+'                      ^ reference local 16
               Next
 
               Return z
-'                    ^ reference local 13
+'                    ^ reference local 15
           End Function
 
       End Class

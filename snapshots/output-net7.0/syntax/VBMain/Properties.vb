@@ -18,7 +18,7 @@
 '                                    ^^^^^ definition scip-dotnet nuget . . VBMain/Properties#Set.
 '                                          documentation ```vb\nPrivate WriteOnly Property Properties.Set As Char\n```
               Set(ByVal value As Char)
-'                       ^^^^^ definition local 0
+'                       ^^^^^ definition scip-dotnet nuget . . VBMain/Properties#set_Set().(value)
 '                             documentation ```vb\nvalue As Char\n```
                   Throw New NotImplementedException()
 '                           ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/NotImplementedException#

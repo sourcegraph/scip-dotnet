@@ -25,43 +25,43 @@
 '                                       ^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/EventHandler#
 
               AddHandler(ByVal value As EventHandler)
-'                              ^^^^^ definition local 0
+'                              ^^^^^ definition scip-dotnet nuget . . VBMain/Events#add_Event2().(value)
 '                                    documentation ```vb\nvalue As EventHandler\n```
 '                                       ^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/EventHandler#
                   EventHandlerList.Add(value)
 '                 ^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Events#EventHandlerList.
 '                                  ^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 Collections/ArrayList#Add().
-'                                      ^^^^^ reference local 0
+'                                      ^^^^^ reference scip-dotnet nuget . . VBMain/Events#add_Event2().(value)
               End AddHandler
 
               RemoveHandler(ByVal value As EventHandler)
-'                                 ^^^^^ definition local 1
+'                                 ^^^^^ definition scip-dotnet nuget . . VBMain/Events#remove_Event2().(value)
 '                                       documentation ```vb\nvalue As EventHandler\n```
 '                                          ^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/EventHandler#
                   EventHandlerList.Remove(value)
 '                 ^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Events#EventHandlerList.
 '                                  ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 Collections/ArrayList#Remove().
-'                                         ^^^^^ reference local 1
+'                                         ^^^^^ reference scip-dotnet nuget . . VBMain/Events#remove_Event2().(value)
               End RemoveHandler
 
               RaiseEvent(ByVal sender As Object, ByVal e As EventArgs)
-'                              ^^^^^^ definition local 2
+'                              ^^^^^^ definition scip-dotnet nuget . . VBMain/Events#raise_Event2().(sender)
 '                                     documentation ```vb\nsender As Object\n```
-'                                                      ^ definition local 3
+'                                                      ^ definition scip-dotnet nuget . . VBMain/Events#raise_Event2().(e)
 '                                                        documentation ```vb\ne As EventArgs\n```
 '                                                           ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/EventArgs#
                   For Each handler As EventHandler In EventHandlerList
-'                          ^^^^^^^ definition local 4
+'                          ^^^^^^^ definition local 0
 '                                  documentation ```vb\nhandler As Delegate Sub EventHandler(sender As Object, e As EventArgs)\n```
 '                                     ^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/EventHandler#
 '                                                     ^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Events#EventHandlerList.
                       If handler IsNot Nothing Then
-'                        ^^^^^^^ reference local 4
+'                        ^^^^^^^ reference local 0
                           handler.BeginInvoke(sender, e, Nothing, Nothing)
-'                         ^^^^^^^ reference local 4
+'                         ^^^^^^^ reference local 0
 '                                 ^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/EventHandler#BeginInvoke().
-'                                             ^^^^^^ reference local 2
-'                                                     ^ reference local 3
+'                                             ^^^^^^ reference scip-dotnet nuget . . VBMain/Events#raise_Event2().(sender)
+'                                                     ^ reference scip-dotnet nuget . . VBMain/Events#raise_Event2().(e)
                       End If
                   Next
               End RaiseEvent
