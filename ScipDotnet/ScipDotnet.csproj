@@ -18,7 +18,7 @@
     <None Include="../LICENSE" Pack="true" PackagePath="" />
     <None Include="../readme.md" Pack="true" PackagePath="" />
     <PackageReference Include="Google.Protobuf" Version="3.21.9" />
-    <PackageReference Include="Microsoft.Build.Locator" Version="1.5.5" />
+    <PackageReference Include="Microsoft.Build.Locator" Version="1.7.8" />
     <PackageReference Include="Microsoft.CodeAnalysis" Version="4.4.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Features" Version="4.4.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.4.0" />
