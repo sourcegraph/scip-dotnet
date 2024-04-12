@@ -130,12 +130,7 @@ public class SnapshotTests
     private static string[] ListSnapshotInputDirectories()
     {
         var inputs = Path.Join(RootDirectory(), "snapshots", "input");
-
-#if NET7_0
-        return Directory.GetDirectories(inputs).Where(x => !x.Contains("WpfApplication")).ToArray();
-#else
         return Directory.GetDirectories(inputs);
-#endif
     }
 
     private static string IndexDirectory(string directory)
@@ -150,11 +145,12 @@ public class SnapshotTests
             {
                 FileName = "dotnet",
                 Arguments = arguments,
-                WorkingDirectory = RootDirectory(),
+                WorkingDirectory = RootDirectory()
             }
         };
         process.Start();
         process.WaitForExit();
+
         if (process.ExitCode != 0)
         {
             Assert.Fail(
