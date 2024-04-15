@@ -7,7 +7,7 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Classes
 //             ^^^^^^^ definition scip-dotnet nuget . . Main/Classes#
 //                     documentation ```cs\nclass Classes\n```
@@ -45,8 +45,8 @@
 //             documentation ```cs\nprotected Classes.~Classes()\n```
       {
           Console.WriteLine(42);
-//        ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
-//                ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+7).
+//        ^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#
+//                ^^^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#WriteLine(+7).
       }
 
       public class ObjectClass : object, SomeInterface
@@ -97,8 +97,8 @@
 //                                  documentation ```cs\nT1 t1\n```
           {
               Console.WriteLine(t1);
-//            ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
-//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+9).
+//            ^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#
+//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#WriteLine(+9).
 //                              ^^ reference scip-dotnet nuget . . Main/Classes#ICovariantContravariant#Method1().(t1)
           }
 

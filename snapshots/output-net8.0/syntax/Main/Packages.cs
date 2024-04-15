@@ -14,7 +14,7 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Packages
 //             ^^^^^^^^ definition scip-dotnet nuget . . Main/Packages#
 //                      documentation ```cs\nclass Packages\n```

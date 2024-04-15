@@ -7,7 +7,7 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class QuerySyntax
 //             ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#
 //                         documentation ```cs\nclass QuerySyntax\n```
@@ -81,7 +81,7 @@
 //                          ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#sourceA.
 //                                        ^ reference local 9
 //                                          ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
-//                                                   ^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/String#StartsWith(+1).
+//                                                   ^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/String#StartsWith(+1).
 //                                                                          ^ reference local 9
       }
 
@@ -225,7 +225,7 @@
 //                                                           documentation ```cs\n? newGroup\n```
               orderby newGroup.Key
 //                    ^^^^^^^^ reference local 31
-//                             ^^^ reference scip-dotnet nuget System.Linq 7.0.0.0 Linq/IGrouping#Key.
+//                             ^^^ reference scip-dotnet nuget System.Linq 8.0.0.0 Linq/IGrouping#Key.
               select newGroup;
 //                   ^^^^^^^^ reference local 31
       }

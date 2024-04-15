@@ -7,7 +7,7 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Interfaces
 //             ^^^^^^^^^^ definition scip-dotnet nuget . . Main/Interfaces#
 //                        documentation ```cs\nclass Interfaces\n```
@@ -99,8 +99,8 @@
 //                                documentation ```cs\nstring message\n```
           {
               Console.WriteLine(message);
-//            ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
-//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+11).
+//            ^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#
+//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#WriteLine(+11).
 //                              ^^^^^^^ reference scip-dotnet nuget . . Main/Interfaces#IDefault#Log().(message)
           }
       }
@@ -131,7 +131,7 @@
 //                                                         documentation ```cs\nIGetNext<T> other\n```
           {
               throw new NotImplementedException();
-//                      ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/NotImplementedException#
+//                      ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/NotImplementedException#
           }
       }
 

@@ -1,9 +1,13 @@
   using System.Diagnostics.CodeAnalysis;
+//      ^^^^^^ reference scip-dotnet nuget . . System/
+//             ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+//                         ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   namespace Main;
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Fields
 //             ^^^^^^ definition scip-dotnet nuget . . Main/Fields#
 //                    documentation ```cs\nclass Fields\n```
@@ -16,13 +20,14 @@
 //                             ^^^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#Property1.
 //                                       documentation ```cs\nprivate readonly int Fields1.Property1\n```
           private Int64 Property2, Property3;
+//                ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int64#
 //                      ^^^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#Property2.
-//                                documentation ```cs\nprivate Int64 Fields1.Property2\n```
+//                                documentation ```cs\nprivate long Fields1.Property2\n```
 //                                 ^^^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#Property3.
-//                                           documentation ```cs\nprivate Int64 Fields1.Property3\n```
+//                                           documentation ```cs\nprivate long Fields1.Property3\n```
           private Tuple<char, Nullable<int>> Property4;
 //                                           ^^^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#Property4.
-//                                                     documentation ```cs\nprivate Tuple<char, Nullable<int>> Fields1.Property4\n```
+//                                                     documentation ```cs\nprivate Tuple<char, int?> Fields1.Property4\n```
 
           public Fields1(long field2, long field3, Tuple<char, int?> field4, int field1)
 //               ^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().

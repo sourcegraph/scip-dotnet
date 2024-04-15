@@ -7,7 +7,7 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Fields
 //             ^^^^^^ definition scip-dotnet nuget . . Main/Fields#
 //                    documentation ```cs\nclass Fields\n```
@@ -20,7 +20,7 @@
 //                             ^^^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#Property1.
 //                                       documentation ```cs\nprivate readonly int Fields1.Property1\n```
           private Int64 Property2, Property3;
-//                ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int64#
+//                ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Int64#
 //                      ^^^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#Property2.
 //                                documentation ```cs\nprivate long Fields1.Property2\n```
 //                                 ^^^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#Property3.

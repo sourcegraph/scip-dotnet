@@ -7,7 +7,7 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Expressions
 //             ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Expressions#
 //                         documentation ```cs\nclass Expressions\n```
@@ -267,8 +267,8 @@
 //                   documentation ```cs\nint* p\n```
 //                      ^^^^^ reference local 14
               Console.WriteLine("myInt = {0}, *p = {1}", myInt, *p);
-//            ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
-//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+13).
+//            ^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#
+//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#WriteLine(+13).
 //                                                       ^^^^^ reference local 14
 //                                                               ^ reference local 15
           }
@@ -367,15 +367,15 @@
           var f = (Int32)(1);
 //            ^ definition local 25
 //              documentation ```cs\nint f\n```
-//                 ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#
+//                 ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Int32#
           var g = (Int32)(1);
 //            ^ definition local 26
 //              documentation ```cs\nint g\n```
-//                 ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#
+//                 ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Int32#
           var h = (Int32)((1));
 //            ^ definition local 27
 //              documentation ```cs\nint h\n```
-//                 ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#
+//                 ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Int32#
           return f + g + h;
 //               ^ reference local 25
 //                   ^ reference local 26
@@ -586,7 +586,7 @@
 //                               documentation ```cs\nint a\n```
 //                                         ^ reference local 44
 //                                             ^ reference local 39
-//                                               ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Func#Invoke().
+//                                               ^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Func#Invoke().
 //                                                      ^ reference local 44
 //                                                         ^ reference local 44
       }
@@ -707,7 +707,7 @@
           var b = typeof(List<string>.Enumerator);
 //            ^ definition local 68
 //              documentation ```cs\nType? b\n```
-//                                    ^^^^^^^^^^ reference scip-dotnet nuget System.Collections 7.0.0.0 Generic/List#Enumerator#
+//                                    ^^^^^^^^^^ reference scip-dotnet nuget System.Collections 8.0.0.0 Generic/List#Enumerator#
           var c = typeof(Dictionary<,>);
 //            ^ definition local 69
 //              documentation ```cs\nType? c\n```
@@ -794,7 +794,7 @@
 //                     ^ reference local 76
 //                       ^^^^^ reference scip-dotnet nuget . . Main/Expressions#Dog#Sound().
               _ => throw new ArgumentOutOfRangeException()
-//                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/ArgumentOutOfRangeException#
+//                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/ArgumentOutOfRangeException#
           };
       }
 
@@ -820,8 +820,8 @@
 //                           documentation ```cs\nstring s2\n```
           {
               Console.WriteLine(s2);
-//            ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
-//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+11).
+//            ^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#
+//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#WriteLine(+11).
 //                              ^^ reference local 79
           }
 
@@ -833,7 +833,7 @@
 //            ^ definition local 81
 //              documentation ```cs\nbool a\n```
 //                ^ reference local 78
-//                         ^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#MaxValue.
+//                         ^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Int32#MaxValue.
           var d = s is nameof(a);
 //            ^ definition local 82
 //              documentation ```cs\nbool d\n```

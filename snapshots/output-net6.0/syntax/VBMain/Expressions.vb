@@ -1,8 +1,12 @@
   Imports System.Diagnostics.CodeAnalysis
+'         ^^^^^^ reference scip-dotnet nuget . . System/
+'                ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+'                            ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   Namespace VBMain
 '           ^^^^^^ reference scip-dotnet nuget . . VBMain/
       <SuppressMessage("ReSharper", "all")>
+'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
       Public Class Expressions
 '                  ^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#
 '                              documentation ```vb\nClass Expressions\n```
@@ -249,14 +253,14 @@
 '                   documentation ```vb\nX As Boolean\n```
               Dim Y = If(X, "foo", "bar")
 '                 ^ definition local 18
-'                   documentation ```vb\nY As Object\n```
+'                   documentation ```vb\nY As String\n```
 '                        ^ reference local 17
               Dim Z As Object = True
 '                 ^ definition local 19
 '                   documentation ```vb\nZ As Object\n```
               Dim T = If(TypeOf Z Is Boolean, 42, 41)
 '                 ^ definition local 20
-'                   documentation ```vb\nT As Object\n```
+'                   documentation ```vb\nT As Integer\n```
 '                               ^ reference local 19
           End Sub
 
@@ -308,6 +312,7 @@
 '                      ^^^^ reference scip-dotnet nuget . . VBMain/Expressions#Cast#
 '                                    ^ reference local 21
 '                                       ^^^^ reference scip-dotnet nuget . . VBMain/Expressions#Cast#
+'                                              ^^^^ reference scip-dotnet nuget . . VBMain/Expressions#Cast#Plus().
 '                                                         ^ reference local 22
 '                                                            ^^^^ reference scip-dotnet nuget . . VBMain/Expressions#Cast#
               Dim D As Cast = CType(New Object() {A, B}(0), Cast)
@@ -327,13 +332,16 @@
 '                                                    ^^^^^ reference scip-dotnet nuget . . VBMain/Expressions#Cast#Cast2#
               Dim F = CType((1), Int32)
 '                 ^ definition local 26
-'                   documentation ```vb\nF As Int32\n```
+'                   documentation ```vb\nF As Integer\n```
+'                                ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int32#
               Dim G = CType((1), Int32)
 '                 ^ definition local 27
-'                   documentation ```vb\nG As Int32\n```
+'                   documentation ```vb\nG As Integer\n```
+'                                ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int32#
               Dim H = CType(((1)), Int32)
 '                 ^ definition local 28
-'                   documentation ```vb\nH As Int32\n```
+'                   documentation ```vb\nH As Integer\n```
+'                                  ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int32#
               Return F + G + H
 '                    ^ reference local 26
 '                        ^ reference local 27
@@ -462,18 +470,23 @@
 '                 ^ definition local 37
 '                   documentation ```vb\nA As Class NamedParametersClass\n```
 '                         ^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Expressions#NamedParametersClass#
+'                                              ^ reference scip-dotnet nuget . . VBMain/Expressions#NamedParametersClass#`.ctor`().(b)
+'                                                       ^ reference scip-dotnet nuget . . VBMain/Expressions#NamedParametersClass#`.ctor`().(a)
               A.Update(b:="foo", a:=42)
 '             ^ reference local 37
+'               ^^^^^^ reference scip-dotnet nuget . . VBMain/Expressions#NamedParametersClass#Update().
+'                      ^ reference scip-dotnet nuget . . VBMain/Expressions#NamedParametersClass#Update().(b)
+'                                ^ reference scip-dotnet nuget . . VBMain/Expressions#NamedParametersClass#Update().(a)
               Return A
 '                    ^ reference local 37
           End Function
 
           Private Function AnonymousFunction() As Func(Of Integer, Integer)
 '                          ^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#AnonymousFunction().
-'                                            documentation ```vb\nPrivate Function Expressions.AnonymousFunction() As Func\n```
+'                                            documentation ```vb\nPrivate Function Expressions.AnonymousFunction() As Func(Of Integer, Integer)\n```
               Dim d = Function(ByVal __ As Integer, ByVal ___ As Integer) 42
 '                 ^ definition local 38
-'                   documentation ```vb\nd As AnonymousType Function <generated method>(__ As Integer, ___ As Integer) As \n```
+'                   documentation ```vb\nd As AnonymousType Function <generated method>(__ As Integer, ___ As Integer) As Integer\n```
 '                                    ^^ definition local 40
 '                                       documentation ```vb\n__ As Integer\n```
 '                                                         ^^^ definition local 41
@@ -483,6 +496,7 @@
 '                                     documentation ```vb\na As Integer\n```
 '                                                 ^ reference local 43
 '                                                     ^ reference local 38
+'                                                       ^^^^^^ reference local 45
 '                                                              ^ reference local 43
 '                                                                 ^ reference local 43
           End Function
@@ -504,30 +518,30 @@
 '                     ^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#LambdaExpressions().
 '                                       documentation ```vb\nPrivate Sub Expressions.LambdaExpressions()\n```
               Dim a = Function(ByVal x As String) x & 1
-'                 ^ definition local 44
-'                   documentation ```vb\na As AnonymousType Function <generated method>(x As String) As \n```
-'                                    ^ definition local 46
+'                 ^ definition local 46
+'                   documentation ```vb\na As AnonymousType Function <generated method>(x As String) As String\n```
+'                                    ^ definition local 48
 '                                      documentation ```vb\nx As String\n```
-'                                                 ^ reference local 46
+'                                                 ^ reference local 48
               Dim b = Function(ByVal aa As Lambda, ByVal bb As Lambda) aa.func(bb)
-'                 ^ definition local 47
-'                   documentation ```vb\nb As AnonymousType Function <generated method>(aa As Lambda, bb As Lambda) As \n```
-'                                    ^^ definition local 49
+'                 ^ definition local 49
+'                   documentation ```vb\nb As AnonymousType Function <generated method>(aa As Lambda, bb As Lambda) As String\n```
+'                                    ^^ definition local 51
 '                                       documentation ```vb\naa As Lambda\n```
 '                                          ^^^^^^ reference scip-dotnet nuget . . VBMain/Expressions#Lambda#
-'                                                        ^^ definition local 50
+'                                                        ^^ definition local 52
 '                                                           documentation ```vb\nbb As Lambda\n```
 '                                                              ^^^^^^ reference scip-dotnet nuget . . VBMain/Expressions#Lambda#
-'                                                                      ^^ reference local 49
+'                                                                      ^^ reference local 51
 '                                                                         ^^^^ reference scip-dotnet nuget . . VBMain/Expressions#Lambda#func().
-'                                                                              ^^ reference local 50
+'                                                                              ^^ reference local 52
               Dim c = Function(aaa As Lambda, __ As Lambda)
-'                 ^ definition local 51
-'                   documentation ```vb\nc As AnonymousType Function <generated method>(aaa As Lambda, __ As Lambda) As \n```
-'                              ^^^ definition local 53
+'                 ^ definition local 53
+'                   documentation ```vb\nc As AnonymousType Function <generated method>(aaa As Lambda, __ As Lambda) As String\n```
+'                              ^^^ definition local 55
 '                                  documentation ```vb\naaa As Lambda\n```
 '                                     ^^^^^^ reference scip-dotnet nuget . . VBMain/Expressions#Lambda#
-'                                             ^^ definition local 54
+'                                             ^^ definition local 56
 '                                                documentation ```vb\n__ As Lambda\n```
 '                                                   ^^^^^^ reference scip-dotnet nuget . . VBMain/Expressions#Lambda#
                           If True Then
@@ -540,7 +554,7 @@
 '                     ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#TupleExpression().
 '                                     documentation ```vb\nPrivate Sub Expressions.TupleExpression()\n```
               Dim A = (1, 2, "")
-'                 ^ definition local 55
+'                 ^ definition local 57
 '                   documentation ```vb\nA As (Integer, Integer, String)\n```
           End Sub
 
@@ -548,44 +562,44 @@
 '                     ^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#ArrayCreation().
 '                                   documentation ```vb\nPrivate Sub Expressions.ArrayCreation()\n```
               Dim a = {
-'                 ^ definition local 56
-'                   documentation ```vb\na As Object(*,*)\n```
+'                 ^ definition local 58
+'                   documentation ```vb\na As Integer(*,*)\n```
               {1, 1},
               {2, 2},
               {3, 3}}
               Dim d = New Integer(2) {1, 2, 3}
-'                 ^ definition local 57
+'                 ^ definition local 59
 '                   documentation ```vb\nd As Integer()\n```
               Dim e = New Byte(,) {
-'                 ^ definition local 58
+'                 ^ definition local 60
 '                   documentation ```vb\ne As Byte(*,*)\n```
               {1, 2},
               {2, 3}}
               Dim f = New Integer(2, 1) {
-'                 ^ definition local 59
+'                 ^ definition local 61
 '                   documentation ```vb\nf As Integer(*,*)\n```
               {1, 1},
               {2, 2},
               {3, 3}}
 
               Dim numbers(4) As Integer
-'                 ^^^^^^^ definition local 60
+'                 ^^^^^^^ definition local 62
 '                         documentation ```vb\nnumbers As Integer()\n```
               Dim numbers2 = New Integer() {1, 2, 4, 8}
-'                 ^^^^^^^^ definition local 61
+'                 ^^^^^^^^ definition local 63
 '                          documentation ```vb\nnumbers2 As Integer()\n```
               ReDim Preserve numbers(15)
-'                            ^^^^^^^ reference local 60
+'                            ^^^^^^^ reference local 62
               ReDim numbers(15)
-'                   ^^^^^^^ reference local 60
+'                   ^^^^^^^ reference local 62
               Dim matrix(5, 5) As Double
-'                 ^^^^^^ definition local 62
+'                 ^^^^^^ definition local 64
 '                        documentation ```vb\nmatrix As Double(*,*)\n```
               Dim matrix2 = New Integer(,) {{1, 2, 3}, {2, 3, 4}, {3, 4, 5}, {4, 5, 6}}
-'                 ^^^^^^^ definition local 63
+'                 ^^^^^^^ definition local 65
 '                         documentation ```vb\nmatrix2 As Integer(*,*)\n```
               Dim sales()() As Double = New Double(11)() {}
-'                 ^^^^^ definition local 64
+'                 ^^^^^ definition local 66
 '                       documentation ```vb\nsales As Double()()\n```
           End Sub
 
@@ -593,33 +607,40 @@
 '                     ^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#TypeOf().
 '                              documentation ```vb\nPrivate Sub Expressions.TypeOf()\n```
               Dim a = GetType(Integer)
-'                 ^ definition local 65
-'                   documentation ```vb\na As Type\n```
-              Dim b = GetType(List(Of String).Enumerator)
-'                 ^ definition local 66
-'                   documentation ```vb\nb As Type\n```
-              Dim c = GetType(Dictionary(Of,))
 '                 ^ definition local 67
-'                   documentation ```vb\nc As Type\n```
-              Dim d = GetType(Tuple(Of,,,))
+'                   documentation ```vb\na As Class Type\n```
+              Dim b = GetType(List(Of String).Enumerator)
 '                 ^ definition local 68
-'                   documentation ```vb\nd As Type\n```
+'                   documentation ```vb\nb As Class Type\n```
+'                                             ^^^^^^^^^^ reference scip-dotnet nuget System.Collections 6.0.0.0 Generic/List#Enumerator#
+              Dim c = GetType(Dictionary(Of,))
+'                 ^ definition local 69
+'                   documentation ```vb\nc As Class Type\n```
+              Dim d = GetType(Tuple(Of,,,))
+'                 ^ definition local 70
+'                   documentation ```vb\nd As Class Type\n```
           End Sub
 
           Private Sub SelectCase()
 '                     ^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#SelectCase().
 '                                documentation ```vb\nPrivate Sub Expressions.SelectCase()\n```
               Dim Some = 42
-'                 ^^^^ definition local 69
+'                 ^^^^ definition local 71
 '                      documentation ```vb\nSome As Integer\n```
               Select Case Some
-'                         ^^^^ reference local 69
+'                         ^^^^ reference local 71
                   Case 1
                       Debug.WriteLine("One")
+'                     ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 Diagnostics/Debug#
+'                           ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 Diagnostics/Debug#WriteLine(+2).
                   Case 2
                       Debug.WriteLine("One")
+'                     ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 Diagnostics/Debug#
+'                           ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 Diagnostics/Debug#WriteLine(+2).
                   Case Else
                       Debug.WriteLine("More")
+'                     ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 Diagnostics/Debug#
+'                           ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 Diagnostics/Debug#WriteLine(+2).
               End Select
           End Sub
 
@@ -627,8 +648,8 @@
 '                     ^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#Dictionary().
 '                                documentation ```vb\nPrivate Sub Expressions.Dictionary()\n```
               Dim A = New Dictionary(Of String, Integer) From {{1, "Test1"}, {2, "Test1"}}
-'                 ^ definition local 70
-'                   documentation ```vb\nA As Dictionary\n```
+'                 ^ definition local 72
+'                   documentation ```vb\nA As Class Dictionary(Of String, Integer)\n```
           End Sub
 
       End Class

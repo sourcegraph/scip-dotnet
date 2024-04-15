@@ -1,9 +1,13 @@
   using System.Diagnostics.CodeAnalysis;
+//      ^^^^^^ reference scip-dotnet nuget . . System/
+//             ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+//                         ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   namespace Main;
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Records
 //             ^^^^^^^ definition scip-dotnet nuget . . Main/Records#
 //                     documentation ```cs\nclass Records\n```
@@ -11,7 +15,7 @@
       record Basic
 //           ^^^^^ definition scip-dotnet nuget . . Main/Records#Basic#
 //                 documentation ```cs\nrecord Basic\n```
-//                 relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
+//                 relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IEquatable#
       {
           int Age { get; init; }
 //            ^^^ definition scip-dotnet nuget . . Main/Records#Basic#Age.
@@ -21,7 +25,7 @@
       record struct Struct
 //                  ^^^^^^ definition scip-dotnet nuget . . Main/Records#Struct#
 //                         documentation ```cs\nrecord struct Struct\n```
-//                         relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
+//                         relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IEquatable#
       {
           int Age { get; init; }
 //            ^^^ definition scip-dotnet nuget . . Main/Records#Struct#Age.
@@ -31,7 +35,7 @@
       record class Class
 //                 ^^^^^ definition scip-dotnet nuget . . Main/Records#Class#
 //                       documentation ```cs\nrecord Class\n```
-//                       relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
+//                       relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IEquatable#
       {
           int Age { get; init; }
 //            ^^^ definition scip-dotnet nuget . . Main/Records#Class#Age.
@@ -41,7 +45,7 @@
       public record TypeParameterConstraint<T> where T : struct
 //                  ^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Records#TypeParameterConstraint#
 //                                          documentation ```cs\nrecord TypeParameterConstraint<T> where T : struct\n```
-//                                          relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
+//                                          relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IEquatable#
 //                                          ^ definition local 0
 //                                            documentation ```cs\nT\n```
 //                                                   ^ reference local 0
@@ -66,7 +70,7 @@
 //                  documentation ```cs\nrecord Person\n```
 //                  relationship implementation scip-dotnet nuget . . Main/Records#I1#
 //                  relationship implementation scip-dotnet nuget . . Main/Records#I2#
-//                  relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
+//                  relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IEquatable#
 //                         ^^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Person#`.ctor`().(FirstName)
 //                                   documentation ```cs\nstring FirstName\n```
 //                                           ^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Person#`.ctor`().(LastName)
@@ -89,10 +93,10 @@
 //           ^^^^^^^ definition scip-dotnet nuget . . Main/Records#Teacher#
 //                   documentation ```cs\nrecord Teacher\n```
 //                   relationship implementation scip-dotnet nuget . . Main/Records#Person#
-//                   relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
+//                   relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IEquatable#
 //                   relationship implementation scip-dotnet nuget . . Main/Records#I1#
 //                   relationship implementation scip-dotnet nuget . . Main/Records#I2#
-//                   relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
+//                   relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IEquatable#
 //                          ^^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Teacher#`.ctor`().(FirstName)
 //                                    documentation ```cs\nstring FirstName\n```
 //                                            ^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Teacher#`.ctor`().(LastName)
@@ -122,7 +126,7 @@
       record I3<T>;
 //           ^^ definition scip-dotnet nuget . . Main/Records#I3#
 //              documentation ```cs\nrecord I3<T>\n```
-//              relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
+//              relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IEquatable#
 //              ^ definition local 3
 //                documentation ```cs\nT\n```
 
@@ -130,20 +134,21 @@
 //           ^^^^^^^^ definition scip-dotnet nuget . . Main/Records#Teacher2#
 //                    documentation ```cs\nrecord Teacher2\n```
 //                    relationship implementation scip-dotnet nuget . . Main/Records#I3#
-//                    relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
+//                    relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IEquatable#
 //                    relationship implementation scip-dotnet nuget . . Main/Records#I1#
-//                    relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
+//                    relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IEquatable#
 //                           ^^^^^^ reference scip-dotnet nuget . . Main/Records#Person#
 //                                      ^^ reference scip-dotnet nuget . . Main/Records#I1#
 
       record SealedToString
 //           ^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Records#SealedToString#
 //                          documentation ```cs\nrecord SealedToString\n```
-//                          relationship implementation scip-dotnet nuget Main 0.0.0.0 System/IEquatable#
+//                          relationship implementation scip-dotnet nuget System.Runtime 6.0.0.0 System/IEquatable#
       {
           public sealed override string ToString()
 //                                      ^^^^^^^^ definition scip-dotnet nuget . . Main/Records#SealedToString#ToString().
 //                                               documentation ```cs\npublic override sealed string SealedToString.ToString()\n```
+//                                               relationship implementation reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#ToString().
           {
               return "";
           }

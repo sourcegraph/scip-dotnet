@@ -1,9 +1,13 @@
   using System.Diagnostics.CodeAnalysis;
+//      ^^^^^^ reference scip-dotnet nuget . . System/
+//             ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+//                         ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   namespace Main;
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Methods
 //             ^^^^^^^ definition scip-dotnet nuget . . Main/Methods#
 //                     documentation ```cs\nclass Methods\n```
@@ -237,6 +241,8 @@
 //                                    documentation ```cs\nstring world\n```
               {
                   Console.WriteLine($"Hello {world}!");
+//                ^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#
+//                        ^^^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#WriteLine(+11).
 //                                           ^^^^^ reference local 5
               }
           }

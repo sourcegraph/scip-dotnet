@@ -1,9 +1,13 @@
   using System.Diagnostics.CodeAnalysis;
+//      ^^^^^^ reference scip-dotnet nuget . . System/
+//             ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+//                         ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   namespace Main;
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Operators
 //             ^^^^^^^^^ definition scip-dotnet nuget . . Main/Operators#
 //                       documentation ```cs\nclass Operators\n```
@@ -52,20 +56,26 @@
 //                                              documentation ```cs\nTrueFalse other\n```
           {
               throw new NotImplementedException();
+//                      ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/NotImplementedException#
           }
 
           public override bool Equals(object? obj)
 //                             ^^^^^^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#Equals(+1).
 //                                    documentation ```cs\npublic override bool TrueFalse.Equals(object? obj)\n```
+//                                    relationship implementation reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#Equals().
 //                                            ^^^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#Equals(+1).(obj)
 //                                                documentation ```cs\nobject? obj\n```
           {
               if (ReferenceEquals(null, obj)) return false;
+//                ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#ReferenceEquals().
 //                                      ^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#Equals(+1).(obj)
               if (ReferenceEquals(this, obj)) return true;
+//                ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#ReferenceEquals().
 //                                      ^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#Equals(+1).(obj)
               if (obj.GetType() != this.GetType()) return false;
 //                ^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#Equals(+1).(obj)
+//                    ^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#GetType().
+//                                      ^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#GetType().
               return Equals((TrueFalse)obj);
 //                   ^^^^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#Equals().
 //                           ^^^^^^^^^ reference scip-dotnet nuget . . Main/Operators#TrueFalse#
@@ -75,8 +85,10 @@
           public override int GetHashCode()
 //                            ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Operators#TrueFalse#GetHashCode().
 //                                        documentation ```cs\npublic override int TrueFalse.GetHashCode()\n```
+//                                        relationship implementation reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#GetHashCode().
           {
               throw new NotImplementedException();
+//                      ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/NotImplementedException#
           }
 
           public static bool operator true(TrueFalse a)

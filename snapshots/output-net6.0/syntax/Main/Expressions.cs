@@ -1,9 +1,13 @@
   using System.Diagnostics.CodeAnalysis;
+//      ^^^^^^ reference scip-dotnet nuget . . System/
+//             ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+//                         ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   namespace Main;
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Expressions
 //             ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Expressions#
 //                         documentation ```cs\nclass Expressions\n```
@@ -14,10 +18,10 @@
       {
           var a = 42;
 //            ^ definition local 0
-//              documentation ```cs\nint? a\n```
+//              documentation ```cs\nint a\n```
           var b = 42;
 //            ^ definition local 1
-//              documentation ```cs\nint? b\n```
+//              documentation ```cs\nint b\n```
           a = +a;
 //        ^ reference local 0
 //             ^ reference local 0
@@ -45,7 +49,7 @@
 
           var c = true;
 //            ^ definition local 2
-//              documentation ```cs\nbool? c\n```
+//              documentation ```cs\nbool c\n```
           c = !c;
 //        ^ reference local 2
 //             ^ reference local 2
@@ -57,7 +61,7 @@
       {
           var a = 42;
 //            ^ definition local 3
-//              documentation ```cs\nint? a\n```
+//              documentation ```cs\nint a\n```
           a = a + a;
 //        ^ reference local 3
 //            ^ reference local 3
@@ -110,16 +114,16 @@
       {
           var a = true;
 //            ^ definition local 4
-//              documentation ```cs\nbool? a\n```
+//              documentation ```cs\nbool a\n```
           var b = true;
 //            ^ definition local 5
-//              documentation ```cs\nbool? b\n```
+//              documentation ```cs\nbool b\n```
           var c = 42;
 //            ^ definition local 6
-//              documentation ```cs\nint? c\n```
+//              documentation ```cs\nint c\n```
           var d = 42;
 //            ^ definition local 7
-//              documentation ```cs\nint? d\n```
+//              documentation ```cs\nint d\n```
           a = a == b;
 //        ^ reference local 4
 //            ^ reference local 4
@@ -152,7 +156,7 @@
       {
           var a = 42;
 //            ^ definition local 8
-//              documentation ```cs\nint? a\n```
+//              documentation ```cs\nint a\n```
           a += a;
 //        ^ reference local 8
 //             ^ reference local 8
@@ -218,9 +222,9 @@
       {
           (var a, var b) = (1, 2);
 //             ^ definition local 9
-//               documentation ```cs\nvar a\n```
+//               documentation ```cs\nint a\n```
 //                    ^ definition local 10
-//                      documentation ```cs\nvar b\n```
+//                      documentation ```cs\nint b\n```
           a = 1;
 //        ^ reference local 9
           var c = new Struct { Property = 42 };
@@ -263,6 +267,8 @@
 //                   documentation ```cs\nint* p\n```
 //                      ^^^^^ reference local 14
               Console.WriteLine("myInt = {0}, *p = {1}", myInt, *p);
+//            ^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#
+//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#WriteLine(+13).
 //                                                       ^^^^^ reference local 14
 //                                                               ^ reference local 15
           }
@@ -274,7 +280,7 @@
       {
           var x = true;
 //            ^ definition local 16
-//              documentation ```cs\nbool? x\n```
+//              documentation ```cs\nbool x\n```
           var y = x ? "foo" : "bar";
 //            ^ definition local 17
 //              documentation ```cs\nstring? y\n```
@@ -284,7 +290,7 @@
 //                 documentation ```cs\nobject z\n```
           var t = z is bool ? 42 : 41;
 //            ^ definition local 19
-//              documentation ```cs\nint? t\n```
+//              documentation ```cs\nint t\n```
 //                ^ reference local 18
       }
 
@@ -360,13 +366,16 @@
 //                                      ^^^^^^^ reference scip-dotnet nuget . . Main/Expressions#Cast#nested2.
           var f = (Int32)(1);
 //            ^ definition local 25
-//              documentation ```cs\nInt32? f\n```
+//              documentation ```cs\nint f\n```
+//                 ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int32#
           var g = (Int32)(1);
 //            ^ definition local 26
-//              documentation ```cs\nInt32? g\n```
+//              documentation ```cs\nint g\n```
+//                 ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int32#
           var h = (Int32)((1));
 //            ^ definition local 27
-//              documentation ```cs\nInt32? h\n```
+//              documentation ```cs\nint h\n```
+//                 ^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int32#
           return f + g + h;
 //               ^ reference local 25
 //                   ^ reference local 26
@@ -426,7 +435,7 @@
       {
           var three = checked(1 + 2);
 //            ^^^^^ definition local 35
-//                  documentation ```cs\n? three\n```
+//                  documentation ```cs\nint three\n```
           return three;
 //               ^^^^^ reference local 35
       }
@@ -577,6 +586,7 @@
 //                               documentation ```cs\nint a\n```
 //                                         ^ reference local 44
 //                                             ^ reference local 39
+//                                               ^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Func#Invoke().
 //                                                      ^ reference local 44
 //                                                         ^ reference local 44
       }
@@ -602,7 +612,7 @@
       {
           var a = (string x) => x + 1;
 //            ^ definition local 45
-//              documentation ```cs\nFunc<string, >? a\n```
+//              documentation ```cs\nFunc<string, string>? a\n```
 //                        ^ definition local 47
 //                          documentation ```cs\nstring x\n```
 //                              ^ reference local 47
@@ -635,7 +645,7 @@
       {
           var a = (1, 2, "");
 //            ^ definition local 56
-//              documentation ```cs\n(int, int, string)? a\n```
+//              documentation ```cs\n(int, int, string) a\n```
       }
 
       void ArrayCreation()
@@ -674,7 +684,7 @@
 //              documentation ```cs\nstring? g\n```
           var a = __makeref(g);
 //            ^ definition local 65
-//              documentation ```cs\nTypedReference? a\n```
+//              documentation ```cs\nTypedReference a\n```
 //                          ^ reference local 64
       }
 
@@ -684,7 +694,7 @@
       {
           var a = sizeof(int);
 //            ^ definition local 66
-//              documentation ```cs\nint? a\n```
+//              documentation ```cs\nint a\n```
       }
 
       void TypeOf()
@@ -697,6 +707,7 @@
           var b = typeof(List<string>.Enumerator);
 //            ^ definition local 68
 //              documentation ```cs\nType? b\n```
+//                                    ^^^^^^^^^^ reference scip-dotnet nuget System.Collections 6.0.0.0 Generic/List#Enumerator#
           var c = typeof(Dictionary<,>);
 //            ^ definition local 69
 //              documentation ```cs\nType? c\n```
@@ -767,7 +778,7 @@
 //                          ^^^ reference scip-dotnet nuget . . Main/Expressions#Dog#
           var b = dog switch
 //            ^ definition local 74
-//              documentation ```cs\n? b\n```
+//              documentation ```cs\nstring? b\n```
 //                ^^^ reference local 73
           {
               Cat c => c.Sound(),
@@ -783,6 +794,7 @@
 //                     ^ reference local 76
 //                       ^^^^^ reference scip-dotnet nuget . . Main/Expressions#Dog#Sound().
               _ => throw new ArgumentOutOfRangeException()
+//                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/ArgumentOutOfRangeException#
           };
       }
 
@@ -808,20 +820,23 @@
 //                           documentation ```cs\nstring s2\n```
           {
               Console.WriteLine(s2);
+//            ^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#
+//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#WriteLine(+11).
 //                              ^^ reference local 79
           }
 
           var c = s is "test";
 //            ^ definition local 80
-//              documentation ```cs\nbool? c\n```
+//              documentation ```cs\nbool c\n```
 //                ^ reference local 78
           var a = s is int.MaxValue;
 //            ^ definition local 81
-//              documentation ```cs\nbool? a\n```
+//              documentation ```cs\nbool a\n```
 //                ^ reference local 78
+//                         ^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Int32#MaxValue.
           var d = s is nameof(a);
 //            ^ definition local 82
-//              documentation ```cs\nbool? d\n```
+//              documentation ```cs\nbool d\n```
 //                ^ reference local 78
 //                            ^ reference local 81
       }

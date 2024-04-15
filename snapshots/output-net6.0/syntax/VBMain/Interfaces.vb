@@ -1,8 +1,12 @@
   Imports System.Diagnostics.CodeAnalysis
+'         ^^^^^^ reference scip-dotnet nuget . . System/
+'                ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+'                            ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   Namespace VBMain
 '           ^^^^^^ reference scip-dotnet nuget . . VBMain/
       <SuppressMessage("ReSharper", "all")>
+'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
       Public Class Interfaces
 '                  ^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Interfaces#
 '                             documentation ```vb\nClass Interfaces\n```
@@ -64,7 +68,7 @@
 '                          documentation ```vb\nInterface IEvent\n```
               Event SomeEvent As EventHandler(Of Integer)
 '                   ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Interfaces#IEvent#SomeEvent#
-'                             documentation ```vb\nEvent IEvent.SomeEvent As EventHandler\n```
+'                             documentation ```vb\nEvent IEvent.SomeEvent As EventHandler(Of Integer)\n```
           End Interface
 
           Interface IIndex

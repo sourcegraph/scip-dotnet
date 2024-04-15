@@ -7,7 +7,7 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
   #pragma warning disable CS0219
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Identifiers
 //             ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Identifiers#
 //                         documentation ```cs\nclass Identifiers\n```

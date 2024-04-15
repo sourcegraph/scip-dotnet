@@ -7,7 +7,7 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Methods
 //             ^^^^^^^ definition scip-dotnet nuget . . Main/Methods#
 //                     documentation ```cs\nclass Methods\n```
@@ -241,8 +241,8 @@
 //                                    documentation ```cs\nstring world\n```
               {
                   Console.WriteLine($"Hello {world}!");
-//                ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
-//                        ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+11).
+//                ^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#
+//                        ^^^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#WriteLine(+11).
 //                                           ^^^^^ reference local 5
               }
           }

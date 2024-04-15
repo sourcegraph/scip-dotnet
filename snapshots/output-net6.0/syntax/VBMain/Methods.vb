@@ -1,8 +1,12 @@
   Imports System.Diagnostics.CodeAnalysis
+'         ^^^^^^ reference scip-dotnet nuget . . System/
+'                ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+'                            ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   Namespace VBMain
 '           ^^^^^^ reference scip-dotnet nuget . . VBMain/
       <SuppressMessage("ReSharper", "all")>
+'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
       Public Class Methods
 '                  ^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#
 '                          documentation ```vb\nClass Methods\n```
@@ -87,6 +91,7 @@
 '                                                                  ^ definition scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload().(a)
 '                                                                    documentation ```vb\n[a As Integer = 5]\n```
               Return DefaultParameterOverload(a, a)
+'                    ^^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload(+1).
 '                                             ^ reference scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload().(a)
 '                                                ^ reference scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload().(a)
           End Function
@@ -99,6 +104,7 @@
 '                                                                             ^ definition scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload(+1).(b)
 '                                                                               documentation ```vb\nb As Integer\n```
               Return DefaultParameterOverload()
+'                    ^^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#DefaultParameterOverload().
           End Function
 
           Interface IHello
@@ -123,6 +129,7 @@
 '                                                           ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#IHello#
 '                                                                  ^^^^^ reference scip-dotnet nuget . . VBMain/Methods#IHello#Hello().
                   Throw New NotImplementedException()
+'                           ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/NotImplementedException#
               End Function
 
           End Class
@@ -193,6 +200,7 @@
 '                                                ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads1#Method().
               b.Method(42)
 '             ^ reference local 3
+'               ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads2#Method().
               Dim c As InheritedOverloads3 = New InheritedOverloads3
 '                 ^ definition local 4
 '                   documentation ```vb\nc As Class InheritedOverloads3\n```
@@ -205,8 +213,10 @@
               DirectCast(c, InheritedOverloads2).Method(42)
 '                        ^ reference local 4
 '                           ^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads2#
+'                                                ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads2#Method().
               c.Method("42")
 '             ^ reference local 4
+'               ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#InheritedOverloads3#Method().
           End Sub
       End Class
   End Namespace

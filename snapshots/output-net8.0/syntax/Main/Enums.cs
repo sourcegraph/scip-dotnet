@@ -7,7 +7,7 @@
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
-// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Enums
 //             ^^^^^ definition scip-dotnet nuget . . Main/Enums#
 //                   documentation ```cs\nclass Enums\n```
@@ -15,9 +15,10 @@
       enum EnumWithIntValues
 //         ^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Enums#EnumWithIntValues#
 //                           documentation ```cs\nenum EnumWithIntValues\n```
-//                           relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IComparable#
-//                           relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IConvertible#
-//                           relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IFormattable#
+//                           relationship implementation scip-dotnet nuget System.Runtime 8.0.0.0 System/IComparable#
+//                           relationship implementation scip-dotnet nuget System.Runtime 8.0.0.0 System/IConvertible#
+//                           relationship implementation scip-dotnet nuget System.Runtime 8.0.0.0 System/ISpanFormattable#
+//                           relationship implementation scip-dotnet nuget System.Runtime 8.0.0.0 System/IFormattable#
       {
           Ten = 10,
 //        ^^^ definition scip-dotnet nuget . . Main/Enums#EnumWithIntValues#Ten.
@@ -30,9 +31,10 @@
       enum EnumWithByteValues
 //         ^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Enums#EnumWithByteValues#
 //                            documentation ```cs\nenum EnumWithByteValues\n```
-//                            relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IComparable#
-//                            relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IConvertible#
-//                            relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IFormattable#
+//                            relationship implementation scip-dotnet nuget System.Runtime 8.0.0.0 System/IComparable#
+//                            relationship implementation scip-dotnet nuget System.Runtime 8.0.0.0 System/IConvertible#
+//                            relationship implementation scip-dotnet nuget System.Runtime 8.0.0.0 System/ISpanFormattable#
+//                            relationship implementation scip-dotnet nuget System.Runtime 8.0.0.0 System/IFormattable#
       {
           Five = 0x05,
 //        ^^^^ definition scip-dotnet nuget . . Main/Enums#EnumWithByteValues#Five.

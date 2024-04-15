@@ -1,9 +1,13 @@
   using System.Diagnostics.CodeAnalysis;
+//      ^^^^^^ reference scip-dotnet nuget . . System/
+//             ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+//                         ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   namespace Main;
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Properties
 //             ^^^^^^^^^^ definition scip-dotnet nuget . . Main/Properties#
 //                        documentation ```cs\nclass Properties\n```
@@ -17,6 +21,7 @@
 //             documentation ```cs\nprivate char Properties.Set { set; }\n```
       {
           set { throw new NotImplementedException(); }
+//                        ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/NotImplementedException#
       }
 
       uint GetSet { get; set; }
