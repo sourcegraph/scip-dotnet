@@ -1,9 +1,13 @@
   using System.Diagnostics.CodeAnalysis;
+//      ^^^^^^ reference scip-dotnet nuget . . System/
+//             ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+//                         ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   namespace Main;
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class QuerySyntax
 //             ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#
 //                         documentation ```cs\nclass QuerySyntax\n```
@@ -34,11 +38,12 @@
       {
           var x = from a in sourceA select a.Method();
 //            ^ definition local 0
-//              documentation ```cs\n? x\n```
+//              documentation ```cs\nIEnumerable<string>? x\n```
 //                     ^ definition local 1
 //                       documentation ```cs\n? a\n```
 //                          ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#sourceA.
 //                                         ^ reference local 1
+//                                           ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
       }
 
       void Projection()
@@ -47,19 +52,21 @@
       {
           var x = from a in sourceA select new { Name = a.Method() };
 //            ^ definition local 2
-//              documentation ```cs\n? x\n```
+//              documentation ```cs\nIEnumerable<<anonymous type: string Name>>? x\n```
 //                     ^ definition local 3
 //                       documentation ```cs\n? a\n```
 //                          ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#sourceA.
 //                                               ^^^^ reference local 5
 //                                                      ^ reference local 3
+//                                                        ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
           var b = from a in x select a.Name;
 //            ^ definition local 6
-//              documentation ```cs\n? b\n```
+//              documentation ```cs\nIEnumerable<string>? b\n```
 //                     ^ definition local 7
 //                       documentation ```cs\n? a\n```
 //                          ^ reference local 2
 //                                   ^ reference local 7
+//                                     ^^^^ reference local 5
       }
 
       void Where()
@@ -68,11 +75,13 @@
       {
           var x = from a in sourceA where a.Method().StartsWith("a") select a;
 //            ^ definition local 8
-//              documentation ```cs\n? x\n```
+//              documentation ```cs\nIEnumerable<IGeneric>? x\n```
 //                     ^ definition local 9
 //                       documentation ```cs\n? a\n```
 //                          ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#sourceA.
 //                                        ^ reference local 9
+//                                          ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
+//                                                   ^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/String#StartsWith(+1).
 //                                                                          ^ reference local 9
       }
 
@@ -82,7 +91,7 @@
       {
           var x = from a in sourceA
 //            ^ definition local 10
-//              documentation ```cs\n? x\n```
+//              documentation ```cs\nIEnumerable<<anonymous type: string A, string B>>? x\n```
 //                     ^ definition local 11
 //                       documentation ```cs\n? a\n```
 //                          ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#sourceA.
@@ -91,8 +100,10 @@
 //                      documentation ```cs\n? z\n```
 //                              ^ reference local 14
 //                                  ^ reference local 11
+//                                    ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
 //                                              ^ reference local 15
 //                                                  ^ reference local 11
+//                                                    ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
                   select z;
 //                       ^ reference local 12
       }
@@ -103,7 +114,7 @@
       {
           var x = from a in sourceA
 //            ^ definition local 16
-//              documentation ```cs\n? x\n```
+//              documentation ```cs\nIEnumerable<<anonymous type: string A, string B>>? x\n```
 //                     ^ definition local 17
 //                       documentation ```cs\n? a\n```
 //                          ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#sourceA.
@@ -112,12 +123,16 @@
 //                       documentation ```cs\n? b\n```
 //                          ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#sourceB.
 //                                     ^ reference local 17
+//                                       ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
 //                                                       ^ reference local 18
+//                                                         ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
                   select new { A = a.Method(), B = b.Method() };
 //                             ^ reference local 14
 //                                 ^ reference local 17
+//                                   ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
 //                                             ^ reference local 15
 //                                                 ^ reference local 18
+//                                                   ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
       }
 
       void MultipleFrom()
@@ -126,7 +141,7 @@
       {
           var x = from a in sourceA
 //            ^ definition local 19
-//              documentation ```cs\n? x\n```
+//              documentation ```cs\nIEnumerable<<anonymous type: string A, string B>>? x\n```
 //                     ^ definition local 20
 //                       documentation ```cs\n? a\n```
 //                          ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#sourceA.
@@ -136,12 +151,16 @@
 //                          ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#sourceB.
                   where a.Method() == b.Method()
 //                      ^ reference local 20
+//                        ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
 //                                    ^ reference local 21
+//                                      ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
                   select new { A = a.Method(), B = b.Method() };
 //                             ^ reference local 14
 //                                 ^ reference local 20
+//                                   ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
 //                                             ^ reference local 15
 //                                                 ^ reference local 21
+//                                                   ^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#Method().
       }
 
       void JoinInto(List<Student> students1, List<Student> students2)
@@ -156,7 +175,7 @@
       {
           var innerGroupJoinQuery =
 //            ^^^^^^^^^^^^^^^^^^^ definition local 22
-//                                documentation ```cs\n? innerGroupJoinQuery\n```
+//                                documentation ```cs\nIEnumerable<<anonymous type: string Student, interface IEnumerable<Student> Students>>? innerGroupJoinQuery\n```
               from student1 in students1
 //                 ^^^^^^^^ definition local 23
 //                          documentation ```cs\n? student1\n```
@@ -166,12 +185,15 @@
 //                          documentation ```cs\n? student2\n```
 //                             ^^^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#JoinInto().(students2)
 //                                          ^^^^^^^^ reference local 23
+//                                                   ^^ reference scip-dotnet nuget . . Main/QuerySyntax#Student#ID.
 //                                                             ^^^^^^^^ reference local 24
+//                                                                      ^^ reference scip-dotnet nuget . . Main/QuerySyntax#Student#ID.
 //                                                                              ^^^^^^^^^^^^ definition local 25
 //                                                                                           documentation ```cs\n? studentGroup\n```
               select new { Student = student1.First, Students = studentGroup };
 //                         ^^^^^^^ reference local 27
 //                                   ^^^^^^^^ reference local 23
+//                                            ^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#Student#First.
 //                                                   ^^^^^^^^ reference local 28
 //                                                              ^^^^^^^^^^^^ reference local 25
       }
@@ -185,21 +207,25 @@
       {
           var sortedGroups =
 //            ^^^^^^^^^^^^ definition local 29
-//                         documentation ```cs\n? sortedGroups\n```
+//                         documentation ```cs\nIOrderedEnumerable<IGrouping<char, Student>>? sortedGroups\n```
               from student in students
 //                 ^^^^^^^ definition local 30
 //                         documentation ```cs\n? student\n```
 //                            ^^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#Continuation().(students)
               orderby student.Last, student.First
 //                    ^^^^^^^ reference local 30
+//                            ^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#Student#Last.
 //                                  ^^^^^^^ reference local 30
+//                                          ^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#Student#First.
               group student by student.Last[0] into newGroup
 //                  ^^^^^^^ reference local 30
 //                             ^^^^^^^ reference local 30
+//                                     ^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#Student#Last.
 //                                                  ^^^^^^^^ definition local 31
 //                                                           documentation ```cs\n? newGroup\n```
               orderby newGroup.Key
 //                    ^^^^^^^^ reference local 31
+//                             ^^^ reference scip-dotnet nuget System.Linq 6.0.0.0 Linq/IGrouping#Key.
               select newGroup;
 //                   ^^^^^^^^ reference local 31
       }

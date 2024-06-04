@@ -56,17 +56,26 @@ public class ScipProjectIndexer
                                                                HashSet<ProjectId> indexedProjects)
     {
         Restore(options, rootProject);
-        IEnumerable<Project> projects = string.Equals(rootProject.Extension, ".csproj") || string.Equals(rootProject.Extension, ".vbproj")
+        var projects = (string.Equals(rootProject.Extension, ".csproj") || string.Equals(rootProject.Extension, ".vbproj")
             ? new[]
             {
                 await host.Services.GetRequiredService<MSBuildWorkspace>()
                     .OpenProjectAsync(rootProject.FullName)
             }
             : (await host.Services.GetRequiredService<MSBuildWorkspace>()
-                .OpenSolutionAsync(rootProject.FullName)).Projects;
+                .OpenSolutionAsync(rootProject.FullName)).Projects).ToList();
 
-        foreach (var project in projects)
+
+        var projectsPerProjFile = projects.GroupBy(x => x.FilePath);
+        var framework = $"net{Environment.Version.Major}.0";
+        foreach (var projectGroup in projectsPerProjFile)
         {
+
+            // If the project was found by opening the solution, we need to find the project that matches the framework.
+            // if we can' fall back to the first one. Without this, we will process the same document multiple times
+            // once for each framework version being targeting and it leads to unpredictable results since the scip file
+            // will contain the same document multiple times iwth different symbols.
+            var project = projectGroup.FirstOrDefault(x => x.Name.Contains($"({framework})", StringComparison.OrdinalIgnoreCase)) ?? projectGroup.First();
             if (project.Language != "C#" && project.Language != "Visual Basic")
             {
                 Logger.LogWarning(

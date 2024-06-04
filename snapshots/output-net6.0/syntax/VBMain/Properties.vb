@@ -1,8 +1,12 @@
   Imports System.Diagnostics.CodeAnalysis
+'         ^^^^^^ reference scip-dotnet nuget . . System/
+'                ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+'                            ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   Namespace VBMain
 '           ^^^^^^ reference scip-dotnet nuget . . VBMain/
       <SuppressMessage("ReSharper", "all")>
+'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
       Public Class Properties
 '                  ^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Properties#
 '                             documentation ```vb\nClass Properties\n```
@@ -17,6 +21,7 @@
 '                       ^^^^^ definition scip-dotnet nuget . . VBMain/Properties#set_Set().(value)
 '                             documentation ```vb\nvalue As Char\n```
                   Throw New NotImplementedException()
+'                           ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 System/NotImplementedException#
               End Set
           End Property
 

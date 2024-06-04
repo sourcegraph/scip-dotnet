@@ -8,5 +8,7 @@
 '                   documentation ```vb\nargs As String()\n```
 
           Console.WriteLine("Hello, World!")
+'         ^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#
+'                 ^^^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#WriteLine(+11).
       End Sub
   End Module

@@ -1,8 +1,12 @@
   Imports System.Diagnostics.CodeAnalysis
+'         ^^^^^^ reference scip-dotnet nuget . . System/
+'                ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+'                            ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   Namespace VBMain
 '           ^^^^^^ reference scip-dotnet nuget . . VBMain/
       <SuppressMessage("ReSharper", "all")>
+'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
       Public Class Classes
 '                  ^^^^^^^ definition scip-dotnet nuget . . VBMain/Classes#
 '                          documentation ```vb\nClass Classes\n```
@@ -39,7 +43,10 @@
           Protected Overrides Sub Finalize()
 '                                 ^^^^^^^^ definition scip-dotnet nuget . . VBMain/Classes#Finalize().
 '                                          documentation ```vb\nProtected Overrides Sub Classes.Finalize()\n```
+'                                          relationship implementation reference scip-dotnet nuget System.Runtime 6.0.0.0 System/Object#Finalize().
               Console.WriteLine(42)
+'             ^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#
+'                     ^^^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#WriteLine(+7).
           End Sub
 
           Public Class ObjectClass

@@ -1,9 +1,13 @@
   using System.Diagnostics.CodeAnalysis;
+//      ^^^^^^ reference scip-dotnet nuget . . System/
+//             ^^^^^^^^^^^ reference scip-dotnet nuget . . Diagnostics/
+//                         ^^^^^^^^^^^^ reference scip-dotnet nuget . . CodeAnalysis/
 
   namespace Main;
 //          ^^^^ reference scip-dotnet nuget . . Main/
 
   [SuppressMessage("ReSharper", "all")]
+// ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 6.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
   public class Classes
 //             ^^^^^^^ definition scip-dotnet nuget . . Main/Classes#
 //                     documentation ```cs\nclass Classes\n```
@@ -13,10 +17,10 @@
 //                       documentation ```cs\npublic string Classes.Name\n```
       public const int IntConstant = 1;
 //                     ^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#IntConstant.
-//                                 documentation ```cs\npublic const int Classes.IntConstant\n```
+//                                 documentation ```cs\npublic const int Classes.IntConstant = 1\n```
       public const string StringConstant = $"hello";
 //                        ^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Classes#StringConstant.
-//                                       documentation ```cs\npublic const string Classes.StringConstant\n```
+//                                       documentation ```cs\npublic const string Classes.StringConstant = "hello"\n```
 
       public Classes(int name)
 //           ^^^^^^^ definition scip-dotnet nuget . . Main/Classes#`.ctor`().
@@ -41,6 +45,8 @@
 //             documentation ```cs\nprotected Classes.~Classes()\n```
       {
           Console.WriteLine(42);
+//        ^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#
+//                ^^^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#WriteLine(+7).
       }
 
       public class ObjectClass : object, SomeInterface
@@ -91,6 +97,8 @@
 //                                  documentation ```cs\nT1 t1\n```
           {
               Console.WriteLine(t1);
+//            ^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#
+//                    ^^^^^^^^^ reference scip-dotnet nuget System.Console 6.0.0.0 System/Console#WriteLine(+9).
 //                              ^^ reference scip-dotnet nuget . . Main/Classes#ICovariantContravariant#Method1().(t1)
           }
 
