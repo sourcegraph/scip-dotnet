@@ -15,9 +15,9 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
-            6.0.x
-            7.0.x
-            8.0.x
+            6.x
+            7.x
+            8.x
       - run: dotnet format --verify-no-changes
       - run: dotnet format --verify-no-changes
         working-directory: snapshots/input/syntax
@@ -32,7 +32,7 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
-            6.0.x
-            7.0.x
-            8.0.x
+            6.x
+            7.x
+            8.x
       - run: dotnet test
