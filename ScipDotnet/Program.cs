@@ -42,7 +42,11 @@ public static class Program
                 "If enabled, allow public symbol definitions to be accessible from other SCIP indexes. " +
                 "If disabled, then public symbols will only be visible within the index."),
             new Option<int>("--dotnet-restore-timeout", () => DotnetRestoreTimeout,
-                @"The timeout (in ms) for the ""dotnet restore"" command")
+                @"The timeout (in ms) for the ""dotnet restore"" command"),
+            new Option<bool>("--dotnet-skip-restore", () => false,
+                @"Skip executing ""dotnet restore"" and assume it has been run externally."),
+            new Option<FileInfo?>("--dotnet-nuget-config-file", () => null,
+                @"Provide a custom path for ""dotnet restore"" to find the NuGet.config file."),
         };
         indexCommand.Handler = CommandHandler.Create(IndexCommandHandler.Process);
         var rootCommand =

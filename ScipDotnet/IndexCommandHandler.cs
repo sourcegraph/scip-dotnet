@@ -11,8 +11,18 @@ namespace ScipDotnet;
 
 public static class IndexCommandHandler
 {
-    public static async Task<int> Process(IHost host, List<FileInfo> projects, string output, FileInfo workingDirectory,
-        List<string> include, List<string> exclude, bool allowGlobalSymbolDefinitions, int dotnetRestoreTimeout)
+    public static async Task<int> Process(
+        IHost host,
+        List<FileInfo> projects,
+        string output,
+        FileInfo workingDirectory,
+        List<string> include,
+        List<string> exclude,
+        bool allowGlobalSymbolDefinitions,
+        int dotnetRestoreTimeout,
+        bool dotnetSkipRestore,
+        FileInfo? dotnetNugetConfigFile
+        )
     {
         var logger = host.Services.GetRequiredService<ILogger<IndexCommandOptions>>();
         var matcher = new Matcher();
@@ -34,7 +44,9 @@ public static class IndexCommandHandler
             logger,
             matcher,
             allowGlobalSymbolDefinitions,
-            dotnetRestoreTimeout
+            dotnetRestoreTimeout,
+            dotnetSkipRestore,
+            dotnetNugetConfigFile
         );
         await ScipIndex(host, options);
         return 0;

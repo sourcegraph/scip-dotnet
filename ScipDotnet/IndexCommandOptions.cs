@@ -10,5 +10,7 @@ public record IndexCommandOptions(
     ILogger<IndexCommandOptions> Logger,
     Matcher Matcher,
     bool AllowGlobalSymbolDefinitions,
-    int DotnetRestoreTimeout
+    int DotnetRestoreTimeout,
+    bool DotnetSkipRestore,
+    FileInfo? DotnetNugetConfigFile
 );
