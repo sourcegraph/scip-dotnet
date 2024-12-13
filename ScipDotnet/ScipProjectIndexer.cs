@@ -21,9 +21,9 @@ public class ScipProjectIndexer
     private void Restore(IndexCommandOptions options, FileInfo project)
     {
         var arguments = project.Extension.Equals(".sln") ? $"restore {project.FullName} /p:EnableWindowsTargeting=true" : "restore /p:EnableWindowsTargeting=true";
-        if (options.DotnetNugetConfigFile != null)
+        if (options.NugetConfigPath != null)
         {
-            arguments += $" --configfile {options.DotnetNugetConfigFile.FullName}";
+            arguments += $" --configfile \"{options.NugetConfigPath.FullName}\"";
         }
         var process = new Process()
         {
@@ -59,7 +59,7 @@ public class ScipProjectIndexer
                                                                FileInfo rootProject,
                                                                HashSet<ProjectId> indexedProjects)
     {
-        if (!options.DotnetSkipRestore)
+        if (!options.SkipDotnetRestore)
         {
             Restore(options, rootProject);
         }

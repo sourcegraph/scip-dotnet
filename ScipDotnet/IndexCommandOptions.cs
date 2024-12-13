@@ -11,6 +11,6 @@ public record IndexCommandOptions(
     Matcher Matcher,
     bool AllowGlobalSymbolDefinitions,
     int DotnetRestoreTimeout,
-    bool DotnetSkipRestore,
-    FileInfo? DotnetNugetConfigFile
+    bool SkipDotnetRestore,
+    FileInfo? NugetConfigPath
 );

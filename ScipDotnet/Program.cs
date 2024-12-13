@@ -43,10 +43,12 @@ public static class Program
                 "If disabled, then public symbols will only be visible within the index."),
             new Option<int>("--dotnet-restore-timeout", () => DotnetRestoreTimeout,
                 @"The timeout (in ms) for the ""dotnet restore"" command"),
-            new Option<bool>("--dotnet-skip-restore", () => false,
+            new Option<bool>("--skip-dotnet-restore", () => false,
                 @"Skip executing ""dotnet restore"" and assume it has been run externally."),
-            new Option<FileInfo?>("--dotnet-nuget-config-file", () => null,
-                @"Provide a custom path for ""dotnet restore"" to find the NuGet.config file."),
+            new Option<FileInfo?>("--nuget-config-path", () => null,
+                @"Provide a case sensitive custom path for ""dotnet restore"" to find the NuGet.config file. " +
+                @"If not provided, ""dotnet restore"" will search for the NuGet.config file recursively up the folder hierarchy " +
+                @"and in the default user and system config locations."),
         };
         indexCommand.Handler = CommandHandler.Create(IndexCommandHandler.Process);
         var rootCommand =

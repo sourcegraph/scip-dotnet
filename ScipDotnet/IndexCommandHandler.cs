@@ -20,8 +20,8 @@ public static class IndexCommandHandler
         List<string> exclude,
         bool allowGlobalSymbolDefinitions,
         int dotnetRestoreTimeout,
-        bool dotnetSkipRestore,
-        FileInfo? dotnetNugetConfigFile
+        bool skipDotnetRestore,
+        FileInfo? nugetConfigPath
         )
     {
         var logger = host.Services.GetRequiredService<ILogger<IndexCommandOptions>>();
@@ -45,8 +45,8 @@ public static class IndexCommandHandler
             matcher,
             allowGlobalSymbolDefinitions,
             dotnetRestoreTimeout,
-            dotnetSkipRestore,
-            dotnetNugetConfigFile
+            skipDotnetRestore,
+            nugetConfigPath
         );
         await ScipIndex(host, options);
         return 0;
