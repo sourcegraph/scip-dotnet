@@ -11,8 +11,8 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
             6.x
@@ -27,12 +27,13 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+        dotnet: [ '6.x', '7.x', '8.x' ]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: |
-            6.x
-            7.x
-            8.x
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        id: stepid
+        with: 
+          dotnet-version: ${{ matrix.dotnet }}
+      - name: Create temporary global.json
+        run: echo '{"sdk":{"version": "${{ steps.stepid.outputs.dotnet-version }}"}}' > ./global.json
       - run: dotnet test
