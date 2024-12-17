@@ -36,7 +36,7 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet }}.0.x
       - name: Create temporary global.json
-        run: 'echo  "{"sdk":{"version": "${{ steps.stepid.outputs.dotnet-version }}"}}"" > ./global.json'
+        run: 'echo ''{"sdk":{"version": "${{ steps.stepid.outputs.dotnet-version }}"}}'' > ./global.json'
       - name: Restore dependencies
         run: dotnet restore -p:TargetFrameworks=net${{ matrix.dotnet }}.0 -p:TargetFramework=net${{ matrix.dotnet }}.0
       - name: Build
