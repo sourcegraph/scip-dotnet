@@ -35,7 +35,7 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet }}.0.x
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore -p:TargetFrameworks=net${{ matrix.dotnet }}.0
       - name: Build
         run: dotnet build --configuration Release --no-restore --framework net${{ matrix.dotnet }}.0
       - name: Test
