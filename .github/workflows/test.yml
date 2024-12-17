@@ -31,11 +31,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup .NET
+        id: stepid
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ matrix.dotnet }}.0.x
+      - name: Create temporary global.json
+        run: 'echo  "{"sdk":{"version": "${{ steps.stepid.outputs.dotnet-version }}"}}"" > ./global.json'
       - name: Restore dependencies
-        run: dotnet restore -p:TargetFrameworks=net${{ matrix.dotnet }}.0
+        run: dotnet restore -p:TargetFrameworks=net${{ matrix.dotnet }}.0 -p:TargetFramework=net${{ matrix.dotnet }}.0
       - name: Build
         run: dotnet build --configuration Release --no-restore --framework net${{ matrix.dotnet }}.0
       - name: Test
