@@ -27,7 +27,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        dotnet: [8, 7, 6]
+        dotnet: [6, 7, 8]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v3
