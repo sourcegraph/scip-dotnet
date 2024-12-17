@@ -15,8 +15,6 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
-            6.x
-            7.x
             8.x
       - run: dotnet format --verify-no-changes
       - run: dotnet format --verify-no-changes
@@ -27,10 +25,10 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        dotnet: [6, 7, 8]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: ${{ matrix.dotnet }}.0.x
-      - run: dotnet test --framework net${{ matrix.dotnet }}.0
+          dotnet-version: |
+            8.x
+      - run: dotnet test
