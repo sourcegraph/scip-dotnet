@@ -34,3 +34,4 @@ jobs:
             7.x
             8.x
       - run: dotnet test -p:TargetFrameworks=net8.0
+      - run: dotnet test -p:TargetFrameworks=net7.0
