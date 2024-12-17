@@ -11,8 +11,8 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
             6.x
@@ -26,20 +26,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         dotnet: [8, 7, 6]
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup .NET
-        id: stepid
-        uses: actions/setup-dotnet@v4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet }}.0.x
-      - name: Create temporary global.json
-        run: 'echo ''{"sdk":{"version": "${{ steps.stepid.outputs.dotnet-version }}"}}'' > ./global.json'
-      - name: Restore dependencies
-        run: dotnet restore -p:TargetFrameworks=net${{ matrix.dotnet }}.0 -p:TargetFramework=net${{ matrix.dotnet }}.0
-      - name: Build
-        run: dotnet build --configuration Release --no-restore --framework net${{ matrix.dotnet }}.0
-      - name: Test
-        run: dotnet test --no-build --verbosity normal --configuration Release --framework net${{ matrix.dotnet }}.0
+      - run: dotnet test --framework net${{ matrix.dotnet }}.0
