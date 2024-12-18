@@ -15,7 +15,6 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
-            6.x
             7.x
             8.x
       - run: dotnet format --verify-no-changes
@@ -35,4 +34,6 @@ jobs:
             6.x
             7.x
             8.x
-      - run: dotnet test
+      - run: dotnet test -p:TargetFrameworks=net8.0
+      - run: dotnet test -p:TargetFrameworks=net7.0
+      - run: dotnet test -p:TargetFrameworks=net6.0
