@@ -74,6 +74,7 @@ public class ScipProjectIndexer
                 .OpenSolutionAsync(rootProject.FullName)).Projects).ToList();
 
 
+        options.Logger.LogDebug($"Found {projects.Count()} projects");
         var projectsPerProjFile = projects.GroupBy(x => x.FilePath);
         var framework = $"net{Environment.Version.Major}.0";
         foreach (var projectGroup in projectsPerProjFile)
@@ -100,7 +101,8 @@ public class ScipProjectIndexer
             indexedProjects.Add(project.Id);
 
             var globals = new Dictionary<ISymbol, ScipSymbol>(SymbolEqualityComparer.Default);
-
+             
+            options.Logger.LogDebug($"Found {project.Documents.Count()} documents in {projectGroup.Key}");
             foreach (var document in project.Documents)
             {
                 if (options.Matcher.Match(options.WorkingDirectory.FullName, document.FilePath).HasMatches)
@@ -149,6 +151,12 @@ public class ScipProjectIndexer
             {
                 var walker = new ScipVisualBasicSyntaxWalker(symbolFormatter, semanticModel);
                 walker.Visit(root);
+            }
+            else
+            {
+                Logger.LogWarning(
+                    "Skipping document {DocumentFilePath} because it has language {DocumentLanguage} and scip-dotnet currently only supports C# and Visual Basic.",
+                    document.FilePath, language);
             }
         }
 
