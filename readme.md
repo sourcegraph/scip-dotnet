@@ -117,7 +117,7 @@ If you're happy with the new behavior, run
 
 ## Logging
 
-By default, only logs of warning level or higher are shown. To show debug logs set the following environment variables before running scip-dotnet
+By default, only logs of warning level or higher are shown. To show debug logs set the following environment variable before running scip-dotnet
 
 ```
 export Logging__LogLevel__Default=Debug
