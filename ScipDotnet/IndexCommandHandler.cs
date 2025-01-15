@@ -79,7 +79,7 @@ public static class IndexCommandHandler
 
         if (index.Documents.Count <= 0)
         {
-            options.Logger.LogWarning("Indexing finished without error but no documents were indexed."); 
+            options.Logger.LogWarning("Indexing finished without error but no documents were indexed.");
         }
 
         await File.WriteAllBytesAsync(options.Output.FullName, index.ToByteArray());

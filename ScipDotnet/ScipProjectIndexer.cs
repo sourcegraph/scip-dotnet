@@ -101,7 +101,7 @@ public class ScipProjectIndexer
             indexedProjects.Add(project.Id);
 
             var globals = new Dictionary<ISymbol, ScipSymbol>(SymbolEqualityComparer.Default);
-             
+
             options.Logger.LogDebug($"Found {project.Documents.Count()} documents in {projectGroup.Key}");
             foreach (var document in project.Documents)
             {
