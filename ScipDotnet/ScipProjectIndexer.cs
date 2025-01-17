@@ -152,12 +152,6 @@ public class ScipProjectIndexer
                 var walker = new ScipVisualBasicSyntaxWalker(symbolFormatter, semanticModel);
                 walker.Visit(root);
             }
-            else
-            {
-                Logger.LogWarning(
-                    "Skipping document {DocumentFilePath} because it has language {DocumentLanguage} and scip-dotnet currently only supports C# and Visual Basic.",
-                    document.FilePath, language);
-            }
         }
 
         return doc;
