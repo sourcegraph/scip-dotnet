@@ -74,6 +74,7 @@ public class ScipProjectIndexer
                 .OpenSolutionAsync(rootProject.FullName)).Projects).ToList();
 
 
+        options.Logger.LogDebug($"Found {projects.Count()} projects");
         var projectsPerProjFile = projects.GroupBy(x => x.FilePath);
         var framework = $"net{Environment.Version.Major}.0";
         foreach (var projectGroup in projectsPerProjFile)
@@ -101,6 +102,7 @@ public class ScipProjectIndexer
 
             var globals = new Dictionary<ISymbol, ScipSymbol>(SymbolEqualityComparer.Default);
 
+            options.Logger.LogDebug($"Found {project.Documents.Count()} documents in {projectGroup.Key}");
             foreach (var document in project.Documents)
             {
                 if (options.Matcher.Match(options.WorkingDirectory.FullName, document.FilePath).HasMatches)

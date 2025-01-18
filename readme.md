@@ -115,6 +115,14 @@ A total of 1 test files matched the specified pattern.
 If you're happy with the new behavior, run
 `SCIP_UPDATE_SNAPSHOTS=true dotnet test` to update the snapshot tests.
 
+## Logging
+
+By default, only logs of warning level or higher are shown. To show debug logs set the following environment variable before running scip-dotnet
+
+```
+export Logging__LogLevel__Default=Debug
+```
+
 ## Releasing a new version
 
 First, make sure that you are on the latest `main` branch and have no dirty
