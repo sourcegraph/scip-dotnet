@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Google.Protobuf;
 using Microsoft.CodeAnalysis.Elfie.Extensions;
+using Microsoft.CodeAnalysis.MSBuild;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileSystemGlobbing;
 using Microsoft.Extensions.Hosting;
@@ -49,6 +50,33 @@ public static class IndexCommandHandler
             nugetConfigPath
         );
         await ScipIndex(host, options);
+
+
+        // Log msbuild workspace diagnostic information after the index command finishes
+        // We log the MSBuild failures as error since they are often blocking issues
+        // preventing indexing. However, we log msbuild warnings as debug since they
+        // do not block indexing usually and are much noisier
+        var workspaceLogger = host.Services.GetRequiredService<ILogger<MSBuildWorkspace>>();
+        var workspaceService = host.Services.GetRequiredService<MSBuildWorkspace>();
+        if (workspaceService.Diagnostics.Any())
+        {
+            var diagnosticGroups = workspaceService.Diagnostics
+                .GroupBy(d => new { d.Kind, d.Message })
+                .Select(g => new { g.Key.Kind, g.Key.Message, Count = g.Count() });
+            foreach (var diagnostic in diagnosticGroups)
+            {
+                var message = $"{diagnostic.Kind}: {diagnostic.Message} (occurred {diagnostic.Count} times)";
+                if (diagnostic.Kind == Microsoft.CodeAnalysis.WorkspaceDiagnosticKind.Failure)
+                {
+                    workspaceLogger.LogError(message);
+                }
+                else
+                {
+                    workspaceLogger.LogDebug(message);
+                }
+            }
+        }
+
         return 0;
     }
 
