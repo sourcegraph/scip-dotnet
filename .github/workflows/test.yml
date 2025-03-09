@@ -17,6 +17,7 @@ jobs:
           dotnet-version: |
             7.x
             8.x
+            9.x
       - run: dotnet format --verify-no-changes
       - run: dotnet format --verify-no-changes
         working-directory: snapshots/input/syntax
@@ -34,6 +35,8 @@ jobs:
             6.x
             7.x
             8.x
+            9.x
+      - run: dotnet test -p:TargetFrameworks=net9.0
       - run: dotnet test -p:TargetFrameworks=net8.0
       - run: dotnet test -p:TargetFrameworks=net7.0
       - run: dotnet test -p:TargetFrameworks=net6.0
