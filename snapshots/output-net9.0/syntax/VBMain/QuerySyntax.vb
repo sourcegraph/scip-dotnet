@@ -6,7 +6,7 @@
   Namespace VBMain
 '           ^^^^^^ reference scip-dotnet nuget . . VBMain/
       <SuppressMessage("ReSharper", "all")>
-'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
       Public Class QuerySyntax
 '                  ^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/QuerySyntax#
 '                              documentation ```vb\nClass QuerySyntax\n```
@@ -75,7 +75,7 @@
 '                               ^^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#sourceA.
 '                                             ^ reference local 9
 '                                               ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
-'                                                        ^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/String#StartsWith(+1).
+'                                                        ^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/String#StartsWith(+1).
 '                                                                               ^ reference local 9
           End Sub
 
@@ -149,7 +149,7 @@
 '                                                                                                                                            ^^^^^^ reference scip-dotnet nuget . . VBMain/QuerySyntax#IGeneric#Method().
 '                                                                                                                                                            ^ reference local 22
 '                                                                                                                                                              ^ reference local 14
-'                                                                                                                                                                         ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/String#Empty.
+'                                                                                                                                                                         ^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/String#Empty.
           End Sub
 
           Private Sub Into(Students As List(Of Student))

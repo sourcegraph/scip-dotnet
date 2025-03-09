@@ -6,26 +6,26 @@
   Namespace VBMain
 '           ^^^^^^ reference scip-dotnet nuget . . VBMain/
       <SuppressMessage("ReSharper", "all")>
-'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
       <AttributeUsage(AttributeTargets.[Class], AllowMultiple:=True, Inherited:=True)>
-'      ^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/AttributeUsageAttribute#`.ctor`().
-'                     ^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/AttributeTargets#
-'                                      ^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/AttributeTargets#Class.
-'                                               ^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/AttributeUsageAttribute#AllowMultiple.
-'                                                                    ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/AttributeUsageAttribute#Inherited.
+'      ^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/AttributeUsageAttribute#`.ctor`().
+'                     ^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/AttributeTargets#
+'                                      ^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/AttributeTargets#Class.
+'                                               ^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/AttributeUsageAttribute#AllowMultiple.
+'                                                                    ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/AttributeUsageAttribute#Inherited.
       Public Class GlobalAttributes
 '                  ^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/GlobalAttributes#
 '                                   documentation ```vb\nClass GlobalAttributes\n```
-'                                   relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Attribute#
+'                                   relationship implementation scip-dotnet nuget System.Runtime 9.0.0.0 System/Attribute#
           Inherits Attribute
-'                  ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Attribute#
+'                  ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/Attribute#
 
           Class AuthorAttribute
 '               ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/GlobalAttributes#AuthorAttribute#
 '                               documentation ```vb\nClass AuthorAttribute\n```
-'                               relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/Attribute#
+'                               relationship implementation scip-dotnet nuget System.Runtime 9.0.0.0 System/Attribute#
               Inherits Attribute
-'                      ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Attribute#
+'                      ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/Attribute#
 
               Public Sub New(ByVal name As String)
 '                        ^^^ definition scip-dotnet nuget . . VBMain/GlobalAttributes#AuthorAttribute#`.ctor`().
@@ -54,9 +54,10 @@
           Enum A
 '              ^ definition scip-dotnet nuget . . VBMain/GlobalAttributes#A#
 '                documentation ```vb\nEnum A\n```
-'                relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IComparable#
-'                relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IConvertible#
-'                relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IFormattable#
+'                relationship implementation scip-dotnet nuget System.Runtime 9.0.0.0 System/IComparable#
+'                relationship implementation scip-dotnet nuget System.Runtime 9.0.0.0 System/IConvertible#
+'                relationship implementation scip-dotnet nuget System.Runtime 9.0.0.0 System/ISpanFormattable#
+'                relationship implementation scip-dotnet nuget System.Runtime 9.0.0.0 System/IFormattable#
               B
 '             ^ definition scip-dotnet nuget . . VBMain/GlobalAttributes#A#B.
 '               documentation ```vb\nA.B = 0\n```
@@ -70,7 +71,7 @@
           Public Event SomeEvent As EventHandler
 '                      ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/GlobalAttributes#SomeEvent#
 '                                documentation ```vb\nPublic Event GlobalAttributes.SomeEvent As EventHandler\n```
-'                                   ^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/EventHandler#
+'                                   ^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/EventHandler#
 
           <Author("TypeParameterAttribute")>
 '          ^^^^^^ reference scip-dotnet nuget . . VBMain/GlobalAttributes#AuthorAttribute#`.ctor`().

@@ -6,7 +6,7 @@
   Namespace VBMain
 '           ^^^^^^ reference scip-dotnet nuget . . VBMain/
       <SuppressMessage("ReSharper", "all")>
-'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
       Public Class Methods
 '                  ^^^^^^^ definition scip-dotnet nuget . . VBMain/Methods#
 '                          documentation ```vb\nClass Methods\n```
@@ -129,7 +129,7 @@
 '                                                           ^^^^^^ reference scip-dotnet nuget . . VBMain/Methods#IHello#
 '                                                                  ^^^^^ reference scip-dotnet nuget . . VBMain/Methods#IHello#Hello().
                   Throw New NotImplementedException()
-'                           ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/NotImplementedException#
+'                           ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/NotImplementedException#
               End Function
 
           End Class

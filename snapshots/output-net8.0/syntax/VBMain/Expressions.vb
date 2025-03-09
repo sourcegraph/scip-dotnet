@@ -6,7 +6,7 @@
   Namespace VBMain
 '           ^^^^^^ reference scip-dotnet nuget . . VBMain/
       <SuppressMessage("ReSharper", "all")>
-'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
       Public Class Expressions
 '                  ^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Expressions#
 '                              documentation ```vb\nClass Expressions\n```
@@ -333,15 +333,15 @@
               Dim F = CType((1), Int32)
 '                 ^ definition local 26
 '                   documentation ```vb\nF As Integer\n```
-'                                ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#
+'                                ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Int32#
               Dim G = CType((1), Int32)
 '                 ^ definition local 27
 '                   documentation ```vb\nG As Integer\n```
-'                                ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#
+'                                ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Int32#
               Dim H = CType(((1)), Int32)
 '                 ^ definition local 28
 '                   documentation ```vb\nH As Integer\n```
-'                                  ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#
+'                                  ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Int32#
               Return F + G + H
 '                    ^ reference local 26
 '                        ^ reference local 27
@@ -612,7 +612,7 @@
               Dim b = GetType(List(Of String).Enumerator)
 '                 ^ definition local 68
 '                   documentation ```vb\nb As Class Type\n```
-'                                             ^^^^^^^^^^ reference scip-dotnet nuget System.Collections 7.0.0.0 Generic/List#Enumerator#
+'                                             ^^^^^^^^^^ reference scip-dotnet nuget System.Collections 8.0.0.0 Generic/List#Enumerator#
               Dim c = GetType(Dictionary(Of,))
 '                 ^ definition local 69
 '                   documentation ```vb\nc As Class Type\n```
@@ -631,16 +631,16 @@
 '                         ^^^^ reference local 71
                   Case 1
                       Debug.WriteLine("One")
-'                     ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 Diagnostics/Debug#
-'                           ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 Diagnostics/Debug#WriteLine(+2).
+'                     ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 Diagnostics/Debug#
+'                           ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 Diagnostics/Debug#WriteLine(+2).
                   Case 2
                       Debug.WriteLine("One")
-'                     ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 Diagnostics/Debug#
-'                           ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 Diagnostics/Debug#WriteLine(+2).
+'                     ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 Diagnostics/Debug#
+'                           ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 Diagnostics/Debug#WriteLine(+2).
                   Case Else
                       Debug.WriteLine("More")
-'                     ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 Diagnostics/Debug#
-'                           ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 Diagnostics/Debug#WriteLine(+2).
+'                     ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 Diagnostics/Debug#
+'                           ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 Diagnostics/Debug#WriteLine(+2).
               End Select
           End Sub
 

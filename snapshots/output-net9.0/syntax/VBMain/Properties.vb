@@ -6,7 +6,7 @@
   Namespace VBMain
 '           ^^^^^^ reference scip-dotnet nuget . . VBMain/
       <SuppressMessage("ReSharper", "all")>
-'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
       Public Class Properties
 '                  ^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Properties#
 '                             documentation ```vb\nClass Properties\n```
@@ -21,7 +21,7 @@
 '                       ^^^^^ definition scip-dotnet nuget . . VBMain/Properties#set_Set().(value)
 '                             documentation ```vb\nvalue As Char\n```
                   Throw New NotImplementedException()
-'                           ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/NotImplementedException#
+'                           ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/NotImplementedException#
               End Set
           End Property
 
