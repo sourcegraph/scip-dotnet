@@ -6,7 +6,7 @@
   Namespace VBMain
 '           ^^^^^^ reference scip-dotnet nuget . . VBMain/
       <SuppressMessage("ReSharper", "all")>
-'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
       Public Class Fields
 '                  ^^^^^^ definition scip-dotnet nuget . . VBMain/Fields#
 '                         documentation ```vb\nClass Fields\n```
@@ -21,7 +21,7 @@
 '                               documentation ```vb\nPrivate Fields1.Property2 As Long\n```
 '                                ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Fields#Fields1#Property3.
 '                                          documentation ```vb\nPrivate Fields1.Property3 As Long\n```
-'                                             ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int64#
+'                                             ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Int64#
               Private Property4 As Tuple(Of Char, Nullable(Of Integer))
 '                     ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Fields#Fields1#Property4.
 '                               documentation ```vb\nPrivate Fields1.Property4 As Tuple(Of Char, Integer?)\n```

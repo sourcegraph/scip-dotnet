@@ -9,7 +9,7 @@
   Namespace VBMain
 '           ^^^^^^ reference scip-dotnet nuget . . VBMain/
       <SuppressMessage("ReSharper", "all")>
-'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
+'      ^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 CodeAnalysis/SuppressMessageAttribute#`.ctor`().
       Public Class Statements
 '                  ^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#
 '                             documentation ```vb\nClass Statements\n```
@@ -18,16 +18,16 @@
 '                           documentation ```vb\nPrivate Sub Statements.Try()\n```
               Try
                   File.ReadLines("asd")
-'                 ^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#
-'                      ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#ReadLines().
+'                 ^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 IO/File#
+'                      ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 IO/File#ReadLines().
               Catch err As Exception
 '                   ^^^ definition local 0
 '                       documentation ```vb\nerr As Class Exception\n```
 '                   ^^^ reference local 0
-'                          ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Exception#
+'                          ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Exception#
                   Console.WriteLine(err)
-'                 ^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#
-'                         ^^^^^^^^^ reference scip-dotnet nuget System.Console 7.0.0.0 System/Console#WriteLine(+9).
+'                 ^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#
+'                         ^^^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#WriteLine(+9).
 '                                   ^^^ reference local 0
               End Try
           End Sub
@@ -48,11 +48,11 @@
               Property F1 As Int32
 '                      ^^ definition scip-dotnet nuget . . VBMain/Statements#Inferred#F1.
 '                         documentation ```vb\nPublic Property Inferred.F1 As Integer\n```
-'                            ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#
+'                            ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Int32#
               Property F2 As Int32
 '                      ^^ definition scip-dotnet nuget . . VBMain/Statements#Inferred#F2.
 '                         documentation ```vb\nPublic Property Inferred.F2 As Integer\n```
-'                            ^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/Int32#
+'                            ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Int32#
           End Class
 
           Private Sub InferredTuples()
@@ -66,14 +66,14 @@
 '                 ^^^^^^ definition local 3
 '                        documentation ```vb\nResult As Interface IEnumerable(Of (F1 As Integer, F2 As Integer))\n```
 '                          ^^^^ reference local 2
-'                               ^^^^^^ reference scip-dotnet nuget System.Linq 7.0.0.0 Linq/Enumerable#Select().
+'                               ^^^^^^ reference scip-dotnet nuget System.Linq 8.0.0.0 Linq/Enumerable#Select().
 '                                               ^ definition local 5
 '                                                 documentation ```vb\nc As Inferred\n```
 '                                                   ^ reference local 5
 '                                                     ^^ reference scip-dotnet nuget . . VBMain/Statements#Inferred#F1.
 '                                                         ^ reference local 5
 '                                                           ^^ reference scip-dotnet nuget . . VBMain/Statements#Inferred#F2.
-'                                                                ^^^^^ reference scip-dotnet nuget System.Linq 7.0.0.0 Linq/Enumerable#Where().
+'                                                                ^^^^^ reference scip-dotnet nuget System.Linq 8.0.0.0 Linq/Enumerable#Where().
 '                                                                               ^ definition local 7
 '                                                                                 documentation ```vb\nt As (F1 As Integer, F2 As Integer)\n```
 '                                                                                  ^ reference local 7
@@ -96,18 +96,18 @@
           Class MyDisposable
 '               ^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#MyDisposable#
 '                            documentation ```vb\nClass MyDisposable\n```
-'                            relationship implementation scip-dotnet nuget System.Runtime 7.0.0.0 System/IDisposable#
+'                            relationship implementation scip-dotnet nuget System.Runtime 8.0.0.0 System/IDisposable#
               Implements IDisposable
-'                        ^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/IDisposable#
+'                        ^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/IDisposable#
 
               Private Sub Dispose() Implements IDisposable.Dispose
 '                         ^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#MyDisposable#Dispose().
 '                                 documentation ```vb\nPrivate Sub MyDisposable.Dispose()\n```
-'                                 relationship implementation reference scip-dotnet nuget System.Runtime 7.0.0.0 System/IDisposable#Dispose().
-'                                              ^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/IDisposable#
-'                                                          ^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/IDisposable#Dispose().
+'                                 relationship implementation reference scip-dotnet nuget System.Runtime 8.0.0.0 System/IDisposable#Dispose().
+'                                              ^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/IDisposable#
+'                                                          ^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/IDisposable#Dispose().
                   Throw New NotImplementedException()
-'                           ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 System/NotImplementedException#
+'                           ^^^^^^^^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/NotImplementedException#
               End Sub
           End Class
 
@@ -135,19 +135,19 @@
               Using a As Stream = File.OpenRead("a"), b As Stream = File.OpenRead("a")
 '                   ^ definition local 14
 '                     documentation ```vb\na As Class Stream\n```
-'                        ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/Stream#
-'                                 ^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#
-'                                      ^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#OpenRead().
+'                        ^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 IO/Stream#
+'                                 ^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 IO/File#
+'                                      ^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 IO/File#OpenRead().
 '                                                     ^ definition local 15
 '                                                       documentation ```vb\nb As Class Stream\n```
-'                                                          ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/Stream#
-'                                                                   ^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#
-'                                                                        ^^^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/File#OpenRead().
+'                                                          ^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 IO/Stream#
+'                                                                   ^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 IO/File#
+'                                                                        ^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 IO/File#OpenRead().
                   Return a.Length + b.Length
 '                        ^ reference local 14
-'                          ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/Stream#Length.
+'                          ^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 IO/Stream#Length.
 '                                   ^ reference local 15
-'                                     ^^^^^^ reference scip-dotnet nuget System.Runtime 7.0.0.0 IO/Stream#Length.
+'                                     ^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 IO/Stream#Length.
               End Using
           End Function
 
