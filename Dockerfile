@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:10.0@sha256:3f3cc2daa2358dea8a50d47153c87abc61d301b45606021535fd595cea0d0114
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0
 WORKDIR /scip-dotnet
 ADD . /scip-dotnet
 RUN dotnet pack
