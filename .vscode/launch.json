@@ -9,7 +9,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/ScipDotnet/bin/Debug/net8.0/scip-dotnet.dll",
+      "program": "${workspaceFolder}/ScipDotnet/bin/Debug/net10.0/scip-dotnet.dll",
       "args": ["index", "--working-directory", "${input:path}"],
       "cwd": "${workspaceFolder}",
       "stopAtEntry": false,
