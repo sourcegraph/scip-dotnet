@@ -20,7 +20,7 @@ public class ScipProjectIndexer
 
     private void Restore(IndexCommandOptions options, FileInfo project)
     {
-        var arguments = project.Extension.Equals(".sln") ? $"restore {project.FullName} /p:EnableWindowsTargeting=true" : "restore /p:EnableWindowsTargeting=true";
+        var arguments = project.Extension.Equals(".sln") || project.Extension.Equals(".slnx") ? $"restore {project.FullName} /p:EnableWindowsTargeting=true" : "restore /p:EnableWindowsTargeting=true";
         if (options.NugetConfigPath != null)
         {
             arguments += $" --configfile \"{options.NugetConfigPath.FullName}\"";
