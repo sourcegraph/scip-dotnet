@@ -21,7 +21,7 @@ public static class Program
     {
         var indexCommand = new Command("index", "Index a solution file")
         {
-            new Argument<FileInfo>("projects", "Path to the .sln (solution) or .csproj/.vbproj file")
+            new Argument<FileInfo>("projects", "Path to the .sln/.slnx (solution) or .csproj/.vbproj file")
                 { Arity = ArgumentArity.ZeroOrMore },
             new Option<string>("--output", () => "index.scip",
                 "Path to the output SCIP index file"),
