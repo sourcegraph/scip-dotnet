@@ -21,6 +21,8 @@ jobs:
       - run: dotnet format --verify-no-changes
       - run: dotnet format --verify-no-changes
         working-directory: snapshots/input/syntax
+      - run: dotnet format --verify-no-changes
+        working-directory: snapshots/input/syntax-slnx
   test:
     runs-on: ${{ matrix.os }}
     strategy:
