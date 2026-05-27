@@ -22,7 +22,14 @@ public class ScipCSharpSyntaxWalker : CSharpSyntaxWalker
     {
         if (!node.IsVar)
         {
-            _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetSymbolInfo(node).Symbol, node.GetLocation(), false);
+            try
+            {
+                _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetSymbolInfo(node).Symbol, node.GetLocation(), false);
+            }
+            catch (NullReferenceException)
+            {
+                // Roslyn GetSymbolInfo can throw NullReferenceException on certain code patterns
+            }
         }
 
         base.VisitIdentifierName(node);
