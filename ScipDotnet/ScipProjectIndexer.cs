@@ -20,7 +20,9 @@ public class ScipProjectIndexer
 
     private void Restore(IndexCommandOptions options, FileInfo project)
     {
-        var arguments = project.Extension.Equals(".sln") ? $"restore {project.FullName} /p:EnableWindowsTargeting=true" : "restore /p:EnableWindowsTargeting=true";
+        var isSolution = project.Extension.Equals(".sln", StringComparison.OrdinalIgnoreCase)
+                      || project.Extension.Equals(".slnx", StringComparison.OrdinalIgnoreCase);
+        var arguments = isSolution ? $"restore {project.FullName} /p:EnableWindowsTargeting=true" : "restore /p:EnableWindowsTargeting=true";
         if (options.NugetConfigPath != null)
         {
             arguments += $" --configfile \"{options.NugetConfigPath.FullName}\"";
@@ -64,7 +66,9 @@ public class ScipProjectIndexer
             Restore(options, rootProject);
         }
 
-        var projects = (string.Equals(rootProject.Extension, ".csproj") || string.Equals(rootProject.Extension, ".vbproj")
+        var isProjectFile = string.Equals(rootProject.Extension, ".csproj", StringComparison.OrdinalIgnoreCase)
+                         || string.Equals(rootProject.Extension, ".vbproj", StringComparison.OrdinalIgnoreCase);
+        var projects = (isProjectFile
             ? new[]
             {
                 await host.Services.GetRequiredService<MSBuildWorkspace>()

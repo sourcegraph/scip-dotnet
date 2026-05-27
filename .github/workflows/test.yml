@@ -15,13 +15,14 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
-            7.x
             8.x
             9.x
             10.x
       - run: dotnet format --verify-no-changes
       - run: dotnet format --verify-no-changes
         working-directory: snapshots/input/syntax
+      - run: dotnet format --verify-no-changes
+        working-directory: snapshots/input/syntax-slnx
   test:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -33,13 +34,9 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
-            6.x
-            7.x
             8.x
             9.x
             10.x
       - run: dotnet test -p:TargetFrameworks=net10.0
       - run: dotnet test -p:TargetFrameworks=net9.0
       - run: dotnet test -p:TargetFrameworks=net8.0
-      - run: dotnet test -p:TargetFrameworks=net7.0
-      - run: dotnet test -p:TargetFrameworks=net6.0
