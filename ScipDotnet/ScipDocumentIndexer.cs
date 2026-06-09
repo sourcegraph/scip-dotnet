@@ -291,33 +291,35 @@ public class ScipDocumentIndexer
                     var baseType = namedTypeSymbol.BaseType;
                     while (baseType != null)
                     {
-                        var baseTypeSymbol = CreateScipSymbol(baseType).Value;
-                        if (IsIgnoredRelationshipSymbol(baseTypeSymbol))
+                        var baseTypeScip = CreateScipSymbol(baseType);
+                        if (IsIgnoredRelationshipSymbol(baseTypeScip.Value))
                         {
                             break;
                         }
 
                         info.Relationships.Add(new Relationship
                         {
-                            Symbol = baseTypeSymbol,
+                            Symbol = baseTypeScip.Value,
                             IsImplementation = true
                         });
+                        CollectExternalRelationship(baseType, baseTypeScip);
                         baseType = baseType.BaseType;
                     }
 
                     foreach (var interfaceSymbol in namedTypeSymbol.AllInterfaces)
                     {
-                        var interfaceSymbolSymbol = CreateScipSymbol(interfaceSymbol).Value;
-                        if (IsIgnoredRelationshipSymbol(interfaceSymbolSymbol))
+                        var interfaceScip = CreateScipSymbol(interfaceSymbol);
+                        if (IsIgnoredRelationshipSymbol(interfaceScip.Value))
                         {
                             continue;
                         }
 
                         info.Relationships.Add(new Relationship
                         {
-                            Symbol = interfaceSymbolSymbol,
+                            Symbol = interfaceScip.Value,
                             IsImplementation = true
                         });
+                        CollectExternalRelationship(interfaceSymbol, interfaceScip);
                     }
 
                     break;
@@ -327,27 +329,44 @@ public class ScipDocumentIndexer
                     var overriddenMethod = methodSymbol.OverriddenMethod;
                     while (overriddenMethod != null)
                     {
+                        var overriddenScip = CreateScipSymbol(overriddenMethod);
                         info.Relationships.Add(new Relationship
                         {
-                            Symbol = CreateScipSymbol(overriddenMethod).Value,
+                            Symbol = overriddenScip.Value,
                             IsImplementation = true,
                             IsReference = true
                         });
+                        CollectExternalRelationship(overriddenMethod, overriddenScip);
                         overriddenMethod = overriddenMethod.OverriddenMethod;
                     }
 
                     foreach (var interfaceMethod in ScipDocumentIndexer.InterfaceImplementations(methodSymbol))
                     {
+                        var interfaceMethodScip = CreateScipSymbol(interfaceMethod);
                         info.Relationships.Add(new Relationship
                         {
-                            Symbol = CreateScipSymbol(interfaceMethod).Value,
+                            Symbol = interfaceMethodScip.Value,
                             IsImplementation = true,
                             IsReference = true
                         });
+                        CollectExternalRelationship(interfaceMethod, interfaceMethodScip);
                     }
 
                     break;
                 }
+        }
+    }
+
+    // Collects an external-package symbol that appears only as a relationship target
+    // (e.g. an implicitly implemented IEquatable<T> on a record, or a transitive base
+    // class / inherited interface that never appears textually in the source and so is
+    // never seen by VisitOccurrence). Without this, the relationship dangles
+    // (scip lint: "has a relationship to <symbol>, couldn't find #2").
+    private void CollectExternalRelationship(ISymbol related, ScipSymbol scip)
+    {
+        if (scip.IsExternalPackageSymbol() && !_externalSymbols.ContainsKey(scip.Value))
+        {
+            _externalSymbols[scip.Value] = CreateExternalSymbolInformation(related, scip.Value);
         }
     }
 

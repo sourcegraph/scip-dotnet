@@ -25,20 +25,7 @@ public class ExternalSymbolsTests
         var indexFile = IndexDirectory(inputDirectory);
         var index = Index.Parser.ParseFrom(File.ReadAllBytes(indexFile));
 
-        // The set of symbols for which a SymbolInformation exists, either as an
-        // in-document definition or as an external symbol.
-        var declared = new HashSet<string>();
-        foreach (var document in index.Documents)
-        {
-            foreach (var info in document.Symbols)
-            {
-                declared.Add(info.Symbol);
-            }
-        }
-        foreach (var info in index.ExternalSymbols)
-        {
-            declared.Add(info.Symbol);
-        }
+        var declared = DeclaredSymbols(index);
 
         var dangling = new SortedSet<string>();
         foreach (var document in index.Documents)
@@ -55,6 +42,60 @@ public class ExternalSymbolsTests
         Assert.That(dangling, Is.Empty,
             "Occurrences reference external-package symbols that have no SymbolInformation "
             + "in external_symbols or any document:\n  " + string.Join("\n  ", dangling));
+    }
+
+    // Every external-package symbol referenced as a relationship target (e.g. the
+    // implicitly implemented IEquatable<T> on a record, or a transitively inherited
+    // interface that never appears textually in the source) must also be declared in
+    // external_symbols. Otherwise scip lint reports:
+    //   "has a relationship to <symbol>, but couldn't find #2 in external symbols ...".
+    [Test]
+    public void EveryExternalRelationshipTargetHasSymbolInformation()
+    {
+        var inputDirectory = Path.Join(RootDirectory(), "snapshots", "input", "syntax");
+        var indexFile = IndexDirectory(inputDirectory);
+        var index = Index.Parser.ParseFrom(File.ReadAllBytes(indexFile));
+
+        var declared = DeclaredSymbols(index);
+
+        var dangling = new SortedSet<string>();
+        foreach (var document in index.Documents)
+        {
+            foreach (var info in document.Symbols)
+            {
+                foreach (var relationship in info.Relationships)
+                {
+                    if (IsGenuineExternal(relationship.Symbol) && !declared.Contains(relationship.Symbol))
+                    {
+                        dangling.Add(relationship.Symbol);
+                    }
+                }
+            }
+        }
+
+        Assert.That(dangling, Is.Empty,
+            "SymbolInformation relationships target external-package symbols that have no "
+            + "SymbolInformation in external_symbols or any document:\n  " + string.Join("\n  ", dangling));
+    }
+
+    // The set of symbols for which a SymbolInformation exists, either as an
+    // in-document definition or as an external symbol.
+    private static HashSet<string> DeclaredSymbols(Index index)
+    {
+        var declared = new HashSet<string>();
+        foreach (var document in index.Documents)
+        {
+            foreach (var info in document.Symbols)
+            {
+                declared.Add(info.Symbol);
+            }
+        }
+        foreach (var info in index.ExternalSymbols)
+        {
+            declared.Add(info.Symbol);
+        }
+
+        return declared;
     }
 
     // A "genuine external" symbol is a global symbol that resolves to a real NuGet/BCL
