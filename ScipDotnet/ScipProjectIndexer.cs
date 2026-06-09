@@ -18,6 +18,12 @@ public class ScipProjectIndexer
 
     private ILogger<ScipProjectIndexer> Logger { get; }
 
+    // Index-wide collections populated while documents are indexed. After indexing
+    // finishes, the caller copies ExternalSymbols (minus DefinedSymbols) into
+    // Index.external_symbols so that cross-package references are resolvable.
+    public Dictionary<string, Scip.SymbolInformation> ExternalSymbols { get; } = new();
+    public HashSet<string> DefinedSymbols { get; } = new();
+
     private void Restore(IndexCommandOptions options, FileInfo project)
     {
         var isSolution = project.Extension.Equals(".sln", StringComparison.OrdinalIgnoreCase)
@@ -144,7 +150,7 @@ public class ScipProjectIndexer
         }
         else
         {
-            var symbolFormatter = new ScipDocumentIndexer(doc, options, globals);
+            var symbolFormatter = new ScipDocumentIndexer(doc, options, globals, ExternalSymbols, DefinedSymbols);
             var root = await document.GetSyntaxRootAsync();
             if (language == "C#")
             {
