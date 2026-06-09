@@ -15,6 +15,15 @@ public class ScipDocumentIndexer
     private int _localCounter;
     private readonly Dictionary<ISymbol, ScipSymbol> _globals;
     private readonly Dictionary<ISymbol, ScipSymbol> _locals = new(SymbolEqualityComparer.Default);
+
+    // Index-wide accounting shared across every document, used to populate
+    // Index.external_symbols. `_externalSymbols` maps a SCIP symbol string to the
+    // SymbolInformation we will emit for a referenced external-package symbol.
+    // `_definedSymbols` is the set of symbols that already have an in-source definition;
+    // it lets us avoid duplicating a symbol in external_symbols (relevant when
+    // --allow-global-symbol-definitions assigns a real package name to a source symbol).
+    private readonly Dictionary<string, SymbolInformation> _externalSymbols;
+    private readonly HashSet<string> _definedSymbols;
     private readonly string _markdownCodeFenceLanguage;
 
     // Custom formatting options to render symbol documentation. Feel free to tweak these parameters.
@@ -59,11 +68,15 @@ public class ScipDocumentIndexer
     public ScipDocumentIndexer(
         Document doc,
         IndexCommandOptions options,
-        Dictionary<ISymbol, ScipSymbol> globals)
+        Dictionary<ISymbol, ScipSymbol> globals,
+        Dictionary<string, SymbolInformation> externalSymbols,
+        HashSet<string> definedSymbols)
     {
         _doc = doc;
         _options = options;
         _globals = globals;
+        _externalSymbols = externalSymbols;
+        _definedSymbols = definedSymbols;
         _markdownCodeFenceLanguage = _doc.Language == "C#" ? "cs" : "vb";
     }
 
@@ -226,7 +239,8 @@ public class ScipDocumentIndexer
             symbolRole |= (int)SymbolRole.Definition;
         }
 
-        var scipSymbol = CreateScipSymbol(symbol).Value;
+        var scip = CreateScipSymbol(symbol);
+        var scipSymbol = scip.Value;
         var occurrence = new Occurrence
         {
             Symbol = scipSymbol,
@@ -238,9 +252,23 @@ public class ScipDocumentIndexer
             occurrence.Range.Add(range);
         }
 
-        if (!isDefinition) return;
+        if (!isDefinition)
+        {
+            // This occurrence references a symbol that is not defined in the indexed
+            // source. If it belongs to an external NuGet/BCL package, record a minimal
+            // SymbolInformation so the reference is resolvable via Index.external_symbols.
+            // Without this, every cross-package reference dangles (scip lint reports
+            // "no matching SymbolInformation in external symbols or any document").
+            if (scip.IsExternalPackageSymbol() && !_externalSymbols.ContainsKey(scipSymbol))
+            {
+                _externalSymbols[scipSymbol] = CreateExternalSymbolInformation(symbol, scipSymbol);
+            }
+
+            return;
+        }
 
         // Emit SymbolInformation for this definition occurrence.
+        _definedSymbols.Add(scipSymbol);
         var info = new SymbolInformation { Symbol = scipSymbol };
         _doc.Symbols.Add(info);
 
@@ -321,6 +349,30 @@ public class ScipDocumentIndexer
                     break;
                 }
         }
+    }
+
+    // Builds the SymbolInformation emitted into Index.external_symbols for a referenced
+    // external-package symbol. We intentionally emit only the symbol and its hover
+    // documentation: unlike in-source definitions we do NOT walk base types / interfaces,
+    // because doing so would recurse across the entire BCL type graph and generate an
+    // unbounded number of additional external symbols.
+    private SymbolInformation CreateExternalSymbolInformation(ISymbol symbol, string scipSymbol)
+    {
+        var info = new SymbolInformation { Symbol = scipSymbol };
+
+        var symbolSignature = symbol.ToDisplayString(_format);
+        if (symbolSignature.Length > 0)
+        {
+            info.Documentation.Add($"```{_markdownCodeFenceLanguage}\n{symbolSignature}\n```");
+        }
+
+        var symbolDocumentation = symbol.GetDocumentationCommentXml();
+        if (symbolDocumentation?.Length > 0)
+        {
+            info.Documentation.Add(symbolDocumentation);
+        }
+
+        return info;
     }
 
     // Returns explicitly and implicitly implemented interface methods by the given symbol method.

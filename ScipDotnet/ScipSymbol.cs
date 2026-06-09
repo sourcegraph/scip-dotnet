@@ -16,6 +16,15 @@ public class ScipSymbol
     public bool IsLocal() =>
         Value.StartsWith("local ");
 
+    // SCIP symbol prefix shared by every global (package-scoped) symbol this tool emits.
+    private const string PackagePrefix = "scip-dotnet nuget ";
+
+    // True if this symbol resolves to a real external NuGet/BCL package, i.e. a global
+    // symbol that is NOT the index-local package placeholder (`scip-dotnet nuget . . `).
+    // These are the symbols that must be declared in Index.external_symbols.
+    public bool IsExternalPackageSymbol() =>
+        Value.StartsWith(PackagePrefix) && !Value.StartsWith(IndexLocalPackage.Value);
+
     public static ScipSymbol Global(ScipSymbol owner, SymbolDescriptor descriptor) =>
         new(owner.Value + DescriptorString(descriptor));
 

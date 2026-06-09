@@ -110,6 +110,17 @@ public static class IndexCommandHandler
             options.Logger.LogWarning("Indexing finished without error but no documents were indexed.");
         }
 
+        // Declare every referenced external-package symbol in Index.external_symbols so that
+        // cross-package references resolve. Skip any symbol that also has an in-source
+        // definition (possible under --allow-global-symbol-definitions). Order by symbol for
+        // deterministic output.
+        foreach (var external in indexer.ExternalSymbols
+                     .Where(entry => !indexer.DefinedSymbols.Contains(entry.Key))
+                     .OrderBy(entry => entry.Key, StringComparer.Ordinal))
+        {
+            index.ExternalSymbols.Add(external.Value);
+        }
+
         await File.WriteAllBytesAsync(options.Output.FullName, index.ToByteArray());
         options.Logger.LogInformation("done: {OptionsOutput} {TimeElapsed}", options.Output,
             stopwatch.Elapsed.ToFriendlyString());
