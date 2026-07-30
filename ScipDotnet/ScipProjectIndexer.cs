@@ -120,8 +120,105 @@ public class ScipProjectIndexer
                         document.FilePath);
                 }
             }
+
+            foreach (var document in await IndexSourceGeneratedDocuments(project, options, globals))
+            {
+                yield return document;
+            }
         }
     }
+
+    /// <summary>
+    /// Indexes the documents that the compiler synthesizes instead of reading from disk.
+    /// Razor views (.cshtml) and Blazor components (.razor) enter the compilation this way,
+    /// through the Razor source generator, so <code>project.Documents</code> never sees them.
+    ///
+    /// The generated C# lives under <code>obj/</code> and usually does not exist on disk at all,
+    /// so reporting its path would produce an index full of files nobody can open. Instead we
+    /// follow the <code>#line</code> directives that the generator emits, group the occurrences
+    /// by the original file each one came from and report that file. Occurrences that map to
+    /// generated code rather than to a file the developer wrote are dropped.
+    /// </summary>
+    private async Task<IEnumerable<Scip.Document>> IndexSourceGeneratedDocuments(
+        Project project,
+        IndexCommandOptions options,
+        Dictionary<ISymbol, ScipSymbol> globals)
+    {
+        var documentsByOriginalPath = new Dictionary<string, Scip.Document>();
+        var generatedDocuments = await project.GetSourceGeneratedDocumentsAsync();
+        options.Logger.LogDebug($"Found {generatedDocuments.Count()} source generated documents in {project.FilePath}");
+        foreach (var document in generatedDocuments)
+        {
+            var tree = await document.GetSyntaxTreeAsync();
+            if (tree == null)
+            {
+                continue;
+            }
+
+            foreach (var originalPath in OriginalFilePaths(tree))
+            {
+                if (!options.Matcher.Match(options.WorkingDirectory.FullName, originalPath).HasMatches)
+                {
+                    options.Logger.LogDebug(
+                        "Excluded file path '{FilePath}' because it did not match the provided --include and --exclude arguments",
+                        originalPath);
+                    continue;
+                }
+
+                if (!documentsByOriginalPath.TryGetValue(originalPath, out var doc))
+                {
+                    doc = new Scip.Document
+                    {
+                        Language = project.Language,
+                        RelativePath = Path.GetRelativePath(options.WorkingDirectory.FullName, originalPath)
+                    };
+                    documentsByOriginalPath.Add(originalPath, doc);
+                }
+
+                await WalkDocument(doc, document, options, globals, project.Language, originalPath);
+            }
+        }
+
+        foreach (var doc in documentsByOriginalPath.Values)
+        {
+            RemoveDuplicates(doc);
+        }
+
+        return documentsByOriginalPath.Values;
+    }
+
+    /// <summary>
+    /// Removes the occurrences and symbols that we recorded more than once because several
+    /// generated files attribute the same region of the same original file to themselves.
+    /// </summary>
+    private static void RemoveDuplicates(Scip.Document doc)
+    {
+        var seenOccurrences = new HashSet<string>();
+        var occurrences = doc.Occurrences.Where(occurrence => seenOccurrences.Add(OccurrenceKey(occurrence))).ToList();
+        doc.Occurrences.Clear();
+        doc.Occurrences.AddRange(occurrences);
+
+        var seenSymbols = new HashSet<string>();
+        var symbols = doc.Symbols.Where(symbol => seenSymbols.Add(symbol.Symbol)).ToList();
+        doc.Symbols.Clear();
+        doc.Symbols.AddRange(symbols);
+    }
+
+    private static string OccurrenceKey(Scip.Occurrence occurrence) =>
+        $"{occurrence.Symbol} {occurrence.SymbolRoles} {string.Join(",", occurrence.Range)}";
+
+    /// <summary>
+    /// Returns the files that a generated syntax tree attributes its contents to via
+    /// <code>#line</code> directives. A single generated Razor file can point at more than one
+    /// original file because directives from <code>_ViewImports.cshtml</code> are copied into
+    /// every view that inherits them.
+    /// </summary>
+    private static IEnumerable<string> OriginalFilePaths(SyntaxTree tree) =>
+        tree.GetLineMappings()
+            .Where(mapping => !mapping.IsHidden && mapping.MappedSpan.HasMappedPath)
+            .Select(mapping => mapping.MappedSpan.Path)
+            .Where(path => !string.IsNullOrEmpty(path) && File.Exists(path))
+            .Distinct();
 
     private async Task<Scip.Document> IndexDocument(Document document,
                                                     IndexCommandOptions options,
@@ -135,29 +232,42 @@ public class ScipProjectIndexer
                 ? null
                 : Path.GetRelativePath(options.WorkingDirectory.FullName, document.FilePath)
         };
+        await WalkDocument(doc, document, options, globals, language, originalFilePath: null);
+        return doc;
+    }
+
+    /// <summary>
+    /// Walks <paramref name="document"/> and adds what it finds to <paramref name="doc"/>. When
+    /// <paramref name="originalFilePath"/> is non-null only the occurrences that <code>#line</code>
+    /// directives attribute to that file are recorded.
+    /// </summary>
+    private async Task WalkDocument(Scip.Document doc,
+                                    Document document,
+                                    IndexCommandOptions options,
+                                    Dictionary<ISymbol, ScipSymbol> globals,
+                                    string language,
+                                    string? originalFilePath)
+    {
         var semanticModel = await document.GetSemanticModelAsync();
         if (semanticModel == null)
         {
             Logger.LogWarning(
                 "Skipping document {DocumentFilePath} because document.GetSemanticModelAsync() returned null",
                 document.FilePath);
-        }
-        else
-        {
-            var symbolFormatter = new ScipDocumentIndexer(doc, options, globals);
-            var root = await document.GetSyntaxRootAsync();
-            if (language == "C#")
-            {
-                var walker = new ScipCSharpSyntaxWalker(symbolFormatter, semanticModel);
-                walker.Visit(root);
-            }
-            else if (language == "Visual Basic")
-            {
-                var walker = new ScipVisualBasicSyntaxWalker(symbolFormatter, semanticModel);
-                walker.Visit(root);
-            }
+            return;
         }
 
-        return doc;
+        var symbolFormatter = new ScipDocumentIndexer(doc, options, globals, originalFilePath);
+        var root = await document.GetSyntaxRootAsync();
+        if (language == "C#")
+        {
+            var walker = new ScipCSharpSyntaxWalker(symbolFormatter, semanticModel);
+            walker.Visit(root);
+        }
+        else if (language == "Visual Basic")
+        {
+            var walker = new ScipVisualBasicSyntaxWalker(symbolFormatter, semanticModel);
+            walker.Visit(root);
+        }
     }
 }

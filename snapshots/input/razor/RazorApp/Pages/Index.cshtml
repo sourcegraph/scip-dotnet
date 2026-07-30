@@ -1,0 +1,14 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = Model.Greeting;
+}
+
+<h1>@Model.Greeting</h1>
+<p>@Model.Shout("world")</p>
+
+@functions {
+    private static string Loud(string text) => text.ToUpperInvariant();
+}
+
+<p>@Loud(Model.Greeting)</p>
