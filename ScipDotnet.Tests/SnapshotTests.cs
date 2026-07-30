@@ -47,7 +47,7 @@ public class SnapshotTests
                 RecursivelyListFiles(outputDirectory, absoluteOutputPaths);
                 foreach (var absolutePath in absoluteOutputPaths)
                 {
-                    if (!absolutePath.EndsWith(".cs"))
+                    if (!IsSnapshotFile(absolutePath))
                     {
                         continue;
                     }
@@ -78,6 +78,13 @@ public class SnapshotTests
             });
         }
     }
+
+    /// <summary>
+    /// Razor views (.cshtml) and Blazor components (.razor) are never compiled from disk, the
+    /// Razor source generator feeds them to the compiler, so they have their own snapshots.
+    /// </summary>
+    private static bool IsSnapshotFile(string path) =>
+        path.EndsWith(".cs") || path.EndsWith(".cshtml") || path.EndsWith(".razor");
 
     private static void RecursivelyListFiles(string path, List<string> result)
     {
