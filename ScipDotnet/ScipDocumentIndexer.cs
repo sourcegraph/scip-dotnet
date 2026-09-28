@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Scip;
 using Document = Scip.Document;
+using Kind = Scip.SymbolInformation.Types.Kind;
 
 namespace ScipDotnet;
 
@@ -175,6 +176,29 @@ public class ScipDocumentIndexer
         }
     }
 
+    // SymbolInformation.Kind from the Roslyn symbol; anything not listed stays UnspecifiedKind.
+    private static Kind ScipKind(ISymbol sym) => sym switch
+    {
+        INamedTypeSymbol { TypeKind: TypeKind.Class } => Kind.Class,
+        INamedTypeSymbol { TypeKind: TypeKind.Interface } => Kind.Interface,
+        INamedTypeSymbol { TypeKind: TypeKind.Struct } => Kind.Struct,
+        INamedTypeSymbol { TypeKind: TypeKind.Enum } => Kind.Enum,
+        INamedTypeSymbol { TypeKind: TypeKind.Delegate } => Kind.Delegate,
+        INamedTypeSymbol { TypeKind: TypeKind.Module } => Kind.Module,
+        IMethodSymbol { MethodKind: MethodKind.Constructor or MethodKind.StaticConstructor } => Kind.Constructor,
+        IMethodSymbol { MethodKind: MethodKind.Ordinary, IsStatic: true } => Kind.StaticMethod,
+        IMethodSymbol { MethodKind: MethodKind.Ordinary } => Kind.Method,
+        IPropertySymbol { IsIndexer: false, IsStatic: true } => Kind.StaticProperty,
+        IPropertySymbol { IsIndexer: false } => Kind.Property,
+        IFieldSymbol { ContainingType.TypeKind: TypeKind.Enum } => Kind.EnumMember,
+        IFieldSymbol { IsConst: true } => Kind.Constant,
+        IFieldSymbol { IsStatic: true } => Kind.StaticField,
+        IFieldSymbol => Kind.Field,
+        IEventSymbol { IsStatic: true } => Kind.StaticEvent,
+        IEventSymbol => Kind.Event,
+        _ => Kind.UnspecifiedKind,
+    };
+
     private static string MethodDisambiguator(ISymbol sym)
     {
         if (sym is not IMethodSymbol)
@@ -241,7 +265,7 @@ public class ScipDocumentIndexer
         if (!isDefinition) return;
 
         // Emit SymbolInformation for this definition occurrence.
-        var info = new SymbolInformation { Symbol = scipSymbol };
+        var info = new SymbolInformation { Symbol = scipSymbol, Kind = ScipKind(symbol) };
         _doc.Symbols.Add(info);
 
         var symbolSignature = symbol.ToDisplayString(_format);
