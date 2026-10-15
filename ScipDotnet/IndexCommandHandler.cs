@@ -126,7 +126,12 @@ public static class IndexCommandHandler
             string.Equals(Path.GetExtension(file), ".slnx", StringComparison.OrdinalIgnoreCase) ||
             string.Equals(Path.GetExtension(file), ".csproj", StringComparison.OrdinalIgnoreCase) ||
             string.Equals(Path.GetExtension(file), ".vbproj", StringComparison.OrdinalIgnoreCase)
-        ).ToList();
+        )
+            // Solutions (.sln/.slnx) before project files, each in name order. Directory.GetFiles returns
+            // the order of the file system, and a project file must come after the solution that loads it.
+            .OrderBy(file => Path.GetExtension(file).StartsWith(".sln", StringComparison.OrdinalIgnoreCase) ? 0 : 1)
+            .ThenBy(file => file, StringComparer.Ordinal)
+            .ToList();
 
         if (paths.Count != 0)
         {

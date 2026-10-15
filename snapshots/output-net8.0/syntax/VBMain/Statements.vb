@@ -32,6 +32,29 @@
               End Try
           End Sub
 
+          Private Sub TryWithoutExceptionVariable(fileName As String)
+'                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#TryWithoutExceptionVariable().
+'                                                 documentation ```vb\nPrivate Sub Statements.TryWithoutExceptionVariable(fileName As String)\n```
+'                                                 ^^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#TryWithoutExceptionVariable().(fileName)
+'                                                          documentation ```vb\nfileName As String\n```
+              Try
+                  File.ReadLines(fileName)
+'                 ^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 IO/File#
+'                      ^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 IO/File#ReadLines().
+'                                ^^^^^^^^ reference scip-dotnet nuget . . VBMain/Statements#TryWithoutExceptionVariable().(fileName)
+              Catch When fileName.Length = 0
+'                        ^^^^^^^^ reference scip-dotnet nuget . . VBMain/Statements#TryWithoutExceptionVariable().(fileName)
+'                                 ^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/String#Length.
+                  Console.WriteLine("empty file name")
+'                 ^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#
+'                         ^^^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#WriteLine(+11).
+              Catch
+                  Console.WriteLine("failed")
+'                 ^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#
+'                         ^^^^^^^^^ reference scip-dotnet nuget System.Console 8.0.0.0 System/Console#WriteLine(+11).
+              End Try
+          End Sub
+
           Private Function [Default]() As (A As String, B As Boolean)
 '                          ^^^^^^^^^ definition scip-dotnet nuget . . VBMain/Statements#Default().
 '                                    documentation ```vb\nPrivate Function Statements.Default() As (A As String, B As Boolean)\n```
