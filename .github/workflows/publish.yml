@@ -6,13 +6,20 @@ jobs:
   nuget-push:
     runs-on: ubuntu-latest
     environment: NuGet
+    permissions:
+      contents: read
+      id-token: write # nuget.org Trusted Publishing exchanges the GitHub OIDC token for a short-lived API key
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-dotnet@v6
         with:
           dotnet-version: 10.x
       - run: dotnet pack
-      - run: dotnet nuget push 'ScipDotnet/bin/Release/*.nupkg' --source 'nuget.org' --api-key '${{ secrets.NUGET_APIKEY }}' --skip-duplicate
+      - uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: chrapkowski-sg # nuget.org profile name of the Trusted Publishing policy creator
+      - run: dotnet nuget push 'ScipDotnet/bin/Release/*.nupkg' --source 'nuget.org' --api-key '${{ steps.nuget-login.outputs.NUGET_API_KEY }}' --skip-duplicate
   docker-push:
     runs-on: ubuntu-latest
     steps:
