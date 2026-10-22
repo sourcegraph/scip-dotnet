@@ -1,0 +1,31 @@
+  @page
+  @model IndexModel
+//       ^^^^^^^^^^ reference scip-dotnet nuget . . Pages/IndexModel#
+  @{
+      ViewData["Title"] = Model.Greeting;
+//    ^^^^^^^^ reference scip-dotnet nuget . . AspNetCoreGeneratedDocument/Pages_Index#ViewData.
+//                        ^^^^^ reference scip-dotnet nuget . . AspNetCoreGeneratedDocument/Pages_Index#Model.
+//                              ^^^^^^^^ reference scip-dotnet nuget . . Pages/IndexModel#Greeting.
+  }
+
+  <h1>@Model.Greeting</h1>
+//     ^^^^^ reference scip-dotnet nuget . . AspNetCoreGeneratedDocument/Pages_Index#Model.
+//           ^^^^^^^^ reference scip-dotnet nuget . . Pages/IndexModel#Greeting.
+  <p>@Model.Shout("world")</p>
+//    ^^^^^ reference scip-dotnet nuget . . AspNetCoreGeneratedDocument/Pages_Index#Model.
+//          ^^^^^ reference scip-dotnet nuget . . Pages/IndexModel#Shout().
+
+  @functions {
+      private static string Loud(string text) => text.ToUpperInvariant();
+//                          ^^^^ definition scip-dotnet nuget . . AspNetCoreGeneratedDocument/Pages_Index#Loud().
+//                               documentation ```cs\nprivate static string Pages_Index.Loud(string text)\n```
+//                                      ^^^^ definition scip-dotnet nuget . . AspNetCoreGeneratedDocument/Pages_Index#Loud().(text)
+//                                           documentation ```cs\nstring text\n```
+//                                               ^^^^ reference scip-dotnet nuget . . AspNetCoreGeneratedDocument/Pages_Index#Loud().(text)
+//                                                    ^^^^^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 10.0.0.0 System/String#ToUpperInvariant().
+  }
+
+  <p>@Loud(Model.Greeting)</p>
+//    ^^^^ reference scip-dotnet nuget . . AspNetCoreGeneratedDocument/Pages_Index#Loud().
+//         ^^^^^ reference scip-dotnet nuget . . AspNetCoreGeneratedDocument/Pages_Index#Model.
+//               ^^^^^^^^ reference scip-dotnet nuget . . Pages/IndexModel#Greeting.

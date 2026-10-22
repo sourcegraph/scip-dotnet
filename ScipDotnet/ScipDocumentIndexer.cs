@@ -16,6 +16,7 @@ public class ScipDocumentIndexer
     private readonly Dictionary<ISymbol, ScipSymbol> _globals;
     private readonly Dictionary<ISymbol, ScipSymbol> _locals = new(SymbolEqualityComparer.Default);
     private readonly string _markdownCodeFenceLanguage;
+    private readonly string? _originalFilePath;
 
     // Custom formatting options to render symbol documentation. Feel free to tweak these parameters.
     // The options were derived by multiple rounds of experimentation with the goal of striking a
@@ -56,14 +57,22 @@ public class ScipDocumentIndexer
                               SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers
     );
 
+    /// <param name="originalFilePath">
+    /// When non-null, only record the occurrences that <code>#line</code> directives attribute to
+    /// this file. Source generated documents such as the C# that the Razor generator emits for a
+    /// .cshtml file are a mixture of generated boilerplate and code the developer wrote, and only
+    /// the latter belongs in the index.
+    /// </param>
     public ScipDocumentIndexer(
         Document doc,
         IndexCommandOptions options,
-        Dictionary<ISymbol, ScipSymbol> globals)
+        Dictionary<ISymbol, ScipSymbol> globals,
+        string? originalFilePath = null)
     {
         _doc = doc;
         _options = options;
         _globals = globals;
+        _originalFilePath = originalFilePath;
         _markdownCodeFenceLanguage = _doc.Language == "C#" ? "cs" : "vb";
     }
 
@@ -216,6 +225,12 @@ public class ScipDocumentIndexer
     public void VisitOccurrence(ISymbol? symbol, Location location, bool isDefinition)
     {
         if (symbol == null)
+        {
+            return;
+        }
+
+        if (_originalFilePath != null &&
+            !string.Equals(location.GetMappedLineSpan().Path, _originalFilePath, StringComparison.Ordinal))
         {
             return;
         }
