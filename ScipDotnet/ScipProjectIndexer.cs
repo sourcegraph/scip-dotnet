@@ -61,21 +61,29 @@ public class ScipProjectIndexer
                                                                FileInfo rootProject,
                                                                HashSet<ProjectId> indexedProjects)
     {
-        if (!options.SkipDotnetRestore)
-        {
-            Restore(options, rootProject);
-        }
-
+        var workspace = host.Services.GetRequiredService<MSBuildWorkspace>();
         var isProjectFile = string.Equals(rootProject.Extension, ".csproj", StringComparison.OrdinalIgnoreCase)
                          || string.Equals(rootProject.Extension, ".vbproj", StringComparison.OrdinalIgnoreCase);
-        var projects = (isProjectFile
-            ? new[]
+
+        // A solution in the same directory may have loaded this project file already. Opening it a second time
+        // throws "'<name>' is already part of the workspace", so the loaded project is used instead, and
+        // indexedProjects skips it because the solution indexed it.
+        var projects = isProjectFile
+            ? workspace.CurrentSolution.Projects
+                .Where(project => string.Equals(project.FilePath, rootProject.FullName, StringComparison.OrdinalIgnoreCase))
+                .ToList()
+            : new List<Project>();
+        if (projects.Count == 0)
+        {
+            if (!options.SkipDotnetRestore)
             {
-                await host.Services.GetRequiredService<MSBuildWorkspace>()
-                    .OpenProjectAsync(rootProject.FullName)
+                Restore(options, rootProject);
             }
-            : (await host.Services.GetRequiredService<MSBuildWorkspace>()
-                .OpenSolutionAsync(rootProject.FullName)).Projects).ToList();
+
+            projects = (isProjectFile
+                ? new[] { await workspace.OpenProjectAsync(rootProject.FullName) }
+                : (await workspace.OpenSolutionAsync(rootProject.FullName)).Projects).ToList();
+        }
 
 
         options.Logger.LogDebug($"Found {projects.Count()} projects");

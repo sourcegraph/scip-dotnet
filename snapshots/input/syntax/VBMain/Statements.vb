@@ -12,6 +12,16 @@ Namespace VBMain
             End Try
         End Sub
 
+        Private Sub TryWithoutExceptionVariable(fileName As String)
+            Try
+                File.ReadLines(fileName)
+            Catch When fileName.Length = 0
+                Console.WriteLine("empty file name")
+            Catch
+                Console.WriteLine("failed")
+            End Try
+        End Sub
+
         Private Function [Default]() As (A As String, B As Boolean)
             Dim C As (A As String, B As Boolean) = ("42", 42)
             Return C
