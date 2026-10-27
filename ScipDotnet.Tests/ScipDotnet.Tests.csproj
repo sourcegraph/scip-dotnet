@@ -15,7 +15,7 @@
         <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
         <PackageReference Include="coverlet.collector" Version="10.1.0" />
         <PackageReference Include="TextCopy" Version="6.2.1" />
-        <PackageReference Include="Verify.NUnit" Version="19.14.1" />
+        <PackageReference Include="Verify.NUnit" Version="33.3.4" />
     </ItemGroup>
 
     <ItemGroup>
