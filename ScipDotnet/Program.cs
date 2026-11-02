@@ -1,6 +1,8 @@
 using System.CommandLine;
 using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis.MSBuild;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace ScipDotnet;
@@ -86,7 +88,7 @@ public static class Program
             var skipDotnetRestore = parseResult.GetValue(skipDotnetRestoreOption);
             var nugetConfigPath = parseResult.GetValue(nugetConfigPathOption);
 
-            using var loggerFactory = LoggerFactory.Create(builder =>
+            using var host = Host.CreateDefaultBuilder().ConfigureLogging(builder =>
             {
                 builder.AddSimpleConsole(options =>
                 {
@@ -95,10 +97,11 @@ public static class Program
                     options.TimestampFormat = "HH:mm:ss ";
                 });
                 builder.AddFilter("Microsoft.Hosting.Lifetime", LogLevel.None);
-            });
+            }).Build();
+            var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
 
             MSBuildLocator.RegisterDefaults();
-            var workspace = MSBuildWorkspace.Create();
+            using var workspace = MSBuildWorkspace.Create();
 
             return await IndexCommandHandler.Process(
                 loggerFactory,
