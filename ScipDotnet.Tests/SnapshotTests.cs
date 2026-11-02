@@ -185,7 +185,7 @@ public class SnapshotTests
 #endif
     }
 
-    private static string IndexDirectory(string directory)
+    internal static string IndexDirectory(string directory)
     {
         var include = Environment.GetEnvironmentVariable("SCIP_INCLUDE");
         var framework = $"net{Environment.Version.Major}.0";
@@ -229,7 +229,7 @@ public class SnapshotTests
         return process.StandardOutput.ReadToEnd().Trim().Split("\n");
     }
 
-    private static string RootDirectory()
+    internal static string RootDirectory()
     {
         var process = new Process()
         {

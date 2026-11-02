@@ -133,6 +133,7 @@ public class ScipProjectIndexer
         Scip.Document doc = new()
         {
             Language = language,
+            PositionEncoding = Scip.PositionEncoding.Utf16CodeUnitOffsetFromLineStart,
             RelativePath = document.FilePath == null
                 ? null
                 : Path.GetRelativePath(options.WorkingDirectory.FullName, document.FilePath)

@@ -24,107 +24,182 @@ namespace Scip {
     static ScipReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgpzY2lwLnByb3RvEgRzY2lwIn8KBUluZGV4EiAKCG1ldGFkYXRhGAEgASgL",
-            "Mg4uc2NpcC5NZXRhZGF0YRIhCglkb2N1bWVudHMYAiADKAsyDi5zY2lwLkRv",
-            "Y3VtZW50EjEKEGV4dGVybmFsX3N5bWJvbHMYAyADKAsyFy5zY2lwLlN5bWJv",
-            "bEluZm9ybWF0aW9uIp8BCghNZXRhZGF0YRImCgd2ZXJzaW9uGAEgASgOMhUu",
-            "c2NpcC5Qcm90b2NvbFZlcnNpb24SIQoJdG9vbF9pbmZvGAIgASgLMg4uc2Np",
-            "cC5Ub29sSW5mbxIUCgxwcm9qZWN0X3Jvb3QYAyABKAkSMgoWdGV4dF9kb2N1",
-            "bWVudF9lbmNvZGluZxgEIAEoDjISLnNjaXAuVGV4dEVuY29kaW5nIjwKCFRv",
-            "b2xJbmZvEgwKBG5hbWUYASABKAkSDwoHdmVyc2lvbhgCIAEoCRIRCglhcmd1",
-            "bWVudHMYAyADKAkihAEKCERvY3VtZW50EhAKCGxhbmd1YWdlGAQgASgJEhUK",
-            "DXJlbGF0aXZlX3BhdGgYASABKAkSJQoLb2NjdXJyZW5jZXMYAiADKAsyEC5z",
-            "Y2lwLk9jY3VycmVuY2USKAoHc3ltYm9scxgDIAMoCzIXLnNjaXAuU3ltYm9s",
-            "SW5mb3JtYXRpb24iZQoGU3ltYm9sEg4KBnNjaGVtZRgBIAEoCRIeCgdwYWNr",
-            "YWdlGAIgASgLMg0uc2NpcC5QYWNrYWdlEisKC2Rlc2NyaXB0b3JzGAMgAygL",
-            "MhYuc2NpcC5TeW1ib2xEZXNjcmlwdG9yIjkKB1BhY2thZ2USDwoHbWFuYWdl",
-            "chgBIAEoCRIMCgRuYW1lGAIgASgJEg8KB3ZlcnNpb24YAyABKAkijgIKEFN5",
-            "bWJvbERlc2NyaXB0b3ISDAoEbmFtZRgBIAEoCRIVCg1kaXNhbWJpZ3VhdG9y",
-            "GAIgASgJEi0KBnN1ZmZpeBgDIAEoDjIdLnNjaXAuU3ltYm9sRGVzY3JpcHRv",
-            "ci5TdWZmaXgipQEKBlN1ZmZpeBIVChFVbnNwZWNpZmllZFN1ZmZpeBAAEg0K",
-            "CU5hbWVzcGFjZRABEg8KB1BhY2thZ2UQARoCCAESCAoEVHlwZRACEggKBFRl",
-            "cm0QAxIKCgZNZXRob2QQBBIRCg1UeXBlUGFyYW1ldGVyEAUSDQoJUGFyYW1l",
-            "dGVyEAYSCQoFTWFjcm8QCRIICgRNZXRhEAcSCQoFTG9jYWwQCBoCEAEiZQoR",
-            "U3ltYm9sSW5mb3JtYXRpb24SDgoGc3ltYm9sGAEgASgJEhUKDWRvY3VtZW50",
-            "YXRpb24YAyADKAkSKQoNcmVsYXRpb25zaGlwcxgEIAMoCzISLnNjaXAuUmVs",
-            "YXRpb25zaGlwIoIBCgxSZWxhdGlvbnNoaXASDgoGc3ltYm9sGAEgASgJEhQK",
-            "DGlzX3JlZmVyZW5jZRgCIAEoCBIZChFpc19pbXBsZW1lbnRhdGlvbhgDIAEo",
-            "CBIaChJpc190eXBlX2RlZmluaXRpb24YBCABKAgSFQoNaXNfZGVmaW5pdGlv",
-            "bhgFIAEoCCKvAQoKT2NjdXJyZW5jZRINCgVyYW5nZRgBIAMoBRIOCgZzeW1i",
-            "b2wYAiABKAkSFAoMc3ltYm9sX3JvbGVzGAMgASgFEh4KFm92ZXJyaWRlX2Rv",
-            "Y3VtZW50YXRpb24YBCADKAkSJQoLc3ludGF4X2tpbmQYBSABKA4yEC5zY2lw",
-            "LlN5bnRheEtpbmQSJQoLZGlhZ25vc3RpY3MYBiADKAsyEC5zY2lwLkRpYWdu",
-            "b3N0aWMigAEKCkRpYWdub3N0aWMSIAoIc2V2ZXJpdHkYASABKA4yDi5zY2lw",
-            "LlNldmVyaXR5EgwKBGNvZGUYAiABKAkSDwoHbWVzc2FnZRgDIAEoCRIOCgZz",
-            "b3VyY2UYBCABKAkSIQoEdGFncxgFIAMoDjITLnNjaXAuRGlhZ25vc3RpY1Rh",
-            "ZyoxCg9Qcm90b2NvbFZlcnNpb24SHgoaVW5zcGVjaWZpZWRQcm90b2NvbFZl",
-            "cnNpb24QACpACgxUZXh0RW5jb2RpbmcSGwoXVW5zcGVjaWZpZWRUZXh0RW5j",
-            "b2RpbmcQABIICgRVVEY4EAESCQoFVVRGMTYQAip9CgpTeW1ib2xSb2xlEhkK",
-            "FVVuc3BlY2lmaWVkU3ltYm9sUm9sZRAAEg4KCkRlZmluaXRpb24QARIKCgZJ",
-            "bXBvcnQQAhIPCgtXcml0ZUFjY2VzcxAEEg4KClJlYWRBY2Nlc3MQCBINCglH",
-            "ZW5lcmF0ZWQQEBIICgRUZXN0ECAq6gYKClN5bnRheEtpbmQSGQoVVW5zcGVj",
-            "aWZpZWRTeW50YXhLaW5kEAASCwoHQ29tbWVudBABEhgKFFB1bmN0dWF0aW9u",
-            "RGVsaW1pdGVyEAISFgoSUHVuY3R1YXRpb25CcmFja2V0EAMSCwoHS2V5d29y",
-            "ZBAEEhkKEUlkZW50aWZpZXJLZXl3b3JkEAQaAggBEhYKEklkZW50aWZpZXJP",
-            "cGVyYXRvchAFEg4KCklkZW50aWZpZXIQBhIVChFJZGVudGlmaWVyQnVpbHRp",
-            "bhAHEhIKDklkZW50aWZpZXJOdWxsEAgSFgoSSWRlbnRpZmllckNvbnN0YW50",
-            "EAkSGwoXSWRlbnRpZmllck11dGFibGVHbG9iYWwQChIXChNJZGVudGlmaWVy",
-            "UGFyYW1ldGVyEAsSEwoPSWRlbnRpZmllckxvY2FsEAwSFgoSSWRlbnRpZmll",
-            "clNoYWRvd2VkEA0SFwoTSWRlbnRpZmllck5hbWVzcGFjZRAOEhgKEElkZW50",
-            "aWZpZXJNb2R1bGUQDhoCCAESFgoSSWRlbnRpZmllckZ1bmN0aW9uEA8SIAoc",
-            "SWRlbnRpZmllckZ1bmN0aW9uRGVmaW5pdGlvbhAQEhMKD0lkZW50aWZpZXJN",
-            "YWNybxAREh0KGUlkZW50aWZpZXJNYWNyb0RlZmluaXRpb24QEhISCg5JZGVu",
-            "dGlmaWVyVHlwZRATEhkKFUlkZW50aWZpZXJCdWlsdGluVHlwZRAUEhcKE0lk",
-            "ZW50aWZpZXJBdHRyaWJ1dGUQFRIPCgtSZWdleEVzY2FwZRAWEhEKDVJlZ2V4",
-            "UmVwZWF0ZWQQFxIRCg1SZWdleFdpbGRjYXJkEBgSEgoOUmVnZXhEZWxpbWl0",
-            "ZXIQGRINCglSZWdleEpvaW4QGhIRCg1TdHJpbmdMaXRlcmFsEBsSFwoTU3Ry",
-            "aW5nTGl0ZXJhbEVzY2FwZRAcEhgKFFN0cmluZ0xpdGVyYWxTcGVjaWFsEB0S",
-            "FAoQU3RyaW5nTGl0ZXJhbEtleRAeEhQKEENoYXJhY3RlckxpdGVyYWwQHxIS",
-            "Cg5OdW1lcmljTGl0ZXJhbBAgEhIKDkJvb2xlYW5MaXRlcmFsECESBwoDVGFn",
-            "ECISEAoMVGFnQXR0cmlidXRlECMSEAoMVGFnRGVsaW1pdGVyECQaAhABKlYK",
-            "CFNldmVyaXR5EhcKE1Vuc3BlY2lmaWVkU2V2ZXJpdHkQABIJCgVFcnJvchAB",
-            "EgsKB1dhcm5pbmcQAhIPCgtJbmZvcm1hdGlvbhADEggKBEhpbnQQBCpOCg1E",
-            "aWFnbm9zdGljVGFnEhwKGFVuc3BlY2lmaWVkRGlhZ25vc3RpY1RhZxAAEg8K",
-            "C1VubmVjZXNzYXJ5EAESDgoKRGVwcmVjYXRlZBACKuAICghMYW5ndWFnZRIX",
-            "ChNVbnNwZWNpZmllZExhbmd1YWdlEAASCAoEQUJBUBA8EgcKA0FQTBAxEgcK",
-            "A0FkYRAnEggKBEFnZGEQLRIMCghBc2NpaURvYxBWEgwKCEFzc2VtYmx5EDoS",
-            "BwoDQXdrEEISBwoDQmF0EEQSCgoGQmliVGVYEFESBQoBQxAiEgkKBUNPQk9M",
-            "EDsSBwoDQ1BQECMSBwoDQ1NTEBoSCgoGQ1NoYXJwEAESCwoHQ2xvanVyZRAI",
-            "EhAKDENvZmZlZXNjcmlwdBAVEg4KCkNvbW1vbkxpc3AQCRIHCgNDb3EQLxII",
-            "CgREYXJ0EAMSCgoGRGVscGhpEDkSCAoERGlmZhBYEg4KCkRvY2tlcmZpbGUQ",
-            "UBIKCgZEeWFsb2cQMhIKCgZFbGl4aXIQERIKCgZFcmxhbmcQEhIKCgZGU2hh",
-            "cnAQKhIICgRGaXNoEEESCAoERmxvdxAYEgsKB0ZvcnRyYW4QOBIOCgpHaXRf",
-            "Q29tbWl0EFsSDgoKR2l0X0NvbmZpZxBZEg4KCkdpdF9SZWJhc2UQXBIGCgJH",
-            "bxAhEgoKBkdyb292eRAHEggKBEhUTUwQHhIICgRIYWNrEBQSDgoKSGFuZGxl",
-            "YmFycxBaEgsKB0hhc2tlbGwQLBIJCgVJZHJpcxAuEgcKA0luaRBIEgUKAUoQ",
-            "MxIICgRKU09OEEsSCAoESmF2YRAGEg4KCkphdmFTY3JpcHQQFhITCg9KYXZh",
-            "U2NyaXB0UmVhY3QQXRILCgdKc29ubmV0EEwSCQoFSnVsaWEQNxIKCgZLb3Rs",
-            "aW4QBBIJCgVMYVRlWBBTEggKBExlYW4QMBIICgRMZXNzEBsSBwoDTHVhEAwS",
-            "DAoITWFrZWZpbGUQTxIMCghNYXJrZG93bhBUEgoKBk1hdGxhYhA0EgcKA05p",
-            "eBBNEgkKBU9DYW1sECkSDwoLT2JqZWN0aXZlX0MQJBIRCg1PYmplY3RpdmVf",
-            "Q1BQECUSBwoDUEhQEBMSCQoFUExTUUwQRhIICgRQZXJsEA0SDgoKUG93ZXJT",
-            "aGVsbBBDEgoKBlByb2xvZxBHEgoKBlB5dGhvbhAPEgUKAVIQNhIKCgZSYWNr",
-            "ZXQQCxIICgRSYWt1EA4SCQoFUmF6b3IQPhIICgRSZVNUEFUSCAoEUnVieRAQ",
-            "EggKBFJ1c3QQKBIHCgNTQVMQPRIICgRTQ1NTEB0SBwoDU01MECsSBwoDU1FM",
-            "EEUSCAoEU2FzcxAcEgkKBVNjYWxhEAUSCgoGU2NoZW1lEAoSDwoLU2hlbGxT",
-            "Y3JpcHQQQBILCgdTa3lsYXJrEE4SCQoFU3dpZnQQAhIICgRUT01MEEkSBwoD",
-            "VGVYEFISDgoKVHlwZVNjcmlwdBAXEhMKD1R5cGVTY3JpcHRSZWFjdBBeEg8K",
-            "C1Zpc3VhbEJhc2ljED8SBwoDVnVlEBkSCwoHV29sZnJhbRA1EgcKA1hNTBAf",
-            "EgcKA1hTTBAgEggKBFlBTUwQShIHCgNaaWcQJkIvWi1naXRodWIuY29tL3Nv",
-            "dXJjZWdyYXBoL3NjaXAvYmluZGluZ3MvZ28vc2NpcC9iBnByb3RvMw=="));
+            "CgpzY2lwLnByb3RvEgRzY2lwIqUBCgVJbmRleBIqCghtZXRhZGF0YRgBIAEo",
+            "CzIOLnNjaXAuTWV0YWRhdGFSCG1ldGFkYXRhEiwKCWRvY3VtZW50cxgCIAMo",
+            "CzIOLnNjaXAuRG9jdW1lbnRSCWRvY3VtZW50cxJCChBleHRlcm5hbF9zeW1i",
+            "b2xzGAMgAygLMhcuc2NpcC5TeW1ib2xJbmZvcm1hdGlvblIPZXh0ZXJuYWxT",
+            "eW1ib2xzItUBCghNZXRhZGF0YRIvCgd2ZXJzaW9uGAEgASgOMhUuc2NpcC5Q",
+            "cm90b2NvbFZlcnNpb25SB3ZlcnNpb24SKwoJdG9vbF9pbmZvGAIgASgLMg4u",
+            "c2NpcC5Ub29sSW5mb1IIdG9vbEluZm8SIQoMcHJvamVjdF9yb290GAMgASgJ",
+            "Ugtwcm9qZWN0Um9vdBJIChZ0ZXh0X2RvY3VtZW50X2VuY29kaW5nGAQgASgO",
+            "MhIuc2NpcC5UZXh0RW5jb2RpbmdSFHRleHREb2N1bWVudEVuY29kaW5nIlYK",
+            "CFRvb2xJbmZvEhIKBG5hbWUYASABKAlSBG5hbWUSGAoHdmVyc2lvbhgCIAEo",
+            "CVIHdmVyc2lvbhIcCglhcmd1bWVudHMYAyADKAlSCWFyZ3VtZW50cyKLAgoI",
+            "RG9jdW1lbnQSGgoIbGFuZ3VhZ2UYBCABKAlSCGxhbmd1YWdlEiMKDXJlbGF0",
+            "aXZlX3BhdGgYASABKAlSDHJlbGF0aXZlUGF0aBIyCgtvY2N1cnJlbmNlcxgC",
+            "IAMoCzIQLnNjaXAuT2NjdXJyZW5jZVILb2NjdXJyZW5jZXMSMQoHc3ltYm9s",
+            "cxgDIAMoCzIXLnNjaXAuU3ltYm9sSW5mb3JtYXRpb25SB3N5bWJvbHMSEgoE",
+            "dGV4dBgFIAEoCVIEdGV4dBJDChFwb3NpdGlvbl9lbmNvZGluZxgGIAEoDjIW",
+            "LnNjaXAuUG9zaXRpb25FbmNvZGluZ1IQcG9zaXRpb25FbmNvZGluZyJ9CgZT",
+            "eW1ib2wSFgoGc2NoZW1lGAEgASgJUgZzY2hlbWUSJwoHcGFja2FnZRgCIAEo",
+            "CzINLnNjaXAuUGFja2FnZVIHcGFja2FnZRIyCgtkZXNjcmlwdG9ycxgDIAMo",
+            "CzIQLnNjaXAuRGVzY3JpcHRvclILZGVzY3JpcHRvcnMiUQoHUGFja2FnZRIY",
+            "CgdtYW5hZ2VyGAEgASgJUgdtYW5hZ2VyEhIKBG5hbWUYAiABKAlSBG5hbWUS",
+            "GAoHdmVyc2lvbhgDIAEoCVIHdmVyc2lvbiKfAgoKRGVzY3JpcHRvchISCgRu",
+            "YW1lGAEgASgJUgRuYW1lEiQKDWRpc2FtYmlndWF0b3IYAiABKAlSDWRpc2Ft",
+            "YmlndWF0b3ISLwoGc3VmZml4GAMgASgOMhcuc2NpcC5EZXNjcmlwdG9yLlN1",
+            "ZmZpeFIGc3VmZml4IqUBCgZTdWZmaXgSFQoRVW5zcGVjaWZpZWRTdWZmaXgQ",
+            "ABINCglOYW1lc3BhY2UQARIPCgdQYWNrYWdlEAEaAggBEggKBFR5cGUQAhII",
+            "CgRUZXJtEAMSCgoGTWV0aG9kEAQSEQoNVHlwZVBhcmFtZXRlchAFEg0KCVBh",
+            "cmFtZXRlchAGEggKBE1ldGEQBxIJCgVMb2NhbBAIEgkKBU1hY3JvEAkaAhAB",
+            "IoEBCglTaWduYXR1cmUSGgoIbGFuZ3VhZ2UYBCABKAlSCGxhbmd1YWdlEhIK",
+            "BHRleHQYBSABKAlSBHRleHQSMgoLb2NjdXJyZW5jZXMYAiADKAsyEC5zY2lw",
+            "Lk9jY3VycmVuY2VSC29jY3VycmVuY2VzSgQIARACSgQIAxAESgQIBhAHItMM",
+            "ChFTeW1ib2xJbmZvcm1hdGlvbhIWCgZzeW1ib2wYASABKAlSBnN5bWJvbBIk",
+            "Cg1kb2N1bWVudGF0aW9uGAMgAygJUg1kb2N1bWVudGF0aW9uEjgKDXJlbGF0",
+            "aW9uc2hpcHMYBCADKAsyEi5zY2lwLlJlbGF0aW9uc2hpcFINcmVsYXRpb25z",
+            "aGlwcxIwCgRraW5kGAUgASgOMhwuc2NpcC5TeW1ib2xJbmZvcm1hdGlvbi5L",
+            "aW5kUgRraW5kEiEKDGRpc3BsYXlfbmFtZRgGIAEoCVILZGlzcGxheU5hbWUS",
+            "SAoXc2lnbmF0dXJlX2RvY3VtZW50YXRpb24YByABKAsyDy5zY2lwLlNpZ25h",
+            "dHVyZVIWc2lnbmF0dXJlRG9jdW1lbnRhdGlvbhIpChBlbmNsb3Npbmdfc3lt",
+            "Ym9sGAggASgJUg9lbmNsb3NpbmdTeW1ib2wi+wkKBEtpbmQSEwoPVW5zcGVj",
+            "aWZpZWRLaW5kEAASEgoOQWJzdHJhY3RNZXRob2QQQhIMCghBY2Nlc3NvchBI",
+            "EgkKBUFycmF5EAESDQoJQXNzZXJ0aW9uEAISEgoOQXNzb2NpYXRlZFR5cGUQ",
+            "AxINCglBdHRyaWJ1dGUQBBIJCgVBeGlvbRAFEgsKB0Jvb2xlYW4QBhIJCgVD",
+            "bGFzcxAHEgsKB0NvbmNlcHQQVhIMCghDb25zdGFudBAIEg8KC0NvbnN0cnVj",
+            "dG9yEAkSDAoIQ29udHJhY3QQPhIOCgpEYXRhRmFtaWx5EAoSDAoIRGVsZWdh",
+            "dGUQSRIICgRFbnVtEAsSDgoKRW51bU1lbWJlchAMEgkKBUVycm9yED8SCQoF",
+            "RXZlbnQQDRINCglFeHRlbnNpb24QVBIICgRGYWN0EA4SCQoFRmllbGQQDxII",
+            "CgRGaWxlEBASDAoIRnVuY3Rpb24QERIKCgZHZXR0ZXIQEhILCgdHcmFtbWFy",
+            "EBMSDAoISW5zdGFuY2UQFBINCglJbnRlcmZhY2UQFRIHCgNLZXkQFhIICgRM",
+            "YW5nEBcSCQoFTGVtbWEQGBILCgdMaWJyYXJ5EEASCQoFTWFjcm8QGRIKCgZN",
+            "ZXRob2QQGhIPCgtNZXRob2RBbGlhcxBKEhIKDk1ldGhvZFJlY2VpdmVyEBsS",
+            "FwoTTWV0aG9kU3BlY2lmaWNhdGlvbhBDEgsKB01lc3NhZ2UQHBIJCgVNaXhp",
+            "bhBVEgwKCE1vZGlmaWVyEEESCgoGTW9kdWxlEB0SDQoJTmFtZXNwYWNlEB4S",
+            "CAoETnVsbBAfEgoKBk51bWJlchAgEgoKBk9iamVjdBAhEgwKCE9wZXJhdG9y",
+            "ECISCwoHUGFja2FnZRAjEhEKDVBhY2thZ2VPYmplY3QQJBINCglQYXJhbWV0",
+            "ZXIQJRISCg5QYXJhbWV0ZXJMYWJlbBAmEgsKB1BhdHRlcm4QJxINCglQcmVk",
+            "aWNhdGUQKBIMCghQcm9wZXJ0eRApEgwKCFByb3RvY29sECoSEgoOUHJvdG9j",
+            "b2xNZXRob2QQRBIVChFQdXJlVmlydHVhbE1ldGhvZBBFEg8KC1F1YXNpcXVv",
+            "dGVyECsSEQoNU2VsZlBhcmFtZXRlchAsEgoKBlNldHRlchAtEg0KCVNpZ25h",
+            "dHVyZRAuEhIKDlNpbmdsZXRvbkNsYXNzEEsSEwoPU2luZ2xldG9uTWV0aG9k",
+            "EEwSFAoQU3RhdGljRGF0YU1lbWJlchBNEg8KC1N0YXRpY0V2ZW50EE4SDwoL",
+            "U3RhdGljRmllbGQQTxIQCgxTdGF0aWNNZXRob2QQUBISCg5TdGF0aWNQcm9w",
+            "ZXJ0eRBREhIKDlN0YXRpY1ZhcmlhYmxlEFISCgoGU3RyaW5nEDASCgoGU3Ry",
+            "dWN0EDESDQoJU3Vic2NyaXB0EC8SCgoGVGFjdGljEDISCwoHVGhlb3JlbRAz",
+            "EhEKDVRoaXNQYXJhbWV0ZXIQNBIJCgVUcmFpdBA1Eg8KC1RyYWl0TWV0aG9k",
+            "EEYSCAoEVHlwZRA2Eg0KCVR5cGVBbGlhcxA3Eg0KCVR5cGVDbGFzcxA4EhMK",
+            "D1R5cGVDbGFzc01ldGhvZBBHEg4KClR5cGVGYW1pbHkQORIRCg1UeXBlUGFy",
+            "YW1ldGVyEDoSCQoFVW5pb24QOxIJCgVWYWx1ZRA8EgwKCFZhcmlhYmxlED0i",
+            "yQEKDFJlbGF0aW9uc2hpcBIWCgZzeW1ib2wYASABKAlSBnN5bWJvbBIhCgxp",
+            "c19yZWZlcmVuY2UYAiABKAhSC2lzUmVmZXJlbmNlEisKEWlzX2ltcGxlbWVu",
+            "dGF0aW9uGAMgASgIUhBpc0ltcGxlbWVudGF0aW9uEiwKEmlzX3R5cGVfZGVm",
+            "aW5pdGlvbhgEIAEoCFIQaXNUeXBlRGVmaW5pdGlvbhIjCg1pc19kZWZpbml0",
+            "aW9uGAUgASgIUgxpc0RlZmluaXRpb24icwoPU2luZ2xlTGluZVJhbmdlEhIK",
+            "BGxpbmUYASABKAVSBGxpbmUSJwoPc3RhcnRfY2hhcmFjdGVyGAIgASgFUg5z",
+            "dGFydENoYXJhY3RlchIjCg1lbmRfY2hhcmFjdGVyGAMgASgFUgxlbmRDaGFy",
+            "YWN0ZXIimAEKDk11bHRpTGluZVJhbmdlEh0KCnN0YXJ0X2xpbmUYASABKAVS",
+            "CXN0YXJ0TGluZRInCg9zdGFydF9jaGFyYWN0ZXIYAiABKAVSDnN0YXJ0Q2hh",
+            "cmFjdGVyEhkKCGVuZF9saW5lGAMgASgFUgdlbmRMaW5lEiMKDWVuZF9jaGFy",
+            "YWN0ZXIYBCABKAVSDGVuZENoYXJhY3RlciKIBQoKT2NjdXJyZW5jZRIYCgVy",
+            "YW5nZRgBIAMoBUICGAFSBXJhbmdlEkMKEXNpbmdsZV9saW5lX3JhbmdlGAgg",
+            "ASgLMhUuc2NpcC5TaW5nbGVMaW5lUmFuZ2VIAFIPc2luZ2xlTGluZVJhbmdl",
+            "EkAKEG11bHRpX2xpbmVfcmFuZ2UYCSABKAsyFC5zY2lwLk11bHRpTGluZVJh",
+            "bmdlSABSDm11bHRpTGluZVJhbmdlEhYKBnN5bWJvbBgCIAEoCVIGc3ltYm9s",
+            "EiEKDHN5bWJvbF9yb2xlcxgDIAEoBVILc3ltYm9sUm9sZXMSNQoWb3ZlcnJp",
+            "ZGVfZG9jdW1lbnRhdGlvbhgEIAMoCVIVb3ZlcnJpZGVEb2N1bWVudGF0aW9u",
+            "EjEKC3N5bnRheF9raW5kGAUgASgOMhAuc2NpcC5TeW50YXhLaW5kUgpzeW50",
+            "YXhLaW5kEjIKC2RpYWdub3N0aWNzGAYgAygLMhAuc2NpcC5EaWFnbm9zdGlj",
+            "UgtkaWFnbm9zdGljcxIrCg9lbmNsb3NpbmdfcmFuZ2UYByADKAVCAhgBUg5l",
+            "bmNsb3NpbmdSYW5nZRJWChtzaW5nbGVfbGluZV9lbmNsb3NpbmdfcmFuZ2UY",
+            "CiABKAsyFS5zY2lwLlNpbmdsZUxpbmVSYW5nZUgBUhhzaW5nbGVMaW5lRW5j",
+            "bG9zaW5nUmFuZ2USUwoabXVsdGlfbGluZV9lbmNsb3NpbmdfcmFuZ2UYCyAB",
+            "KAsyFC5zY2lwLk11bHRpTGluZVJhbmdlSAFSF211bHRpTGluZUVuY2xvc2lu",
+            "Z1JhbmdlQg0KC3R5cGVkX3JhbmdlQhcKFXR5cGVkX2VuY2xvc2luZ19yYW5n",
+            "ZSKnAQoKRGlhZ25vc3RpYxIqCghzZXZlcml0eRgBIAEoDjIOLnNjaXAuU2V2",
+            "ZXJpdHlSCHNldmVyaXR5EhIKBGNvZGUYAiABKAlSBGNvZGUSGAoHbWVzc2Fn",
+            "ZRgDIAEoCVIHbWVzc2FnZRIWCgZzb3VyY2UYBCABKAlSBnNvdXJjZRInCgR0",
+            "YWdzGAUgAygOMhMuc2NpcC5EaWFnbm9zdGljVGFnUgR0YWdzKjEKD1Byb3Rv",
+            "Y29sVmVyc2lvbhIeChpVbnNwZWNpZmllZFByb3RvY29sVmVyc2lvbhAAKkAK",
+            "DFRleHRFbmNvZGluZxIbChdVbnNwZWNpZmllZFRleHRFbmNvZGluZxAAEggK",
+            "BFVURjgQARIJCgVVVEYxNhACKqQBChBQb3NpdGlvbkVuY29kaW5nEh8KG1Vu",
+            "c3BlY2lmaWVkUG9zaXRpb25FbmNvZGluZxAAEiMKH1VURjhDb2RlVW5pdE9m",
+            "ZnNldEZyb21MaW5lU3RhcnQQARIkCiBVVEYxNkNvZGVVbml0T2Zmc2V0RnJv",
+            "bUxpbmVTdGFydBACEiQKIFVURjMyQ29kZVVuaXRPZmZzZXRGcm9tTGluZVN0",
+            "YXJ0EAMqlAEKClN5bWJvbFJvbGUSGQoVVW5zcGVjaWZpZWRTeW1ib2xSb2xl",
+            "EAASDgoKRGVmaW5pdGlvbhABEgoKBkltcG9ydBACEg8KC1dyaXRlQWNjZXNz",
+            "EAQSDgoKUmVhZEFjY2VzcxAIEg0KCUdlbmVyYXRlZBAQEggKBFRlc3QQIBIV",
+            "ChFGb3J3YXJkRGVmaW5pdGlvbhBAKuoGCgpTeW50YXhLaW5kEhkKFVVuc3Bl",
+            "Y2lmaWVkU3ludGF4S2luZBAAEgsKB0NvbW1lbnQQARIYChRQdW5jdHVhdGlv",
+            "bkRlbGltaXRlchACEhYKElB1bmN0dWF0aW9uQnJhY2tldBADEgsKB0tleXdv",
+            "cmQQBBIZChFJZGVudGlmaWVyS2V5d29yZBAEGgIIARIWChJJZGVudGlmaWVy",
+            "T3BlcmF0b3IQBRIOCgpJZGVudGlmaWVyEAYSFQoRSWRlbnRpZmllckJ1aWx0",
+            "aW4QBxISCg5JZGVudGlmaWVyTnVsbBAIEhYKEklkZW50aWZpZXJDb25zdGFu",
+            "dBAJEhsKF0lkZW50aWZpZXJNdXRhYmxlR2xvYmFsEAoSFwoTSWRlbnRpZmll",
+            "clBhcmFtZXRlchALEhMKD0lkZW50aWZpZXJMb2NhbBAMEhYKEklkZW50aWZp",
+            "ZXJTaGFkb3dlZBANEhcKE0lkZW50aWZpZXJOYW1lc3BhY2UQDhIYChBJZGVu",
+            "dGlmaWVyTW9kdWxlEA4aAggBEhYKEklkZW50aWZpZXJGdW5jdGlvbhAPEiAK",
+            "HElkZW50aWZpZXJGdW5jdGlvbkRlZmluaXRpb24QEBITCg9JZGVudGlmaWVy",
+            "TWFjcm8QERIdChlJZGVudGlmaWVyTWFjcm9EZWZpbml0aW9uEBISEgoOSWRl",
+            "bnRpZmllclR5cGUQExIZChVJZGVudGlmaWVyQnVpbHRpblR5cGUQFBIXChNJ",
+            "ZGVudGlmaWVyQXR0cmlidXRlEBUSDwoLUmVnZXhFc2NhcGUQFhIRCg1SZWdl",
+            "eFJlcGVhdGVkEBcSEQoNUmVnZXhXaWxkY2FyZBAYEhIKDlJlZ2V4RGVsaW1p",
+            "dGVyEBkSDQoJUmVnZXhKb2luEBoSEQoNU3RyaW5nTGl0ZXJhbBAbEhcKE1N0",
+            "cmluZ0xpdGVyYWxFc2NhcGUQHBIYChRTdHJpbmdMaXRlcmFsU3BlY2lhbBAd",
+            "EhQKEFN0cmluZ0xpdGVyYWxLZXkQHhIUChBDaGFyYWN0ZXJMaXRlcmFsEB8S",
+            "EgoOTnVtZXJpY0xpdGVyYWwQIBISCg5Cb29sZWFuTGl0ZXJhbBAhEgcKA1Rh",
+            "ZxAiEhAKDFRhZ0F0dHJpYnV0ZRAjEhAKDFRhZ0RlbGltaXRlchAkGgIQASpW",
+            "CghTZXZlcml0eRIXChNVbnNwZWNpZmllZFNldmVyaXR5EAASCQoFRXJyb3IQ",
+            "ARILCgdXYXJuaW5nEAISDwoLSW5mb3JtYXRpb24QAxIICgRIaW50EAQqTgoN",
+            "RGlhZ25vc3RpY1RhZxIcChhVbnNwZWNpZmllZERpYWdub3N0aWNUYWcQABIP",
+            "CgtVbm5lY2Vzc2FyeRABEg4KCkRlcHJlY2F0ZWQQAiqlCgoITGFuZ3VhZ2US",
+            "FwoTVW5zcGVjaWZpZWRMYW5ndWFnZRAAEggKBEFCQVAQPBIICgRBcGV4EGAS",
+            "BwoDQVBMEDESBwoDQWRhECcSCAoEQWdkYRAtEgwKCEFzY2lpRG9jEFYSDAoI",
+            "QXNzZW1ibHkQOhIHCgNBd2sQQhIHCgNCYXQQRBIKCgZCaWJUZVgQURIFCgFD",
+            "ECISCQoFQ09CT0wQOxIHCgNDUFAQIxIHCgNDU1MQGhIKCgZDU2hhcnAQARIL",
+            "CgdDbG9qdXJlEAgSEAoMQ29mZmVlc2NyaXB0EBUSDgoKQ29tbW9uTGlzcBAJ",
+            "EgcKA0NvcRAvEggKBENVREEQYRIICgREYXJ0EAMSCgoGRGVscGhpEDkSCAoE",
+            "RGlmZhBYEg4KCkRvY2tlcmZpbGUQUBIKCgZEeWFsb2cQMhIKCgZFbGl4aXIQ",
+            "ERIKCgZFcmxhbmcQEhIKCgZGU2hhcnAQKhIICgRGaXNoEEESCAoERmxvdxAY",
+            "EgsKB0ZvcnRyYW4QOBIOCgpHaXRfQ29tbWl0EFsSDgoKR2l0X0NvbmZpZxBZ",
+            "Eg4KCkdpdF9SZWJhc2UQXBIGCgJHbxAhEgsKB0dyYXBoUUwQYhIKCgZHcm9v",
+            "dnkQBxIICgRIVE1MEB4SCAoESGFjaxAUEg4KCkhhbmRsZWJhcnMQWhILCgdI",
+            "YXNrZWxsECwSCQoFSWRyaXMQLhIHCgNJbmkQSBIFCgFKEDMSCAoESlNPThBL",
+            "EggKBEphdmEQBhIOCgpKYXZhU2NyaXB0EBYSEwoPSmF2YVNjcmlwdFJlYWN0",
+            "EF0SCwoHSnNvbm5ldBBMEgkKBUp1bGlhEDcSDAoISnVzdGZpbGUQbRIKCgZL",
+            "b3RsaW4QBBIJCgVMYVRlWBBTEggKBExlYW4QMBIICgRMZXNzEBsSBwoDTHVh",
+            "EAwSCAoETHVhdRBsEgwKCE1ha2VmaWxlEE8SDAoITWFya2Rvd24QVBIKCgZN",
+            "YXRsYWIQNBIKCgZOaWNrZWwQbhIHCgNOaXgQTRIJCgVPQ2FtbBApEg8KC09i",
+            "amVjdGl2ZV9DECQSEQoNT2JqZWN0aXZlX0NQUBAlEggKBE9kaW4QbxIKCgZQ",
+            "YXNjYWwQYxIHCgNQSFAQExIJCgVQTFNRTBBGEggKBFBlcmwQDRIOCgpQb3dl",
+            "clNoZWxsEEMSCgoGUHJvbG9nEEcSDAoIUHJvdG9idWYQZBIKCgZQeXRob24Q",
+            "DxIFCgFSEDYSCgoGUmFja2V0EAsSCAoEUmFrdRAOEgkKBVJhem9yED4SCQoF",
+            "UmVwcm8QZhIICgRSZVNUEFUSCAoEUnVieRAQEggKBFJ1c3QQKBIHCgNTQVMQ",
+            "PRIICgRTQ1NTEB0SBwoDU01MECsSBwoDU1FMEEUSCAoEU2FzcxAcEgkKBVNj",
+            "YWxhEAUSCgoGU2NoZW1lEAoSDwoLU2hlbGxTY3JpcHQQQBILCgdTa3lsYXJr",
+            "EE4SCQoFU2xhbmcQaxIMCghTb2xpZGl0eRBfEgoKBlN2ZWx0ZRBqEgkKBVN3",
+            "aWZ0EAISBwoDVGNsEGUSCAoEVE9NTBBJEgcKA1RlWBBSEgoKBlRocmlmdBBn",
+            "Eg4KClR5cGVTY3JpcHQQFxITCg9UeXBlU2NyaXB0UmVhY3QQXhILCgdWZXJp",
+            "bG9nEGgSCAoEVkhETBBpEg8KC1Zpc3VhbEJhc2ljED8SBwoDVnVlEBkSCwoH",
+            "V29sZnJhbRA1EgcKA1hNTBAfEgcKA1hTTBAgEggKBFlBTUwQShIHCgNaaWcQ",
+            "JkJOChJvcmcuc2NpcF9jb2RlLnNjaXBCCVNjaXBQcm90b1ABWitnaXRodWIu",
+            "Y29tL3NjaXAtY29kZS9zY2lwL2JpbmRpbmdzL2dvL3NjaXAvYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Scip.ProtocolVersion), typeof(global::Scip.TextEncoding), typeof(global::Scip.SymbolRole), typeof(global::Scip.SyntaxKind), typeof(global::Scip.Severity), typeof(global::Scip.DiagnosticTag), typeof(global::Scip.Language), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Scip.ProtocolVersion), typeof(global::Scip.TextEncoding), typeof(global::Scip.PositionEncoding), typeof(global::Scip.SymbolRole), typeof(global::Scip.SyntaxKind), typeof(global::Scip.Severity), typeof(global::Scip.DiagnosticTag), typeof(global::Scip.Language), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Scip.Index), global::Scip.Index.Parser, new[]{ "Metadata", "Documents", "ExternalSymbols" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Scip.Metadata), global::Scip.Metadata.Parser, new[]{ "Version", "ToolInfo", "ProjectRoot", "TextDocumentEncoding" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Scip.ToolInfo), global::Scip.ToolInfo.Parser, new[]{ "Name", "Version", "Arguments" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Scip.Document), global::Scip.Document.Parser, new[]{ "Language", "RelativePath", "Occurrences", "Symbols" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Scip.Document), global::Scip.Document.Parser, new[]{ "Language", "RelativePath", "Occurrences", "Symbols", "Text", "PositionEncoding" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Scip.Symbol), global::Scip.Symbol.Parser, new[]{ "Scheme", "Package", "Descriptors" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Scip.Package), global::Scip.Package.Parser, new[]{ "Manager", "Name", "Version" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Scip.SymbolDescriptor), global::Scip.SymbolDescriptor.Parser, new[]{ "Name", "Disambiguator", "Suffix" }, null, new[]{ typeof(global::Scip.SymbolDescriptor.Types.Suffix) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Scip.SymbolInformation), global::Scip.SymbolInformation.Parser, new[]{ "Symbol", "Documentation", "Relationships" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Scip.Signature), global::Scip.Signature.Parser, new[]{ "Language", "Text", "Occurrences" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Scip.SymbolInformation), global::Scip.SymbolInformation.Parser, new[]{ "Symbol", "Documentation", "Relationships", "Kind", "DisplayName", "SignatureDocumentation", "EnclosingSymbol" }, null, new[]{ typeof(global::Scip.SymbolInformation.Types.Kind) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Scip.Relationship), global::Scip.Relationship.Parser, new[]{ "Symbol", "IsReference", "IsImplementation", "IsTypeDefinition", "IsDefinition" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Scip.Occurrence), global::Scip.Occurrence.Parser, new[]{ "Range", "Symbol", "SymbolRoles", "OverrideDocumentation", "SyntaxKind", "Diagnostics" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Scip.SingleLineRange), global::Scip.SingleLineRange.Parser, new[]{ "Line", "StartCharacter", "EndCharacter" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Scip.MultiLineRange), global::Scip.MultiLineRange.Parser, new[]{ "StartLine", "StartCharacter", "EndLine", "EndCharacter" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Scip.Occurrence), global::Scip.Occurrence.Parser, new[]{ "Range", "SingleLineRange", "MultiLineRange", "Symbol", "SymbolRoles", "OverrideDocumentation", "SyntaxKind", "Diagnostics", "EnclosingRange", "SingleLineEnclosingRange", "MultiLineEnclosingRange" }, new[]{ "TypedRange", "TypedEnclosingRange" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Scip.Diagnostic), global::Scip.Diagnostic.Parser, new[]{ "Severity", "Code", "Message", "Source", "Tags" }, null, null, null, null)
           }));
     }
@@ -143,7 +218,44 @@ namespace Scip {
   }
 
   /// <summary>
-  /// SymbolRole declares what "role" a symbol has in an occurrence.  A role is
+  /// Encoding used to interpret the 'character' value in source ranges.
+  /// </summary>
+  public enum PositionEncoding {
+    /// <summary>
+    /// Default value. This value should not be used by new SCIP indexers
+    /// so that a consumer can process the SCIP index without ambiguity.
+    /// </summary>
+    [pbr::OriginalName("UnspecifiedPositionEncoding")] UnspecifiedPositionEncoding = 0,
+    /// <summary>
+    /// The 'character' value is interpreted as an offset in terms
+    /// of UTF-8 code units (i.e. bytes).
+    ///
+    /// Example: For the string "🚀 Woo" in UTF-8, the bytes are
+    /// [240, 159, 154, 128, 32, 87, 111, 111], so the offset for 'W'
+    /// would be 5.
+    /// </summary>
+    [pbr::OriginalName("UTF8CodeUnitOffsetFromLineStart")] Utf8CodeUnitOffsetFromLineStart = 1,
+    /// <summary>
+    /// The 'character' value is interpreted as an offset in terms
+    /// of UTF-16 code units (each is 2 bytes).
+    ///
+    /// Example: For the string "🚀 Woo", the UTF-16 code units are
+    /// ['\ud83d', '\ude80', ' ', 'W', 'o', 'o'], so the offset for 'W'
+    /// would be 3.
+    /// </summary>
+    [pbr::OriginalName("UTF16CodeUnitOffsetFromLineStart")] Utf16CodeUnitOffsetFromLineStart = 2,
+    /// <summary>
+    /// The 'character' value is interpreted as an offset in terms
+    /// of UTF-32 code units (each is 4 bytes).
+    ///
+    /// Example: For the string "🚀 Woo", the UTF-32 code units are
+    /// ['🚀', ' ', 'W', 'o', 'o'], so the offset for 'W' would be 2.
+    /// </summary>
+    [pbr::OriginalName("UTF32CodeUnitOffsetFromLineStart")] Utf32CodeUnitOffsetFromLineStart = 3,
+  }
+
+  /// <summary>
+  /// SymbolRole declares what "role" a symbol has in an occurrence. A role is
   /// encoded as a bitset where each bit represents a different role. For example,
   /// to determine if the `Import` role is set, test whether the second bit of the
   /// enum value is defined. In pseudocode, this can be implemented with the
@@ -179,6 +291,14 @@ namespace Scip {
     /// Is the symbol in test code?
     /// </summary>
     [pbr::OriginalName("Test")] Test = 32,
+    /// <summary>
+    /// Is this a signature for a symbol that is defined elsewhere?
+    ///
+    /// Applies to forward declarations for languages like C, C++
+    /// and Objective-C, as well as `val` declarations in interface
+    /// files in languages like SML and OCaml.
+    /// </summary>
+    [pbr::OriginalName("ForwardDefinition")] ForwardDefinition = 64,
   }
 
   public enum SyntaxKind {
@@ -199,6 +319,7 @@ namespace Scip {
     /// `if`, `else`, `return`, `class`, etc.
     /// </summary>
     [pbr::OriginalName("Keyword")] Keyword = 4,
+    [global::System.ObsoleteAttribute]
     [pbr::OriginalName("IdentifierKeyword", PreferredAlias = false)] IdentifierKeyword = 4,
     /// <summary>
     /// `+`, `*`, etc.
@@ -243,6 +364,7 @@ namespace Scip {
     /// and a module in languages like Python and JavaScript.
     /// </summary>
     [pbr::OriginalName("IdentifierNamespace")] IdentifierNamespace = 14,
+    [global::System.ObsoleteAttribute]
     [pbr::OriginalName("IdentifierModule", PreferredAlias = false)] IdentifierModule = 14,
     /// <summary>
     /// Function references, including calls
@@ -353,12 +475,13 @@ namespace Scip {
   /// for the `Document.language` field. The primary purpose of this enum is to
   /// prevent a situation where we have a single programming language ends up with
   /// multiple string representations. For example, the C++ language uses the name
-  /// "CPlusPlus" in this enum and other names such as "cpp" are incompatible.
+  /// "CPP" in this enum and other names such as "cpp" are incompatible.
   /// Feel free to send a pull-request to add missing programming languages.
   /// </summary>
   public enum Language {
     [pbr::OriginalName("UnspecifiedLanguage")] UnspecifiedLanguage = 0,
     [pbr::OriginalName("ABAP")] Abap = 60,
+    [pbr::OriginalName("Apex")] Apex = 96,
     [pbr::OriginalName("APL")] Apl = 49,
     [pbr::OriginalName("Ada")] Ada = 39,
     [pbr::OriginalName("Agda")] Agda = 45,
@@ -379,6 +502,7 @@ namespace Scip {
     [pbr::OriginalName("Coffeescript")] Coffeescript = 21,
     [pbr::OriginalName("CommonLisp")] CommonLisp = 9,
     [pbr::OriginalName("Coq")] Coq = 47,
+    [pbr::OriginalName("CUDA")] Cuda = 97,
     [pbr::OriginalName("Dart")] Dart = 3,
     [pbr::OriginalName("Delphi")] Delphi = 57,
     [pbr::OriginalName("Diff")] Diff = 88,
@@ -394,6 +518,7 @@ namespace Scip {
     [pbr::OriginalName("Git_Config")] GitConfig = 89,
     [pbr::OriginalName("Git_Rebase")] GitRebase = 92,
     [pbr::OriginalName("Go")] Go = 33,
+    [pbr::OriginalName("GraphQL")] GraphQl = 98,
     [pbr::OriginalName("Groovy")] Groovy = 7,
     [pbr::OriginalName("HTML")] Html = 30,
     [pbr::OriginalName("Hack")] Hack = 20,
@@ -408,28 +533,44 @@ namespace Scip {
     [pbr::OriginalName("JavaScriptReact")] JavaScriptReact = 93,
     [pbr::OriginalName("Jsonnet")] Jsonnet = 76,
     [pbr::OriginalName("Julia")] Julia = 55,
+    [pbr::OriginalName("Justfile")] Justfile = 109,
     [pbr::OriginalName("Kotlin")] Kotlin = 4,
     [pbr::OriginalName("LaTeX")] LaTeX = 83,
     [pbr::OriginalName("Lean")] Lean = 48,
     [pbr::OriginalName("Less")] Less = 27,
     [pbr::OriginalName("Lua")] Lua = 12,
+    [pbr::OriginalName("Luau")] Luau = 108,
     [pbr::OriginalName("Makefile")] Makefile = 79,
     [pbr::OriginalName("Markdown")] Markdown = 84,
     [pbr::OriginalName("Matlab")] Matlab = 52,
+    /// <summary>
+    /// https://nickel-lang.org/
+    /// </summary>
+    [pbr::OriginalName("Nickel")] Nickel = 110,
     [pbr::OriginalName("Nix")] Nix = 77,
     [pbr::OriginalName("OCaml")] Ocaml = 41,
     [pbr::OriginalName("Objective_C")] ObjectiveC = 36,
     [pbr::OriginalName("Objective_CPP")] ObjectiveCpp = 37,
+    /// <summary>
+    /// https://odin-lang.org/
+    /// </summary>
+    [pbr::OriginalName("Odin")] Odin = 111,
+    [pbr::OriginalName("Pascal")] Pascal = 99,
     [pbr::OriginalName("PHP")] Php = 19,
     [pbr::OriginalName("PLSQL")] Plsql = 70,
     [pbr::OriginalName("Perl")] Perl = 13,
     [pbr::OriginalName("PowerShell")] PowerShell = 67,
     [pbr::OriginalName("Prolog")] Prolog = 71,
+    [pbr::OriginalName("Protobuf")] Protobuf = 100,
     [pbr::OriginalName("Python")] Python = 15,
     [pbr::OriginalName("R")] R = 54,
     [pbr::OriginalName("Racket")] Racket = 11,
     [pbr::OriginalName("Raku")] Raku = 14,
     [pbr::OriginalName("Razor")] Razor = 62,
+    /// <summary>
+    /// Internal language for testing SCIP
+    /// </summary>
+    [pbr::OriginalName("Repro")] Repro = 102,
     [pbr::OriginalName("ReST")] ReSt = 85,
     [pbr::OriginalName("Ruby")] Ruby = 16,
     [pbr::OriginalName("Rust")] Rust = 40,
@@ -445,11 +586,18 @@ namespace Scip {
     /// </summary>
     [pbr::OriginalName("ShellScript")] ShellScript = 64,
     [pbr::OriginalName("Skylark")] Skylark = 78,
+    [pbr::OriginalName("Slang")] Slang = 107,
+    [pbr::OriginalName("Solidity")] Solidity = 95,
+    [pbr::OriginalName("Svelte")] Svelte = 106,
     [pbr::OriginalName("Swift")] Swift = 2,
+    [pbr::OriginalName("Tcl")] Tcl = 101,
     [pbr::OriginalName("TOML")] Toml = 73,
     [pbr::OriginalName("TeX")] TeX = 82,
+    [pbr::OriginalName("Thrift")] Thrift = 103,
     [pbr::OriginalName("TypeScript")] TypeScript = 23,
     [pbr::OriginalName("TypeScriptReact")] TypeScriptReact = 94,
+    [pbr::OriginalName("Verilog")] Verilog = 104,
+    [pbr::OriginalName("VHDL")] Vhdl = 105,
     [pbr::OriginalName("VisualBasic")] VisualBasic = 63,
     [pbr::OriginalName("Vue")] Vue = 25,
     [pbr::OriginalName("Wolfram")] Wolfram = 53,
@@ -457,7 +605,7 @@ namespace Scip {
     [pbr::OriginalName("XSL")] Xsl = 32,
     [pbr::OriginalName("YAML")] Yaml = 74,
     /// <summary>
-    /// NextLanguage = 95;
+    /// NextLanguage = 112;
     /// Steps add a new language:
     /// 1. Copy-paste the "NextLanguage = N" line above
     /// 2. Increment "NextLanguage = N" to "NextLanguage = N+1"
@@ -479,6 +627,7 @@ namespace Scip {
   /// `metadata` field must appear at the start of the stream and must only appear
   /// once in the stream. Other field values may appear in any order.
   /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Index : pb::IMessage<Index>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -686,7 +835,11 @@ namespace Scip {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -716,7 +869,11 @@ namespace Scip {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -742,6 +899,7 @@ namespace Scip {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Metadata : pb::IMessage<Metadata>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -841,7 +999,8 @@ namespace Scip {
     private global::Scip.TextEncoding textDocumentEncoding_ = global::Scip.TextEncoding.UnspecifiedTextEncoding;
     /// <summary>
     /// Text encoding of the source files on disk that are referenced from
-    /// `Document.relative_path`.
+    /// `Document.relative_path`. This value is unrelated to the `Document.text`
+    /// field, which is a Protobuf string and hence must be UTF-8 encoded.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1002,7 +1161,11 @@ namespace Scip {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -1036,7 +1199,11 @@ namespace Scip {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -1066,6 +1233,7 @@ namespace Scip {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ToolInfo : pb::IMessage<ToolInfo>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1277,7 +1445,11 @@ namespace Scip {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -1304,7 +1476,11 @@ namespace Scip {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -1330,6 +1506,7 @@ namespace Scip {
   /// <summary>
   /// Document defines the metadata about a source file on disk.
   /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Document : pb::IMessage<Document>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1368,6 +1545,8 @@ namespace Scip {
       relativePath_ = other.relativePath_;
       occurrences_ = other.occurrences_.Clone();
       symbols_ = other.symbols_.Clone();
+      text_ = other.text_;
+      positionEncoding_ = other.positionEncoding_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1383,7 +1562,7 @@ namespace Scip {
     /// <summary>
     /// The string ID for the programming language this file is written in.
     /// The `Language` enum contains the names of most common programming languages.
-    /// This field is typed as a string to permit any programming langauge, including
+    /// This field is typed as a string to permit any programming language, including
     /// ones that are not specified by the `Language` enum.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1450,6 +1629,49 @@ namespace Scip {
       get { return symbols_; }
     }
 
+    /// <summary>Field number for the "text" field.</summary>
+    public const int TextFieldNumber = 5;
+    private string text_ = "";
+    /// <summary>
+    /// (optional) Text contents of this document. Indexers are not expected to
+    /// include the text by default. It's preferable that clients read the text
+    /// contents from the file system by resolving the absolute path from joining
+    /// `Index.metadata.project_root` and `Document.relative_path`. This field
+    /// can be useful for testing or when working with virtual/in-memory documents.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Text {
+      get { return text_; }
+      set {
+        text_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "position_encoding" field.</summary>
+    public const int PositionEncodingFieldNumber = 6;
+    private global::Scip.PositionEncoding positionEncoding_ = global::Scip.PositionEncoding.UnspecifiedPositionEncoding;
+    /// <summary>
+    /// Specifies the encoding used for source ranges in this Document.
+    ///
+    /// Usually, this will match the type used to index the string type
+    /// in the indexer's implementation language in O(1) time.
+    /// - For an indexer implemented in JVM/.NET language or JavaScript/TypeScript,
+    ///   use UTF16CodeUnitOffsetFromLineStart.
+    /// - For an indexer implemented in Python,
+    ///   use UTF32CodeUnitOffsetFromLineStart.
+    /// - For an indexer implemented in Go, Rust or C++,
+    ///   use UTF8ByteOffsetFromLineStart.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Scip.PositionEncoding PositionEncoding {
+      get { return positionEncoding_; }
+      set {
+        positionEncoding_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1469,6 +1691,8 @@ namespace Scip {
       if (RelativePath != other.RelativePath) return false;
       if(!occurrences_.Equals(other.occurrences_)) return false;
       if(!symbols_.Equals(other.symbols_)) return false;
+      if (Text != other.Text) return false;
+      if (PositionEncoding != other.PositionEncoding) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1480,6 +1704,8 @@ namespace Scip {
       if (RelativePath.Length != 0) hash ^= RelativePath.GetHashCode();
       hash ^= occurrences_.GetHashCode();
       hash ^= symbols_.GetHashCode();
+      if (Text.Length != 0) hash ^= Text.GetHashCode();
+      if (PositionEncoding != global::Scip.PositionEncoding.UnspecifiedPositionEncoding) hash ^= PositionEncoding.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1508,6 +1734,14 @@ namespace Scip {
         output.WriteRawTag(34);
         output.WriteString(Language);
       }
+      if (Text.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Text);
+      }
+      if (PositionEncoding != global::Scip.PositionEncoding.UnspecifiedPositionEncoding) {
+        output.WriteRawTag(48);
+        output.WriteEnum((int) PositionEncoding);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1528,6 +1762,14 @@ namespace Scip {
         output.WriteRawTag(34);
         output.WriteString(Language);
       }
+      if (Text.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Text);
+      }
+      if (PositionEncoding != global::Scip.PositionEncoding.UnspecifiedPositionEncoding) {
+        output.WriteRawTag(48);
+        output.WriteEnum((int) PositionEncoding);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1546,6 +1788,12 @@ namespace Scip {
       }
       size += occurrences_.CalculateSize(_repeated_occurrences_codec);
       size += symbols_.CalculateSize(_repeated_symbols_codec);
+      if (Text.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Text);
+      }
+      if (PositionEncoding != global::Scip.PositionEncoding.UnspecifiedPositionEncoding) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) PositionEncoding);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1566,6 +1814,12 @@ namespace Scip {
       }
       occurrences_.Add(other.occurrences_);
       symbols_.Add(other.symbols_);
+      if (other.Text.Length != 0) {
+        Text = other.Text;
+      }
+      if (other.PositionEncoding != global::Scip.PositionEncoding.UnspecifiedPositionEncoding) {
+        PositionEncoding = other.PositionEncoding;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1577,7 +1831,11 @@ namespace Scip {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -1597,6 +1855,14 @@ namespace Scip {
             Language = input.ReadString();
             break;
           }
+          case 42: {
+            Text = input.ReadString();
+            break;
+          }
+          case 48: {
+            PositionEncoding = (global::Scip.PositionEncoding) input.ReadEnum();
+            break;
+          }
         }
       }
     #endif
@@ -1608,7 +1874,11 @@ namespace Scip {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -1628,6 +1898,14 @@ namespace Scip {
             Language = input.ReadString();
             break;
           }
+          case 42: {
+            Text = input.ReadString();
+            break;
+          }
+          case 48: {
+            PositionEncoding = (global::Scip.PositionEncoding) input.ReadEnum();
+            break;
+          }
         }
       }
     }
@@ -1644,18 +1922,20 @@ namespace Scip {
   /// interchangeably with `Symbol`. The syntax for Symbol is the following:
   /// ```
   /// # (&lt;x>)+ stands for one or more repetitions of &lt;x>
+  /// # (&lt;x>)? stands for zero or one occurrence of &lt;x>
   /// &lt;symbol>               ::= &lt;scheme> ' ' &lt;package> ' ' (&lt;descriptor>)+ | 'local ' &lt;local-id>
   /// &lt;package>              ::= &lt;manager> ' ' &lt;package-name> ' ' &lt;version>
-  /// &lt;scheme>               ::= any UTF-8, escape spaces with double space.
-  /// &lt;manager>              ::= same as above, use the placeholder '.' to indicate an empty value
+  /// &lt;scheme>               ::= any UTF-8, escape spaces with double space. Must not be empty nor start with 'local'
+  /// &lt;manager>              ::= any UTF-8, escape spaces with double space. Use the placeholder '.' to indicate an empty value
   /// &lt;package-name>         ::= same as above
   /// &lt;version>              ::= same as above
-  /// &lt;descriptor>           ::= &lt;namespace> | &lt;type> | &lt;term> | &lt;method> | &lt;type-parameter> | &lt;parameter> | &lt;meta>
+  /// &lt;descriptor>           ::= &lt;namespace> | &lt;type> | &lt;term> | &lt;method> | &lt;type-parameter> | &lt;parameter> | &lt;meta> | &lt;macro>
   /// &lt;namespace>            ::= &lt;name> '/'
   /// &lt;type>                 ::= &lt;name> '#'
   /// &lt;term>                 ::= &lt;name> '.'
   /// &lt;meta>                 ::= &lt;name> ':'
-  /// &lt;method>               ::= &lt;name> '(' &lt;method-disambiguator> ').'
+  /// &lt;macro>                ::= &lt;name> '!'
+  /// &lt;method>               ::= &lt;name> '(' (&lt;method-disambiguator>)? ').'
   /// &lt;type-parameter>       ::= '[' &lt;name> ']'
   /// &lt;parameter>            ::= '(' &lt;name> ')'
   /// &lt;name>                 ::= &lt;identifier>
@@ -1663,8 +1943,9 @@ namespace Scip {
   /// &lt;identifier>           ::= &lt;simple-identifier> | &lt;escaped-identifier>
   /// &lt;simple-identifier>    ::= (&lt;identifier-character>)+
   /// &lt;identifier-character> ::= '_' | '+' | '-' | '$' | ASCII letter or digit
-  /// &lt;escaped-identifier>   ::= '`' (&lt;escaped-character>)+ '`'
-  /// &lt;escaped-characters>   ::= any UTF-8 character, escape backticks with double backtick.
+  /// &lt;escaped-identifier>   ::= '`' (&lt;escaped-character>)+ '`', must contain at least one non-&lt;identifier-character>
+  /// &lt;escaped-characters>   ::= any UTF-8, escape backticks with double backtick.
+  /// &lt;local-id>             ::= &lt;simple-identifier>
   /// ```
   ///
   /// The list of descriptors for a symbol should together form a fully
@@ -1672,7 +1953,11 @@ namespace Scip {
   /// identifier across the package. Typically, it will include one descriptor
   /// for every node in the AST (along the ancestry path) between the root of
   /// the file and the node corresponding to the symbol.
+  ///
+  /// Local symbols MUST only be used for entities which are local to a Document,
+  /// and cannot be accessed from outside the Document.
   /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Symbol : pb::IMessage<Symbol>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1878,7 +2163,11 @@ namespace Scip {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -1908,7 +2197,11 @@ namespace Scip {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -1939,6 +2232,7 @@ namespace Scip {
   ///
   /// NOTE: This corresponds to a module in Go and JVM languages.
   /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Package : pb::IMessage<Package>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2152,7 +2446,11 @@ namespace Scip {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -2179,7 +2477,11 @@ namespace Scip {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -2202,6 +2504,7 @@ namespace Scip {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SymbolDescriptor : pb::IMessage<SymbolDescriptor>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2275,6 +2578,10 @@ namespace Scip {
     /// <summary>Field number for the "suffix" field.</summary>
     public const int SuffixFieldNumber = 3;
     private global::Scip.SymbolDescriptor.Types.Suffix suffix_ = global::Scip.SymbolDescriptor.Types.Suffix.UnspecifiedSuffix;
+    /// <summary>
+    /// NOTE: If you add new fields here, make sure to update the prepareSlot()
+    /// function responsible for parsing symbols.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Scip.SymbolDescriptor.Types.Suffix Suffix {
@@ -2415,7 +2722,11 @@ namespace Scip {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -2442,7 +2753,11 @@ namespace Scip {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -2479,18 +2794,19 @@ namespace Scip {
         /// <summary>
         /// Use Namespace instead.
         /// </summary>
+        [global::System.ObsoleteAttribute]
         [pbr::OriginalName("Package", PreferredAlias = false)] Package = 1,
         [pbr::OriginalName("Type")] Type = 2,
         [pbr::OriginalName("Term")] Term = 3,
         [pbr::OriginalName("Method")] Method = 4,
         [pbr::OriginalName("TypeParameter")] TypeParameter = 5,
         [pbr::OriginalName("Parameter")] Parameter = 6,
-        [pbr::OriginalName("Macro")] Macro = 9,
         /// <summary>
         /// Can be used for any purpose.
         /// </summary>
         [pbr::OriginalName("Meta")] Meta = 7,
         [pbr::OriginalName("Local")] Local = 8,
+        [pbr::OriginalName("Macro")] Macro = 9,
       }
 
     }
@@ -2499,9 +2815,288 @@ namespace Scip {
   }
 
   /// <summary>
+  /// Signature represents the signature of a symbol as it's displayed in API
+  /// documentation or hover tooltips. It uses a subset of Document's fields with
+  /// the same field numbers for wire compatibility with older indexes that encoded
+  /// signatures using the Document message type.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class Signature : pb::IMessage<Signature>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<Signature> _parser = new pb::MessageParser<Signature>(() => new Signature());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<Signature> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Scip.ScipReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Signature() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Signature(Signature other) : this() {
+      language_ = other.language_;
+      text_ = other.text_;
+      occurrences_ = other.occurrences_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Signature Clone() {
+      return new Signature(this);
+    }
+
+    /// <summary>Field number for the "language" field.</summary>
+    public const int LanguageFieldNumber = 4;
+    private string language_ = "";
+    /// <summary>
+    /// The language of the signature, e.g. "java", "go", "python".
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Language {
+      get { return language_; }
+      set {
+        language_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "text" field.</summary>
+    public const int TextFieldNumber = 5;
+    private string text_ = "";
+    /// <summary>
+    /// The text content of the signature, e.g. "void add(int a, int b)".
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Text {
+      get { return text_; }
+      set {
+        text_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "occurrences" field.</summary>
+    public const int OccurrencesFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::Scip.Occurrence> _repeated_occurrences_codec
+        = pb::FieldCodec.ForMessage(18, global::Scip.Occurrence.Parser);
+    private readonly pbc::RepeatedField<global::Scip.Occurrence> occurrences_ = new pbc::RepeatedField<global::Scip.Occurrence>();
+    /// <summary>
+    /// (optional) Occurrences within the signature text that reference other
+    /// symbols, enabling hyperlinking of types in the signature. Ranges are
+    /// relative to the `text` field.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::Scip.Occurrence> Occurrences {
+      get { return occurrences_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as Signature);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(Signature other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Language != other.Language) return false;
+      if (Text != other.Text) return false;
+      if(!occurrences_.Equals(other.occurrences_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Language.Length != 0) hash ^= Language.GetHashCode();
+      if (Text.Length != 0) hash ^= Text.GetHashCode();
+      hash ^= occurrences_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      occurrences_.WriteTo(output, _repeated_occurrences_codec);
+      if (Language.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Language);
+      }
+      if (Text.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Text);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      occurrences_.WriteTo(ref output, _repeated_occurrences_codec);
+      if (Language.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Language);
+      }
+      if (Text.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Text);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Language.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Language);
+      }
+      if (Text.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Text);
+      }
+      size += occurrences_.CalculateSize(_repeated_occurrences_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(Signature other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Language.Length != 0) {
+        Language = other.Language;
+      }
+      if (other.Text.Length != 0) {
+        Text = other.Text;
+      }
+      occurrences_.Add(other.occurrences_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 18: {
+            occurrences_.AddEntriesFrom(input, _repeated_occurrences_codec);
+            break;
+          }
+          case 34: {
+            Language = input.ReadString();
+            break;
+          }
+          case 42: {
+            Text = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 18: {
+            occurrences_.AddEntriesFrom(ref input, _repeated_occurrences_codec);
+            break;
+          }
+          case 34: {
+            Language = input.ReadString();
+            break;
+          }
+          case 42: {
+            Text = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
   /// SymbolInformation defines metadata about a symbol, such as the symbol's
   /// docstring or what package it's defined it.
   /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SymbolInformation : pb::IMessage<SymbolInformation>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2516,7 +3111,7 @@ namespace Scip {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Scip.ScipReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Scip.ScipReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2539,6 +3134,10 @@ namespace Scip {
       symbol_ = other.symbol_;
       documentation_ = other.documentation_.Clone();
       relationships_ = other.relationships_.Clone();
+      kind_ = other.kind_;
+      displayName_ = other.displayName_;
+      signatureDocumentation_ = other.signatureDocumentation_ != null ? other.signatureDocumentation_.Clone() : null;
+      enclosingSymbol_ = other.enclosingSymbol_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2571,9 +3170,11 @@ namespace Scip {
     private readonly pbc::RepeatedField<string> documentation_ = new pbc::RepeatedField<string>();
     /// <summary>
     /// (optional, but strongly recommended) The markdown-formatted documentation
-    /// for this symbol. This field is repeated to allow different kinds of
-    /// documentation.  For example, it's nice to include both the signature of a
-    /// method (parameters and return type) along with the accompanying docstring.
+    /// for this symbol. Use `SymbolInformation.signature_documentation` to
+    /// document the method/class/type signature of this symbol.
+    /// Due to historical reasons, indexers may include signature documentation in
+    /// this field by rendering markdown code blocks. New indexers should only
+    /// include non-code documentation in this field, for example docstrings.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2595,6 +3196,97 @@ namespace Scip {
       get { return relationships_; }
     }
 
+    /// <summary>Field number for the "kind" field.</summary>
+    public const int KindFieldNumber = 5;
+    private global::Scip.SymbolInformation.Types.Kind kind_ = global::Scip.SymbolInformation.Types.Kind.UnspecifiedKind;
+    /// <summary>
+    /// The kind of this symbol. Use this field instead of
+    /// `SymbolDescriptor.Suffix` to determine whether something is, for example, a
+    /// class or a method.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Scip.SymbolInformation.Types.Kind Kind {
+      get { return kind_; }
+      set {
+        kind_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "display_name" field.</summary>
+    public const int DisplayNameFieldNumber = 6;
+    private string displayName_ = "";
+    /// <summary>
+    /// (optional) The name of this symbol as it should be displayed to the user.
+    /// For example, the symbol "com/example/MyClass#myMethod(+1)." should have the
+    /// display name "myMethod". The `symbol` field is not a reliable source of
+    /// the display name for several reasons:
+    ///
+    /// - Local symbols don't encode the name.
+    /// - Some languages have case-insensitive names, so the symbol is all-lowercase.
+    /// - The symbol may encode names with special characters that should not be
+    ///   displayed to the user.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string DisplayName {
+      get { return displayName_; }
+      set {
+        displayName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "signature_documentation" field.</summary>
+    public const int SignatureDocumentationFieldNumber = 7;
+    private global::Scip.Signature signatureDocumentation_;
+    /// <summary>
+    /// (optional) The signature of this symbol as it's displayed in API
+    /// documentation or in hover tooltips. For example, a Java method that adds
+    /// two numbers would have `Signature.language = "java"` and
+    /// `Signature.text = "void add(int a, int b)"`. The `language` and `text`
+    /// fields are required while `occurrences` can be optionally included to
+    /// support hyperlinking referenced symbols in the signature.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Scip.Signature SignatureDocumentation {
+      get { return signatureDocumentation_; }
+      set {
+        signatureDocumentation_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "enclosing_symbol" field.</summary>
+    public const int EnclosingSymbolFieldNumber = 8;
+    private string enclosingSymbol_ = "";
+    /// <summary>
+    /// (optional) The enclosing symbol if this is a local symbol.  For non-local
+    /// symbols, the enclosing symbol should be parsed from the `symbol` field
+    /// using the `Descriptor` grammar.
+    ///
+    /// The primary use-case for this field is to allow local symbol to be displayed
+    /// in a symbol hierarchy for API documentation. It's OK to leave this field
+    /// empty for local variables since local variables usually don't belong in API
+    /// documentation. However, in the situation that you wish to include a local
+    /// symbol in the hierarchy, then you can use `enclosing_symbol` to locate the
+    /// "parent" or "owner" of this local symbol. For example, a Java indexer may
+    /// choose to use local symbols for private class fields while providing an
+    /// `enclosing_symbol` to reference the enclosing class to allow the field to
+    /// be part of the class documentation hierarchy. From the perspective of an
+    /// author of an indexer, the decision to use a local symbol or global symbol
+    /// should exclusively be determined whether the local symbol is accessible
+    /// outside the document, not by the capability to find the enclosing
+    /// symbol.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string EnclosingSymbol {
+      get { return enclosingSymbol_; }
+      set {
+        enclosingSymbol_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2613,6 +3305,10 @@ namespace Scip {
       if (Symbol != other.Symbol) return false;
       if(!documentation_.Equals(other.documentation_)) return false;
       if(!relationships_.Equals(other.relationships_)) return false;
+      if (Kind != other.Kind) return false;
+      if (DisplayName != other.DisplayName) return false;
+      if (!object.Equals(SignatureDocumentation, other.SignatureDocumentation)) return false;
+      if (EnclosingSymbol != other.EnclosingSymbol) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2623,6 +3319,10 @@ namespace Scip {
       if (Symbol.Length != 0) hash ^= Symbol.GetHashCode();
       hash ^= documentation_.GetHashCode();
       hash ^= relationships_.GetHashCode();
+      if (Kind != global::Scip.SymbolInformation.Types.Kind.UnspecifiedKind) hash ^= Kind.GetHashCode();
+      if (DisplayName.Length != 0) hash ^= DisplayName.GetHashCode();
+      if (signatureDocumentation_ != null) hash ^= SignatureDocumentation.GetHashCode();
+      if (EnclosingSymbol.Length != 0) hash ^= EnclosingSymbol.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2647,6 +3347,22 @@ namespace Scip {
       }
       documentation_.WriteTo(output, _repeated_documentation_codec);
       relationships_.WriteTo(output, _repeated_relationships_codec);
+      if (Kind != global::Scip.SymbolInformation.Types.Kind.UnspecifiedKind) {
+        output.WriteRawTag(40);
+        output.WriteEnum((int) Kind);
+      }
+      if (DisplayName.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(DisplayName);
+      }
+      if (signatureDocumentation_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(SignatureDocumentation);
+      }
+      if (EnclosingSymbol.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(EnclosingSymbol);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2663,6 +3379,22 @@ namespace Scip {
       }
       documentation_.WriteTo(ref output, _repeated_documentation_codec);
       relationships_.WriteTo(ref output, _repeated_relationships_codec);
+      if (Kind != global::Scip.SymbolInformation.Types.Kind.UnspecifiedKind) {
+        output.WriteRawTag(40);
+        output.WriteEnum((int) Kind);
+      }
+      if (DisplayName.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(DisplayName);
+      }
+      if (signatureDocumentation_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(SignatureDocumentation);
+      }
+      if (EnclosingSymbol.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(EnclosingSymbol);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2678,6 +3410,18 @@ namespace Scip {
       }
       size += documentation_.CalculateSize(_repeated_documentation_codec);
       size += relationships_.CalculateSize(_repeated_relationships_codec);
+      if (Kind != global::Scip.SymbolInformation.Types.Kind.UnspecifiedKind) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Kind);
+      }
+      if (DisplayName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(DisplayName);
+      }
+      if (signatureDocumentation_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SignatureDocumentation);
+      }
+      if (EnclosingSymbol.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(EnclosingSymbol);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -2695,6 +3439,21 @@ namespace Scip {
       }
       documentation_.Add(other.documentation_);
       relationships_.Add(other.relationships_);
+      if (other.Kind != global::Scip.SymbolInformation.Types.Kind.UnspecifiedKind) {
+        Kind = other.Kind;
+      }
+      if (other.DisplayName.Length != 0) {
+        DisplayName = other.DisplayName;
+      }
+      if (other.signatureDocumentation_ != null) {
+        if (signatureDocumentation_ == null) {
+          SignatureDocumentation = new global::Scip.Signature();
+        }
+        SignatureDocumentation.MergeFrom(other.SignatureDocumentation);
+      }
+      if (other.EnclosingSymbol.Length != 0) {
+        EnclosingSymbol = other.EnclosingSymbol;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -2706,7 +3465,11 @@ namespace Scip {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -2722,6 +3485,25 @@ namespace Scip {
             relationships_.AddEntriesFrom(input, _repeated_relationships_codec);
             break;
           }
+          case 40: {
+            Kind = (global::Scip.SymbolInformation.Types.Kind) input.ReadEnum();
+            break;
+          }
+          case 50: {
+            DisplayName = input.ReadString();
+            break;
+          }
+          case 58: {
+            if (signatureDocumentation_ == null) {
+              SignatureDocumentation = new global::Scip.Signature();
+            }
+            input.ReadMessage(SignatureDocumentation);
+            break;
+          }
+          case 66: {
+            EnclosingSymbol = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -2733,7 +3515,11 @@ namespace Scip {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -2749,13 +3535,306 @@ namespace Scip {
             relationships_.AddEntriesFrom(ref input, _repeated_relationships_codec);
             break;
           }
+          case 40: {
+            Kind = (global::Scip.SymbolInformation.Types.Kind) input.ReadEnum();
+            break;
+          }
+          case 50: {
+            DisplayName = input.ReadString();
+            break;
+          }
+          case 58: {
+            if (signatureDocumentation_ == null) {
+              SignatureDocumentation = new global::Scip.Signature();
+            }
+            input.ReadMessage(SignatureDocumentation);
+            break;
+          }
+          case 66: {
+            EnclosingSymbol = input.ReadString();
+            break;
+          }
         }
       }
     }
     #endif
 
+    #region Nested types
+    /// <summary>Container for nested types declared in the SymbolInformation message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static partial class Types {
+      /// <summary>
+      /// (optional) Kind represents the fine-grained category of a symbol, suitable for presenting
+      /// information about the symbol's meaning in the language.
+      ///
+      /// For example:
+      /// - A Java method would have the kind `Method` while a Go function would
+      ///   have the kind `Function`, even if the symbols for these use the same
+      ///   syntax for the descriptor `SymbolDescriptor.Suffix.Method`.
+      /// - A Go struct has the symbol kind `Struct` while a Java class has
+      ///   the symbol kind `Class` even if they both have the same descriptor:
+      ///   `SymbolDescriptor.Suffix.Type`.
+      ///
+      /// Since Kind is more fine-grained than Suffix:
+      /// - If two symbols have the same Kind, they should share the same Suffix.
+      /// - If two symbols have different Suffixes, they should have different Kinds.
+      /// </summary>
+      public enum Kind {
+        [pbr::OriginalName("UnspecifiedKind")] UnspecifiedKind = 0,
+        /// <summary>
+        /// A method which may or may not have a body. For Java, Kotlin etc.
+        /// </summary>
+        [pbr::OriginalName("AbstractMethod")] AbstractMethod = 66,
+        /// <summary>
+        /// For Ruby's attr_accessor
+        /// </summary>
+        [pbr::OriginalName("Accessor")] Accessor = 72,
+        [pbr::OriginalName("Array")] Array = 1,
+        /// <summary>
+        /// For Alloy
+        /// </summary>
+        [pbr::OriginalName("Assertion")] Assertion = 2,
+        [pbr::OriginalName("AssociatedType")] AssociatedType = 3,
+        /// <summary>
+        /// For C++
+        /// </summary>
+        [pbr::OriginalName("Attribute")] Attribute = 4,
+        /// <summary>
+        /// For Lean
+        /// </summary>
+        [pbr::OriginalName("Axiom")] Axiom = 5,
+        [pbr::OriginalName("Boolean")] Boolean = 6,
+        [pbr::OriginalName("Class")] Class = 7,
+        /// <summary>
+        /// For C++
+        /// </summary>
+        [pbr::OriginalName("Concept")] Concept = 86,
+        [pbr::OriginalName("Constant")] Constant = 8,
+        [pbr::OriginalName("Constructor")] Constructor = 9,
+        /// <summary>
+        /// For Solidity
+        /// </summary>
+        [pbr::OriginalName("Contract")] Contract = 62,
+        /// <summary>
+        /// For Haskell
+        /// </summary>
+        [pbr::OriginalName("DataFamily")] DataFamily = 10,
+        /// <summary>
+        /// For C# and F#
+        /// </summary>
+        [pbr::OriginalName("Delegate")] Delegate = 73,
+        [pbr::OriginalName("Enum")] Enum = 11,
+        [pbr::OriginalName("EnumMember")] EnumMember = 12,
+        [pbr::OriginalName("Error")] Error = 63,
+        [pbr::OriginalName("Event")] Event = 13,
+        /// <summary>
+        /// For Dart
+        /// </summary>
+        [pbr::OriginalName("Extension")] Extension = 84,
+        /// <summary>
+        /// For Alloy
+        /// </summary>
+        [pbr::OriginalName("Fact")] Fact = 14,
+        [pbr::OriginalName("Field")] Field = 15,
+        [pbr::OriginalName("File")] File = 16,
+        [pbr::OriginalName("Function")] Function = 17,
+        /// <summary>
+        /// For 'get' in Swift, 'attr_reader' in Ruby
+        /// </summary>
+        [pbr::OriginalName("Getter")] Getter = 18,
+        /// <summary>
+        /// For Raku
+        /// </summary>
+        [pbr::OriginalName("Grammar")] Grammar = 19,
+        /// <summary>
+        /// For Purescript and Lean
+        /// </summary>
+        [pbr::OriginalName("Instance")] Instance = 20,
+        [pbr::OriginalName("Interface")] Interface = 21,
+        [pbr::OriginalName("Key")] Key = 22,
+        /// <summary>
+        /// For Racket
+        /// </summary>
+        [pbr::OriginalName("Lang")] Lang = 23,
+        /// <summary>
+        /// For Lean
+        /// </summary>
+        [pbr::OriginalName("Lemma")] Lemma = 24,
+        /// <summary>
+        /// For solidity
+        /// </summary>
+        [pbr::OriginalName("Library")] Library = 64,
+        [pbr::OriginalName("Macro")] Macro = 25,
+        [pbr::OriginalName("Method")] Method = 26,
+        /// <summary>
+        /// For Ruby
+        /// </summary>
+        [pbr::OriginalName("MethodAlias")] MethodAlias = 74,
+        /// <summary>
+        /// Analogous to 'ThisParameter' and 'SelfParameter', but for languages
+        /// like Go where the receiver doesn't have a conventional name.
+        /// </summary>
+        [pbr::OriginalName("MethodReceiver")] MethodReceiver = 27,
+        /// <summary>
+        /// Analogous to 'AbstractMethod', for Go.
+        /// </summary>
+        [pbr::OriginalName("MethodSpecification")] MethodSpecification = 67,
+        /// <summary>
+        /// For Protobuf
+        /// </summary>
+        [pbr::OriginalName("Message")] Message = 28,
+        /// <summary>
+        /// For Dart
+        /// </summary>
+        [pbr::OriginalName("Mixin")] Mixin = 85,
+        /// <summary>
+        /// For Solidity
+        /// </summary>
+        [pbr::OriginalName("Modifier")] Modifier = 65,
+        [pbr::OriginalName("Module")] Module = 29,
+        [pbr::OriginalName("Namespace")] Namespace = 30,
+        [pbr::OriginalName("Null")] Null = 31,
+        [pbr::OriginalName("Number")] Number = 32,
+        [pbr::OriginalName("Object")] Object = 33,
+        [pbr::OriginalName("Operator")] Operator = 34,
+        [pbr::OriginalName("Package")] Package = 35,
+        [pbr::OriginalName("PackageObject")] PackageObject = 36,
+        [pbr::OriginalName("Parameter")] Parameter = 37,
+        [pbr::OriginalName("ParameterLabel")] ParameterLabel = 38,
+        /// <summary>
+        /// For Haskell's PatternSynonyms
+        /// </summary>
+        [pbr::OriginalName("Pattern")] Pattern = 39,
+        /// <summary>
+        /// For Alloy
+        /// </summary>
+        [pbr::OriginalName("Predicate")] Predicate = 40,
+        [pbr::OriginalName("Property")] Property = 41,
+        /// <summary>
+        /// Analogous to 'Trait' and 'TypeClass', for Swift and Objective-C
+        /// </summary>
+        [pbr::OriginalName("Protocol")] Protocol = 42,
+        /// <summary>
+        /// Analogous to 'AbstractMethod', for Swift and Objective-C.
+        /// </summary>
+        [pbr::OriginalName("ProtocolMethod")] ProtocolMethod = 68,
+        /// <summary>
+        /// Analogous to 'AbstractMethod', for C++.
+        /// </summary>
+        [pbr::OriginalName("PureVirtualMethod")] PureVirtualMethod = 69,
+        /// <summary>
+        /// For Haskell
+        /// </summary>
+        [pbr::OriginalName("Quasiquoter")] Quasiquoter = 43,
+        /// <summary>
+        /// 'self' in Python, Rust, Swift etc.
+        /// </summary>
+        [pbr::OriginalName("SelfParameter")] SelfParameter = 44,
+        /// <summary>
+        /// For 'set' in Swift, 'attr_writer' in Ruby
+        /// </summary>
+        [pbr::OriginalName("Setter")] Setter = 45,
+        /// <summary>
+        /// For Alloy, analogous to 'Struct'.
+        /// </summary>
+        [pbr::OriginalName("Signature")] Signature = 46,
+        /// <summary>
+        /// For Ruby
+        /// </summary>
+        [pbr::OriginalName("SingletonClass")] SingletonClass = 75,
+        /// <summary>
+        /// Analogous to 'StaticMethod', for Ruby.
+        /// </summary>
+        [pbr::OriginalName("SingletonMethod")] SingletonMethod = 76,
+        /// <summary>
+        /// Analogous to 'StaticField', for C++
+        /// </summary>
+        [pbr::OriginalName("StaticDataMember")] StaticDataMember = 77,
+        /// <summary>
+        /// For C#
+        /// </summary>
+        [pbr::OriginalName("StaticEvent")] StaticEvent = 78,
+        /// <summary>
+        /// For C#
+        /// </summary>
+        [pbr::OriginalName("StaticField")] StaticField = 79,
+        /// <summary>
+        /// For Java, C#, C++ etc.
+        /// </summary>
+        [pbr::OriginalName("StaticMethod")] StaticMethod = 80,
+        /// <summary>
+        /// For C#, TypeScript etc.
+        /// </summary>
+        [pbr::OriginalName("StaticProperty")] StaticProperty = 81,
+        /// <summary>
+        /// For C, C++
+        /// </summary>
+        [pbr::OriginalName("StaticVariable")] StaticVariable = 82,
+        [pbr::OriginalName("String")] String = 48,
+        [pbr::OriginalName("Struct")] Struct = 49,
+        /// <summary>
+        /// For Swift
+        /// </summary>
+        [pbr::OriginalName("Subscript")] Subscript = 47,
+        /// <summary>
+        /// For Lean
+        /// </summary>
+        [pbr::OriginalName("Tactic")] Tactic = 50,
+        /// <summary>
+        /// For Lean
+        /// </summary>
+        [pbr::OriginalName("Theorem")] Theorem = 51,
+        /// <summary>
+        /// Method receiver for languages
+        /// 'this' in JavaScript, C++, Java etc.
+        /// </summary>
+        [pbr::OriginalName("ThisParameter")] ThisParameter = 52,
+        /// <summary>
+        /// Analogous to 'Protocol' and 'TypeClass', for Rust, Scala etc.
+        /// </summary>
+        [pbr::OriginalName("Trait")] Trait = 53,
+        /// <summary>
+        /// Analogous to 'AbstractMethod', for Rust, Scala etc.
+        /// </summary>
+        [pbr::OriginalName("TraitMethod")] TraitMethod = 70,
+        /// <summary>
+        /// Data type definition for languages like OCaml which use `type`
+        /// rather than separate keywords like `struct` and `enum`.
+        /// </summary>
+        [pbr::OriginalName("Type")] Type = 54,
+        [pbr::OriginalName("TypeAlias")] TypeAlias = 55,
+        /// <summary>
+        /// Analogous to 'Trait' and 'Protocol', for Haskell, Purescript etc.
+        /// </summary>
+        [pbr::OriginalName("TypeClass")] TypeClass = 56,
+        /// <summary>
+        /// Analogous to 'AbstractMethod', for Haskell, Purescript etc.
+        /// </summary>
+        [pbr::OriginalName("TypeClassMethod")] TypeClassMethod = 71,
+        /// <summary>
+        /// For Haskell
+        /// </summary>
+        [pbr::OriginalName("TypeFamily")] TypeFamily = 57,
+        [pbr::OriginalName("TypeParameter")] TypeParameter = 58,
+        /// <summary>
+        /// For C, C++, Capn Proto
+        /// </summary>
+        [pbr::OriginalName("Union")] Union = 59,
+        [pbr::OriginalName("Value")] Value = 60,
+        /// <summary>
+        /// Next = 87;
+        /// Feel free to open a PR proposing new language-specific kinds.
+        /// </summary>
+        [pbr::OriginalName("Variable")] Variable = 61,
+      }
+
+    }
+    #endregion
+
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Relationship : pb::IMessage<Relationship>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2770,7 +3849,7 @@ namespace Scip {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Scip.ScipReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Scip.ScipReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2831,9 +3910,9 @@ namespace Scip {
     ///   ^^^^^ definition Animal#sound()
     /// }
     /// class Dog implements Animal {
-    ///       ^^^ definition Dog#, implementation_symbols = Animal#
+    ///       ^^^ definition Dog#, relationships = [{symbol: "Animal#", is_implementation: true}]
     ///   public sound(): string { return "woof" }
-    ///          ^^^^^ definition Dog#sound(), references_symbols = Animal#sound(), implementation_symbols = Animal#sound()
+    ///          ^^^^^ definition Dog#sound(), references_symbols = Animal#sound(), relationships = [{symbol: "Animal#sound()", is_implementation:true, is_reference: true}]
     /// }
     /// const animal: Animal = new Dog()
     ///               ^^^^^^ reference Animal#
@@ -2858,14 +3937,14 @@ namespace Scip {
     public const int IsImplementationFieldNumber = 3;
     private bool isImplementation_;
     /// <summary>
-    /// Similar to `references_symbols` but for "Go to implementation".
-    /// It's common for the `implementation_symbols` and `references_symbols` fields
-    /// have the same values but that's not always the case.
-    /// In the TypeScript example above, observe that `implementation_symbols` has
-    /// the value `"Animal#"` for the "Dog#" symbol while `references_symbols` is
-    /// empty. When requesting "Find references" on the "Animal#" symbol we don't
-    /// want to include references to "Dog#" even if "Go to implementation" on the
-    /// "Animal#" symbol should navigate to the "Dog#" symbol.
+    /// Similar to `is_reference` but for "Find implementations".
+    /// It's common for `is_implementation` and `is_reference` to both be true but
+    /// it's not always the case.
+    /// In the TypeScript example above, observe that `Dog#` has an
+    /// `is_implementation` relationship with `"Animal#"` but not `is_reference`.
+    /// This is because "Find references" on the "Animal#" symbol should not return
+    /// "Dog#". We only want "Dog#" to return as a result for "Find
+    /// implementations" on the "Animal#" symbol.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2907,10 +3986,6 @@ namespace Scip {
     /// of mixins, you can use is_definition to relate the symbol to the
     /// matching symbol in ancestor classes, and is_reference to relate the
     /// symbol to the matching symbol in mixins.
-    ///
-    /// NOTE: At the moment, due to limitations of the SCIP to LSIF conversion,
-    /// only global symbols in an index are allowed to use is_definition.
-    /// The relationship may not get recorded if either symbol is local.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -3084,7 +4159,11 @@ namespace Scip {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -3119,7 +4198,11 @@ namespace Scip {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -3151,12 +4234,629 @@ namespace Scip {
   }
 
   /// <summary>
+  /// SingleLineRange represents a half-open [start, end) range within a single line.
+  ///
+  /// Line numbers and characters are always 0-based. Make sure to increment them
+  /// before displaying in an editor-like UI because editors conventionally use
+  /// 1-based numbers. The `character` values are interpreted based on the
+  /// `PositionEncoding` for the enclosing Document.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SingleLineRange : pb::IMessage<SingleLineRange>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SingleLineRange> _parser = new pb::MessageParser<SingleLineRange>(() => new SingleLineRange());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SingleLineRange> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Scip.ScipReflection.Descriptor.MessageTypes[10]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SingleLineRange() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SingleLineRange(SingleLineRange other) : this() {
+      line_ = other.line_;
+      startCharacter_ = other.startCharacter_;
+      endCharacter_ = other.endCharacter_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SingleLineRange Clone() {
+      return new SingleLineRange(this);
+    }
+
+    /// <summary>Field number for the "line" field.</summary>
+    public const int LineFieldNumber = 1;
+    private int line_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Line {
+      get { return line_; }
+      set {
+        line_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "start_character" field.</summary>
+    public const int StartCharacterFieldNumber = 2;
+    private int startCharacter_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int StartCharacter {
+      get { return startCharacter_; }
+      set {
+        startCharacter_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "end_character" field.</summary>
+    public const int EndCharacterFieldNumber = 3;
+    private int endCharacter_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int EndCharacter {
+      get { return endCharacter_; }
+      set {
+        endCharacter_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SingleLineRange);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SingleLineRange other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Line != other.Line) return false;
+      if (StartCharacter != other.StartCharacter) return false;
+      if (EndCharacter != other.EndCharacter) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Line != 0) hash ^= Line.GetHashCode();
+      if (StartCharacter != 0) hash ^= StartCharacter.GetHashCode();
+      if (EndCharacter != 0) hash ^= EndCharacter.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Line != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Line);
+      }
+      if (StartCharacter != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(StartCharacter);
+      }
+      if (EndCharacter != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(EndCharacter);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Line != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Line);
+      }
+      if (StartCharacter != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(StartCharacter);
+      }
+      if (EndCharacter != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(EndCharacter);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Line != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Line);
+      }
+      if (StartCharacter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(StartCharacter);
+      }
+      if (EndCharacter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EndCharacter);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SingleLineRange other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Line != 0) {
+        Line = other.Line;
+      }
+      if (other.StartCharacter != 0) {
+        StartCharacter = other.StartCharacter;
+      }
+      if (other.EndCharacter != 0) {
+        EndCharacter = other.EndCharacter;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Line = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            StartCharacter = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            EndCharacter = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Line = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            StartCharacter = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            EndCharacter = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  /// MultiLineRange represents a half-open [start, end) range spanning multiple lines.
+  ///
+  /// Line numbers and characters are always 0-based. Make sure to increment them
+  /// before displaying in an editor-like UI because editors conventionally use
+  /// 1-based numbers. The `character` values are interpreted based on the
+  /// `PositionEncoding` for the enclosing Document.
+  ///
+  /// Producers SHOULD use `SingleLineRange` when `start_line == end_line` to keep
+  /// indexes compact, but consumers MUST accept multi-line encoding even when the
+  /// range happens to fit on a single line.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MultiLineRange : pb::IMessage<MultiLineRange>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MultiLineRange> _parser = new pb::MessageParser<MultiLineRange>(() => new MultiLineRange());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MultiLineRange> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Scip.ScipReflection.Descriptor.MessageTypes[11]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MultiLineRange() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MultiLineRange(MultiLineRange other) : this() {
+      startLine_ = other.startLine_;
+      startCharacter_ = other.startCharacter_;
+      endLine_ = other.endLine_;
+      endCharacter_ = other.endCharacter_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MultiLineRange Clone() {
+      return new MultiLineRange(this);
+    }
+
+    /// <summary>Field number for the "start_line" field.</summary>
+    public const int StartLineFieldNumber = 1;
+    private int startLine_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int StartLine {
+      get { return startLine_; }
+      set {
+        startLine_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "start_character" field.</summary>
+    public const int StartCharacterFieldNumber = 2;
+    private int startCharacter_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int StartCharacter {
+      get { return startCharacter_; }
+      set {
+        startCharacter_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "end_line" field.</summary>
+    public const int EndLineFieldNumber = 3;
+    private int endLine_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int EndLine {
+      get { return endLine_; }
+      set {
+        endLine_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "end_character" field.</summary>
+    public const int EndCharacterFieldNumber = 4;
+    private int endCharacter_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int EndCharacter {
+      get { return endCharacter_; }
+      set {
+        endCharacter_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MultiLineRange);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MultiLineRange other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (StartLine != other.StartLine) return false;
+      if (StartCharacter != other.StartCharacter) return false;
+      if (EndLine != other.EndLine) return false;
+      if (EndCharacter != other.EndCharacter) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (StartLine != 0) hash ^= StartLine.GetHashCode();
+      if (StartCharacter != 0) hash ^= StartCharacter.GetHashCode();
+      if (EndLine != 0) hash ^= EndLine.GetHashCode();
+      if (EndCharacter != 0) hash ^= EndCharacter.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (StartLine != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(StartLine);
+      }
+      if (StartCharacter != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(StartCharacter);
+      }
+      if (EndLine != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(EndLine);
+      }
+      if (EndCharacter != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(EndCharacter);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (StartLine != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(StartLine);
+      }
+      if (StartCharacter != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(StartCharacter);
+      }
+      if (EndLine != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(EndLine);
+      }
+      if (EndCharacter != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(EndCharacter);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (StartLine != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(StartLine);
+      }
+      if (StartCharacter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(StartCharacter);
+      }
+      if (EndLine != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EndLine);
+      }
+      if (EndCharacter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EndCharacter);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MultiLineRange other) {
+      if (other == null) {
+        return;
+      }
+      if (other.StartLine != 0) {
+        StartLine = other.StartLine;
+      }
+      if (other.StartCharacter != 0) {
+        StartCharacter = other.StartCharacter;
+      }
+      if (other.EndLine != 0) {
+        EndLine = other.EndLine;
+      }
+      if (other.EndCharacter != 0) {
+        EndCharacter = other.EndCharacter;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            StartLine = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            StartCharacter = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            EndLine = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            EndCharacter = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            StartLine = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            StartCharacter = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            EndLine = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            EndCharacter = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
   /// Occurrence associates a source position with a symbol and/or highlighting
   /// information.
   ///
   /// If possible, indexers should try to bundle logically related information
   /// across occurrences into a single occurrence to reduce payload sizes.
+  ///
+  /// Range encoding:
+  ///
+  /// An Occurrence carries its source range in one of two ways: the deprecated
+  /// `range` field (a `repeated int32` packed encoding kept for backward
+  /// compatibility), or one of the typed alternatives in the `typed_range`
+  /// oneof. New producers SHOULD set `typed_range` and SHOULD NOT set the
+  /// deprecated `range` field. The same rule applies to `enclosing_range` and
+  /// `typed_enclosing_range`.
+  ///
+  /// When both encodings are present on the same Occurrence, `typed_range` takes
+  /// precedence over `range` (likewise `typed_enclosing_range` over
+  /// `enclosing_range`). Producers that set both forms MUST keep them
+  /// semantically equivalent. Consumers SHOULD prefer the typed form when
+  /// available and fall back to the `repeated int32` form otherwise.
   /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Occurrence : pb::IMessage<Occurrence>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3171,7 +4871,7 @@ namespace Scip {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Scip.ScipReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Scip.ScipReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3197,6 +4897,25 @@ namespace Scip {
       overrideDocumentation_ = other.overrideDocumentation_.Clone();
       syntaxKind_ = other.syntaxKind_;
       diagnostics_ = other.diagnostics_.Clone();
+      enclosingRange_ = other.enclosingRange_.Clone();
+      switch (other.TypedRangeCase) {
+        case TypedRangeOneofCase.SingleLineRange:
+          SingleLineRange = other.SingleLineRange.Clone();
+          break;
+        case TypedRangeOneofCase.MultiLineRange:
+          MultiLineRange = other.MultiLineRange.Clone();
+          break;
+      }
+
+      switch (other.TypedEnclosingRangeCase) {
+        case TypedEnclosingRangeOneofCase.SingleLineEnclosingRange:
+          SingleLineEnclosingRange = other.SingleLineEnclosingRange.Clone();
+          break;
+        case TypedEnclosingRangeOneofCase.MultiLineEnclosingRange:
+          MultiLineEnclosingRange = other.MultiLineEnclosingRange.Clone();
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3212,29 +4931,58 @@ namespace Scip {
         = pb::FieldCodec.ForInt32(10);
     private readonly pbc::RepeatedField<int> range_ = new pbc::RepeatedField<int>();
     /// <summary>
-    /// Source position of this occurrence. Must be exactly three or four
-    /// elements:
+    /// Deprecated: Use `single_line_range` or `multi_line_range` instead.
     ///
+    /// Half-open [start, end) range. Must be exactly three or four elements:
+    /// - Three elements: `[startLine, startCharacter, endCharacter]` (single-line)
     /// - Four elements: `[startLine, startCharacter, endLine, endCharacter]`
-    /// - Three elements: `[startLine, startCharacter, endCharacter]`. The end line
-    ///   is inferred to have the same value as the start line.
     ///
-    /// Line numbers and characters are always 0-based. Make sure to increment the
-    /// line/character values before displaying them in an editor-like UI because
-    /// editors conventionally use 1-based numbers.
+    /// The end line of a three-element range is inferred to equal the start line.
     ///
     /// Historical note: the original draft of this schema had a `Range` message
     /// type with `start` and `end` fields of type `Position`, mirroring LSP.
     /// Benchmarks revealed that this encoding was inefficient and that we could
     /// reduce the total payload size of an index by 50% by using `repeated int32`
-    /// instead.  The `repeated int32` encoding is admittedly more embarrassing to
-    /// work with in some programming languages but we hope the performance
-    /// improvements make up for it.
+    /// instead. However, the lack of type safety led to the introduction of
+    /// `single_line_range` and `multi_line_range` as typed alternatives; the
+    /// typed encoding's per-index size overhead is small (single-digit percent)
+    /// because ranges are only a fraction of a typical index payload.
     /// </summary>
+    [global::System.ObsoleteAttribute]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<int> Range {
       get { return range_; }
+    }
+
+    /// <summary>Field number for the "single_line_range" field.</summary>
+    public const int SingleLineRangeFieldNumber = 8;
+    /// <summary>
+    /// Range spanning a single line.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Scip.SingleLineRange SingleLineRange {
+      get { return typedRangeCase_ == TypedRangeOneofCase.SingleLineRange ? (global::Scip.SingleLineRange) typedRange_ : null; }
+      set {
+        typedRange_ = value;
+        typedRangeCase_ = value == null ? TypedRangeOneofCase.None : TypedRangeOneofCase.SingleLineRange;
+      }
+    }
+
+    /// <summary>Field number for the "multi_line_range" field.</summary>
+    public const int MultiLineRangeFieldNumber = 9;
+    /// <summary>
+    /// Range spanning multiple lines.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Scip.MultiLineRange MultiLineRange {
+      get { return typedRangeCase_ == TypedRangeOneofCase.MultiLineRange ? (global::Scip.MultiLineRange) typedRange_ : null; }
+      set {
+        typedRange_ = value;
+        typedRangeCase_ = value == null ? TypedRangeOneofCase.None : TypedRangeOneofCase.MultiLineRange;
+      }
     }
 
     /// <summary>Field number for the "symbol" field.</summary>
@@ -3319,6 +5067,95 @@ namespace Scip {
       get { return diagnostics_; }
     }
 
+    /// <summary>Field number for the "enclosing_range" field.</summary>
+    public const int EnclosingRangeFieldNumber = 7;
+    private static readonly pb::FieldCodec<int> _repeated_enclosingRange_codec
+        = pb::FieldCodec.ForInt32(58);
+    private readonly pbc::RepeatedField<int> enclosingRange_ = new pbc::RepeatedField<int>();
+    /// <summary>
+    /// Deprecated: Use `typed_enclosing_range` instead.
+    ///
+    /// Uses the same `repeated int32` encoding as the deprecated `range` field.
+    /// </summary>
+    [global::System.ObsoleteAttribute]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<int> EnclosingRange {
+      get { return enclosingRange_; }
+    }
+
+    /// <summary>Field number for the "single_line_enclosing_range" field.</summary>
+    public const int SingleLineEnclosingRangeFieldNumber = 10;
+    /// <summary>
+    /// Enclosing range spanning a single line.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Scip.SingleLineRange SingleLineEnclosingRange {
+      get { return typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.SingleLineEnclosingRange ? (global::Scip.SingleLineRange) typedEnclosingRange_ : null; }
+      set {
+        typedEnclosingRange_ = value;
+        typedEnclosingRangeCase_ = value == null ? TypedEnclosingRangeOneofCase.None : TypedEnclosingRangeOneofCase.SingleLineEnclosingRange;
+      }
+    }
+
+    /// <summary>Field number for the "multi_line_enclosing_range" field.</summary>
+    public const int MultiLineEnclosingRangeFieldNumber = 11;
+    /// <summary>
+    /// Enclosing range spanning multiple lines.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Scip.MultiLineRange MultiLineEnclosingRange {
+      get { return typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.MultiLineEnclosingRange ? (global::Scip.MultiLineRange) typedEnclosingRange_ : null; }
+      set {
+        typedEnclosingRange_ = value;
+        typedEnclosingRangeCase_ = value == null ? TypedEnclosingRangeOneofCase.None : TypedEnclosingRangeOneofCase.MultiLineEnclosingRange;
+      }
+    }
+
+    private object typedRange_;
+    /// <summary>Enum of possible cases for the "typed_range" oneof.</summary>
+    public enum TypedRangeOneofCase {
+      None = 0,
+      SingleLineRange = 8,
+      MultiLineRange = 9,
+    }
+    private TypedRangeOneofCase typedRangeCase_ = TypedRangeOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TypedRangeOneofCase TypedRangeCase {
+      get { return typedRangeCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTypedRange() {
+      typedRangeCase_ = TypedRangeOneofCase.None;
+      typedRange_ = null;
+    }
+
+    private object typedEnclosingRange_;
+    /// <summary>Enum of possible cases for the "typed_enclosing_range" oneof.</summary>
+    public enum TypedEnclosingRangeOneofCase {
+      None = 0,
+      SingleLineEnclosingRange = 10,
+      MultiLineEnclosingRange = 11,
+    }
+    private TypedEnclosingRangeOneofCase typedEnclosingRangeCase_ = TypedEnclosingRangeOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TypedEnclosingRangeOneofCase TypedEnclosingRangeCase {
+      get { return typedEnclosingRangeCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTypedEnclosingRange() {
+      typedEnclosingRangeCase_ = TypedEnclosingRangeOneofCase.None;
+      typedEnclosingRange_ = null;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3335,11 +5172,18 @@ namespace Scip {
         return true;
       }
       if(!range_.Equals(other.range_)) return false;
+      if (!object.Equals(SingleLineRange, other.SingleLineRange)) return false;
+      if (!object.Equals(MultiLineRange, other.MultiLineRange)) return false;
       if (Symbol != other.Symbol) return false;
       if (SymbolRoles != other.SymbolRoles) return false;
       if(!overrideDocumentation_.Equals(other.overrideDocumentation_)) return false;
       if (SyntaxKind != other.SyntaxKind) return false;
       if(!diagnostics_.Equals(other.diagnostics_)) return false;
+      if(!enclosingRange_.Equals(other.enclosingRange_)) return false;
+      if (!object.Equals(SingleLineEnclosingRange, other.SingleLineEnclosingRange)) return false;
+      if (!object.Equals(MultiLineEnclosingRange, other.MultiLineEnclosingRange)) return false;
+      if (TypedRangeCase != other.TypedRangeCase) return false;
+      if (TypedEnclosingRangeCase != other.TypedEnclosingRangeCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3348,11 +5192,18 @@ namespace Scip {
     public override int GetHashCode() {
       int hash = 1;
       hash ^= range_.GetHashCode();
+      if (typedRangeCase_ == TypedRangeOneofCase.SingleLineRange) hash ^= SingleLineRange.GetHashCode();
+      if (typedRangeCase_ == TypedRangeOneofCase.MultiLineRange) hash ^= MultiLineRange.GetHashCode();
       if (Symbol.Length != 0) hash ^= Symbol.GetHashCode();
       if (SymbolRoles != 0) hash ^= SymbolRoles.GetHashCode();
       hash ^= overrideDocumentation_.GetHashCode();
       if (SyntaxKind != global::Scip.SyntaxKind.UnspecifiedSyntaxKind) hash ^= SyntaxKind.GetHashCode();
       hash ^= diagnostics_.GetHashCode();
+      hash ^= enclosingRange_.GetHashCode();
+      if (typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.SingleLineEnclosingRange) hash ^= SingleLineEnclosingRange.GetHashCode();
+      if (typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.MultiLineEnclosingRange) hash ^= MultiLineEnclosingRange.GetHashCode();
+      hash ^= (int) typedRangeCase_;
+      hash ^= (int) typedEnclosingRangeCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3386,6 +5237,23 @@ namespace Scip {
         output.WriteEnum((int) SyntaxKind);
       }
       diagnostics_.WriteTo(output, _repeated_diagnostics_codec);
+      enclosingRange_.WriteTo(output, _repeated_enclosingRange_codec);
+      if (typedRangeCase_ == TypedRangeOneofCase.SingleLineRange) {
+        output.WriteRawTag(66);
+        output.WriteMessage(SingleLineRange);
+      }
+      if (typedRangeCase_ == TypedRangeOneofCase.MultiLineRange) {
+        output.WriteRawTag(74);
+        output.WriteMessage(MultiLineRange);
+      }
+      if (typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.SingleLineEnclosingRange) {
+        output.WriteRawTag(82);
+        output.WriteMessage(SingleLineEnclosingRange);
+      }
+      if (typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.MultiLineEnclosingRange) {
+        output.WriteRawTag(90);
+        output.WriteMessage(MultiLineEnclosingRange);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3411,6 +5279,23 @@ namespace Scip {
         output.WriteEnum((int) SyntaxKind);
       }
       diagnostics_.WriteTo(ref output, _repeated_diagnostics_codec);
+      enclosingRange_.WriteTo(ref output, _repeated_enclosingRange_codec);
+      if (typedRangeCase_ == TypedRangeOneofCase.SingleLineRange) {
+        output.WriteRawTag(66);
+        output.WriteMessage(SingleLineRange);
+      }
+      if (typedRangeCase_ == TypedRangeOneofCase.MultiLineRange) {
+        output.WriteRawTag(74);
+        output.WriteMessage(MultiLineRange);
+      }
+      if (typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.SingleLineEnclosingRange) {
+        output.WriteRawTag(82);
+        output.WriteMessage(SingleLineEnclosingRange);
+      }
+      if (typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.MultiLineEnclosingRange) {
+        output.WriteRawTag(90);
+        output.WriteMessage(MultiLineEnclosingRange);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3422,6 +5307,12 @@ namespace Scip {
     public int CalculateSize() {
       int size = 0;
       size += range_.CalculateSize(_repeated_range_codec);
+      if (typedRangeCase_ == TypedRangeOneofCase.SingleLineRange) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SingleLineRange);
+      }
+      if (typedRangeCase_ == TypedRangeOneofCase.MultiLineRange) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MultiLineRange);
+      }
       if (Symbol.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Symbol);
       }
@@ -3433,6 +5324,13 @@ namespace Scip {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) SyntaxKind);
       }
       size += diagnostics_.CalculateSize(_repeated_diagnostics_codec);
+      size += enclosingRange_.CalculateSize(_repeated_enclosingRange_codec);
+      if (typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.SingleLineEnclosingRange) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SingleLineEnclosingRange);
+      }
+      if (typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.MultiLineEnclosingRange) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MultiLineEnclosingRange);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -3457,6 +5355,37 @@ namespace Scip {
         SyntaxKind = other.SyntaxKind;
       }
       diagnostics_.Add(other.diagnostics_);
+      enclosingRange_.Add(other.enclosingRange_);
+      switch (other.TypedRangeCase) {
+        case TypedRangeOneofCase.SingleLineRange:
+          if (SingleLineRange == null) {
+            SingleLineRange = new global::Scip.SingleLineRange();
+          }
+          SingleLineRange.MergeFrom(other.SingleLineRange);
+          break;
+        case TypedRangeOneofCase.MultiLineRange:
+          if (MultiLineRange == null) {
+            MultiLineRange = new global::Scip.MultiLineRange();
+          }
+          MultiLineRange.MergeFrom(other.MultiLineRange);
+          break;
+      }
+
+      switch (other.TypedEnclosingRangeCase) {
+        case TypedEnclosingRangeOneofCase.SingleLineEnclosingRange:
+          if (SingleLineEnclosingRange == null) {
+            SingleLineEnclosingRange = new global::Scip.SingleLineRange();
+          }
+          SingleLineEnclosingRange.MergeFrom(other.SingleLineEnclosingRange);
+          break;
+        case TypedEnclosingRangeOneofCase.MultiLineEnclosingRange:
+          if (MultiLineEnclosingRange == null) {
+            MultiLineEnclosingRange = new global::Scip.MultiLineRange();
+          }
+          MultiLineEnclosingRange.MergeFrom(other.MultiLineEnclosingRange);
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -3468,7 +5397,11 @@ namespace Scip {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -3497,6 +5430,47 @@ namespace Scip {
             diagnostics_.AddEntriesFrom(input, _repeated_diagnostics_codec);
             break;
           }
+          case 58:
+          case 56: {
+            enclosingRange_.AddEntriesFrom(input, _repeated_enclosingRange_codec);
+            break;
+          }
+          case 66: {
+            global::Scip.SingleLineRange subBuilder = new global::Scip.SingleLineRange();
+            if (typedRangeCase_ == TypedRangeOneofCase.SingleLineRange) {
+              subBuilder.MergeFrom(SingleLineRange);
+            }
+            input.ReadMessage(subBuilder);
+            SingleLineRange = subBuilder;
+            break;
+          }
+          case 74: {
+            global::Scip.MultiLineRange subBuilder = new global::Scip.MultiLineRange();
+            if (typedRangeCase_ == TypedRangeOneofCase.MultiLineRange) {
+              subBuilder.MergeFrom(MultiLineRange);
+            }
+            input.ReadMessage(subBuilder);
+            MultiLineRange = subBuilder;
+            break;
+          }
+          case 82: {
+            global::Scip.SingleLineRange subBuilder = new global::Scip.SingleLineRange();
+            if (typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.SingleLineEnclosingRange) {
+              subBuilder.MergeFrom(SingleLineEnclosingRange);
+            }
+            input.ReadMessage(subBuilder);
+            SingleLineEnclosingRange = subBuilder;
+            break;
+          }
+          case 90: {
+            global::Scip.MultiLineRange subBuilder = new global::Scip.MultiLineRange();
+            if (typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.MultiLineEnclosingRange) {
+              subBuilder.MergeFrom(MultiLineEnclosingRange);
+            }
+            input.ReadMessage(subBuilder);
+            MultiLineEnclosingRange = subBuilder;
+            break;
+          }
         }
       }
     #endif
@@ -3508,7 +5482,11 @@ namespace Scip {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -3537,6 +5515,47 @@ namespace Scip {
             diagnostics_.AddEntriesFrom(ref input, _repeated_diagnostics_codec);
             break;
           }
+          case 58:
+          case 56: {
+            enclosingRange_.AddEntriesFrom(ref input, _repeated_enclosingRange_codec);
+            break;
+          }
+          case 66: {
+            global::Scip.SingleLineRange subBuilder = new global::Scip.SingleLineRange();
+            if (typedRangeCase_ == TypedRangeOneofCase.SingleLineRange) {
+              subBuilder.MergeFrom(SingleLineRange);
+            }
+            input.ReadMessage(subBuilder);
+            SingleLineRange = subBuilder;
+            break;
+          }
+          case 74: {
+            global::Scip.MultiLineRange subBuilder = new global::Scip.MultiLineRange();
+            if (typedRangeCase_ == TypedRangeOneofCase.MultiLineRange) {
+              subBuilder.MergeFrom(MultiLineRange);
+            }
+            input.ReadMessage(subBuilder);
+            MultiLineRange = subBuilder;
+            break;
+          }
+          case 82: {
+            global::Scip.SingleLineRange subBuilder = new global::Scip.SingleLineRange();
+            if (typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.SingleLineEnclosingRange) {
+              subBuilder.MergeFrom(SingleLineEnclosingRange);
+            }
+            input.ReadMessage(subBuilder);
+            SingleLineEnclosingRange = subBuilder;
+            break;
+          }
+          case 90: {
+            global::Scip.MultiLineRange subBuilder = new global::Scip.MultiLineRange();
+            if (typedEnclosingRangeCase_ == TypedEnclosingRangeOneofCase.MultiLineEnclosingRange) {
+              subBuilder.MergeFrom(MultiLineEnclosingRange);
+            }
+            input.ReadMessage(subBuilder);
+            MultiLineEnclosingRange = subBuilder;
+            break;
+          }
         }
       }
     }
@@ -3548,6 +5567,7 @@ namespace Scip {
   /// Represents a diagnostic, such as a compiler error or warning, which should be
   /// reported for a document.
   /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Diagnostic : pb::IMessage<Diagnostic>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3562,7 +5582,7 @@ namespace Scip {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Scip.ScipReflection.Descriptor.MessageTypes[10]; }
+      get { return global::Scip.ScipReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3821,7 +5841,11 @@ namespace Scip {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -3857,7 +5881,11 @@ namespace Scip {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
