@@ -2,9 +2,7 @@ using System.Diagnostics;
 using Google.Protobuf;
 using Microsoft.CodeAnalysis.Elfie.Extensions;
 using Microsoft.CodeAnalysis.MSBuild;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileSystemGlobbing;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Scip;
 
@@ -13,7 +11,8 @@ namespace ScipDotnet;
 public static class IndexCommandHandler
 {
     public static async Task<int> Process(
-        IHost host,
+        ILoggerFactory loggerFactory,
+        MSBuildWorkspace workspace,
         List<FileInfo> projects,
         string output,
         FileInfo workingDirectory,
@@ -25,7 +24,7 @@ public static class IndexCommandHandler
         FileInfo? nugetConfigPath
         )
     {
-        var logger = host.Services.GetRequiredService<ILogger<IndexCommandOptions>>();
+        var logger = loggerFactory.CreateLogger<IndexCommandOptions>();
         var matcher = new Matcher();
         matcher.AddIncludePatterns(include.Count == 0 ? new[] { "**" } : include);
         matcher.AddExcludePatterns(exclude);
@@ -49,18 +48,17 @@ public static class IndexCommandHandler
             skipDotnetRestore,
             nugetConfigPath
         );
-        await ScipIndex(host, options);
+        await ScipIndex(loggerFactory, workspace, options);
 
 
         // Log msbuild workspace diagnostic information after the index command finishes
         // We log the MSBuild failures as error since they are often blocking issues
         // preventing indexing. However, we log msbuild warnings as debug since they
         // do not block indexing usually and are much noisier
-        var workspaceLogger = host.Services.GetRequiredService<ILogger<MSBuildWorkspace>>();
-        var workspaceService = host.Services.GetRequiredService<MSBuildWorkspace>();
-        if (workspaceService.Diagnostics.Any())
+        var workspaceLogger = loggerFactory.CreateLogger<MSBuildWorkspace>();
+        if (workspace.Diagnostics.Any())
         {
-            var diagnosticGroups = workspaceService.Diagnostics
+            var diagnosticGroups = workspace.Diagnostics
                 .GroupBy(d => new { d.Kind, d.Message })
                 .Select(g => new { g.Key.Kind, g.Key.Message, Count = g.Count() });
             foreach (var diagnostic in diagnosticGroups)
@@ -83,10 +81,10 @@ public static class IndexCommandHandler
     private static FileInfo OutputFile(FileInfo workingDirectory, string output) =>
         Path.IsPathRooted(output) ? new FileInfo(output) : new FileInfo(Path.Join(workingDirectory.FullName, output));
 
-    private static async Task ScipIndex(IHost host, IndexCommandOptions options)
+    private static async Task ScipIndex(ILoggerFactory loggerFactory, MSBuildWorkspace workspace, IndexCommandOptions options)
     {
         var stopwatch = Stopwatch.StartNew();
-        var indexer = host.Services.GetRequiredService<ScipProjectIndexer>();
+        var indexer = new ScipProjectIndexer(loggerFactory.CreateLogger<ScipProjectIndexer>());
         var index = new Scip.Index
         {
             Metadata = new Metadata
@@ -100,7 +98,7 @@ public static class IndexCommandHandler
                 TextDocumentEncoding = TextEncoding.Utf8,
             }
         };
-        await foreach (var document in indexer.IndexDocuments(host, options))
+        await foreach (var document in indexer.IndexDocuments(workspace, options))
         {
             index.Documents.Add(document);
         }
