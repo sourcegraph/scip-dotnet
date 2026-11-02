@@ -50,7 +50,10 @@ public class ScipProjectIndexer
 
     public async IAsyncEnumerable<Scip.Document> IndexDocuments(MSBuildWorkspace workspace, IndexCommandOptions options)
     {
-        var indexedProjects = new HashSet<ProjectId>();
+        // Opening a solution replaces the workspace and gives its projects new IDs.
+        var indexedProjects = new HashSet<string>(OperatingSystem.IsWindows()
+            ? StringComparer.OrdinalIgnoreCase
+            : StringComparer.Ordinal);
         foreach (var project in options.ProjectsFile)
         {
             await foreach (var document in IndexProject(workspace, options, project, indexedProjects))
@@ -63,33 +66,47 @@ public class ScipProjectIndexer
     private async IAsyncEnumerable<Scip.Document> IndexProject(MSBuildWorkspace workspace,
                                                                IndexCommandOptions options,
                                                                FileInfo rootProject,
-                                                               HashSet<ProjectId> indexedProjects)
+                                                               HashSet<string> indexedProjects)
     {
-        if (!options.SkipDotnetRestore)
+        if (indexedProjects.Contains(rootProject.FullName))
         {
-            Restore(options, rootProject);
+            yield break;
         }
 
         var isProjectFile = string.Equals(rootProject.Extension, ".csproj", StringComparison.OrdinalIgnoreCase)
                          || string.Equals(rootProject.Extension, ".vbproj", StringComparison.OrdinalIgnoreCase);
-        var projects = (isProjectFile
-            ? new[]
+        var projects = isProjectFile
+            ? workspace.CurrentSolution.Projects
+                .Where(project => indexedProjects.Comparer.Equals(project.FilePath, rootProject.FullName)).ToList()
+            : new List<Project>();
+        if (projects.Count == 0)
+        {
+            if (!options.SkipDotnetRestore)
             {
-                await workspace.OpenProjectAsync(rootProject.FullName)
+                Restore(options, rootProject);
             }
-            : (await workspace.OpenSolutionAsync(rootProject.FullName)).Projects).ToList();
 
+            if (isProjectFile)
+            {
+                await workspace.OpenProjectAsync(rootProject.FullName);
+                // OpenProjectAsync returns only the first target framework. Select from all
+                // loaded variants, just as we do when the project is loaded via a solution.
+                projects = workspace.CurrentSolution.Projects
+                    .Where(project => indexedProjects.Comparer.Equals(project.FilePath, rootProject.FullName)).ToList();
+            }
+            else
+            {
+                projects = (await workspace.OpenSolutionAsync(rootProject.FullName)).Projects.ToList();
+            }
+        }
 
         options.Logger.LogDebug($"Found {projects.Count()} projects");
-        var projectsPerProjFile = projects.GroupBy(x => x.FilePath);
+        var projectsPerProjFile = projects.GroupBy(x => x.FilePath!, indexedProjects.Comparer);
         var framework = $"net{Environment.Version.Major}.0";
         foreach (var projectGroup in projectsPerProjFile)
         {
-
-            // If the project was found by opening the solution, we need to find the project that matches the framework.
-            // if we can' fall back to the first one. Without this, we will process the same document multiple times
-            // once for each framework version being targeting and it leads to unpredictable results since the scip file
-            // will contain the same document multiple times iwth different symbols.
+            // Index one target framework per project file, preferring the running framework.
+            // Fall back to the first variant when the project does not target it.
             var project = projectGroup.FirstOrDefault(x => x.Name.Contains($"({framework})", StringComparison.OrdinalIgnoreCase)) ?? projectGroup.First();
             if (project.Language != "C#" && project.Language != "Visual Basic")
             {
@@ -99,12 +116,10 @@ public class ScipProjectIndexer
                 continue;
             }
 
-            if (indexedProjects.Contains(project.Id))
+            if (!indexedProjects.Add(project.FilePath!))
             {
                 continue;
             }
-
-            indexedProjects.Add(project.Id);
 
             var globals = new Dictionary<ISymbol, ScipSymbol>(SymbolEqualityComparer.Default);
 
