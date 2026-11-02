@@ -1,0 +1,21 @@
+  <p>Current count: @CurrentCount</p>
+//                   ^^^^^^^^^^^^ reference scip-dotnet nuget . . Components/Counter#CurrentCount.
+//                   ^^^^^^^^^^^^^ reference scip-dotnet nuget . . Components/Counter#BuildRenderTree().(__builder)
+//                   ^^^^^^^^^^^^^ reference scip-dotnet nuget Microsoft.AspNetCore.Components 9.0.0.0 Rendering/RenderTreeBuilder#AddContent(+5).
+
+  <button @onclick="Increment">Click me</button>
+//                  ^^^^^^^^^ reference scip-dotnet nuget . . Components/Counter#Increment().
+
+  @code {
+      private int CurrentCount { get; set; }
+//                ^^^^^^^^^^^^ definition scip-dotnet nuget . . Components/Counter#CurrentCount.
+//                             documentation ```cs\nprivate int Counter.CurrentCount { get; set; }\n```
+
+      private void Increment()
+//                 ^^^^^^^^^ definition scip-dotnet nuget . . Components/Counter#Increment().
+//                           documentation ```cs\nprivate void Counter.Increment()\n```
+      {
+          CurrentCount++;
+//        ^^^^^^^^^^^^ reference scip-dotnet nuget . . Components/Counter#CurrentCount.
+      }
+  }
