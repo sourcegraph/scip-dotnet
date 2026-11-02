@@ -190,20 +190,23 @@ public class ScipDocumentIndexer
 
     private static string MethodDisambiguator(ISymbol sym)
     {
-        if (sym is not IMethodSymbol)
+        if (sym is not IMethodSymbol method)
         {
             return "";
         }
 
+        // Type members are declarations, not constructed or reduced call-site symbols.
+        // Compare declarations so different extension overloads keep distinct identities.
+        method = (method.ReducedFrom ?? method).OriginalDefinition;
         var overloadCount = 0;
-        foreach (var member in sym.ContainingType.GetMembers())
+        foreach (var member in method.ContainingType.GetMembers())
         {
-            if (member.Equals(sym, SymbolEqualityComparer.Default))
+            if (member.Equals(method, SymbolEqualityComparer.Default))
             {
                 return overloadCount == 0 ? "" : $"+{overloadCount}";
             }
 
-            if (member.Name.Equals(sym.Name))
+            if (member.Name.Equals(method.Name))
             {
                 overloadCount++;
             }

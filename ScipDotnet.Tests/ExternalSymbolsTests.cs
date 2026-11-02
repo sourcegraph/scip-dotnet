@@ -27,8 +27,20 @@ public class ExternalSymbolsTests
                   </PropertyGroup>
                 </Project>
                 """);
-            var intCalls = "ints.Add(1); _ = ints.First();";
-            var stringCalls = "strings.Add(\"x\"); _ = strings.First();";
+            var intCalls = """
+                ints.Add(1);
+                _ = ints.First();
+                _ = Enumerable.First(ints);
+                _ = ints.First(x => x > 0);
+                _ = Enumerable.First(ints, x => x > 0);
+                """;
+            var stringCalls = """
+                strings.Add("x");
+                _ = strings.First(x => x.Length > 0);
+                _ = Enumerable.First(strings, x => x.Length > 0);
+                _ = strings.First();
+                _ = Enumerable.First(strings);
+                """;
             File.WriteAllText(Path.Join(directory, "Example.cs"), $$"""
                 using System.Collections.Generic;
                 using System.Linq;
@@ -52,19 +64,27 @@ public class ExternalSymbolsTests
 
             var index = Index.Parser.ParseFrom(File.ReadAllBytes(IndexDirectory(directory, allowGlobalDefinitions: true)));
             var document = index.Documents.Single(doc => doc.RelativePath == "Example.cs");
-            foreach (var (symbolPart, signature) in new[]
-                     {
-                         ("/List#Add(", "List<T>.Add(T item)"),
-                         ("/Enumerable#First(", "TSource"),
-                     })
+            var addReferences = document.Occurrences.Where(occurrence => occurrence.Symbol.Contains("/List#Add(")).ToList();
+            Assert.That(addReferences, Has.Count.EqualTo(2), "Both generic constructions must have occurrences.");
+            Assert.That(addReferences.Select(occurrence => occurrence.Symbol).Distinct().Count(), Is.EqualTo(1));
+            var add = index.ExternalSymbols.Single(info => info.Symbol == addReferences[0].Symbol);
+            Assert.That(add.Documentation[0], Does.Contain("List<T>.Add(T item)"));
+
+            var sourceLines = File.ReadAllLines(Path.Join(directory, "Example.cs"));
+            var firstReferences = document.Occurrences.Where(occurrence => occurrence.Symbol.Contains("/Enumerable#First(")).ToList();
+            Assert.That(firstReferences, Has.Count.EqualTo(8), "Both overloads, constructions and call styles must have occurrences.");
+            Assert.That(firstReferences.Select(occurrence => occurrence.Symbol).Distinct().Count(), Is.EqualTo(2),
+                "Distinct overloads must not share a SCIP identity.");
+            foreach (var hasPredicate in new[] { false, true })
             {
-                var references = document.Occurrences.Where(occurrence => occurrence.Symbol.Contains(symbolPart)).ToList();
-                Assert.That(references, Has.Count.EqualTo(2), "Both generic constructions must have occurrences.");
+                var references = firstReferences.Where(occurrence => sourceLines[occurrence.Range[0]].Contains("=>") == hasPredicate).ToList();
+                Assert.That(references, Has.Count.EqualTo(4));
                 Assert.That(references.Select(occurrence => occurrence.Symbol).Distinct().Count(), Is.EqualTo(1));
                 var external = index.ExternalSymbols.Single(info => info.Symbol == references[0].Symbol);
-                Assert.That(external.Documentation[0], Does.Contain(signature));
+                Assert.That(external.Documentation[0], Does.Contain("TSource"));
                 Assert.That(external.Documentation[0], Does.Not.Contain("int"));
                 Assert.That(external.Documentation[0], Does.Not.Contain("string"));
+                Assert.That(external.Documentation[0].Contains("predicate"), Is.EqualTo(hasPredicate));
             }
 
             var equatableTargets = document.Symbols.SelectMany(info => info.Relationships)
