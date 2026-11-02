@@ -2,5 +2,13 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>sourcegraph/renovate-config"
+  ],
+  "packageRules": [
+    {
+      "description": "Roslyn 5.9 drops MSBuild workspace support for .NET 8 and 9, which this tool still targets.",
+      "matchManagers": ["nuget"],
+      "matchPackageNames": ["Microsoft.CodeAnalysis", "Microsoft.CodeAnalysis.*"],
+      "allowedVersions": "<5.9.0"
+    }
   ]
 }
