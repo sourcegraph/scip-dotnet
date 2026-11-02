@@ -258,7 +258,7 @@ public class SnapshotTests
             // Intentionally crash the test if we emit conflicting SymbolInformation
             if (!result.TryAdd(info.Symbol, info))
             {
-                Assert.Fail("duplicate SymbolInformation '{0}'", info.Symbol);
+                Assert.Fail($"duplicate SymbolInformation '{info.Symbol}'");
             }
         }
 

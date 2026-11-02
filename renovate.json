@@ -9,6 +9,11 @@
       "matchManagers": ["nuget"],
       "matchPackageNames": ["Microsoft.CodeAnalysis", "Microsoft.CodeAnalysis.*"],
       "allowedVersions": "<5.9.0"
+    },
+    {
+      "groupName": "NUnit test dependencies",
+      "matchManagers": ["nuget"],
+      "matchPackageNames": ["NUnit", "NUnit.Analyzers", "NUnit3TestAdapter"]
     }
   ]
 }
