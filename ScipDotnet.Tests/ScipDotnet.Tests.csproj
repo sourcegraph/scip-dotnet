@@ -9,7 +9,6 @@
 
     <ItemGroup>
         <PackageReference Include="DiffPlex" Version="1.7.1" />
-        <PackageReference Include="Microsoft.Build.Framework" Version="17.11.48" ExcludeAssets="runtime" PrivateAssets="all" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
         <PackageReference Include="NUnit" Version="3.14.0" />
         <PackageReference Include="NUnit3TestAdapter" Version="6.3.1" />
@@ -21,6 +20,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\ScipDotnet\ScipDotnet.csproj" />
+        <PackageReference Include="Microsoft.Build.Framework" Version="17.11.48" ExcludeAssets="runtime" PrivateAssets="all" />
     </ItemGroup>
 
 </Project>
