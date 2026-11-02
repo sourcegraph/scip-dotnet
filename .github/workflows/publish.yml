@@ -6,32 +6,39 @@ jobs:
   nuget-push:
     runs-on: ubuntu-latest
     environment: NuGet
+    permissions:
+      contents: read
+      id-token: write # nuget.org Trusted Publishing exchanges the GitHub OIDC token for a short-lived API key
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
         with:
           dotnet-version: 10.x
       - run: dotnet pack
-      - run: dotnet nuget push 'ScipDotnet/bin/Release/*.nupkg' --source 'nuget.org' --api-key '${{ secrets.NUGET_APIKEY }}' --skip-duplicate
+      - uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: chrapkowski-sg # nuget.org profile name of the Trusted Publishing policy creator
+      - run: dotnet nuget push 'ScipDotnet/bin/Release/*.nupkg' --source 'nuget.org' --api-key '${{ steps.nuget-login.outputs.NUGET_API_KEY }}' --skip-duplicate
   docker-push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
         with:
           dotnet-version: 10.x
-      - uses: docker/setup-buildx-action@v2
+      - uses: docker/setup-buildx-action@v4
       - run: echo "PATCH=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
       - run: echo "MINOR=${PATCH%.*}" >> $GITHUB_ENV
       - run: echo "MAJOR=${MINOR%.*}" >> $GITHUB_ENV
       - name: Login to DockerHub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v7
         with:
           push: true
           tags: |

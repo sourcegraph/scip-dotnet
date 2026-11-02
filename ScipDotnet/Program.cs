@@ -16,7 +16,7 @@ public static class Program
         var projectsArgument = new Argument<List<FileInfo>>("projects")
         {
             Arity = ArgumentArity.ZeroOrMore,
-            Description = "Path to the .sln (solution) or .csproj/.vbproj file"
+            Description = "Path to the .sln/.slnx (solution) or .csproj/.vbproj file"
         };
         var outputOption = new Option<string>("--output")
         {
