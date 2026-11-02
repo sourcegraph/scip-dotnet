@@ -19,6 +19,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\ScipDotnet\ScipDotnet.csproj" />
+        <PackageReference Include="Microsoft.Build.Framework" Version="17.11.48" ExcludeAssets="runtime" PrivateAssets="all" />
     </ItemGroup>
 
 </Project>
