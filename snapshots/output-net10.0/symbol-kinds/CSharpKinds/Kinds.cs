@@ -74,6 +74,8 @@
 //                    ^^^^^^ definition scip-dotnet nuget . . SymbolKinds/Kinds#Method().
 //                           documentation ```cs\npublic void Kinds.Method()\n```
           {
+              /* 🚀 */ StaticMethod();
+//                     ^^^^^^^^^^^^ reference scip-dotnet nuget . . SymbolKinds/Kinds#StaticMethod().
           }
 
           public static void StaticMethod()

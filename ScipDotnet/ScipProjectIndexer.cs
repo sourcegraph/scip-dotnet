@@ -1,9 +1,7 @@
 using System.Diagnostics;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.MSBuild;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileSystemGlobbing;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace ScipDotnet;
@@ -17,6 +15,12 @@ public class ScipProjectIndexer
         Logger = logger;
 
     private ILogger<ScipProjectIndexer> Logger { get; }
+
+    // Index-wide collections populated while documents are indexed. After indexing
+    // finishes, the caller copies ExternalSymbols (minus DefinedSymbols) into
+    // Index.external_symbols to provide dependency hover documentation.
+    public Dictionary<string, Scip.SymbolInformation> ExternalSymbols { get; } = new();
+    public HashSet<string> DefinedSymbols { get; } = new();
 
     private void Restore(IndexCommandOptions options, FileInfo project)
     {
@@ -44,19 +48,19 @@ public class ScipProjectIndexer
         }
     }
 
-    public async IAsyncEnumerable<Scip.Document> IndexDocuments(IHost host, IndexCommandOptions options)
+    public async IAsyncEnumerable<Scip.Document> IndexDocuments(MSBuildWorkspace workspace, IndexCommandOptions options)
     {
         var indexedProjects = new HashSet<ProjectId>();
         foreach (var project in options.ProjectsFile)
         {
-            await foreach (var document in IndexProject(host, options, project, indexedProjects))
+            await foreach (var document in IndexProject(workspace, options, project, indexedProjects))
             {
                 yield return document;
             }
         }
     }
 
-    private async IAsyncEnumerable<Scip.Document> IndexProject(IHost host,
+    private async IAsyncEnumerable<Scip.Document> IndexProject(MSBuildWorkspace workspace,
                                                                IndexCommandOptions options,
                                                                FileInfo rootProject,
                                                                HashSet<ProjectId> indexedProjects)
@@ -71,11 +75,9 @@ public class ScipProjectIndexer
         var projects = (isProjectFile
             ? new[]
             {
-                await host.Services.GetRequiredService<MSBuildWorkspace>()
-                    .OpenProjectAsync(rootProject.FullName)
+                await workspace.OpenProjectAsync(rootProject.FullName)
             }
-            : (await host.Services.GetRequiredService<MSBuildWorkspace>()
-                .OpenSolutionAsync(rootProject.FullName)).Projects).ToList();
+            : (await workspace.OpenSolutionAsync(rootProject.FullName)).Projects).ToList();
 
 
         options.Logger.LogDebug($"Found {projects.Count()} projects");
@@ -145,7 +147,7 @@ public class ScipProjectIndexer
         }
         else
         {
-            var symbolFormatter = new ScipDocumentIndexer(doc, options, globals);
+            var symbolFormatter = new ScipDocumentIndexer(doc, options, globals, ExternalSymbols, DefinedSymbols);
             var root = await document.GetSyntaxRootAsync();
             if (language == "C#")
             {

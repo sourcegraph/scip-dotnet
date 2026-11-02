@@ -33,6 +33,7 @@ namespace SymbolKinds
 
         public void Method()
         {
+            /* 🚀 */ StaticMethod();
         }
 
         public static void StaticMethod()

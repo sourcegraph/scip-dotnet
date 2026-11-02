@@ -4,6 +4,7 @@ Namespace SymbolKinds
 
     Public Module VBModule
         Public Sub ModuleMethod()
+            Dim marker = "🚀" : ModuleMethod()
         End Sub
     End Module
 End Namespace

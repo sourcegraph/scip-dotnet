@@ -49,5 +49,19 @@ public class SymbolKindTests
             Is.EquivalentTo(new[] { "C#", "Visual Basic" }));
         Assert.That(index.Documents.Select(document => document.PositionEncoding),
             Has.All.EqualTo(PositionEncoding.Utf16CodeUnitOffsetFromLineStart));
+
+        // Each reference follows a non-BMP character: UTF-8 bytes and Unicode scalar
+        // offsets both differ from these UTF-16 code-unit offsets.
+        foreach (var (path, suffix, range) in new[]
+                 {
+                     ("CSharpKinds/Kinds.cs", "/Kinds#StaticMethod().", new[] { 35, 21, 33 }),
+                     ("VBKinds/Kinds.vb", "/VBModule#ModuleMethod().", new[] { 6, 32, 44 }),
+                 })
+        {
+            var document = index.Documents.Single(document => document.RelativePath.Replace('\\', '/') == path);
+            var reference = document.Occurrences.Single(occurrence => occurrence.Symbol.EndsWith(suffix)
+                && (occurrence.SymbolRoles & (int)SymbolRole.Definition) == 0);
+            Assert.That(reference.Range, Is.EqualTo(range), path);
+        }
     }
 }

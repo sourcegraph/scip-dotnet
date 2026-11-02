@@ -83,7 +83,7 @@
 //            ^^^^^^ definition local 6
 //                   documentation ```cs\nIEnumerable<(int F1, int F2)>? result\n```
 //                     ^^^^ reference local 5
-//                          ^^^^^^ reference scip-dotnet nuget System.Linq 10.0.0.0 Linq/Enumerable#Select().
+//                          ^^^^^^ reference scip-dotnet nuget System.Linq 10.0.0.0 Linq/Enumerable#Select(+1).
 //                                 ^ definition local 8
 //                                   documentation ```cs\nInferred c\n```
 //                                       ^ reference local 8

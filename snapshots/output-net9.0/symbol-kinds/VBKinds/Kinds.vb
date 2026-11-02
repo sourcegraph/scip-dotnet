@@ -11,6 +11,10 @@
           Public Sub ModuleMethod()
 '                    ^^^^^^^^^^^^ definition scip-dotnet nuget . . SymbolKinds/VBModule#ModuleMethod().
 '                                 documentation ```vb\nPublic Sub VBModule.ModuleMethod()\n```
+              Dim marker = "🚀" : ModuleMethod()
+'                 ^^^^^^ definition local 0
+'                        documentation ```vb\nmarker As String\n```
+'                                 ^^^^^^^^^^^^ reference scip-dotnet nuget . . SymbolKinds/VBModule#ModuleMethod().
           End Sub
       End Module
   End Namespace
