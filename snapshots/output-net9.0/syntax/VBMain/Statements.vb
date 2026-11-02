@@ -66,7 +66,7 @@
 '                 ^^^^^^ definition local 3
 '                        documentation ```vb\nResult As Interface IEnumerable(Of (F1 As Integer, F2 As Integer))\n```
 '                          ^^^^ reference local 2
-'                               ^^^^^^ reference scip-dotnet nuget System.Linq 9.0.0.0 Linq/Enumerable#Select().
+'                               ^^^^^^ reference scip-dotnet nuget System.Linq 9.0.0.0 Linq/Enumerable#Select(+1).
 '                                               ^ definition local 5
 '                                                 documentation ```vb\nc As Inferred\n```
 '                                                   ^ reference local 5
