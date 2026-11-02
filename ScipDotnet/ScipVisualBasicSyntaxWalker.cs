@@ -45,7 +45,7 @@ public class ScipVisualBasicSyntaxWalker : VisualBasicSyntaxWalker
 
     public override void VisitCatchStatement(CatchStatementSyntax node)
     {
-        // `Catch` and `Catch When condition` declare no exception variable, so IdentifierName is null.
+        // `Catch` and `Catch When condition` declare no exception variable.
         if (node.IdentifierName != null)
         {
             _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.IdentifierName.Identifier.GetLocation(), true);

@@ -10,6 +10,127 @@ namespace ScipDotnet.Tests;
 [TestFixture]
 public class SnapshotTests
 {
+    [TestCase("None", false)]
+    [TestCase("Error", true)]
+    public async Task LoggingRespectsEnvironmentConfiguration(string level, bool expectError)
+    {
+        var directory = Path.Join(Path.GetTempPath(), Path.GetRandomFileName());
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var startInfo = new ProcessStartInfo("dotnet")
+            {
+                WorkingDirectory = RootDirectory(),
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+            };
+            foreach (var argument in new[]
+                     {
+                         "run", "--no-build", "--project", "ScipDotnet", "--framework",
+                         $"net{Environment.Version.Major}.0", "--", "index",
+                         "--working-directory", directory, "--skip-dotnet-restore",
+                     })
+            {
+                startInfo.ArgumentList.Add(argument);
+            }
+            startInfo.Environment["Logging__LogLevel__Default"] = level;
+            using var process = Process.Start(startInfo)!;
+            var stdout = process.StandardOutput.ReadToEndAsync();
+            var stderr = process.StandardError.ReadToEndAsync();
+            await process.WaitForExitAsync();
+            var output = await stdout + await stderr;
+
+            Assert.That(process.ExitCode, Is.EqualTo(1));
+            if (expectError)
+            {
+                Assert.That(output, Does.Contain("No solution"));
+            }
+            else
+            {
+                Assert.That(output, Is.Empty);
+            }
+        }
+        finally
+        {
+            Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [TestCase("auto")]
+    [TestCase("solution-first")]
+    [TestCase("project-first")]
+    [TestCase("project-only")]
+    [TestCase("repeated-project")]
+    [TestCase("repeated-solution")]
+    public void ProjectBesideSolutionIsIndexedOnce(string order)
+    {
+        var directory = Path.Join(RootDirectory(), "snapshots", "input", "project-beside-solution");
+        var solution = Path.Join(directory, "ProjectBesideSolution.sln");
+        var project = Path.Join(directory, "ProjectBesideSolution.csproj");
+        var roots = order switch
+        {
+            "solution-first" => new[] { solution, project },
+            "project-first" => new[] { project, solution },
+            "project-only" => new[] { project },
+            "repeated-project" => new[] { project, project },
+            "repeated-solution" => new[] { solution, solution, project },
+            _ => Array.Empty<string>(),
+        };
+        var index = Index.Parser.ParseFrom(File.ReadAllBytes(IndexDirectory(directory, roots)));
+        Assert.That(index.Documents.Count(document => document.RelativePath == "Program.cs"), Is.EqualTo(1));
+        Assert.That(index.Documents.Select(document => document.RelativePath), Is.Unique);
+        var program = index.Documents.Single(document => document.RelativePath == "Program.cs");
+        Assert.That(program.Occurrences.Select(occurrence => occurrence.Symbol),
+            Does.Contain($"scip-dotnet nuget System.Console {Environment.Version.Major}.0.0.0 System/Console#"));
+    }
+
+    [Test]
+    public void CaseDistinctProjectPathsAreBothIndexed()
+    {
+        var directory = Path.Join(Path.GetTempPath(), Path.GetRandomFileName());
+        Directory.CreateDirectory(directory);
+        try
+        {
+            foreach (var name in new[] { "Upper", "Lower" })
+            {
+                var projectDirectory = Path.Join(directory, name == "Upper" ? "Project" : "project");
+                if (Directory.Exists(projectDirectory))
+                {
+                    Assert.Ignore("Requires a case-sensitive file system.");
+                }
+                Directory.CreateDirectory(projectDirectory);
+                File.WriteAllText(Path.Join(projectDirectory, "Example.csproj"), $"""
+                    <Project Sdk="Microsoft.NET.Sdk">
+                      <PropertyGroup>
+                        <TargetFramework>net{Environment.Version.Major}.0</TargetFramework>
+                      </PropertyGroup>
+                    </Project>
+                    """);
+                File.WriteAllText(Path.Join(projectDirectory, $"{name}.cs"), $"public class {name} {{ }}");
+                using var restore = Process.Start(new ProcessStartInfo("dotnet", "restore")
+                {
+                    WorkingDirectory = projectDirectory,
+                })!;
+                restore.WaitForExit();
+                Assert.That(restore.ExitCode, Is.Zero);
+            }
+            var solution = Path.Join(directory, "Example.slnx");
+            File.WriteAllText(solution, """
+                <Solution><Project Path="Project/Example.csproj" /></Solution>
+                """);
+
+            var index = Index.Parser.ParseFrom(File.ReadAllBytes(IndexDirectory(directory,
+                solution, Path.Join(directory, "project", "Example.csproj"))));
+            Assert.That(index.Documents.Count(document => document.RelativePath == Path.Join("Project", "Upper.cs")), Is.EqualTo(1));
+            Assert.That(index.Documents.Count(document => document.RelativePath == Path.Join("project", "Lower.cs")), Is.EqualTo(1));
+        }
+        finally
+        {
+            Directory.Delete(directory, recursive: true);
+        }
+    }
+
     [Test, TestCaseSource(nameof(ListSnapshotInputDirectories))]
     public void Snapshot(string inputDirectory)
     {
@@ -47,7 +168,7 @@ public class SnapshotTests
                 RecursivelyListFiles(outputDirectory, absoluteOutputPaths);
                 foreach (var absolutePath in absoluteOutputPaths)
                 {
-                    if (!absolutePath.EndsWith(".cs"))
+                    if (!absolutePath.EndsWith(".cs") && !absolutePath.EndsWith(".vb"))
                     {
                         continue;
                     }
@@ -138,12 +259,13 @@ public class SnapshotTests
 #endif
     }
 
-    private static string IndexDirectory(string directory)
+    internal static string IndexDirectory(string directory, params string[] projects)
     {
         var include = Environment.GetEnvironmentVariable("SCIP_INCLUDE");
         var framework = $"net{Environment.Version.Major}.0";
         var includeOption = include != null ? $" --include {include}" : "";
-        var arguments = $"run --project ScipDotnet --framework {framework} -- index --working-directory {directory}{includeOption}";
+        var roots = string.Join(" ", projects.Select(project => $"\"{project}\""));
+        var arguments = $"run --project ScipDotnet --framework {framework} -- index {roots} --working-directory {directory}{includeOption}";
         var process = new Process()
         {
             StartInfo = new ProcessStartInfo()
@@ -182,7 +304,7 @@ public class SnapshotTests
         return process.StandardOutput.ReadToEnd().Trim().Split("\n");
     }
 
-    private static string RootDirectory()
+    internal static string RootDirectory()
     {
         var process = new Process()
         {
@@ -211,7 +333,7 @@ public class SnapshotTests
             // Intentionally crash the test if we emit conflicting SymbolInformation
             if (!result.TryAdd(info.Symbol, info))
             {
-                Assert.Fail("duplicate SymbolInformation '{0}'", info.Symbol);
+                Assert.Fail($"duplicate SymbolInformation '{info.Symbol}'");
             }
         }
 
