@@ -10,6 +10,53 @@ namespace ScipDotnet.Tests;
 [TestFixture]
 public class SnapshotTests
 {
+    [TestCase("None", false)]
+    [TestCase("Error", true)]
+    public async Task LoggingRespectsEnvironmentConfiguration(string level, bool expectError)
+    {
+        var directory = Path.Join(Path.GetTempPath(), Path.GetRandomFileName());
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var startInfo = new ProcessStartInfo("dotnet")
+            {
+                WorkingDirectory = RootDirectory(),
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+            };
+            foreach (var argument in new[]
+                     {
+                         "run", "--no-build", "--project", "ScipDotnet", "--framework",
+                         $"net{Environment.Version.Major}.0", "--", "index",
+                         "--working-directory", directory, "--skip-dotnet-restore",
+                     })
+            {
+                startInfo.ArgumentList.Add(argument);
+            }
+            startInfo.Environment["Logging__LogLevel__Default"] = level;
+            using var process = Process.Start(startInfo)!;
+            var stdout = process.StandardOutput.ReadToEndAsync();
+            var stderr = process.StandardError.ReadToEndAsync();
+            await process.WaitForExitAsync();
+            var output = await stdout + await stderr;
+
+            Assert.That(process.ExitCode, Is.EqualTo(1));
+            if (expectError)
+            {
+                Assert.That(output, Does.Contain("No solution"));
+            }
+            else
+            {
+                Assert.That(output, Is.Empty);
+            }
+        }
+        finally
+        {
+            Directory.Delete(directory, recursive: true);
+        }
+    }
+
     [Test, TestCaseSource(nameof(ListSnapshotInputDirectories))]
     public void Snapshot(string inputDirectory)
     {
