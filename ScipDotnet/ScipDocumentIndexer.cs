@@ -254,11 +254,7 @@ public class ScipDocumentIndexer
 
         if (!isDefinition)
         {
-            // This occurrence references a symbol that is not defined in the indexed
-            // source. If it belongs to an external NuGet/BCL package, record a minimal
-            // SymbolInformation so the reference is resolvable via Index.external_symbols.
-            // Without this, every cross-package reference dangles (scip lint reports
-            // "no matching SymbolInformation in external symbols or any document").
+            // Supply dependency hover documentation even when the package is not indexed.
             if (scip.IsExternalPackageSymbol() && !_externalSymbols.ContainsKey(scipSymbol))
             {
                 _externalSymbols[scipSymbol] = CreateExternalSymbolInformation(symbol, scipSymbol);
@@ -357,11 +353,8 @@ public class ScipDocumentIndexer
         }
     }
 
-    // Collects an external-package symbol that appears only as a relationship target
-    // (e.g. an implicitly implemented IEquatable<T> on a record, or a transitive base
-    // class / inherited interface that never appears textually in the source and so is
-    // never seen by VisitOccurrence). Without this, the relationship dangles
-    // (scip lint: "has a relationship to <symbol>, couldn't find #2").
+    // Include documentation for relationship targets that have no source occurrence,
+    // such as the implicitly implemented IEquatable<T> on a record.
     private void CollectExternalRelationship(ISymbol related, ScipSymbol scip)
     {
         if (scip.IsExternalPackageSymbol() && !_externalSymbols.ContainsKey(scip.Value))
@@ -377,6 +370,14 @@ public class ScipDocumentIndexer
     // unbounded number of additional external symbols.
     private SymbolInformation CreateExternalSymbolInformation(ISymbol symbol, string scipSymbol)
     {
+        // All constructions share a SCIP identity. Describe the declaration, not the
+        // first use's type arguments or reduced extension-method receiver.
+        if (symbol is IMethodSymbol { ReducedFrom: { } reducedMethod })
+        {
+            symbol = reducedMethod;
+        }
+        symbol = symbol.OriginalDefinition;
+
         var info = new SymbolInformation { Symbol = scipSymbol };
 
         var symbolSignature = symbol.ToDisplayString(_format);

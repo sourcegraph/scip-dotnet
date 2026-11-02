@@ -21,7 +21,7 @@ public class ScipSymbol
 
     // True if this symbol resolves to a real external NuGet/BCL package, i.e. a global
     // symbol that is NOT the index-local package placeholder (`scip-dotnet nuget . . `).
-    // These are the symbols that must be declared in Index.external_symbols.
+    // These symbols are candidates for dependency hover documentation.
     public bool IsExternalPackageSymbol() =>
         Value.StartsWith(PackagePrefix) && !Value.StartsWith(IndexLocalPackage.Value);
 

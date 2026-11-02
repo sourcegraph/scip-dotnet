@@ -20,7 +20,7 @@ public class ScipProjectIndexer
 
     // Index-wide collections populated while documents are indexed. After indexing
     // finishes, the caller copies ExternalSymbols (minus DefinedSymbols) into
-    // Index.external_symbols so that cross-package references are resolvable.
+    // Index.external_symbols to provide dependency hover documentation.
     public Dictionary<string, Scip.SymbolInformation> ExternalSymbols { get; } = new();
     public HashSet<string> DefinedSymbols { get; } = new();
 

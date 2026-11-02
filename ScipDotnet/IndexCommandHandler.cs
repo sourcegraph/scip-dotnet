@@ -110,8 +110,8 @@ public static class IndexCommandHandler
             options.Logger.LogWarning("Indexing finished without error but no documents were indexed.");
         }
 
-        // Declare every referenced external-package symbol in Index.external_symbols so that
-        // cross-package references resolve. Skip any symbol that also has an in-source
+        // Include dependency hover documentation in Index.external_symbols.
+        // Skip any symbol that also has an in-source
         // definition (possible under --allow-global-symbol-definitions). Order by symbol for
         // deterministic output.
         foreach (var external in indexer.ExternalSymbols

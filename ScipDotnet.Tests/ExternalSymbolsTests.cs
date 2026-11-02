@@ -5,19 +5,85 @@ using Index = Scip.Index;
 namespace ScipDotnet.Tests;
 
 /// <summary>
-/// Regression test for dangling cross-package occurrences.
-///
-/// SCIP requires that every occurrence referencing a symbol that is defined in an
-/// external package have a matching <see cref="SymbolInformation"/> in
-/// <c>Index.external_symbols</c> (the same invariant <c>scip lint</c> enforces).
-///
-/// Before the external-symbols fix, scip-dotnet emitted reference occurrences for
-/// NuGet/BCL symbols (e.g. <c>System.Runtime</c>) but never populated
-/// <c>external_symbols</c>, so ~60% of occurrences in a real-world index dangled.
+/// Checks the dependency hover metadata emitted in Index.external_symbols.
+/// SCIP permits this metadata to be omitted when dependencies are indexed separately;
+/// we include it so their documentation is available without a separate index.
 /// </summary>
 [TestFixture]
 public class ExternalSymbolsTests
 {
+    [TestCase(false)]
+    [TestCase(true)]
+    public void GenericHoverDescribesDeclarationRegardlessOfReferenceOrder(bool stringsFirst)
+    {
+        var directory = Path.Join(Path.GetTempPath(), Path.GetRandomFileName());
+        Directory.CreateDirectory(directory);
+        try
+        {
+            File.WriteAllText(Path.Join(directory, "Example.csproj"), $"""
+                <Project Sdk="Microsoft.NET.Sdk">
+                  <PropertyGroup>
+                    <TargetFramework>net{Environment.Version.Major}.0</TargetFramework>
+                  </PropertyGroup>
+                </Project>
+                """);
+            var intCalls = "ints.Add(1); _ = ints.First();";
+            var stringCalls = "strings.Add(\"x\"); _ = strings.First();";
+            File.WriteAllText(Path.Join(directory, "Example.cs"), $$"""
+                using System.Collections.Generic;
+                using System.Linq;
+
+                public class Example
+                {
+                    public void Run(List<int> ints, List<string> strings)
+                    {
+                        {{(stringsFirst ? stringCalls : intCalls)}}
+                        {{(stringsFirst ? intCalls : stringCalls)}}
+                        Helper.Later();
+                    }
+                }
+                {{(stringsFirst ? "public record Text(string Value);" : "public record Number(int Value);")}}
+                {{(stringsFirst ? "public record Number(int Value);" : "public record Text(string Value);")}}
+                public static class Helper
+                {
+                    public static void Later() { }
+                }
+                """);
+
+            var index = Index.Parser.ParseFrom(File.ReadAllBytes(IndexDirectory(directory, allowGlobalDefinitions: true)));
+            var document = index.Documents.Single(doc => doc.RelativePath == "Example.cs");
+            foreach (var (symbolPart, signature) in new[]
+                     {
+                         ("/List#Add(", "List<T>.Add(T item)"),
+                         ("/Enumerable#First(", "TSource"),
+                     })
+            {
+                var references = document.Occurrences.Where(occurrence => occurrence.Symbol.Contains(symbolPart)).ToList();
+                Assert.That(references, Has.Count.EqualTo(2), "Both generic constructions must have occurrences.");
+                Assert.That(references.Select(occurrence => occurrence.Symbol).Distinct().Count(), Is.EqualTo(1));
+                var external = index.ExternalSymbols.Single(info => info.Symbol == references[0].Symbol);
+                Assert.That(external.Documentation[0], Does.Contain(signature));
+                Assert.That(external.Documentation[0], Does.Not.Contain("int"));
+                Assert.That(external.Documentation[0], Does.Not.Contain("string"));
+            }
+
+            var equatableTargets = document.Symbols.SelectMany(info => info.Relationships)
+                .Where(relationship => relationship.Symbol.EndsWith("/IEquatable#")).ToList();
+            Assert.That(equatableTargets, Has.Count.EqualTo(2));
+            Assert.That(equatableTargets.Select(relationship => relationship.Symbol).Distinct().Count(), Is.EqualTo(1));
+            var equatable = index.ExternalSymbols.Single(info => info.Symbol == equatableTargets[0].Symbol);
+            Assert.That(equatable.Documentation[0], Does.Contain("IEquatable<T>"));
+
+            var later = document.Occurrences.Where(occurrence => occurrence.Symbol.EndsWith("/Helper#Later().")).ToList();
+            Assert.That(later, Has.Count.EqualTo(2), "The source definition is visited after its reference.");
+            Assert.That(index.ExternalSymbols.Select(info => info.Symbol), Does.Not.Contain(later[0].Symbol));
+        }
+        finally
+        {
+            Directory.Delete(directory, recursive: true);
+        }
+    }
+
     [Test]
     public void EveryGenuineExternalOccurrenceHasSymbolInformation()
     {
@@ -44,11 +110,8 @@ public class ExternalSymbolsTests
             + "in external_symbols or any document:\n  " + string.Join("\n  ", dangling));
     }
 
-    // Every external-package symbol referenced as a relationship target (e.g. the
-    // implicitly implemented IEquatable<T> on a record, or a transitively inherited
-    // interface that never appears textually in the source) must also be declared in
-    // external_symbols. Otherwise scip lint reports:
-    //   "has a relationship to <symbol>, but couldn't find #2 in external symbols ...".
+    // Include metadata for relationship targets even when they have no source occurrence,
+    // such as the implicitly implemented IEquatable<T> on a record.
     [Test]
     public void EveryExternalRelationshipTargetHasSymbolInformation()
     {
@@ -105,10 +168,11 @@ public class ExternalSymbolsTests
         symbol.StartsWith("scip-dotnet nuget ")
         && !symbol.StartsWith("scip-dotnet nuget . . ");
 
-    private static string IndexDirectory(string directory)
+    private static string IndexDirectory(string directory, bool allowGlobalDefinitions = false)
     {
         var framework = $"net{Environment.Version.Major}.0";
-        var arguments = $"run --project ScipDotnet --framework {framework} -- index --working-directory {directory}";
+        var arguments = $"run --project ScipDotnet --framework {framework} -- index --working-directory \"{directory}\""
+            + (allowGlobalDefinitions ? " --allow-global-symbol-definitions" : "");
         var process = new Process
         {
             StartInfo = new ProcessStartInfo
