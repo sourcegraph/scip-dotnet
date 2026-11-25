@@ -3,7 +3,14 @@
   "extends": [
     "local>sourcegraph/renovate-config"
   ],
+  "timezone": "Europe/Warsaw",
+  "schedule": ["before 9am on monday"],
   "packageRules": [
+    {
+      "description": "Merge non-major updates once every check passes; major updates need review.",
+      "matchUpdateTypes": ["minor", "patch", "digest", "pin", "pinDigest"],
+      "automerge": true
+    },
     {
       "description": "Roslyn 5.9 drops MSBuild workspace support for .NET 8 and 9, which this tool still targets.",
       "matchManagers": ["nuget"],
@@ -14,6 +21,17 @@
       "groupName": "NUnit test dependencies",
       "matchManagers": ["nuget"],
       "matchPackageNames": ["NUnit", "NUnit.Analyzers", "NUnit3TestAdapter"]
+    },
+    {
+      "description": "Keep base image updates out of the dotnet monorepo group, so a failing package update doesn't hold back image security fixes.",
+      "matchDepNames": ["mcr.microsoft.com/dotnet/sdk"],
+      "groupName": "dotnet SDK image"
+    },
+    {
+      "description": "Update all actions in one PR; the SDK version in publish.yml stays in the dotnet monorepo group.",
+      "matchManagers": ["github-actions"],
+      "matchDepTypes": ["action"],
+      "groupName": "GitHub Actions"
     }
   ]
 }
