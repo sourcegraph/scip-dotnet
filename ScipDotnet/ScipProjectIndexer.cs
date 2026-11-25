@@ -40,6 +40,12 @@ public class ScipProjectIndexer
                 Arguments = arguments
             }
         };
+        // MSBuildLocator points these at the SDK this process loaded MSBuild from. Let `dotnet restore`
+        // pick its own SDK instead, because mixing a newer SDK with these paths breaks package restore.
+        foreach (var variable in new[] { "MSBUILD_EXE_PATH", "MSBuildExtensionsPath", "MSBuildSDKsPath" })
+        {
+            process.StartInfo.Environment.Remove(variable);
+        }
         options.Logger.LogInformation("$ dotnet {Arguments}", arguments);
         process.Start();
         if (!process.WaitForExit(options.DotnetRestoreTimeout))
