@@ -125,16 +125,22 @@ export Logging__LogLevel__Default=Debug
 
 ## Releasing a new version
 
-First, make sure that you are on the latest `main` branch and have no dirty
-changes.
+A [scheduled workflow](.github/workflows/scheduled-release.yml) opens a patch
+release PR every 4 weeks on Monday, even without code changes, so the Docker
+image picks up base image and package updates. It can also be run on demand
+from the
+[GitHub Actions UI](https://github.com/sourcegraph/scip-dotnet/actions/workflows/scheduled-release.yml).
 
-Next, figure out the correct version number by finding the current in
-[ScipDotnet.cspro](ScipDotnet/ScipDotnet.csproj).
+To prepare a release by hand, run `./release.sh NEW_VERSION` on a branch off the
+latest `main`, for example `./release.sh 1.2.0` (without `NEW_VERSION`, it bumps
+the patch version). The script updates the version in
+[ScipDotnet.csproj](ScipDotnet/ScipDotnet.csproj); open a PR with the change.
 
-Next, run the `./release.sh NEW_VERSION`. For example, run `./release.sh 1.2.0`
-to release the version 1.2.0. The script commits the necessary changes and
-pushes a git tag, which triggers a CI job that publishes assemblies to NuGet and
-the Docker image to Docker Hub.
+Once the version bump is merged to `main`, the
+[tag workflow](.github/workflows/tag-release.yml) pushes the `vM.N.P` tag and
+starts the [publish workflow](.github/workflows/publish.yml), which publishes
+the tool to NuGet and the Docker image to Docker Hub. Don't push release tags
+by hand.
 
 ## Editor support
 
