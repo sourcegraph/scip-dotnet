@@ -1,0 +1,87 @@
+name: Scheduled release
+
+# Opens a patch release PR every 4 weeks on Monday, even without code changes,
+# so the Docker image is rebuilt with the latest base image and package updates.
+# Merging the PR publishes the release (see tag-release.yml).
+on:
+  # Cron can't express "every 4 weeks", so this runs every Monday
+  # and skips weeks that aren't a multiple of 4 after RELEASE_MONDAY.
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+env:
+  RELEASE_MONDAY: "2026-11-23"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  open-release-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Release from main even when dispatched from another branch.
+          ref: main
+          fetch-depth: 0
+
+      - name: Open release PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ]; then
+            DAYS=$(( ($(date -u +%s) - $(date -u -d "$RELEASE_MONDAY" +%s)) / 86400 ))
+            # Whole weeks, so rerunning a failed Monday run later that week still releases.
+            if (( DAYS < 0 || DAYS / 7 % 4 != 0 )); then
+              echo "Not a release week ($DAYS days after $RELEASE_MONDAY)"
+              exit 0
+            fi
+          fi
+
+          LAST_TAG="$(git describe --tags --abbrev=0 --match 'v[0-9]*')"
+          ./release.sh
+          VERSION="$(sed -nE 's|.*<Version>([^<]*)</Version>.*|\1|p' ScipDotnet/ScipDotnet.csproj)"
+          BRANCH="release/v$VERSION"
+
+          # A separate assignment, so a failed lookup stops the job under set -e.
+          OPEN_PR="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')"
+          if [ -n "$OPEN_PR" ]; then
+            echo "::warning::PR #$OPEN_PR for $BRANCH is already open; merge or close it first."
+            exit 0
+          fi
+
+          CHANGES="$(git log --format='- %s' "$LAST_TAG..HEAD")"
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null; then
+            # An earlier run pushed the branch but didn't open the PR, or its PR was closed.
+            # Reuse the branch if it's still only the version bump; never overwrite other edits.
+            git fetch -q origin "$BRANCH"
+            if [ "$(git rev-list --count HEAD..FETCH_HEAD)" != 1 ] ||
+              [ "$(git diff --numstat FETCH_HEAD^ FETCH_HEAD)" != "$(printf '1\t1\tScipDotnet/ScipDotnet.csproj')" ] ||
+              [[ "$(git show FETCH_HEAD:ScipDotnet/ScipDotnet.csproj)" != *"<Version>$VERSION</Version>"* ]]; then
+              echo "::error::$BRANCH exists but isn't just the version bump; open a PR from it or delete it."
+              exit 1
+            fi
+            echo "Reusing the existing $BRANCH"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git checkout -b "$BRANCH"
+            git commit -am "Bump version to v$VERSION"
+            git push origin "$BRANCH"
+          fi
+
+          gh pr create --base main --head "$BRANCH" --title "Release v$VERSION" --body "$(cat <<EOF
+          Scheduled release, so the Docker image picks up base image and package updates.
+          Merging this PR tags v$VERSION and publishes it to NuGet and Docker Hub.
+
+          GitHub doesn't run workflows for PRs opened by GitHub Actions, so tests don't run here;
+          this PR only bumps the version. Close and reopen it to run them.
+
+          Changes since $LAST_TAG:
+
+          ${CHANGES:-- None; this release only rebuilds the Docker image.}
+          EOF
+          )"

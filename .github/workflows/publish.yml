@@ -2,8 +2,11 @@ name: Publish
 on:
   push:
     tags: ["*"]
+  # tag-release.yml dispatches this workflow for the tags it pushes.
+  workflow_dispatch:
 jobs:
   nuget-push:
+    if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
     environment: NuGet
     permissions:
@@ -21,6 +24,7 @@ jobs:
           user: chrapkowski-sg # nuget.org profile name of the Trusted Publishing policy creator
       - run: dotnet nuget push 'ScipDotnet/bin/Release/*.nupkg' --source 'nuget.org' --api-key '${{ steps.nuget-login.outputs.NUGET_API_KEY }}' --skip-duplicate
   docker-push:
+    if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
     permissions:
       contents: read
