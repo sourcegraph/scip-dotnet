@@ -88,6 +88,15 @@ public class ScipDocumentIndexer
             return ScipSymbol.Empty;
         }
 
+        if (sym is IMethodSymbol method)
+        {
+            // A constructed method (`Create<int>`, or `Create(1)` with inferred type arguments) and a
+            // reduced extension method (`value.As<T>()`) are distinct ISymbols from the method they were
+            // formed from: they equal no member of their containing type, so the overload disambiguator
+            // came out empty, and a generic local function got a fresh local id at every call.
+            sym = (method.ReducedFrom ?? method).OriginalDefinition;
+        }
+
         var fromCache = _globals.GetValueOrDefault(sym, ScipSymbol.Empty);
         if (fromCache != ScipSymbol.Empty)
         {

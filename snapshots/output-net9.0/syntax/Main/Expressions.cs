@@ -571,6 +571,7 @@
       }
 
       Func<int, int> AnonymousFunction()
+//    ^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/Func#
 //                   ^^^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Expressions#AnonymousFunction().
 //                                     documentation ```cs\nprivate Func<int, int> Expressions.AnonymousFunction()\n```
       {
@@ -656,9 +657,11 @@
 //            ^ definition local 57
 //              documentation ```cs\nint[*,*]? a\n```
           Span<int> b = stackalloc[] { 1, 2, 3 };
+//        ^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/Span#
 //                  ^ definition local 58
 //                    documentation ```cs\nSpan<int> b\n```
           Span<int> c = stackalloc int[] { 1, 2, 3 };
+//        ^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/Span#
 //                  ^ definition local 59
 //                    documentation ```cs\nSpan<int> c\n```
           var d = new int[3] { 1, 2, 3 };
@@ -707,13 +710,16 @@
           var b = typeof(List<string>.Enumerator);
 //            ^ definition local 68
 //              documentation ```cs\nType? b\n```
+//                       ^^^^ reference scip-dotnet nuget System.Collections 9.0.0.0 Generic/List#
 //                                    ^^^^^^^^^^ reference scip-dotnet nuget System.Collections 9.0.0.0 Generic/List#Enumerator#
           var c = typeof(Dictionary<,>);
 //            ^ definition local 69
 //              documentation ```cs\nType? c\n```
+//                       ^^^^^^^^^^ reference scip-dotnet nuget System.Collections 9.0.0.0 Generic/Dictionary#
           var d = typeof(Tuple<,,,>);
 //            ^ definition local 70
 //              documentation ```cs\nType? d\n```
+//                       ^^^^^ reference scip-dotnet nuget System.Runtime 9.0.0.0 System/Tuple#
       }
 
       interface IAnimal
@@ -805,6 +811,7 @@
           var a = new Dictionary<string, int> { ["a"] = 65 };
 //            ^ definition local 77
 //              documentation ```cs\nDictionary<string, int>? a\n```
+//                    ^^^^^^^^^^ reference scip-dotnet nuget System.Collections 9.0.0.0 Generic/Dictionary#
       }
 
       void Is()

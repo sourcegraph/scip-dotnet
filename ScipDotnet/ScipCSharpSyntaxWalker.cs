@@ -28,6 +28,15 @@ public class ScipCSharpSyntaxWalker : CSharpSyntaxWalker
         base.VisitIdentifierName(node);
     }
 
+    public override void VisitGenericName(GenericNameSyntax node)
+    {
+        // `Create<int>()`, `List<int>`, `typeof(List<>)`: a name carrying type arguments is a
+        // GenericNameSyntax, not an IdentifierNameSyntax, so without this override the invoked
+        // method or referenced type produced no occurrence at all -- only its type arguments did.
+        _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetSymbolInfo(node).Symbol, node.Identifier.GetLocation(), false);
+        base.VisitGenericName(node);
+    }
+
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
         _scipDocumentIndexer.VisitOccurrence(_semanticModel.GetDeclaredSymbol(node), node.Identifier.GetLocation(), true);

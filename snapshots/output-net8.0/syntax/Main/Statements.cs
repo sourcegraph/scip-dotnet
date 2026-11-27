@@ -78,6 +78,7 @@
           var list = new List<Inferred>();
 //            ^^^^ definition local 5
 //                 documentation ```cs\nList<Inferred>? list\n```
+//                       ^^^^ reference scip-dotnet nuget System.Collections 8.0.0.0 Generic/List#
 //                            ^^^^^^^^ reference scip-dotnet nuget . . Main/Statements#Inferred#
           var result = list.Select(c => (c.F1, c.F2)).Where(t => t.F2 == 1);
 //            ^^^^^^ definition local 6
@@ -204,6 +205,7 @@
       void ForeachVariable(List<(int, int)> names)
 //         ^^^^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/Statements#ForeachVariable().
 //                         documentation ```cs\nprivate void Statements.ForeachVariable(List<(int, int)> names)\n```
+//                         ^^^^ reference scip-dotnet nuget System.Collections 8.0.0.0 Generic/List#
 //                                          ^^^^^ definition scip-dotnet nuget . . Main/Statements#ForeachVariable().(names)
 //                                                documentation ```cs\nList<(int, int)> names\n```
       {

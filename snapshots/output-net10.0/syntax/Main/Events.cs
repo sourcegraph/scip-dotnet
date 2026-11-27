@@ -13,6 +13,7 @@
 //                    documentation ```cs\nclass Events\n```
   {
       public event EventHandler<int> Event1
+//                 ^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 10.0.0.0 System/EventHandler#
 //                                   ^^^^^^ definition scip-dotnet nuget . . Main/Events#Event1#
 //                                          documentation ```cs\npublic event EventHandler<int> Events.Event1\n```
       {
