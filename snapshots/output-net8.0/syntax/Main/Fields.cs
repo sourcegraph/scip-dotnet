@@ -26,6 +26,8 @@
 //                                 ^^^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#Property3.
 //                                           documentation ```cs\nprivate long Fields1.Property3\n```
           private Tuple<char, Nullable<int>> Property4;
+//                ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Tuple#
+//                            ^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Nullable#
 //                                           ^^^^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#Property4.
 //                                                     documentation ```cs\nprivate Tuple<char, int?> Fields1.Property4\n```
 
@@ -36,6 +38,7 @@
 //                                   documentation ```cs\nlong field2\n```
 //                                         ^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().(field3)
 //                                                documentation ```cs\nlong field3\n```
+//                                                 ^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/Tuple#
 //                                                                   ^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().(field4)
 //                                                                          documentation ```cs\nTuple<char, int?> field4\n```
 //                                                                               ^^^^^^ definition scip-dotnet nuget . . Main/Fields#Fields1#`.ctor`().(field1)

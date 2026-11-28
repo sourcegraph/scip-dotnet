@@ -13,14 +13,18 @@
 //                         documentation ```cs\nclass QuerySyntax\n```
   {
       List<IGeneric> sourceA = new List<IGeneric>();
+//    ^^^^ reference scip-dotnet nuget System.Collections 8.0.0.0 Generic/List#
 //         ^^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#
 //                   ^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#sourceA.
 //                           documentation ```cs\nprivate List<IGeneric> QuerySyntax.sourceA\n```
+//                                 ^^^^ reference scip-dotnet nuget System.Collections 8.0.0.0 Generic/List#
 //                                      ^^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#
       List<IGeneric> sourceB = new List<IGeneric>();
+//    ^^^^ reference scip-dotnet nuget System.Collections 8.0.0.0 Generic/List#
 //         ^^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#
 //                   ^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#sourceB.
 //                           documentation ```cs\nprivate List<IGeneric> QuerySyntax.sourceB\n```
+//                                 ^^^^ reference scip-dotnet nuget System.Collections 8.0.0.0 Generic/List#
 //                                      ^^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#IGeneric#
 
       interface IGeneric
@@ -166,9 +170,11 @@
       void JoinInto(List<Student> students1, List<Student> students2)
 //         ^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#JoinInto().
 //                  documentation ```cs\nprivate void QuerySyntax.JoinInto(List<Student> students1, List<Student> students2)\n```
+//                  ^^^^ reference scip-dotnet nuget System.Collections 8.0.0.0 Generic/List#
 //                       ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#Student#
 //                                ^^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#JoinInto().(students1)
 //                                          documentation ```cs\nList<Student> students1\n```
+//                                           ^^^^ reference scip-dotnet nuget System.Collections 8.0.0.0 Generic/List#
 //                                                ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#Student#
 //                                                         ^^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#JoinInto().(students2)
 //                                                                   documentation ```cs\nList<Student> students2\n```
@@ -201,6 +207,7 @@
       void Continuation(List<Student> students)
 //         ^^^^^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#Continuation().
 //                      documentation ```cs\nprivate void QuerySyntax.Continuation(List<Student> students)\n```
+//                      ^^^^ reference scip-dotnet nuget System.Collections 8.0.0.0 Generic/List#
 //                           ^^^^^^^ reference scip-dotnet nuget . . Main/QuerySyntax#Student#
 //                                    ^^^^^^^^ definition scip-dotnet nuget . . Main/QuerySyntax#Continuation().(students)
 //                                             documentation ```cs\nList<Student> students\n```

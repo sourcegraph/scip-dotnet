@@ -75,6 +75,7 @@
 //                     documentation ```cs\ninterface IEvent\n```
       {
           event EventHandler<int> SomeEvent;
+//              ^^^^^^^^^^^^ reference scip-dotnet nuget System.Runtime 8.0.0.0 System/EventHandler#
 //                                ^^^^^^^^^ definition scip-dotnet nuget . . Main/Interfaces#IEvent#SomeEvent#
 //                                          documentation ```cs\nevent EventHandler<int> IEvent.SomeEvent\n```
       }
@@ -122,10 +123,13 @@
 //                              ^ definition local 0
 //                                documentation ```cs\nT\n```
 //                                       ^ reference local 0
+//                                           ^^^^^^^^ reference scip-dotnet nuget . . Main/Interfaces#IGetNext#
 //                                                    ^ reference local 0
       {
           static IGetNext<T> operator ++(IGetNext<T> other)
+//               ^^^^^^^^ reference scip-dotnet nuget . . Main/Interfaces#IGetNext#
 //                        ^ reference local 0
+//                                       ^^^^^^^^ reference scip-dotnet nuget . . Main/Interfaces#IGetNext#
 //                                                ^ reference local 0
 //                                                   ^^^^^ definition scip-dotnet nuget . . Main/Interfaces#IGetNext#op_Increment().(other)
 //                                                         documentation ```cs\nIGetNext<T> other\n```
